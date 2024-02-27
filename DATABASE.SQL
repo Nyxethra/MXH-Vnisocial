@@ -1,11 +1,11 @@
 CREATE TABLE Users(
-  id int PRIMARY,
+  id int PRIMARY KEY,
   username varchar(50),
   password varchar(50)
 );
 
 CREATE TABLE User_info(
-  user_id int PRIMARY,
+  user_id int PRIMARY KEY,
   bio varchar(150),
   Firstname varchar(50),
   Lastname varchar(50),
