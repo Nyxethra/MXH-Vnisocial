@@ -20,7 +20,7 @@ CREATE TABLE User_info(
     
 );
 INSERT INTO `Users` (`User_id`, `Username`, `Password`, `Role`) VALUES ('1', 'qkhanhs123', 'khanhkhanhkhanh3','Admin'), ('2', 'votinhcoduoctraitimem', 'chilatinhco','user');
-INSERT INTO `user_info` (`Id`, `User_id`, `Bio`, `Firstname`, `Lastname`, `Avatar`, `Gender`, `Birthday`, `Email`) VALUES ('', '2', 'có không giữ mất tìm liền', thichem, khong, '', 'Nam',2024-02-01, vietcaitaikhoanmacunglau@gmail.com);
+INSERT INTO `user_info` (`Id`, `User_id`, `Bio`, `Firstname`, `Lastname`, `Avatar`, `Gender`, `Birthday`, `Email`) VALUES ('', '2', 'có không giữ mất tìm liền', t'hichem', 'khong', '', 'Nam','2024-02-01',' vietcaitaikhoanmacunglau@gmail.com');
 
 CREATE TABLE friendrequest(
   request_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
