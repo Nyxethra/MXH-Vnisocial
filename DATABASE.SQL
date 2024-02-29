@@ -29,11 +29,11 @@ CREATE TABLE tt_nguoidung(
   moi_quan_he varchar(150)
 );
 INSERT INTO tt_nguoidung(ma_nguoidung, is_active, hoc_tai, lam_tai, moi_quan_he) VALUES
-(1,null,'Học viện hàng không',null,'Độc thân'),
-(2, null,'Học viện hàng không',null, 'Độc Thân'),
-(3,null,'Học viện hàng không',null,'Độc thân'),
-(4, null,'Học viện hàng không',null, 'Độc Thân'),
-(5,null,'Học viện hàng không',null,'Độc thân');
+(1,null,'Học viện hàng không Việt Nam',null,'Độc thân'),
+(2, null,'Học viện hàng không Việt Nam',null, 'Độc Thân'),
+(3,null,'Học viện hàng không Việt Nam',null,'Độc thân'),
+(4, null,'Học viện hàng không Việt Nam',null, 'Độc Thân'),
+(5,null,'Học viện hàng không Việt Nam',null,'Độc thân');
 
 CREATE TABLE nhan_tin(
   ma_tin_nhan int NOT NULL AUTO_INCREMENT PRIMARY KEY,
