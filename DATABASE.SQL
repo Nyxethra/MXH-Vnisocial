@@ -7,7 +7,7 @@ CREATE TABLE nguoidung(
   ngaysinh date, 
   avartar varchar(600) DEFAULT 'nguoidung.jpeg',
   anhbia varchar(600) DEFAULT 'anhbia.jpg',
-  tieusu varchar(250),
+  tieusu varchar(250)
   
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
