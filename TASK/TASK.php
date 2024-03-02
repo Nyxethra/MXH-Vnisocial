@@ -74,7 +74,10 @@
       <img src="logo.png" alt="Vnisocial Logo">
     </div>
     <div class="navbar-search">
-      <input type="text" placeholder="Search Vnisocial">
+    <form action="../TIM_KIEM/KETQUA.php" method="post">
+    <input type="text" name="ten" placeholder="Nhập tên người dùng">
+    
+  </form>
     </div>
     <div class="navbar-links">
       <a class="abc" href="#">Trang chủ</a>

@@ -11,12 +11,12 @@ CREATE TABLE nguoidung(
   
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-INSERT INTO nguoidung(ten_nguoidung, matkhau, email, gioitinh, ngaysinh, avartar, anhbia,tieusu,) VALUES
-('HAIDANG','abcde','HAIDANG@gmail.com','nam','1999-02-18', 'anh2.jpg','anh3.jpg','a','b'),
-('QUYNHANH', 'abcde', 'QUYNHANH@gmail.com','nữ','2500-07-08', 'nguoidung.jpeg','anhbia.jpg','a',null),
-('VANQUANG','abcde','VANQUANG@gmail.com','nữ','2505-03-14','anh2.jpeg','anhbia.jpg',null,null),
-('QUOCKHANH','abcde','QUOCKHANH@gmail.com','nam','2504-07-02','nguoidung.jpeg','anhbia.jpg',null,null),
-('BAONGOC','abcde','BAONGOC@gmail.com','nam','2502-07-15','nguoidung.jpeg','anhbia.jpg','a',null);
+INSERT INTO nguoidung(ten_nguoidung, matkhau, email, gioitinh, ngaysinh, avartar, anhbia,tieusu) VALUES
+('Nguyễn Hải Đăng','abcde','HAIDANG@gmail.com','nam','1999-02-18', 'anh2.jpg','anh3.jpg','ahahha'),
+('Tạ Hà Quỳnh Anh', 'abcde', 'QUYNHANH@gmail.com','nữ','2500-07-08', 'nguoidung.jpeg','anhbia.jpg','ihihiii'),
+('Nguyễn Văn Quang','abcde','VANQUANG@gmail.com','nữ','2505-03-14','anh2.jpeg','anhbia.jpg','ohoooho'),
+('Nguyễn Quốc khánh','abcde','QUOCKHANH@gmail.com','nam','2504-07-02','nguoidung.jpeg','anhbia.jpg','một cộng một bằng 2'),
+('Bảo Ngọc ','abcde','BAONGOC@gmail.com','nam','2502-07-15','nguoidung.jpeg','anhbia.jpg','worldcup 2024');
 
 
 CREATE TABLE tt_nguoidung(
@@ -28,12 +28,12 @@ CREATE TABLE tt_nguoidung(
   lam_tai varchar(250),
   moi_quan_he varchar(150)
 );
-INSERT INTO tt_nguoidung(ma_nguoidung, is_active, hoc_tai, lam_tai, moi_quan_he) VALUES
-(1,null,'Học viện hàng không Việt Nam',null,'Độc thân'),
-(2, null,'Học viện hàng không Việt Nam',null, 'Độc Thân'),
-(3,null,'Học viện hàng không Việt Nam',null,'Độc thân'),
-(4, null,'Học viện hàng không Việt Nam',null, 'Độc Thân'),
-(5,null,'Học viện hàng không Việt Nam',null,'Độc thân');
+INSERT INTO tt_nguoidung(ma_nguoidung, hoc_tai, lam_tai, moi_quan_he) VALUES
+(1,'ĐẠI HỌC CỘNG NGHỆ ĐHQGHN',null,'Độc thân'),
+(2,'HỌC VIÊN BƯU CHÍNH VIỄN THÔNG',null, 'Độc Thân'),
+(3,'HỌC VIÊN PHÓNG KHÔNG - KHÔNG QUÂN',null,'Độc thân'),
+(4,'HỌC VIỆN ANH NINH NHÂN DÂN',null, 'Độc Thân'),
+(5,'ĐẠI HỌC LUẬT ĐÀ NẴNG',null,'Độc thân');
 
 CREATE TABLE nhan_tin(
   ma_tin_nhan int NOT NULL AUTO_INCREMENT PRIMARY KEY,
