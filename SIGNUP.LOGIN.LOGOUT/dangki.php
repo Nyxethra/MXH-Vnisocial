@@ -22,22 +22,13 @@ class Signup
     }
     public function create_user($data)
     {
-        $firstname =ucfirst($data['firstname']);
-        $lastname =ucfirst($data['lastname']);
+        $name=$data['name'];
         $matkhau =$data['matkhau'];
-        $matkhau2 =$data['matkhau2'];
         $email =$data['email'];
-        $gioitinh =$data['gioitinh'];
-        // $ngay =$data['ngay'];
-        // $thang=$data['Thang'];
-        // $nam=$data['nam'];
 
-        //create these
-        $ten_nguoidung =strtolower($firstname) . ".". strtolower($lastname) ;
-        // $ngaysinh=$ngay . $thang . $nam;
-        $query = "insert into nguoidung( ten_nguoidung , matkhau, email,gioitinh, ngaysinh)
-        values ('$ten_nguoidung', '$matkhau', '$email','gioitinh', '')";
-        // echo $query;
+        $query = "insert into nguoidung( ten_nguoidung , matkhau, email)
+        values ('$name', '$matkhau', '$email')";
+
         $DB = new Database();
         $DB->save($query);
     }
