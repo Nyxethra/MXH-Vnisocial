@@ -85,7 +85,14 @@
     </div>
     <div class="navbar-icons">
       <i class="fab fa-facebook-messenger"></i>
-      <i class="far fa-bell"></i>
+      <?php
+            // Include file đếm thông báo
+            include_once "thongbao.php";
+          ?>
+      <div class="notification">
+        <i class="far fa-bell"></i>
+        <span class="badge"><?php echo $notification_count; ?></span>
+      </div>
     </div>
   </div>
 
