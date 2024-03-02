@@ -1,3 +1,8 @@
+<?php
+            // Include file đếm thông báo
+            include "THONG_BAO/thongbao.php";
+          ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,16 +90,35 @@
     </div>
     <div class="navbar-icons">
       <i class="fab fa-facebook-messenger"></i>
-      <?php
-            // Include file đếm thông báo
-            include_once "thongbao.php";
-          ?>
-      <div class="notification">
-        <i class="far fa-bell"></i>
-        <span class="badge"><?php echo $notification_count; ?></span>
-      </div>
+      <div class="notification" onclick="showPopup()">
+                <i class="far fa-bell"></i>
+                <span class="badge"><?php echo $notification_count; ?></span>
+            </div>
+        </div>
     </div>
-  </div>
 
-  </body>
+    <!-- Phần pop-up thông báo -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <!-- Nội dung của pop-up -->
+            <h3>Thông báo mới</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+    </div>
+
+    <script>
+        // Hàm để hiển thị pop-up
+        function showPopup() {
+            var popup = document.getElementById("popup");
+            popup.style.display = "block";
+        }
+
+        // Hàm để ẩn pop-up
+        function closePopup() {
+            var popup = document.getElementById("popup");
+            popup.style.display = "none";
+        }
+    </script>
+</body>
 </html>
