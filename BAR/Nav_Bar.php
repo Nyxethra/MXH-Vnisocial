@@ -74,7 +74,7 @@
       <img src="logo.png" alt="Vnisocial Logo">
     </div>
     <div class="navbar-search">
-    <form action="../TIM_KIEM/KETQUA.php" method="post">
+    <form action="TIM_KIEM/KETQUA.php" method="post">
     <input type="text" name="ten" placeholder="Nhập tên người dùng">
     
   </form>
