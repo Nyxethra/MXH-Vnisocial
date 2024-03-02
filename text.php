@@ -8,28 +8,25 @@
 </head>
 <body>
 <?php
-    include("classes/connect.php");
-    include("classes/dangki.php");
-    include("dangnhap.php");
+    include("text1.php");
+    // if(($_SERVER)['REQUEST_METHOD']=='POST')
+    // {
+    //     $signup = new Signup();
+    //     $result= $signup -> evaluate($_POST);
 
-    if(($_SERVER)['REQUEST_METHOD']=='POST')
-    {
-        $signup = new Signup();
-        $result= $signup -> evaluate($_POST);
-
-        if($result != ""){
-        //     //co the dung 
-        //     echo "<div style='text-align:center; font-size:12px; color:white;background-color:grey'>";
-        //     echo " <br>Nhung thong tin con thieu <br><br>";
-        //     echo $result;
-        //     echo "</div>";
-        }
-        else
-        {
-            header("Location:login.php");
-        }
+    //     if($result != ""){
+    //     //     //co the dung 
+    //     //     echo "<div style='text-align:center; font-size:12px; color:white;background-color:grey'>";
+    //     //     echo " <br>Nhung thong tin con thieu <br><br>";
+    //     //     echo $result;
+    //     //     echo "</div>";
+    //     }
+    //     else
+    //     {
+    //         header("Location:login.php");
+    //     }
     
-    }
+    // }
 ?>
 <h2>Sign in/up Form</h2>
     <div class="container" id="container">

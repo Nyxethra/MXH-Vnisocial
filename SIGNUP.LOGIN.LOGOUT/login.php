@@ -52,26 +52,12 @@
     // // $ngay =$_POST['ngay'];
     // // $thang=$_POST['Thang'];
     // // $nam=$_POST['nam'];
-
     ?>
-<div class="thanhbar">
-    <img src="../IMG/VNISocial.png" class="logo">
-    <form class="login_form" method="post">
-        <div class="email">
-            <div class="font">nhap Email cua ban</div>
-            <input type ="text" name="username">
-        </div>
-        <div class="password">
-            <div class="font">Mật khẩu</div>
-            <input type="password" name="password">
-        </div>
-        <button class="btn">Đăng nhập</button>
-    </form>
-</div> 
+    <?php include("thanhbar_dangnhap.php")?>
 <section>
-    <div class="signup_body">
-        <p class="acc_crt">Đăng ký</p>
-        <p class="free_hint">Luôn miễn phí</p>
+    <div class="signup_body" style="background-color: #FF4848;">
+        <p class="acc_crt"style="color:white"><b>Đăng ký</b></p>
+        <p class="free_hint" style="color:white">Luôn miễn phí</p>
         <form class="signup_form" method="post" action="">
             <div>
 

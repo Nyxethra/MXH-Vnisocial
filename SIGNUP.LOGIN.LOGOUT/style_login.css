@@ -1,6 +1,7 @@
 *{
     margin : 0;
     padding : 0;
+    text-align: center;
 }
 .thanhbar{
     height: 80px;
@@ -66,6 +67,8 @@ section{
     top: 20%;
     right: 58%;
     width: 500px;
+    padding-left: 10px;
+    border-radius :10%;
 }
 .signup_body .acc_crt{
     font-size: 40px;
