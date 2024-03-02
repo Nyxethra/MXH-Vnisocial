@@ -1,14 +1,7 @@
 <?php
             // Include file đếm thông báo
             include "THONG_BAO/thongbao.php";
-
-// Kết nối đến cơ sở dữ liệu
-$conn = mysqli_connect("localhost", "root", "", "vnisocial");
-
-// Kiểm tra kết nối
-if ($conn->connect_error) {
-  die("Kết nối đến cơ sở dữ liệu thất bại: " . $conn->connect_error);
-}
+            include "config.php"; 
 
 // Truy vấn nội dung thông báo từ cơ sở dữ liệu
 $sql = "SELECT noidung_thongbao FROM thongbao WHERE ma_thongbao = 1"; // Thay đổi điều kiện truy vấn tùy thuộc vào nhu cầu của bạn
