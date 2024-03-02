@@ -103,8 +103,10 @@ CREATE TABLE thongbao (
   noidung_thongbao varchar(250),
   ma_baidang int,
   FOREIGN KEY (ma_baidang) REFERENCES baidang(ma_baidang),
-  thoidiem_thongbao varchar(250)
+  thoidiem_thongbao varchar(250),
+  tong_tb int DEFAULT 0 -- Thêm cột tổng thông báo và đặt giá trị mặc định là 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
 
 INSERT INTO thongbao(thongbao_tu,noidung_thongbao) VALUES 
   (1, 'đã thích bài viết của bạn'),

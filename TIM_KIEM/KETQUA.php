@@ -33,7 +33,7 @@
     }
 
     .item {
-      width: 33%);
+      width: 33%;
       border: 1px solid #ccc;
       padding: 10px;
       margin: 10px;
@@ -81,7 +81,7 @@
     flex-wrap: wrap;
     }
     
-}
+
 
   </style>
 </head>

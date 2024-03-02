@@ -1,7 +1,30 @@
 <?php
             // Include file đếm thông báo
             include "THONG_BAO/thongbao.php";
-          ?>
+
+// Kết nối đến cơ sở dữ liệu
+$conn = mysqli_connect("localhost", "root", "", "vnisocial");
+
+// Kiểm tra kết nối
+if ($conn->connect_error) {
+  die("Kết nối đến cơ sở dữ liệu thất bại: " . $conn->connect_error);
+}
+
+// Truy vấn nội dung thông báo từ cơ sở dữ liệu
+$sql = "SELECT noidung_thongbao FROM thongbao WHERE ma_thongbao = 1"; // Thay đổi điều kiện truy vấn tùy thuộc vào nhu cầu của bạn
+$result = $conn->query($sql);
+
+// Kiểm tra và lấy nội dung thông báo
+if ($result->num_rows > 0) {
+  $row = $result->fetch_assoc();
+  $notification_content = $row["noidung_thongbao"];
+} else {
+  $notification_content = "Không có thông báo mới";
+}
+
+// Đóng kết nối đến cơ sở dữ liệu
+$conn->close();
+?> 
 
 <!DOCTYPE html>
 <html>
@@ -70,7 +93,30 @@
     .navbar-search {
   margin-left: 10px; /* Adjust the value for desired distance */
 }
-  
+/* Pop-up styles */
+.popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .popup-content {
+      text-align: center;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: white;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -79,46 +125,46 @@
       <img src="logo.png" alt="Vnisocial Logo">
     </div>
     <div class="navbar-search">
-    <form action="TIM_KIEM/KETQUA.php" method="post">
-    <input type="text" name="ten" placeholder="Nhập tên người dùng">
-    
-  </form>
+      <form action="TIM_KIEM/KETQUA.php" method="post">
+        <input type="text" name="ten" placeholder="Nhập tên người dùng">
+      </form>
     </div>
     <div class="navbar-links">
-      <a class="abc" href="#">Trang chủ</a>
-      <a class="abc "href="#">Trang cá nhân</a>
+      <a class="abc" href="#"><b>Trang chủ</b></a>
+      <a class="abc" href="#"><b>|</b></a>
+      <a class="abc "href="#"><b>Trang cá nhân</b></a>
     </div>
     <div class="navbar-icons">
       <i class="fab fa-facebook-messenger"></i>
       <div class="notification" onclick="showPopup()">
-                <i class="far fa-bell"></i>
-                <span class="badge"><?php echo $notification_count; ?></span>
-            </div>
-        </div>
+        <i class="far fa-bell"></i>
+        <span class="badge">3</span>
+      </div>
     </div>
+  </div>
 
-    <!-- Phần pop-up thông báo -->
-    <div class="popup" id="popup">
-        <div class="popup-content">
-            <span class="close" onclick="closePopup()">&times;</span>
-            <!-- Nội dung của pop-up -->
-            <h3>Thông báo mới</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </div>
+  <!-- Phần pop-up thông báo -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <span class="close" onclick="closePopup()">&times;</span>
+      <!-- Nội dung của pop-up sẽ được đưa vào đây -->
+      <h3>Thông báo mới</h3>
+      <p><?php echo $notification_content; ?></p>
     </div>
+  </div>
 
-    <script>
-        // Hàm để hiển thị pop-up
-        function showPopup() {
-            var popup = document.getElementById("popup");
-            popup.style.display = "block";
-        }
+  <script>
+    // Hàm để hiển thị pop-up
+    function showPopup() {
+      var popup = document.getElementById("popup");
+      popup.style.display = "block";
+    }
 
-        // Hàm để ẩn pop-up
-        function closePopup() {
-            var popup = document.getElementById("popup");
-            popup.style.display = "none";
-        }
-    </script>
+    // Hàm để ẩn pop-up
+    function closePopup() {
+      var popup = document.getElementById("popup");
+      popup.style.display = "none";
+    }
+  </script>
 </body>
 </html>
