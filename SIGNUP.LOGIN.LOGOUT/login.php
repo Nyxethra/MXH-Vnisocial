@@ -8,18 +8,19 @@
 </head>
 <body>
     <?php
-    include("classes/connect.php");
-    include("classes/dangki.php");
+    include("connect.php");
+    include("dangki.php");
+    include("dangnhap.php");
 
-    $firstname="";
-    $lastname="";
-    $matkhau2="";
-    $matkhau="";
-    $email="";
-    $gioitinh="";
-    // $ngay ="";
-    // $thang="";
-    // $nam="";
+    // $firstname="";
+    // $lastname="";
+    // $matkhau2="";
+    // $matkhau="";
+    // $email="";
+    // $gioitinh="";
+    // // $ngay ="";
+    // // $thang="";
+    // // $nam="";
 
 
 
@@ -29,39 +30,40 @@
         $result= $signup -> evaluate($_POST);
 
         if($result != ""){
-    //         //co the dung 
-    //         echo "<div style='text-align:center; font-size:12px; color:white;background-color:grey'>";
-    //         echo " <br>Nhung thong tin con thieu <br><br>";
-    //         echo $result;
-    //         echo "</div>";
+        //     //co the dung 
+        //     echo "<div style='text-align:center; font-size:12px; color:white;background-color:grey'>";
+        //     echo " <br>Nhung thong tin con thieu <br><br>";
+        //     echo $result;
+        //     echo "</div>";
         }
         else
         {
-            header("Location:trangcanhan.php");
+            header("Location:../TRANG_CANHAN/trangcanhan.php");
         }
     
     }
-    $firstname=$_POST['firstname'];
-    $lastname=$_POST['lastname'];
-    $matkhau2=$_POST['matkhau2'];
-    $matkhau=$_POST['matkhau'];
-    $email=$_POST['email'];
-    $gioitinh=$_POST['gioitinh'];
-    // $ngay =$_POST['ngay'];
-    // $thang=$_POST['Thang'];
-    // $nam=$_POST['nam'];
+
+    // $firstname=$_POST['firstname'];
+    // $lastname=$_POST['lastname'];
+    // $matkhau2=$_POST['matkhau2'];
+    // $matkhau=$_POST['matkhau'];
+    // $email=$_POST['email'];
+    // $gioitinh=$_POST['gioitinh'];
+    // // $ngay =$_POST['ngay'];
+    // // $thang=$_POST['Thang'];
+    // // $nam=$_POST['nam'];
 
     ?>
 <div class="thanhbar">
-    <img src="VNISocial.png" class="logo">
+    <img src="../IMG/VNISocial.png" class="logo">
     <form class="login_form" method="post">
         <div class="email">
             <div class="font">nhap Email cua ban</div>
-            <input type ="text" value="<?php echo $email ?>"name="username">
+            <input type ="text" name="username">
         </div>
         <div class="password">
             <div class="font">Mật khẩu</div>
-            <input type="password" value="<?php echo $email ?> "name="password">
+            <input type="password" name="password">
         </div>
         <button class="btn">Đăng nhập</button>
     </form>
@@ -73,11 +75,11 @@
         <form class="signup_form" method="post" action="">
             <div>
 
-                <input value="<?php echo $firstname ?>" class="firstname" type="text" name="firstname" placeholder="First name">
-                <input value="<?php echo $lastname ?>" class="lastname" type="text" name="lastname" placeholder="Last name">
-                <input value="<?php echo $email ?>" class="email" type="text" name="email" placeholder="Dien email cua ban">
-                <input value="<?php echo $matkhau ?>" class="password" type="password" name="matkhau" placeholder="Mat khau">
-                <input value="<?php echo $matkhau2 ?>" class="password2" type="password" name="matkhau2" placeholder="Xac nhan mat khau">
+                <input  class="firstname" type="text" name="firstname" placeholder="First name">
+                <input  class="lastname" type="text" name="lastname" placeholder="Last name">
+                <input  class="email" type="text" name="email" placeholder="Dien email cua ban">
+                <input  class="password" type="password" name="matkhau" placeholder="Mat khau">
+                <input  class="password2" type="password" name="matkhau2" placeholder="Xac nhan mat khau">
             </div>
             <p class="birthday" > Ngày sinh</p>
             <div class="birth_date">
