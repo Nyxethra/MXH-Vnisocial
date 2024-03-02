@@ -1,7 +1,4 @@
 <?php
-
-@include 'config.php';
-
 session_start();
 
 $user_id = $_SESSION['ma_nguoidung'];
