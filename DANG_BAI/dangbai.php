@@ -84,7 +84,7 @@
   <div class="container">
     <div class="ui segment baidang">
       <div class="phiatren">
-        <img class="ui avatar image" src="avatar.png">
+        <img class="ui avatar image" src="img/may_dep.jpg">
         <div class="ui input">
           <input type="text" placeholder="Nhập nội dung tại đây...">
         </div>
@@ -103,53 +103,56 @@
   </div>
 
   <script>
-    $(document).ready(function(){
-      $(".ui.input input, .ui.icon.button").click(function(e){
-        e.stopPropagation(); // Ngăn chặn sự kiện click lan truyền
-        Swal.fire({
-          title: 'Đăng bài',
-          html: '<form action="post_create.php" method="post" enctype="multipart/form-data"><div class="popup"> <div class="tren"> <h2>Tạo bài đăng</h2><button class="ui icon button"><i class="close icon"></i></button></div><div class="duoi"><div class="item"><img class="ui avatar image" src="avatar.png"><span class="username">Tên người dùng</span></div><div class="item"><textarea name="content" placeholder="Nhập nội dung bài viết..."></textarea></div><div class="item"><span>Thêm vào bài viết của bạn</span><input type="file" class="ui icon button  id="image" name="image"><i class="image outline icon"></i></button></div><div class="item"><button type="submit" class="ui red button">Đăng bài</button></div></div></div></form>',
-          width: '60%',
-          heightAuto: false,
-          padding: '3em',
-          background: '#f0f0f0',
-          backdrop: `
-            rgba(255,255,255,0.4)
-            no-repeat
-          `,
-          customClass: {
-            popup: 'custom-popup'
-          }
-        });
+  $(document).ready(function(){
+    $(".ui.input input, .ui.icon.button").click(function(e){
+      e.stopPropagation(); // Ngăn chặn sự kiện click lan truyền
+      Swal.fire({
+        title: 'Đăng bài',
+        html: '<div class="popup">'+'<div class="tren">'+'<h2>Tạo bài đăng</h2>'+'<button class="ui icon button"><i class="close icon"></i></button>'+'</div>'+'<form action="Dang_bai/post_create.php" method="post" enctype="multipart/form-data"><div class="duoi"><div class="item"><img class="ui avatar image" src="img/may_dep.jpg"><span class="username">Tên người dùng</span></div><div class="item"><textarea name="content" placeholder="Nhập nội dung bài viết..."></textarea></div><div class="item"><span>Thêm vào bài viết của bạn</span><input type="file" class="ui icon button  id="image" name="image"><i class="image outline icon"></i></button></div><div class="item"><button type="submit" class="ui red button">Đăng bài</button></div></div></div></form>',
+        width: '100%',
+        heightAuto: false,
+        padding: '3em',
+        background: 'rgba(0, 0, 0, 0.5)',
+        backdrop: `
+          rgba(255,255,255,0.4)
+          no-repeat
+        `,
+        customClass: {
+          popup: 'custom-popup'
+        }
       });
 
-      // Xử lý sự kiện click cho nút chèn hình ảnh hoặc video
-      $("#insert-media").click(function(e) {
-        e.stopPropagation(); // Ngăn chặn sự kiện click lan truyền
-        // Thêm mã xử lý cho việc chèn hình ảnh hoặc video tại đây
-        // Ví dụ: Hiển thị một cửa sổ popup cho phép người dùng chọn hình ảnh hoặc video từ máy tính của họ
-        Swal.fire({
-          title: 'Chèn hình ảnh hoặc video',
-          text: 'Chức năng này đang được phát triển.',
-          icon: 'info',
-          confirmButtonText: 'OK'
-        });
+      // Xử lý sự kiện click vào nền đen xung quanh pop-up
+      $(".swal2-container").click(function(e){
+        // Kiểm tra xem nơi click có phải là pop-up hay không
+        if (!$(e.target).closest('.popup').length) {
+          // Nếu không phải, ẩn pop-up đi
+          Swal.close();
+        }
+      });
+
+      // Xử lý sự kiện khi click vào nút "Ẩn pop-up"
+      $(".ui.icon.button").click(function(){
+        Swal.close(); // Ẩn pop-up
       });
     });
-  </script>
+  });
+</script>
+
+
 
   <style>
     .custom-popup {
-      height: 70%; // Tăng chiều cao của popup
+      height: 100%; // Tăng chiều cao của popup
     }
 
     .popup {
       display: flex;
       flex-direction: column;
       height: 70%;
-      width: 60%;
+      width: 40%;
       background-color: #f0f0f0;
-      padding: 20px;
+      
       border-radius: 10px;
     }
 

@@ -17,6 +17,7 @@ if(!isset($user_id)){
   </head>
   <body>
     <?php include ('BAR/Nav_Bar.php');?>
+    <?php include ('dang_bai/dangbai.php');?>
     <?php
         if (isset($_GET["pid"])){
             $id=$_GET["pid"];
