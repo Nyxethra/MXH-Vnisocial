@@ -7,58 +7,13 @@
     <link rel="stylesheet" type="text/css" href="style_login.css">
 </head>
 <body>
-    <?php
-    include("connect.php");
-    include("dangki.php");
-    include("dangnhap.php");
-
-    // $firstname="";
-    // $lastname="";
-    // $matkhau2="";
-    // $matkhau="";
-    // $email="";
-    // $gioitinh="";
-    // // $ngay ="";
-    // // $thang="";
-    // // $nam="";
-
-
-
-    if(($_SERVER)['REQUEST_METHOD']=='POST')
-    {
-        $signup = new Signup();
-        $result= $signup -> evaluate($_POST);
-
-        if($result != ""){
-        //     //co the dung 
-        //     echo "<div style='text-align:center; font-size:12px; color:white;background-color:grey'>";
-        //     echo " <br>Nhung thong tin con thieu <br><br>";
-        //     echo $result;
-        //     echo "</div>";
-        }
-        else
-        {
-            header("Location:../TRANG_CANHAN/trangcanhan.php");
-        }
     
-    }
-
-    // $firstname=$_POST['firstname'];
-    // $lastname=$_POST['lastname'];
-    // $matkhau2=$_POST['matkhau2'];
-    // $matkhau=$_POST['matkhau'];
-    // $email=$_POST['email'];
-    // $gioitinh=$_POST['gioitinh'];
-    // // $ngay =$_POST['ngay'];
-    // // $thang=$_POST['Thang'];
-    // // $nam=$_POST['nam'];
-    ?>
     <?php include("thanhbar_dangnhap.php")?>
 <section>
     <div class="signup_body" style="background-color: #FF4848;">
         <p class="acc_crt"style="color:white"><b>Đăng ký</b></p>
         <p class="free_hint" style="color:white">Luôn miễn phí</p>
-        <form class="signup_form" method="post" action="">
+        <form class="signup_form" method="POST" action="dangki.php">
             <div>
 
                 <input  class="firstname" type="text" name="firstname" placeholder="First name">
