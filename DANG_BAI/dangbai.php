@@ -145,7 +145,14 @@
     .custom-popup {
       height: 100%; // Tăng chiều cao của popup
     }
-
+    .close.icon {
+  position: absolute; /* Đặt vị trí của phần tử con là tuyệt đối */
+  top: 3px; /* Điều chỉnh khoảng cách từ trên xuống */
+  right: 3px; /* Điều chỉnh khoảng cách từ phải sang trái */
+}
+.swal2-confirm.swal2-styled{
+  display: none;
+}
     .popup {
       display: flex;
       flex-direction: column;
@@ -171,6 +178,7 @@
 
     .tren .ui.icon.button {
       margin-right: 10px;
+      position: relative;
     }
 
     .duoi {
