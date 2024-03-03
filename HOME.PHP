@@ -4,7 +4,7 @@ session_start();
 $user_id = $_SESSION['ma_nguoidung'];
 
 if(!isset($user_id)){
-   header('location:login.php');
+   header('location:SIGNUP.LOGIN.LOGOUT/login.php');
 };
 ?>
 

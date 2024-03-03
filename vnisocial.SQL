@@ -51,34 +51,23 @@ INSERT INTO nhan_tin(tin_nhan_tu,tin_nhan_den,noidung) VALUES
 (2,1,'d');
 
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+07:00";
-CREATE TABLE `baidang` (
-  `ma_baidang` bigint(19) NOT NULL,
-  `dang_boi` bigint(19) DEFAULT NULL,
-  `noidung` text DEFAULT NULL,
-  `image` varchar(500) DEFAULT NULL,
-  `luong_like` int(11) NOT NULL DEFAULT 0,
-  `luong_binhluan` int(11) NOT NULL DEFAULT 0,
-  `luong_chia_se` int(11) NOT NULL DEFAULT 0,
-  `thoigian_dang` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+CREATE TABLE baidang (
+  ma_baidang int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  dang_boi int,
+  FOREIGN KEY (dang_boi) REFERENCES nguoidung(ma_nguoidung),
+  noidung text,
+  image varchar(600),
+  luong_like int NOT NULL DEFAULT 0,
+  luong_binhluan int NOT NULL DEFAULT 0,
+  luong_chia_se int NOT NULL DEFAULT 0,
+  thoigian_dang timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-INSERT INTO `baidang` (`ma_baidang`, `dang_boi`, `noidung`, `image`, `luong_like`, `luong_binhluan`, `luong_chia_se`, `thoigian_dang`) VALUES
-(1, 2, 'v', 'a.jpg', 0, 0, 0, '2024-03-02 12:14:04'),
-(2, 1, 'd ', 'b.jpg', 0, 0, 0, '2024-03-02 12:14:04'),
-(3, 5, 'g ', 'c.jpg', 1, 0, 0, '2024-03-02 12:14:04');
-ALTER TABLE `baidang`
-  ADD PRIMARY KEY (`ma_baidang`),
-  ADD KEY `dang_boi` (`dang_boi`),
-  ADD KEY `luong_like` (`luong_like`),
-  ADD KEY `thoigian_dang` (`thoigian_dang`),
-  ADD KEY `luong_binhluan` (`luong_binhluan`);
-ALTER TABLE `baidang`
-  MODIFY `ma_baidang` bigint(19) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-ALTER TABLE `baidang`
-  ADD CONSTRAINT `baidang_ibfk_1` FOREIGN KEY (`dang_boi`) REFERENCES `nguoidung` (`ma_nguoidung`);
-COMMIT;
+
+INSERT INTO baidang (dang_boi,noidung, image, luong_like) VALUES
+(2, 'v', 'a.jpg', 0),
+(1, 'd ', 'b.jpg', 0),
+(5, 'g ', 'c.jpg', 1);
 
 
 
