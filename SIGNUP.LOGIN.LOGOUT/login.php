@@ -24,7 +24,7 @@
             </div>
             <p class="birthday" > Ngày sinh</p>
             <div class="birth_date">
-                <select class="Day">
+                <select class="Day" name="ngay">
                     
                     <option>Ngày</option><option>1</option><option>2</option>
                     <option>13</option><option>14</option><option>15</option>
@@ -34,14 +34,14 @@
                     <option>26</option><option>27</option><option>28</option>
                     <option>29</option><option>30</option><option>31</option>
                 </select>
-                <select class="Month">
+                <select class="Month" name="thang">
                     
-                    <option>Tháng</option><option>Tháng 1</option><option>Tháng 2</option>
-                    <option>Tháng 3</option><option>Tháng 4</option><option>Tháng 5</option>
-                    <option>Tháng 6</option><option>Tháng 7</option><option>Tháng 8</option>
-                    <option>Tháng 9</option><option>Tháng 10</option><option>Tháng 11</option><option>Tháng 12</option>
+                    <option>Tháng</option><option>1</option><option>2</option>
+                    <option>3</option><option>4</option><option>5</option>
+                    <option>6</option><option>7</option><option>8</option>
+                    <option>9</option><option>10</option><option>11</option><option>12</option>
                 </select>
-                <select class="Year">
+                <select class="Year" name="nam">
                 
                     <option>Năm</option><option>1988</option><option>1989</option>
                     <option>1990</option><option>1991</option><option>1992</option>
@@ -54,10 +54,9 @@
             </div>
 
             <p class="birthday" > Gioi tinh</p>
-            <select class="gender">
-            <option><?php $gioitinh ?></option>
-            <option>Nam</option>
-            <option>Nu</option>
+            <select class="gender" name="gioitinh">
+            <option value="nam">Nam</option>
+            <option value="nu">Nu</option>
             </select>
             <p class="agreement">Đồng ý các <a href="#">điều khoản</a>.</p>
             <button class="signup">Đăng ký </button>
