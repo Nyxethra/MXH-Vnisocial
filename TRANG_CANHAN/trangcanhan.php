@@ -10,6 +10,7 @@
     <!-- Thanh công cụ -->
     <?php include ('../BAR/Nav_Bar.php');?>
         <!-- phần giao diện chính -->
+        <div style="display: flex">
         <div class="main_interface"  >
                 <div style="width:100%">
                     <img src="pic.jpg"  class="anhbia">
@@ -71,6 +72,7 @@
                 </div>
                 </div>
         </div>
+    
         <!-- Phần bạn bè -->
         <div class="friend_bar">
             Bạn bè<br>
@@ -105,5 +107,6 @@
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>

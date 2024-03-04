@@ -11,6 +11,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Kết nối không thành công: " . $conn->connect_error);
 }
+    $noidung_binhluan="";
 // Xử lý khi người dùng gửi bình luận
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Lấy dữ liệu từ form
@@ -30,18 +31,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Vui lòng nhập bình luận của bạn.";
     }
 }
-// Hiển thị danh sách bình luận
-$sql = "SELECT * FROM binhluan ORDER BY ma_binhluan DESC";
-$result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        echo "<div class='binhluan'>" . $row["noidung_binhluan"] . "</div>";
-    }
-} else {
-    echo "Chưa có bình luận nào.";
-}
-
-// Đóng kết nối
-$conn->close();
 ?>
