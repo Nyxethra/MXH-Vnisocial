@@ -1,9 +1,10 @@
 <?php
+
 // Kết nối đến cơ sở dữ liệu
 $conn = mysqli_connect("localhost", "root", "", "vnisocial");
 
 // Kiểm tra kết nối
-if ($conn->connect_error) {
+if ($conn->connect_error){
   die("Kết nối đến cơ sở dữ liệu thất bại: " . $conn->connect_error);
 }
 
@@ -27,11 +28,21 @@ if ($result->num_rows > 0) {
   echo "Không có thông báo mới";
 }
 
+// Truy vấn số lượng thông báo từ bảng notifications
+$sql = "SELECT COUNT(*) AS tong_tb FROM thongbao";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  // Lấy số lượng thông báo từ kết quả truy vấn
+  $row = $result->fetch_assoc();
+  $notification_count = $row["tong_tb"];
+} else {
+  $notification_count = 0; // Nếu không có thông báo nào, đặt số lượng thông báo là 0
+}
+
 // Đóng kết nối đến cơ sở dữ liệu
 $conn->close();
 ?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,6 +57,10 @@ $conn->close();
     }
 
     .navbar {
+      position: fixed; /* Sử dụng position: fixed thay vì static */
+      top: 0; /* Đặt top là 0 để thanh navbar luôn ở đầu trang */
+      width: 100%;
+      
       height: 50px;
       background-color: #a72f2f; /* Facebook blue */
       display: flex;
@@ -107,18 +122,19 @@ $conn->close();
 /* Pop-up styles */
 .popup {
     display: none;
-    position: absolute;
-    top: 17%;
-    transform: translate(218%, -28%);
+    position: fixed; /* Sử dụng position: fixed thay vì absolute */
+    top: 50px; /* Đặt top bằng chiều cao của navbar */
+    right: 20px; /* Đặt right bằng padding của navbar */
+    transform: none; /* Xóa thuộc tính transform */
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
     padding: 15px;
     border-radius: 10px;
-    width: 30%;
     margin-left: 50px;
+    width: 30%;
+    max-width: 500px; /* Thêm max-width để hạn chế chiều rộng tối đa của pop-up */
+    word-wrap: break-word; /* Đảm bảo rằng văn bản không vượt quá khung pop-up */
 }
-
-
 
     .popup-content {
       text-align: center;
@@ -152,7 +168,7 @@ $conn->close();
       <i class="fab fa-facebook-messenger"></i>
       <div class="notification" onclick="showPopup()">
         <i class="far fa-bell"></i>
-        <span class="badge"></span>
+        <span class="badge"><?php echo $notification_count; ?></span>
       </div>
     </div>
   </div>
