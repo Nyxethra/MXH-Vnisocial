@@ -129,7 +129,7 @@ $conn->close();
 <body>
   <div class="navbar">
     <div class="navbar-logo">
-      <img src="img/logo.png" alt="Vnisocial Logo">
+      <img class="navbar-logo img" src="img/logo.png" alt="Vnisocial Logo">
     </div>
     <div class="navbar-search">
       <form action="TIM_KIEM/KETQUA.php" method="post">
