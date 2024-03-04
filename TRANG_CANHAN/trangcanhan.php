@@ -5,12 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style_trangcanhan.css">
     <title>Trang cá nhân của bạn</title>
+    <style>
+        .abc{
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
 </head>
 <body>
     <!-- Thanh công cụ -->
     <?php include ('../BAR/Nav_Bar.php');?>
         <!-- phần giao diện chính -->
-        <div style="display: flex">
+        <div class= "abc">
         <div class="main_interface"  >
                 <div style="width:100%">
                     <img src="../img/pic.jpg"  class="anhbia">
@@ -28,7 +34,7 @@
                 <!--phần kết bạn  -->
                 <div class="friend_request" >
                 </div>
-                <div style="display :flex">
+                <div style="display :flex ">
                     <!-- phần giới thiệu -->
                     <div style="background-color:green; min-height:400px; flex:1">
                         <div class="inside_gioithieu">

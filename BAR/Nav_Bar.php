@@ -43,7 +43,6 @@ if ($result->num_rows > 0) {
 // Đóng kết nối đến cơ sở dữ liệu
 $conn->close();
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,29 +56,35 @@ $conn->close();
       font-family: Arial, sans-serif; /* Similar to Facebook's font */
     }
 
-    .navbar {
+    .nav-bar {
       position: fixed; /* Sử dụng position: fixed thay vì static */
       top: 0; /* Đặt top là 0 để thanh navbar luôn ở đầu trang */
       width: 100%;
-      
       height: 50px;
       background-color: #a72f2f; /* Facebook blue */
       display: flex;
       align-items: center;
       padding: 0 20px;
+      z-index:100;
+    }
+    .badge{
+      margin
+:
+
+
+-10px;
+    }
+    .nav-logo {
+      flex-basis: 200px; 
+      /* Set a fixed width */
     }
 
-    .navbar-logo {
-  flex-basis: 200px; 
-  /* Set a fixed width */
-}
-.navbar-logo.img {
-    border-style: none;
-    max-width: 100%;
-}
-   
+    .nav-logo img {
+      border-style: none;
+      max-width: 100%;
+    }
 
-    .navbar-search input {
+    .nav-search input {
       background-color: #f0f2f5;
       border: none;
       border-radius: 20px;
@@ -90,52 +95,55 @@ $conn->close();
       color: #000; /* Black text */
     }
 
-    .navbar-icons {
+    .nav-icons {
       display: flex;
-      gap: 20px; margin-right: 40px; margin-left: 50px;
+      gap: 20px;
+      margin-right: 40px;
+      margin-left: 50px;
     }
 
-    .navbar-icons i {
+    .nav-icons i {
       color: white;
       font-size: 24px;
     }
 
-    .navbar-links {
+    .nav-links {
       display: flex;
       align-items: center;
       margin-left: auto; /* Align links to the right */
     }
 
-    .navbar-links a {
+    .nav-links a {
       color: white;
       margin: 0 10px;
       text-decoration: none;
       font-size: 14px;
     }
 
-    .navbar-links a:hover {
+    .nav-links a:hover {
       text-decoration: underline;
     }
 
-    .navbar-search {
-  margin-left: 10px; /* Adjust the value for desired distance */
-}
-/* Pop-up styles */
-.popup {
-    display: none;
-    position: fixed; /* Sử dụng position: fixed thay vì absolute */
-    top: 50px; /* Đặt top bằng chiều cao của navbar */
-    right: 20px; /* Đặt right bằng padding của navbar */
-    transform: none; /* Xóa thuộc tính transform */
-    background-color: #ffffff; /* Thay đổi màu nền thành màu trắng */
-    color: black; 
-    padding: 15px;
-    border-radius: 10px;
-    margin-left: 50px;
-    width: 30%;
-    max-width: 500px; /* Thêm max-width để hạn chế chiều rộng tối đa của pop-up */
-    word-wrap: break-word; /* Đảm bảo rằng văn bản không vượt quá khung pop-up */
-}
+    .nav-search {
+      margin-left: 10px; /* Adjust the value for desired distance */
+    }
+
+    /* Pop-up styles */
+    .popup {
+      display: none;
+      position: fixed; /* Sử dụng position: fixed thay vì absolute */
+      top: 50px; /* Đặt top bằng chiều cao của navbar */
+      right: 20px; /* Đặt right bằng padding của navbar */
+      transform: none; /* Xóa thuộc tính transform */
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin-left: 50px;
+      width: 30%;
+      max-width: 500px; /* Thêm max-width để hạn chế chiều rộng tối đa của pop-up */
+      word-wrap: break-word; /* Đảm bảo rằng văn bản không vượt quá khung pop-up */
+    }
 
     .popup-content {
       text-align: center;
@@ -145,28 +153,34 @@ $conn->close();
       position: absolute;
       top: 10px;
       right: 10px;
-      color: black;
+      color: white;
       cursor: pointer;
     }
+    svg:not(:root).svg-inline--fa {
+    overflow: visible;
+    color: white;
+    font-size: 26px;
+    margin: 5px;
+}
+
   </style>
 </head>
 <body>
-
-  <div class="navbar">
-    <div class="navbar-logo">
-      <img class="navbar-logo img" src="img/logo.png" alt="Vnisocial Logo">
+  <div class="nav-bar">
+    <div class="nav-logo">
+      <img class="nav-logo img" src="img/logo.png" alt="Vnisocial Logo">
     </div>
-    <div class="navbar-search">
+    <div class="nav-search">
       <form action="TIM_KIEM/KETQUA.php" method="post">
         <input type="text" name="ten" placeholder="Nhập tên người dùng">
       </form>
     </div>
-    <div class="navbar-links">
-      <a class="abc" href="#"><b>Trang chủ</b></a>
-      <a class="abc" href="#"><b>|</b></a>
-      <a class="abc "href="TRANG_CANHAN/trangcanhan.php"><b>Trang cá nhân</b></a>
+    <div class="nav-links">
+      <a class="nav-link" href="#"><b>Trang chủ</b></a>
+      <a class="nav-link" href="#"><b>|</b></a>
+      <a class="nav-link" href="TRANG_CANHAN/trangcanhan.php"><b>Trang cá nhân</b></a>
     </div>
-    <div class="navbar-icons">
+    <div class="nav-icons">
       <i class="fab fa-facebook-messenger"></i>
       <div class="notification" onclick="showPopup()">
         <i class="far fa-bell"></i>
@@ -176,29 +190,29 @@ $conn->close();
   </div>
 
   <!-- Phần pop-up thông báo -->
-<div class="popup" id="popup">
-  <div class="popup-content">
-    <span class="close" onclick="closePopup()">×</span>
-    <!-- Nội dung của pop-up sẽ được đưa vào đây -->
-    <h3>Thông báo </h3>
-    <?php foreach ($notifications as $notification) { ?>
-      <p><?php echo $notification; ?></p>
-    <?php } ?>
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <span class="close" onclick="closePopup()">×</span>
+      <!-- Nội dung của pop-up sẽ được đưa vào đây -->
+      <h3>Thông báo mới</h3>
+      <?php foreach ($notifications as $notification) { ?>
+        <p><?php echo $notification; ?></p>
+      <?php } ?>
+    </div>
   </div>
-</div>
 
-<script>
-  // Hàm để hiển thị pop-up
-  function showPopup() {
-    var popup = document.getElementById("popup");
-    popup.style.display = "block";
-  }
+  <script>
+    // Hàm để hiển thị pop-up
+    function showPopup() {
+      var popup = document.getElementById("popup");
+      popup.style.display = "block";
+    }
 
-  // Hàm để ẩn pop-up
-  function closePopup() {
-    var popup = document.getElementById("popup");
-    popup.style.display = "none";
-  }
-</script>
+    // Hàm để ẩn pop-up
+    function closePopup() {
+      var popup = document.getElementById("popup");
+      popup.style.display = "none";
+    }
+  </script>
 </body>
 </html>
