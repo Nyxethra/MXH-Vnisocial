@@ -10,7 +10,7 @@
     
     <?php include("thanhbar_dangnhap.php")?>
 <section>
-    <div class="signup_body" style="background-color: #FF4848;">
+    <div class="signup_body" style="background-color: #a72f2f;">
         <p class="acc_crt"style="color:white"><b>Đăng ký</b></p>
         <p class="free_hint" style="color:white">Luôn miễn phí</p>
         <form class="signup_form" method="POST" action="dangki.php">
