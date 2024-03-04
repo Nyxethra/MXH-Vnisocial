@@ -2,7 +2,6 @@
     margin : 0;
     padding : 0;
     text-align: center;
-    background-color:#a72f2f;
 }
 .thanhbar{
     height: 80px;
@@ -11,10 +10,11 @@
 }
 .logo{
     position: absolute;
-    height: 63px;
-    width: 190px;
+    width: 200px;
     left: 13%;
     padding-top: 15px;
+    margin-top: -73px;
+
 }
 .login_form{
     display: flex;
@@ -70,6 +70,7 @@ section{
     width: 500px;
     padding-left: 10px;
     border-radius :10%;
+    background-color: #a72f2f;
 }
 .signup_body .acc_crt{
     font-size: 40px;
