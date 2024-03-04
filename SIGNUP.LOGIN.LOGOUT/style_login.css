@@ -2,11 +2,12 @@
     margin : 0;
     padding : 0;
     text-align: center;
+    background-color:#a72f2f;
 }
 .thanhbar{
     height: 80px;
     width: 100%;
-    background-color:#FF4848;
+    background-color:#a72f2f;
 }
 .logo{
     position: absolute;
@@ -41,17 +42,17 @@
     outline : none;
 }
 .login_form .btn{
-    height: 24px;
+    height: 36px;
     width: 50px;
     font-weight: 600;
     margin-left: 15px;
-    margin-top: 20px;
+    margin-top: 16px;
     border-radius: 2px;
     outline :none;
     cursor:pointer;
     color: white;
-    background: #FF4848;
-    border:1px solid #FF4848;
+    background: #d22b2b;
+    border:1px solid black;
 }
 section{
     height: 614px;
@@ -142,10 +143,10 @@ section{
     font-size: 20px;
     font-weight: 600;
     border: 1px solid #066117;
-    border-radius: 3px;
+    border-radius: 12px;
     cursor: pointer;
     outline: none;
-    background: #FF4848;
+    background: #d22b2b;
 }
 .signup_body .signup_form .signup:hover{
     background:#FF4848;
