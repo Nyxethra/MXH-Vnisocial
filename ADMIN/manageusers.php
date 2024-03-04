@@ -1,16 +1,17 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADMIN | VNISOCIAL</title>
+    <title>ADMIN | VNISOCIAL - Manage Users</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #fff;
+            background-color: #f1f1f1;
         }
         
         .sidebar {
@@ -26,14 +27,12 @@
         }
         
         .sidebar a {
-            padding: 10px 0;
+            padding: 10px 15px;
             text-decoration: none;
             font-size: 18px;
             color: #fff;
             display: block;
             transition: all 0.3s ease;
-            text-align: center;
-            line-height: 40px;
         }
         
         .sidebar a:hover {
@@ -59,6 +58,31 @@
             margin-top: 5px;
             font-size: 14px;
         }
+
+        /* Manage Users Page Specific Styles */
+        .user-list {
+            margin-top: 20px;
+        }
+
+        .user-item {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-item:hover {
+            background-color: #f9f9f9;
+        }
+
+        .user-item .user-name {
+            font-weight: bold;
+        }
+
+        .user-item .user-email {
+            color: #888;
+        }
     </style>
 </head>
 <body>
@@ -67,15 +91,25 @@
             <h2><i class="fas fa-user"></i> Admin Name</h2>
             <p><i class="fas fa-crown"></i> Role: Administrator</p>
         </div>
-        <a href="#"><i class="fas fa-tachometer-alt"></i> TRANG CHỦ</a>
-        <a href="manageusers.php"><i class="fas fa-users"></i> QUẢN LÝ NGƯỜI DÙNG</a>
-        <a href="#"><i class="fas fa-cog"></i> CÀI ĐẶT</a>
-        <a href="logoutadmin.php"><i class="fas fa-sign-out-alt"></i> ĐĂNG XUẤT</a>
+        <a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="#" class="active"><i class="fas fa-users"></i> Manage Users</a>
+        <a href="#"><i class="fas fa-cog"></i> Settings</a>
+        <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
 
     <div class="content">
-        <h1>CHÀO MỪNG ĐẾN VỚI TRANG QUẢN TRỊ CỦA VNISOCIAL</h1>
-        <!-- Your content goes here -->
+        <h1>Manage Users</h1>
+        <div class="user-list">
+            <div class="user-item">
+                <p class="user-name">User 1</p>
+                <p class="user-email">user1@example.com</p>
+            </div>
+            <div class="user-item">
+                <p class="user-name">User 2</p>
+                <p class="user-email">user2@example.com</p>
+            </div>
+            <!-- Add more user items dynamically or fetch from database -->
+        </div>
     </div>
 </body>
 </html>
