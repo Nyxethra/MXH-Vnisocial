@@ -96,15 +96,16 @@ $conn->close();
 /* Pop-up styles */
 .popup {
     display: none;
-    position: relative;
+    position: absolute;
     top: 13%;
-    transform: translate(218%, -69%);
+    transform: translate(218%, -28%);
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
     padding: 20px;
     border-radius: 10px;
     width: 30%;
 }
+
 
 
     .popup-content {
