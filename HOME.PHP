@@ -1,13 +1,10 @@
 <?php
-
-@include 'config.php';
-
 session_start();
 
 $user_id = $_SESSION['ma_nguoidung'];
 
 if(!isset($user_id)){
-   header('location:login.php');
+   header('location:SIGNUP.LOGIN.LOGOUT/login.php');
 };
 ?>
 
@@ -20,6 +17,7 @@ if(!isset($user_id)){
   </head>
   <body>
     <?php include ('BAR/Nav_Bar.php');?>
+    <?php include ('dang_bai/dangbai.php');?>
     <?php
         if (isset($_GET["pid"])){
             $id=$_GET["pid"];

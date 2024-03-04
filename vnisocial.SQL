@@ -1,5 +1,5 @@
 CREATE TABLE nguoidung(
-  ma_nguoidung int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  ma_nguoidung bigint(19) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   ten_nguoidung varchar(150), 
   matkhau varchar(150), 
   email varchar(150), 
@@ -20,8 +20,8 @@ INSERT INTO nguoidung(ten_nguoidung, matkhau, email, gioitinh, ngaysinh, avartar
 
 
 CREATE TABLE tt_nguoidung(
-  tt_ma_nguoidung int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  ma_nguoidung int,
+  tt_ma_nguoidung bigint(19) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  ma_nguoidung bigint(19),
   FOREIGN KEY (ma_nguoidung) REFERENCES nguoidung(ma_nguoidung),
   trangthai varchar(250),
   hoc_tai varchar(250),
@@ -37,9 +37,9 @@ INSERT INTO tt_nguoidung(ma_nguoidung, hoc_tai, lam_tai, moi_quan_he) VALUES
 
 CREATE TABLE nhan_tin(
   ma_tin_nhan int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  tin_nhan_tu int,
+  tin_nhan_tu bigint(19),
   FOREIGN KEY (tin_nhan_tu) REFERENCES nguoidung(ma_nguoidung),
-  tin_nhan_den int,
+  tin_nhan_den bigint(19),
   FOREIGN KEY (tin_nhan_den) REFERENCES nguoidung(ma_nguoidung), 
   noidung varchar(4294967295),
   timestamp varchar(150)
@@ -51,6 +51,7 @@ INSERT INTO nhan_tin(tin_nhan_tu,tin_nhan_den,noidung) VALUES
 (2,1,'d');
 
 
+SET time_zone = "+07:00";
 CREATE TABLE baidang (
   ma_baidang int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   dang_boi int,
@@ -60,7 +61,7 @@ CREATE TABLE baidang (
   luong_like int NOT NULL DEFAULT 0,
   luong_binhluan int NOT NULL DEFAULT 0,
   luong_chia_se int NOT NULL DEFAULT 0,
-  thoigian_dang varchar(150)
+  thoigian_dang timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 INSERT INTO baidang (dang_boi,noidung, image, luong_like) VALUES
@@ -69,11 +70,12 @@ INSERT INTO baidang (dang_boi,noidung, image, luong_like) VALUES
 (5, 'g ', 'c.jpg', 1);
 
 
+
 CREATE TABLE chia_se (
   ma_chiase int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  ma_baidang int,
+  ma_baidang bigint(19),
   FOREIGN KEY (ma_baidang) REFERENCES baidang(ma_baidang),
-  chia_se_by int,
+  chia_se_by bigint(19),
   FOREIGN KEY (chia_se_by) REFERENCES nguoidung(ma_nguoidung),
   thoidiem_chiase varchar(150)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -82,9 +84,9 @@ CREATE TABLE chia_se (
 
 CREATE TABLE binhluan(
   ma_binhluan int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  binhluan_boi int,
+  binhluan_boi bigint(19),
   FOREIGN KEY (binhluan_boi) REFERENCES nguoidung(ma_nguoidung),
-  ma_baidang int,
+  ma_baidang bigint(19),
   FOREIGN KEY (ma_baidang) REFERENCES baidang(ma_baidang),
   noidung_binhluan varchar(4294967295),
   thoidiem_binhluan varchar(150)
@@ -98,10 +100,10 @@ INSERT INTO binhluan(binhluan_boi, ma_baidang,noidung_binhluan ,thoidiem_binhlua
 
 CREATE TABLE thongbao (
   ma_thongbao int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  thongbao_tu int,
+  thongbao_tu bigint(19),
   FOREIGN KEY (thongbao_tu) REFERENCES nguoidung(ma_nguoidung),
   noidung_thongbao varchar(250),
-  ma_baidang int,
+  ma_baidang bigint(19),
   FOREIGN KEY (ma_baidang) REFERENCES baidang(ma_baidang),
   thoidiem_thongbao varchar(250),
   tong_tb int DEFAULT 0 -- Thêm cột tổng thông báo và đặt giá trị mặc định là 0
@@ -119,9 +121,9 @@ INSERT INTO thongbao(thongbao_tu,noidung_thongbao) VALUES
 
 CREATE TABLE banbe (
   ma_banbe int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  ma_nguoidung1 int,
+  ma_nguoidung1 bigint(19),
   FOREIGN KEY (ma_nguoidung1) REFERENCES nguoidung(ma_nguoidung),
-  ma_nguoidung2 int,
+  ma_nguoidung2 bigint(19),
   FOREIGN KEY (ma_nguoidung2) REFERENCES nguoidung(ma_nguoidung)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -137,9 +139,9 @@ INSERT INTO banbe (ma_nguoidung1, ma_nguoidung2) VALUES
 
 CREATE TABLE yeucau_ketban(
   ma_yeucau int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  ma_nguoigui int,
+  ma_nguoigui bigint(19),
   FOREIGN KEY (ma_nguoigui) REFERENCES nguoidung(ma_nguoidung),
-  ma_nguoinhan int,
+  ma_nguoinhan bigint(19),
   FOREIGN KEY (ma_nguoinhan) REFERENCES nguoidung(ma_nguoidung),
   status varchar(300)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -152,9 +154,9 @@ INSERT INTO yeucau_ketban(ma_nguoigui,ma_nguoinhan,status) VALUES
 
 CREATE TABLE thich(
   ma_thich int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  thich_boi int,
+  thich_boi bigint(19),
   FOREIGN KEY (thich_boi) REFERENCES nguoidung(ma_nguoidung),
-  ma_baidang int,
+  ma_baidang bigint(19),
   FOREIGN KEY (ma_baidang) REFERENCES baidang(ma_baidang)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
