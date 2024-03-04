@@ -1,7 +1,4 @@
 <?php
-            // Include file đếm thông báo
-            include "THONG_BAO/thongbao.php";
-
 // Kết nối đến cơ sở dữ liệu
 $conn = mysqli_connect("localhost", "root", "", "vnisocial");
 
@@ -11,20 +8,29 @@ if ($conn->connect_error) {
 }
 
 // Truy vấn nội dung thông báo từ cơ sở dữ liệu
-$sql = "SELECT noidung_thongbao FROM thongbao WHERE ma_thongbao = 1"; // Thay đổi điều kiện truy vấn tùy thuộc vào nhu cầu của bạn
+$sql = "SELECT nguoidung.ten_nguoidung, thongbao.noidung_thongbao 
+        FROM thongbao 
+        INNER JOIN nguoidung ON thongbao.thongbao_tu = nguoidung.ma_nguoidung 
+        WHERE thongbao_tu != '$user_id' 
+        ORDER BY thoidiem_thongbao DESC";
+
 $result = $conn->query($sql);
 
 // Kiểm tra và lấy nội dung thông báo
+$notifications = array();
 if ($result->num_rows > 0) {
-  $row = $result->fetch_assoc();
-  $notification_content = $row["noidung_thongbao"];
+  while($row = $result->fetch_assoc()) {
+    $notification_content = $row["ten_nguoidung"] . " " . $row["noidung_thongbao"];
+    array_push($notifications, $notification_content);
+  }
 } else {
-  $notification_content = "Không có thông báo mới";
+  echo "Không có thông báo mới";
 }
 
 // Đóng kết nối đến cơ sở dữ liệu
 $conn->close();
-?> 
+?>
+
 
 <!DOCTYPE html>
 <html>
@@ -102,13 +108,14 @@ $conn->close();
 .popup {
     display: none;
     position: absolute;
-    top: 13%;
+    top: 17%;
     transform: translate(218%, -28%);
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
     width: 30%;
+    margin-left: 50px;
 }
 
 
@@ -145,33 +152,35 @@ $conn->close();
       <i class="fab fa-facebook-messenger"></i>
       <div class="notification" onclick="showPopup()">
         <i class="far fa-bell"></i>
-        <span class="badge">3</span>
+        <span class="badge"></span>
       </div>
     </div>
   </div>
 
   <!-- Phần pop-up thông báo -->
-  <div class="popup" id="popup">
-    <div class="popup-content">
-      <span class="close" onclick="closePopup()">&times;</span>
-      <!-- Nội dung của pop-up sẽ được đưa vào đây -->
-      <h3>Thông báo mới</h3>
-      <p><?php echo $notification_content; ?></p>
-    </div>
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <span class="close" onclick="closePopup()">×</span>
+    <!-- Nội dung của pop-up sẽ được đưa vào đây -->
+    <h3>Thông báo mới</h3>
+    <?php foreach ($notifications as $notification) { ?>
+      <p><?php echo $notification; ?></p>
+    <?php } ?>
   </div>
+</div>
 
-  <script>
-    // Hàm để hiển thị pop-up
-    function showPopup() {
-      var popup = document.getElementById("popup");
-      popup.style.display = "block";
-    }
+<script>
+  // Hàm để hiển thị pop-up
+  function showPopup() {
+    var popup = document.getElementById("popup");
+    popup.style.display = "block";
+  }
 
-    // Hàm để ẩn pop-up
-    function closePopup() {
-      var popup = document.getElementById("popup");
-      popup.style.display = "none";
-    }
-  </script>
+  // Hàm để ẩn pop-up
+  function closePopup() {
+    var popup = document.getElementById("popup");
+    popup.style.display = "none";
+  }
+</script>
 </body>
 </html>
