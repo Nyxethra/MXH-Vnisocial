@@ -41,7 +41,7 @@
 
 .binhluan-list .binhluan {
   background: #f1f1f1;
-  padding: 10px;
+    padding: 10px;
   margin-bottom: 10px;
 }   
     </style>
@@ -60,7 +60,7 @@
         <h3>Danh sách bình luận</h3>
         <?php
         // Hiển thị danh sách bình luận
-        $sql = "SELECT * FROM binhluan ORDER BY ma_binhluan DESC";
+        $sql = "SELECT * FROM binhluan where ma_baidang=$ma_baidang ORDER BY ma_binhluan ";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {

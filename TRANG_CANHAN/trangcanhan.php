@@ -13,8 +13,8 @@
         <div style="display: flex">
         <div class="main_interface"  >
                 <div style="width:100%">
-                    <img src="pic.jpg"  class="anhbia">
-                    <img src="cat.jpg" class="profile_pic">
+                    <img src="../img/pic.jpg"  class="anhbia">
+                    <img src="../img/cat.jpg" class="profile_pic">
                     <div class="name"> 
                         <b>Nguyễn Hiếu</b><br>
                     </div>
@@ -33,7 +33,7 @@
                     <div style="background-color:green; min-height:400px; flex:1">
                         <div class="inside_gioithieu">
                             <div style="font-size :15px; color:black; text-align:center">Gioi thieu</div>
-                            <div>Tieu su<br>
+                            <div>Tieu su<br>    
                                 Thich an choi nhung khong danh mat ban than                            
                             </div>
                         </div>
