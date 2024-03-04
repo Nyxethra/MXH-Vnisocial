@@ -33,5 +33,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Tên người dùng hoặc mật khẩu không chính xác
         echo 'Đăng nhập không thành công. Vui lòng kiểm tra lại thông tin đăng nhập!';
     }
- }
+}
 ?>
