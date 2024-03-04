@@ -5,12 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style_trangcanhan.css">
     <title>Trang cá nhân của bạn</title>
+    <style>
+        .abc{
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
 </head>
 <body>
     <!-- Thanh công cụ -->
     <?php include ('../BAR/Nav_Bar.php');?>
         <!-- phần giao diện chính -->
-        <div style="display: flex">
+        <div class= "abc">
         <div class="main_interface"  >
                 <div style="width:100%">
                     <img src="pic.jpg"  class="anhbia">
@@ -28,7 +34,7 @@
                 <!--phần kết bạn  -->
                 <div class="friend_request" >
                 </div>
-                <div style="display :flex">
+                <div style="display :flex ">
                     <!-- phần giới thiệu -->
                     <div style="background-color:green; min-height:400px; flex:1">
                         <div class="inside_gioithieu">
@@ -42,8 +48,8 @@
                     <div style="background-color:#aaa; min-height:400px; flex:2.5; padding:20px; padding-right:0px">
                         <div style="border: solid thin #aaa ;padding: 10px; background-color:white">
                         
-                        <textarea placeholder="Bạn đang nghĩ gì?" style="width:678px; height:62px"></textarea>
-                        <input class="post button" type="submit" value="Đăng">
+                       <div> <?php include ('../DANG_BAi/dangbai.php');?> </div>
+                        
                         <br>
                         </div>
                         <div class="post_bar">
