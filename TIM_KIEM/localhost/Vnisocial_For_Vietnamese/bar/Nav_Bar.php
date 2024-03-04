@@ -1,36 +1,8 @@
-<?php
-// Kết nối đến cơ sở dữ liệu
-$conn = mysqli_connect("localhost", "root", "", "vnisocial");
-
-// Kiểm tra kết nối
-if ($conn->connect_error) {
-  die("Kết nối đến cơ sở dữ liệu thất bại: " . $conn->connect_error);
-}
-
-// Truy vấn nội dung thông báo từ cơ sở dữ liệu
-$sql = "SELECT nguoidung.ten_nguoidung, thongbao.noidung_thongbao 
-        FROM thongbao 
-        INNER JOIN nguoidung ON thongbao.thongbao_tu = nguoidung.ma_nguoidung 
-        WHERE thongbao_tu != '$user_id' 
-        ORDER BY thoidiem_thongbao DESC";
-
-$result = $conn->query($sql);
-
-// Kiểm tra và lấy nội dung thông báo
-$notifications = array();
-if ($result->num_rows > 0) {
-  while($row = $result->fetch_assoc()) {
-    $notification_content = $row["ten_nguoidung"] . " " . $row["noidung_thongbao"];
-    array_push($notifications, $notification_content);
-  }
-} else {
-  echo "Không có thông báo mới";
-}
-
-// Đóng kết nối đến cơ sở dữ liệu
-$conn->close();
-?>
-
+<br />
+<b>Warning</b>:  include(THONG_BAO/thongbao.php): Failed to open stream: No such file or directory in <b>D:\My Repository\web\Vnisocial_For_Vietnamese\BAR\Nav_Bar.php</b> on line <b>3</b><br />
+<br />
+<b>Warning</b>:  include(): Failed opening 'THONG_BAO/thongbao.php' for inclusion (include_path='C:\xampp\php\PEAR') in <b>D:\My Repository\web\Vnisocial_For_Vietnamese\BAR\Nav_Bar.php</b> on line <b>3</b><br />
+ 
 
 <!DOCTYPE html>
 <html>
@@ -54,12 +26,7 @@ $conn->close();
     }
 
     .navbar-logo {
-  flex-basis: 200px; 
-  /* Set a fixed width */
-}
-.navbar-logo.img {
-    border-style: none;
-    max-width: 100%;
+  flex-basis: 200px; /* Set a fixed width */
 }
    
 
@@ -107,36 +74,33 @@ $conn->close();
 /* Pop-up styles */
 .popup {
     display: none;
-    position: absolute;
-    top: 17%;
-    transform: translate(218%, -28%);
+    position: relative;
+    top: 10%;
+    left: 84%;
+    right: 0px;
+    transform: translate(-27%, -58%);
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
-    padding: 15px;
+    padding: 20px;
     border-radius: 10px;
-    width: 30%;
-    margin-left: 50px;
-}
-
-
 
     .popup-content {
-      text-align: center;
+    text-align: center;
     }
 
     .close {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      color: white;
-      cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    cursor: pointer;
     }
   </style>
 </head>
 <body>
   <div class="navbar">
     <div class="navbar-logo">
-      <img class="navbar-logo img" src="img/logo.png" alt="Vnisocial Logo">
+      <img src="logo.png" alt="Vnisocial Logo">
     </div>
     <div class="navbar-search">
       <form action="TIM_KIEM/KETQUA.php" method="post">
@@ -152,35 +116,33 @@ $conn->close();
       <i class="fab fa-facebook-messenger"></i>
       <div class="notification" onclick="showPopup()">
         <i class="far fa-bell"></i>
-        <span class="badge"></span>
+        <span class="badge">3</span>
       </div>
     </div>
   </div>
 
   <!-- Phần pop-up thông báo -->
-<div class="popup" id="popup">
-  <div class="popup-content">
-    <span class="close" onclick="closePopup()">×</span>
-    <!-- Nội dung của pop-up sẽ được đưa vào đây -->
-    <h3>Thông báo mới</h3>
-    <?php foreach ($notifications as $notification) { ?>
-      <p><?php echo $notification; ?></p>
-    <?php } ?>
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <span class="close" onclick="closePopup()">&times;</span>
+      <!-- Nội dung của pop-up sẽ được đưa vào đây -->
+      <h3>Thông báo mới</h3>
+      <p>đã thích bài viết của bạn</p>
+    </div>
   </div>
-</div>
 
-<script>
-  // Hàm để hiển thị pop-up
-  function showPopup() {
-    var popup = document.getElementById("popup");
-    popup.style.display = "block";
-  }
+  <script>
+    // Hàm để hiển thị pop-up
+    function showPopup() {
+      var popup = document.getElementById("popup");
+      popup.style.display = "block";
+    }
 
-  // Hàm để ẩn pop-up
-  function closePopup() {
-    var popup = document.getElementById("popup");
-    popup.style.display = "none";
-  }
-</script>
+    // Hàm để ẩn pop-up
+    function closePopup() {
+      var popup = document.getElementById("popup");
+      popup.style.display = "none";
+    }
+  </script>
 </body>
 </html>
