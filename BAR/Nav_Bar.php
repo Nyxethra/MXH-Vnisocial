@@ -43,6 +43,7 @@ if ($result->num_rows > 0) {
 // Đóng kết nối đến cơ sở dữ liệu
 $conn->close();
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -126,8 +127,8 @@ $conn->close();
     top: 50px; /* Đặt top bằng chiều cao của navbar */
     right: 20px; /* Đặt right bằng padding của navbar */
     transform: none; /* Xóa thuộc tính transform */
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
+    background-color: #ffffff; /* Thay đổi màu nền thành màu trắng */
+    color: black; 
     padding: 15px;
     border-radius: 10px;
     margin-left: 50px;
@@ -144,12 +145,13 @@ $conn->close();
       position: absolute;
       top: 10px;
       right: 10px;
-      color: white;
+      color: black;
       cursor: pointer;
     }
   </style>
 </head>
 <body>
+
   <div class="navbar">
     <div class="navbar-logo">
       <img class="navbar-logo img" src="img/logo.png" alt="Vnisocial Logo">
@@ -178,7 +180,7 @@ $conn->close();
   <div class="popup-content">
     <span class="close" onclick="closePopup()">×</span>
     <!-- Nội dung của pop-up sẽ được đưa vào đây -->
-    <h3>Thông báo mới</h3>
+    <h3>Thông báo </h3>
     <?php foreach ($notifications as $notification) { ?>
       <p><?php echo $notification; ?></p>
     <?php } ?>
