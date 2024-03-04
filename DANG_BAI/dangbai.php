@@ -143,7 +143,7 @@
 
   <style>
     .custom-popup1 {
-      height: 100%; // Tăng chiều cao của popup1
+      height: 100%;  
     }
     .close.icon {
   position: absolute; /* Đặt vị trí của phần tử con là tuyệt đối */
