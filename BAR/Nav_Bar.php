@@ -48,7 +48,12 @@ $conn->close();
     }
 
     .navbar-logo {
-  flex-basis: 200px; /* Set a fixed width */
+  flex-basis: 200px; 
+  /* Set a fixed width */
+}
+.navbar-logo.img {
+    border-style: none;
+    max-width: 100%;
 }
    
 
@@ -124,7 +129,7 @@ $conn->close();
 <body>
   <div class="navbar">
     <div class="navbar-logo">
-      <img src="logo.png" alt="Vnisocial Logo">
+      <img src="img/logo.png" alt="Vnisocial Logo">
     </div>
     <div class="navbar-search">
       <form action="TIM_KIEM/KETQUA.php" method="post">
