@@ -1,6 +1,7 @@
 *{
     margin : 0;
     padding : 0;
+    text-align: center;
 }
 .thanhbar{
     height: 80px;
@@ -66,6 +67,8 @@ section{
     top: 20%;
     right: 58%;
     width: 500px;
+    padding-left: 10px;
+    border-radius :10%;
 }
 .signup_body .acc_crt{
     font-size: 40px;
@@ -100,7 +103,7 @@ section{
     margin-bottom: 10px;
     font-size: 20px;
     font-weight: bold;
-    color: gray;
+    color: white;
 }
 .signup_body .signup_form .month,
 .signup_body .signup_form .day,
@@ -128,9 +131,8 @@ section{
 }
 .signup_body .signup_form .agreement{
     margin-top: 15px;
-    font-size: 12px;
     width: 350px;
-    color: grey;
+    color: white;
 }
 .signup_body .signup_form .signup{
     margin-top: 20px;
