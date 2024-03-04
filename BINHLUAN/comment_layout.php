@@ -2,30 +2,52 @@
 <html>
 <head>
     <style>
-        .comment-form textarea {
-            width: 100%;
-            height: 80px;
-            resize: vertical;
-        }
+.binhluan-form {
+  margin-bottom: 20px;
+}
 
-        .comment-form button {
-            margin-top: 10px;
-        }
+.binhluan-form h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
 
-        .comment-list {
-            margin-top: 20px;
-        }
+.binhluan-form textarea {
+  width: 100%;
+  height: 80px;
+  resize: vertical;
+  margin-bottom: 10px;
+}
 
-        .comment {
-            background: #f1f1f1;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
+.binhluan-form button {
+  margin-top: 10px;
+  background-color: #1877f2;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.binhluan-list {
+  margin-top: 20px;
+}
+
+.binhluan-list h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.binhluan-list .binhluan {
+  background: #f1f1f1;
+    padding: 10px;
+  margin-bottom: 10px;
+}   
     </style>
 </head>
 <body>
     <?php include("comment.php")?>;
-    <?php include ("../DANG_BAI/dangbai.php")?>
     <div class="binhluan-form">
         <h3>Thêm bình luận</h3>
         <form method="post" action="">
@@ -38,7 +60,7 @@
         <h3>Danh sách bình luận</h3>
         <?php
         // Hiển thị danh sách bình luận
-        $sql = "SELECT * FROM binhluan ORDER BY ma_binhluan DESC";
+        $sql = "SELECT * FROM binhluan where ma_baidang=$ma_baidang ORDER BY ma_binhluan ";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
