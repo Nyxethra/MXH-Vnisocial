@@ -10,6 +10,7 @@
     <!-- Thanh công cụ -->
     <?php include ('../BAR/Nav_Bar.php');?>
         <!-- phần giao diện chính -->
+        <div style="display: flex">
         <div class="main_interface"  >
                 <div style="width:100%">
                     <img src="pic.jpg"  class="anhbia">
@@ -41,9 +42,7 @@
                     <div style="background-color:#aaa; min-height:400px; flex:2.5; padding:20px; padding-right:0px">
                         <div style="border: solid thin #aaa ;padding: 10px; background-color:white">
                         
-                        <textarea placeholder="Bạn đang nghĩ gì?" style="width:678px; height:62px"></textarea>
-                        <input class="post button" type="submit" value="Đăng">
-                        <br>
+                        <?php include ('../dang_bai/dangbai.php')?>                        <br>
                         </div>
                         <div class="post_bar">
                             <div class="post">
@@ -73,6 +72,7 @@
                 </div>
                 </div>
         </div>
+    
         <!-- Phần bạn bè -->
         <div class="friend_bar">
             Bạn bè<br>
@@ -107,5 +107,6 @@
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>
