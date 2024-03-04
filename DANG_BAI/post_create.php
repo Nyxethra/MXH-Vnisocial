@@ -1,6 +1,5 @@
 <?php
-
-
+session_start(); // Bắt đầu phiên làm việc
 
 // Bao gồm tập lệnh kết nối cơ sở dữ liệu (thay thế bằng chi tiết kết nối thực tế của bạn)
 $conn = new mysqli("localhost", "root", "", "vnisocial");
@@ -15,6 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $content = htmlspecialchars($_POST['content']);
   $image = $_FILES['image'];
 
+  // Lấy thông tin người đăng bài từ phiên làm việc
+  $dang_boi = $_SESSION['ma_nguoidung']; // Đây là giả định 'ma_nguoidung' là trường ID của người dùng trong bảng 'nguoidung'
+
   // Tải ảnh (thay thế bằng logic xử lý ảnh của bạn)
   $image_name = '';
   if (!empty($image['name'])) {
@@ -28,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Chuẩn bị câu lệnh SQL
   $sql = "INSERT INTO baidang (dang_boi, noidung, image) VALUES (?, ?, ?)";
   $stmt = $conn->prepare($sql);
-  $stmt->bind_param("iss", $_SESSION['email'], $content, $image_name);
+  $stmt->bind_param("iss", $dang_boi, $content, $image_name);
 
   if ($stmt->execute()) {
     $success_message = "Đăng bài thành công!";
