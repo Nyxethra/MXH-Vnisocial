@@ -108,7 +108,7 @@
       e.stopPropagation(); // Ngăn chặn sự kiện click lan truyền
       Swal.fire({
         title: 'Đăng bài',
-        html: '<div class="popup">'+'<div class="tren">'+'<h2>Tạo bài đăng</h2>'+'<button class="ui icon button"><i class="close icon"></i></button>'+'</div>'+'<form action="Dang_bai/post_create.php" method="post" enctype="multipart/form-data"><div class="duoi"><div class="item"><img class="ui avatar image" src="img/may_dep.jpg"><span class="username">Tên người dùng</span></div><div class="item"><textarea name="content" placeholder="Nhập nội dung bài viết..."></textarea></div><div class="item"><span>Thêm vào bài viết của bạn</span><input type="file" class="ui icon_img button  id="image" name="image"><i class="image outline icon"></i></button></div><div class="item"><button type="submit" class="ui red button">Đăng bài</button></div></div></div></form>',
+        html: '<div class="popup1">'+'<div class="tren">'+'<h2>Tạo bài đăng</h2>'+'<button class="ui icon button"><i class="close icon"></i></button>'+'</div>'+'<form action="Dang_bai/post_create.php" method="post" enctype="multipart/form-data"><div class="duoi"><div class="item"><img class="ui avatar image" src="img/may_dep.jpg"><span class="username">Tên người dùng</span></div><div class="item"><textarea name="content" placeholder="Nhập nội dung bài viết..."></textarea></div><div class="item"><span>Thêm vào bài viết của bạn</span><input type="file" class="ui icon_img button  id="image" name="image"><i class="image outline icon"></i></button></div><div class="item"><button type="submit" class="ui red button">Đăng bài</button></div></div></div></form>',
         width: '100%',
         heightAuto: false,
         padding: '3em',
@@ -118,14 +118,14 @@
           no-repeat
         `,
         customClass: {
-          popup: 'custom-popup'
+          popup: 'custom-popup1'
         }
       });
 
       // Xử lý sự kiện click vào nền đen xung quanh pop-up
       $(".swal2-container").click(function(e){
         // Kiểm tra xem nơi click có phải là pop-up hay không
-        if (!$(e.target).closest('.popup').length) {
+        if (!$(e.target).closest('.popup1').length) {
           // Nếu không phải, ẩn pop-up đi
           Swal.close();
         }
@@ -142,8 +142,8 @@
 
 
   <style>
-    .custom-popup {
-      height: 100%; // Tăng chiều cao của popup
+    .custom-popup1 {
+      height: 100%; // Tăng chiều cao của popup1
     }
     .close.icon {
   position: absolute; /* Đặt vị trí của phần tử con là tuyệt đối */
@@ -153,7 +153,7 @@
 .swal2-confirm.swal2-styled{
   display: none;
 }
-    .popup {
+    .popup1 {
       display: flex;
       flex-direction: column;
       height: 70%;

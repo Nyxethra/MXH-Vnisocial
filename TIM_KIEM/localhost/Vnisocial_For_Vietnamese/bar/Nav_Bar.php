@@ -1,30 +1,8 @@
-<?php
-            // Include file đếm thông báo
-            include "THONG_BAO/thongbao.php";
-
-// Kết nối đến cơ sở dữ liệu
-$conn = mysqli_connect("localhost", "root", "", "vnisocial");
-
-// Kiểm tra kết nối
-if ($conn->connect_error) {
-  die("Kết nối đến cơ sở dữ liệu thất bại: " . $conn->connect_error);
-}
-
-// Truy vấn nội dung thông báo từ cơ sở dữ liệu
-$sql = "SELECT noidung_thongbao FROM thongbao WHERE ma_thongbao = 1"; // Thay đổi điều kiện truy vấn tùy thuộc vào nhu cầu của bạn
-$result = $conn->query($sql);
-
-// Kiểm tra và lấy nội dung thông báo
-if ($result->num_rows > 0) {
-  $row = $result->fetch_assoc();
-  $notification_content = $row["noidung_thongbao"];
-} else {
-  $notification_content = "Không có thông báo mới";
-}
-
-// Đóng kết nối đến cơ sở dữ liệu
-$conn->close();
-?> 
+<br />
+<b>Warning</b>:  include(THONG_BAO/thongbao.php): Failed to open stream: No such file or directory in <b>D:\My Repository\web\Vnisocial_For_Vietnamese\BAR\Nav_Bar.php</b> on line <b>3</b><br />
+<br />
+<b>Warning</b>:  include(): Failed opening 'THONG_BAO/thongbao.php' for inclusion (include_path='C:\xampp\php\PEAR') in <b>D:\My Repository\web\Vnisocial_For_Vietnamese\BAR\Nav_Bar.php</b> on line <b>3</b><br />
+ 
 
 <!DOCTYPE html>
 <html>
@@ -97,26 +75,25 @@ $conn->close();
 .popup {
     display: none;
     position: relative;
-    top: 13%;
-    transform: translate(218%, -69%);
+    top: 10%;
+    left: 84%;
+    right: 0px;
+    transform: translate(-27%, -58%);
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
     padding: 20px;
     border-radius: 10px;
-    width: 30%;
-}
-
 
     .popup-content {
-      text-align: center;
+    text-align: center;
     }
 
     .close {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      color: white;
-      cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    cursor: pointer;
     }
   </style>
 </head>
@@ -150,7 +127,7 @@ $conn->close();
       <span class="close" onclick="closePopup()">&times;</span>
       <!-- Nội dung của pop-up sẽ được đưa vào đây -->
       <h3>Thông báo mới</h3>
-      <p><?php echo $notification_content; ?></p>
+      <p>đã thích bài viết của bạn</p>
     </div>
   </div>
 

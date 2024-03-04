@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($result->num_rows > 0) {
         // Tên người dùng và mật khẩu khớp
         $_SESSION['email'] = $email;
-        header("location:../TRANG_CANHAN/trangcanhan.php");
+        header("location:../home.php");
     } else {
         // Tên người dùng hoặc mật khẩu không chính xác
         echo 'Đăng nhập không thành công. Vui lòng kiểm tra lại thông tin đăng nhập!';

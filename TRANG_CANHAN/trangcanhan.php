@@ -8,14 +8,7 @@
 </head>
 <body>
     <!-- Thanh công cụ -->
-    <div class="thanhbar">
-        <div style='width :800px; margin:auto; font-size:30px'>
-        <img src="VNISocial.png" class="logo">
-        <input type="text" class="searchbox" id="timkiem" placeholder="Tìm kiếm" >
-        <img src="VNISocial.png" class="avatar" >
-        </div>
-    </div>
-    <div style="display:flex; background-color:#aaa" >
+    <?php include ('../BAR/Nav_Bar.php');?>
         <!-- phần giao diện chính -->
         <div class="main_interface"  >
                 <div style="width:100%">

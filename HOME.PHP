@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$user_id = $_SESSION['ma_nguoidung'];
+$user_id = $_SESSION['email'];
 
 if(!isset($user_id)){
    header('location:SIGNUP.LOGIN.LOGOUT/login.php');
