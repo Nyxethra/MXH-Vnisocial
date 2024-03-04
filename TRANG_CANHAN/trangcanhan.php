@@ -42,7 +42,9 @@
                     <div style="background-color:#aaa; min-height:400px; flex:2.5; padding:20px; padding-right:0px">
                         <div style="border: solid thin #aaa ;padding: 10px; background-color:white">
                         
-                        <?php include ('../dang_bai/dangbai.php')?>                        <br>
+                        <textarea placeholder="Bạn đang nghĩ gì?" style="width:678px; height:62px"></textarea>
+                        <input class="post button" type="submit" value="Đăng">
+                        <br>
                         </div>
                         <div class="post_bar">
                             <div class="post">
