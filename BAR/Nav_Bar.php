@@ -43,6 +43,7 @@ if ($result->num_rows > 0) {
 // Đóng kết nối đến cơ sở dữ liệu
 $conn->close();
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -124,26 +125,25 @@ $conn->close();
       text-decoration: underline;
     }
 
-    .nav-search {
-      margin-left: 10px; /* Adjust the value for desired distance */
-    }
-
-    /* Pop-up styles */
-    .popup {
-      display: none;
-      position: fixed; /* Sử dụng position: fixed thay vì absolute */
-      top: 50px; /* Đặt top bằng chiều cao của navbar */
-      right: 20px; /* Đặt right bằng padding của navbar */
-      transform: none; /* Xóa thuộc tính transform */
-      background-color: rgba(0, 0, 0, 0.8);
-      color: white;
-      padding: 15px;
-      border-radius: 10px;
-      margin-left: 50px;
-      width: 30%;
-      max-width: 500px; /* Thêm max-width để hạn chế chiều rộng tối đa của pop-up */
-      word-wrap: break-word; /* Đảm bảo rằng văn bản không vượt quá khung pop-up */
-    }
+    .navbar-search {
+  margin-left: 10px; /* Adjust the value for desired distance */
+}
+/* Pop-up styles */
+.popup {
+    display: none;
+    position: fixed; /* Sử dụng position: fixed thay vì absolute */
+    top: 50px; /* Đặt top bằng chiều cao của navbar */
+    right: 20px; /* Đặt right bằng padding của navbar */
+    transform: none; /* Xóa thuộc tính transform */
+    background-color: #ffffff; /* Thay đổi màu nền thành màu trắng */
+    color: black; 
+    padding: 15px;
+    border-radius: 10px;
+    margin-left: 50px;
+    width: 30%;
+    max-width: 500px; /* Thêm max-width để hạn chế chiều rộng tối đa của pop-up */
+    word-wrap: break-word; /* Đảm bảo rằng văn bản không vượt quá khung pop-up */
+}
 
     .popup-content {
       text-align: center;
@@ -153,7 +153,7 @@ $conn->close();
       position: absolute;
       top: 10px;
       right: 10px;
-      color: white;
+      color: black;
       cursor: pointer;
     }
     svg:not(:root).svg-inline--fa {
@@ -166,9 +166,10 @@ $conn->close();
   </style>
 </head>
 <body>
-  <div class="nav-bar">
-    <div class="nav-logo">
-      <img class="nav-logo img" src="img/logo.png" alt="Vnisocial Logo">
+
+  <div class="navbar">
+    <div class="navbar-logo">
+      <img class="navbar-logo img" src="img/logo.png" alt="Vnisocial Logo">
     </div>
     <div class="nav-search">
       <form action="TIM_KIEM/KETQUA.php" method="post">
@@ -190,16 +191,16 @@ $conn->close();
   </div>
 
   <!-- Phần pop-up thông báo -->
-  <div class="popup" id="popup">
-    <div class="popup-content">
-      <span class="close" onclick="closePopup()">×</span>
-      <!-- Nội dung của pop-up sẽ được đưa vào đây -->
-      <h3>Thông báo mới</h3>
-      <?php foreach ($notifications as $notification) { ?>
-        <p><?php echo $notification; ?></p>
-      <?php } ?>
-    </div>
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <span class="close" onclick="closePopup()">×</span>
+    <!-- Nội dung của pop-up sẽ được đưa vào đây -->
+    <h3>Thông báo </h3>
+    <?php foreach ($notifications as $notification) { ?>
+      <p><?php echo $notification; ?></p>
+    <?php } ?>
   </div>
+</div>
 
   <script>
     // Hàm để hiển thị pop-up
