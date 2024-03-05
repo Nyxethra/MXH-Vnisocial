@@ -168,10 +168,10 @@ $conn->close();
 <body>
   <div class="nav-bar">
     <div class="nav-logo">
-      <img src="../IMG/logo.png" class="logo">
+      <img src="IMG/logo.png" class="logo">
     </div>
     <div class="nav-search">
-      <form action=".../TIM_KIEM/KETQUA.php" method="post">
+      <form action="TIM_KIEM/KETQUA.php" method="post">
         <input type="text" name="ten" placeholder="Nhập tên người dùng">
       </form>
     </div>
@@ -187,7 +187,7 @@ $conn->close();
     <i class="far fa-bell"></i>
     <span class="badge"><?php echo $notification_count; ?></span>
   </div>
-  <a class="nav-link" href=".../SIGNUP.LOGIN.LOGOUT/dangxuat.php"><i class="fas fa-sign-out-alt"></i></a> <!-- Sử dụng biểu tượng đăng xuất từ Font Awesome -->
+  <a class="nav-link" href="SIGNUP.LOGIN.LOGOUT/dangxuat.php"><i class="fas fa-sign-out-alt"></i></a> <!-- Sử dụng biểu tượng đăng xuất từ Font Awesome -->
 </div>
 
       </div>

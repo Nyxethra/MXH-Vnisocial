@@ -53,8 +53,8 @@ INSERT INTO nhan_tin(tin_nhan_tu,tin_nhan_den,noidung) VALUES
 
 SET time_zone = "+07:00";
 CREATE TABLE baidang (
-  ma_baidang int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  dang_boi int,
+  ma_baidang bigint(19) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  dang_boi bigint(19),
   FOREIGN KEY (dang_boi) REFERENCES nguoidung(ma_nguoidung),
   noidung text,
   image varchar(600),
@@ -65,7 +65,7 @@ CREATE TABLE baidang (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 INSERT INTO baidang (dang_boi,noidung, image, luong_like) VALUES
-(2, 'v', 'a.jpg', 0),
+(1, 'Ukraine đã tuyên bố bắn hạ một loạt máy bay kể từ khi Nga tiến hành chiến dịch quân sự đặc biệt vào cuối tháng 2/2022 với tỷ lệ thành công dường như đang tăng lên trong tháng này. Ngày 28/2, Bộ Quốc phòng Ukraine cho biết quân đội nước này đã bắn hạ tiêm kích thứ 10 của Nga chỉ trong 10 ngày. Các chuyên gia nhận định với Business Insider rằng thành công gần đây của Ukraine có lẽ là do sự dịch chuyển chiến thuật của Nga, được triển khai để ngăn chặn các cuộc tấn công của Kiev.', '65e5bc877662d.jpg', 0),
 (1, 'd ', 'b.jpg', 0),
 (5, 'g ', 'c.jpg', 1);
 
