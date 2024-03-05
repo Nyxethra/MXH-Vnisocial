@@ -1,154 +1,186 @@
-*{
-    margin : 0;
-    padding : 0;
+* {
+    margin: 0;
+    padding: 0;
     text-align: center;
 }
-.thanhbar{
+
+.thanhbar {
     height: 80px;
     width: 100%;
-    background-color:#a72f2f;
+    background-color: #a72f2f;
 }
-.logo{
+
+.logo {
     position: absolute;
     width: 200px;
     left: 13%;
     padding-top: 15px;
     margin-top: -73px;
-
 }
-.login_form{
+
+.login_form {
     display: flex;
     position: absolute;
     font-family: Verdana;
-    left:58%;
+    left: 58%;
     top: 15px;
 }
+
 .login_form .email,
-.login_form .password{
+.login_form .password {
     padding-left: 10px;
 }
+
 .login_form .email .font,
-.login_form .password .font{
+.login_form .password .font {
     font-size: 13px;
     padding-bottom: 4px;
-    color:white;
+    color: white;
 }
+
 .login_form .email input,
-.login_form .password input{
+.login_form .password input {
     height: 23px;
     width: 150px;
     padding-left: 5px;
-    border :1px solid black;
-    outline : none;
+    border: 1px solid black;
+    outline: none;
 }
-.login_form .btn{
+
+.btn {
     height: 36px;
     width: 50px;
     font-weight: 600;
     margin-left: 15px;
     margin-top: 16px;
     border-radius: 2px;
-    outline :none;
-    cursor:pointer;
+    outline: none;
+    cursor: pointer;
     color: white;
     background: #d22b2b;
-    border:1px solid black;
+    border: 1px solid black;
 }
-section{
+
+/* Thêm biểu tượng FontAwesome vào nút đăng nhập */
+.btn i {
+    margin-right: 5px;
+}
+
+
+/* Hiệu ứng hover cho biểu tượng FontAwesome */
+.btn:hover i {
+    color: red;
+}
+
+section {
     height: 614px;
     width: 100%;
-    top:800px;
+    top: 800px;
     background: linear-gradient();
     font-family: verdana;
 }
-.signup_body{
+
+.signup_body {
     font-family: arial;
     position: absolute;
     left: 15%;
-    top: 20%;
+    top: 15%;
     right: 58%;
     width: 500px;
     padding-left: 10px;
-    border-radius :10%;
+    border-radius: 10%;
     background-color: #a72f2f;
 }
-.signup_body .acc_crt{
+
+.signup_body .acc_crt {
     font-size: 40px;
     margin: 25px 0;
-
 }
-.signup_body .free_hint{
+
+.signup_body .free_hint {
     margin: -20px 5px;
     font-size: 18px;
 }
-.signup_body .signup_form input{
+
+.signup_body .signup_form input {
     margin-top: 50px;
     height: 38px;
-    width:190px;
+    width: 190px;
     padding-left: 5px;
     font-size: 18px;
-    border: 1px solid #FFFFFF;
-
+    border: 1px solid #ffffff;
 }
-.signup_body .signup_form .lastname{
+
+.signup_body .signup_form .lastname {
     margin-left: 15px;
 }
+
 .signup_body .signup_form .email,
 .signup_body .signup_form .password,
-.signup_body .signup_form .password2{
-
+.signup_body .signup_form .password2 {
     margin-top: 20px;
     width: 410px;
 }
-.signup_body .signup_form .birthday{
+
+.signup_body .signup_form .birthday {
     margin-top: 15px;
     margin-bottom: 10px;
     font-size: 20px;
     font-weight: bold;
     color: white;
 }
+
 .signup_body .signup_form .month,
 .signup_body .signup_form .day,
-.signup_body .signup_form .year{
+.signup_body .signup_form .year {
     height: 28px;
-
 }
 
-.signup_body .signup_form input[type="radio"]{
+.signup_body .signup_form input[type="radio"] {
     height: 15px;
     margin-left: -59px;
     margin-top: 30px;
 }
-.signup_body .signup_form input[type="radio"]{
-    margin-left: -100px;
 
+.signup_body .signup_form input[type="radio"] {
+    margin-left: -100px;
 }
-.signup_body .signup_form.font{
+
+.signup_body .signup_form.font {
     margin-left: 57px;
     margin-top: -17px;
 }
-.signup_body .signup_form .font2{
+
+.signup_body .signup_form .font2 {
     margin-left: 100px;
     margin-top: -21px;
 }
-.signup_body .signup_form .agreement{
-    margin-top: 15px;
-    width: 350px;
+
+.signup_body .signup_form .agreement {
+    margin-top: 10px;
+    width: 500px;
     color: white;
-}
-.signup_body .signup_form .signup{
-    margin-top: 20px;
+        font-size: 14px;
+        line-height: 20px; /* Giả sử chiều cao của ô là 20px */
+        text-align: center;
+    }
+
+
+.signup_body .signup_form .signup {
+    margin-top: 30px;
+    margin-bottom: 20px;
     height: 38px;
     width: 170px;
     color: white;
     font-size: 20px;
     font-weight: 600;
-    border: 1px solid #066117;
+    border: 1px solid #ffffff;
     border-radius: 12px;
     cursor: pointer;
     outline: none;
     background: #d22b2b;
 }
-.signup_body .signup_form .signup:hover{
-    background:#FF4848;
+
+.signup_body .signup_form .signup:hover {
+    background: #ff4848;
 }
