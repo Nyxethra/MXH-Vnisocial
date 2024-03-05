@@ -10,7 +10,7 @@
 <?php
 ?>
 <div class="thanhbar" >
-    <img src="../IMG/VNISocial.png" class="logo">
+    <div><img src="../IMG/logo.png" class="logo "></div>
     <form class="login_form"method="POST" action="dangnhap.php" >
         <div class="email">
             <div class="font">nhap Email cua ban</div>
@@ -22,7 +22,7 @@
         </div>
         <button class="btn">Đăng nhập</button>
     </form>
+    </div> 
 </header>
-</div> 
 </body>
 </html>

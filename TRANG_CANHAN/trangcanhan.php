@@ -108,5 +108,18 @@
         </div>
     </div>
 </div>
+<script>
+        document.getElementById('edit-avatar-btn').addEventListener('click', function() {
+            document.getElementById('avatar-input').click();
+        });
+
+        document.getElementById('avatar-input').addEventListener('change', function(e) {
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                document.getElementById('profile_pic').src = event.target.result;
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        });
+    </script>
 </body>
 </html>

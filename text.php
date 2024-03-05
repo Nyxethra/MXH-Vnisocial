@@ -18,6 +18,7 @@
             object-fit: cover;
             cursor: pointer;
         }
+
         .edit-avatar {
             position: absolute;
             bottom: 0;
@@ -41,12 +42,14 @@
 <body>
 
         <div class="profile-intro-content">
-            <div class="profile_pic">
-                <img id="avatar-img" >
+            <div class="profile-picture">
+                <form method="POST" enctype="multipart/form-data">
+                <img id="avatar-img" class="profile_pic">
                 <input type="file" id="avatar-input" accept="image/*" style="display:none">
-                <button for="avatar-input" id="edit-avatar-btn" class="edit-avatar">
-            <i class="fas fa-camera"></i> 
-        </button>
+                <button id="edit-avatar-btn" class="edit-avatar">
+                    <i class="fas fa-camera"></i>
+                </button>
+                </form>
             </div>
         </div>
 
