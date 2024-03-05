@@ -168,7 +168,7 @@ $conn->close();
 <body>
   <div class="nav-bar">
     <div class="nav-logo">
-      <img class="nav-logo img" src="img/logo.png" alt="Vnisocial Logo">
+      <img src="IMG/logo.png" class="logo">
     </div>
     <div class="nav-search">
       <form action="TIM_KIEM/KETQUA.php" method="post">
@@ -181,10 +181,15 @@ $conn->close();
       <a class="nav-link" href="TRANG_CANHAN/trangcanhan.php"><b>Trang cá nhân</b></a>
     </div>
     <div class="nav-icons">
-      <i class="fab fa-facebook-messenger"></i>
-      <div class="notification" onclick="showPopup()">
-        <i class="far fa-bell"></i>
-        <span class="badge"><?php echo $notification_count; ?></span>
+    <div class="nav-icons">
+  <i class="fab fa-facebook-messenger"></i>
+  <div class="notification" onclick="showPopup()">
+    <i class="far fa-bell"></i>
+    <span class="badge"><?php echo $notification_count; ?></span>
+  </div>
+  <a class="nav-link" href="SIGNUP.LOGIN.LOGOUT/dangxuat.php"><i class="fas fa-sign-out-alt"></i></a> <!-- Sử dụng biểu tượng đăng xuất từ Font Awesome -->
+</div>
+
       </div>
     </div>
   </div>

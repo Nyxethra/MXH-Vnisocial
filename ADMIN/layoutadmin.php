@@ -1,6 +1,12 @@
+<?php
+  include ('loginadmin.php');
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
+<title>ADMIN | VNISOCIAL</title>
+</head>
   <style>
     body {
       display: flex;
@@ -19,14 +25,9 @@
       justify-content: center;
       width: 360px;
       padding: 45px;
-      background: #FFFFFF;
+      background: #A72F2F;
       box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
       border-radius:2%;
-      .anhne {
-      width: 100%; /* Chiều rộng của logo sẽ chiếm toàn bộ chiều rộng của .formngoai */
-      max-width: 150px; /* Giới hạn chiều rộng tối đa của logo */
-      height: auto; /* Chiều cao sẽ tự động điều chỉnh để giữ nguyên tỷ lệ khung hình */
-    }
     }
     .formInput, button {
       width: 100%;
@@ -40,7 +41,6 @@
     }
     .formInput {
       background: #f2f2f2;
-     
     }
     button {
       color: #FFFFFF;
@@ -60,7 +60,7 @@
 </head>
 <body>
   <div class="formngoai">
-  <img src="../img/logo.png"  class="anhne">
+    <h1>ADMIN | VNISOCIAL</h1>
     <form action="loginadmin.php" method="post">
       <input type="text" placeholder="Email" class="formInput" name="email"/>
       <input type="password" placeholder="Mật khẩu" class="formInput" name="matkhau"/>

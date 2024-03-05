@@ -10,7 +10,7 @@
 <?php
 ?>
 <div class="thanhbar" >
-    <img src="../IMG/VNISocial.png" class="logo">
+    <img src="../IMG/logo.png" class="logo">
     <form class="login_form"method="POST" action="dangnhap.php" >
         <div class="email">
             <div class="font">Email</div>

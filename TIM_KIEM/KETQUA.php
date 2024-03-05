@@ -33,7 +33,7 @@
     }
 
     .item {
-      width: 33%;
+      width: 33%);
       border: 1px solid #ccc;
       padding: 10px;
       margin: 10px;
@@ -81,12 +81,12 @@
     flex-wrap: wrap;
     }
     
-
+}
 
   </style>
 </head>
 <body>
-  <h1 class = "title">Kết quả tìm kiếm</h1>
+  
   <div class="container">
     <div class="danh-sach">
       <?php
@@ -134,7 +134,7 @@ if ($num_rows == 0) {
   ?>
   <div class="item">
     <div class="anh_va_ten">
-    <img class="avatar" src="<?php echo $row['avartar']; ?>" alt="<?php echo $row['ten_nguoidung']; ?>">
+    <img class="avatar" src="../img/<?php echo $row['avatar']; ?>" alt="<?php echo $row['ten_nguoidung']; ?>">
     <h2><?php echo $row['ten_nguoidung']; ?></h2>
   </div>
     <p><?php echo $row['hoc_tai']; ?></p>

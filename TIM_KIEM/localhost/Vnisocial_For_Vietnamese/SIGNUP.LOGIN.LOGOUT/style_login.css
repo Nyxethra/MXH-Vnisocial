@@ -3,7 +3,7 @@
     padding: 0;
     text-align: center;
 }
-html {
+html{
     background-color: #fbf6e4;
     width: 1280x;
 }
@@ -64,13 +64,13 @@ html {
     border: 1px solid black;
 }
 
-/* Thêm biểu tượng FontAwesome vào nút đăng nhập */
+/* ThÃªm biá»ƒu tÆ°á»£ng FontAwesome vÃ o nÃºt Ä‘Äƒng nháº­p */
 .btn i {
     margin-right: 5px;
 }
 
 
-/* Hiệu ứng hover cho biểu tượng FontAwesome */
+/* Hiá»‡u á»©ng hover cho biá»ƒu tÆ°á»£ng FontAwesome */
 .btn:hover i {
     color: red;
 }
@@ -168,7 +168,7 @@ section {
     width: 500px;
     color: white;
         font-size: 14px;
-        line-height: 20px; /* Giả sử chiều cao của ô là 20px */
+        line-height: 20px; /* Giáº£ sá»­ chiá»u cao cá»§a Ã´ lÃ  20px */
         text-align: center;
     }
 

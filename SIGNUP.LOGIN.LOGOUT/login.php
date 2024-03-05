@@ -1,26 +1,28 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-KVZ4X6ZkGa5Pw4e2spzhpxQVdG0+PwT8/x8q+ABe3xooqZ1gA7p4hFjcqLoO6703X/71Xsm1+98olIw5W4f+sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VNIsocial</title>
     <link rel="stylesheet" type="text/css" href="style_login.css">
 </head>
-<body>
+<body> 
     
     <?php include("thanhbar_dangnhap.php")?>
 <section>
     <div class="signup_body" style="background-color: #a72f2f;">
         <p class="acc_crt"style="color:white"><b>Đăng ký</b></p>
-        <p class="free_hint" style="color:white">Luôn miễn phí</p>
+        <p class="free_hint" style="color:white">Mạng Xã Hội Mang Bản Sắc Việt.</p>
         <form class="signup_form" method="POST" action="dangki.php">
             <div>
 
-                <input  class="firstname" type="text" name="firstname" placeholder="First name">
-                <input  class="lastname" type="text" name="lastname" placeholder="Last name">
-                <input  class="email" type="text" name="email" placeholder="Dien email cua ban">
-                <input  class="password" type="password" name="matkhau" placeholder="Mat khau">
-                <input  class="password2" type="password" name="matkhau2" placeholder="Xac nhan mat khau">
+                <input  class="firstname" type="text" name="firstname" placeholder="Họ">
+                <input  class="lastname" type="text" name="lastname" placeholder="Tên">
+                <input  class="email" type="text" name="email" placeholder="Điền email của bạn">
+                <input  class="password" type="password" name="matkhau" placeholder="Mật khẩu">
+                <input  class="password2" type="password" name="matkhau2" placeholder="Xác nhận mật khẩu">
             </div>
             <p class="birthday" > Ngày sinh</p>
             <div class="birth_date">
@@ -53,12 +55,15 @@
                 </select>
             </div>
 
-            <p class="birthday" > Gioi tinh</p>
+            <p class="birthday" > Giới tính</p>
             <select class="gender" name="gioitinh">
             <option value="nam">Nam</option>
-            <option value="nu">Nu</option>
+            <option value="nu">Nữ</option>
             </select>
-            <p class="agreement">Đồng ý các <a href="#">điều khoản</a>.</p>
+            <p class="agreement">Nhấn đăng ký đồng nghĩa với việc bạn đã đồng ý với các <a href="#">điều khoản</a>.</p>
             <button class="signup">Đăng ký</button>
+
+            <img class="logonen" src="../img/logo_nen.jpg" style="position: absolute; top: 133px; left: 529px; width: 700px;">
+
 </body>
 </html>
