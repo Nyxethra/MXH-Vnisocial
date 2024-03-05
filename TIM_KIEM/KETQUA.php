@@ -33,7 +33,7 @@
     }
 
     .item {
-      width: 33%;
+      width: 33%);
       border: 1px solid #ccc;
       padding: 10px;
       margin: 10px;
@@ -81,12 +81,12 @@
     flex-wrap: wrap;
     }
     
-
+}
 
   </style>
 </head>
 <body>
-  <h1 class = "title">Kết quả tìm kiếm</h1>
+  
   <div class="container">
     <div class="danh-sach">
       <?php
