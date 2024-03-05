@@ -40,7 +40,7 @@ if (!empty($ngay) && !empty($thang) && !empty($nam)) {
 }
     $ten_nguoidung= ucfirst($firstname) . ucfirst($lastname);
 
-    var_dump($_POST) ;
+
     // Truy vấn cơ sở dữ liệu để kiểm tra xem tên người dùng đã tồn tại hay chưa
     $checkQuery = "SELECT * FROM nguoidung WHERE email = '$email'";
     $checkResult = $conn->query($checkQuery);
