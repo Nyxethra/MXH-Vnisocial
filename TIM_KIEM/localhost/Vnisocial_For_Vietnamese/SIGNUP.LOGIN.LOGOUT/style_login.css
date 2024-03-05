@@ -4,7 +4,8 @@
     text-align: center;
 }
 html{
-    background-color: #fbf6e4
+    background-color: #fbf6e4;
+    width: 1280x;
 }
 .thanhbar {
     height: 80px;
