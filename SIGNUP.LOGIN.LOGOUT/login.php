@@ -8,13 +8,13 @@
     <title>VNIsocial</title>
     <link rel="stylesheet" type="text/css" href="style_login.css">
 </head>
-<body>
+<body> 
     
     <?php include("thanhbar_dangnhap.php")?>
 <section>
     <div class="signup_body" style="background-color: #a72f2f;">
         <p class="acc_crt"style="color:white"><b>Đăng ký</b></p>
-        <p class="free_hint" style="color:white">Miễn phí dành cho người Việt</p>
+        <p class="free_hint" style="color:white">Mạng Xã Hội Mang Bản Sắc Việt.</p>
         <form class="signup_form" method="POST" action="dangki.php">
             <div>
 
@@ -62,5 +62,8 @@
             </select>
             <p class="agreement">Nhấn đăng ký đồng nghĩa với việc bạn đã đồng ý với các <a href="#">điều khoản</a>.</p>
             <button class="signup">Đăng ký</button>
+
+            <img class="logonen" src="../img/logo_nen.jpg" style="position: absolute; top: 133px; left: 529px; width: 700px;">
+
 </body>
 </html>
