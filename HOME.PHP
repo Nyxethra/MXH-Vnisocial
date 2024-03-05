@@ -10,6 +10,7 @@ if(!isset($user_id)){
 
     <?php include ('BAR/Nav_Bar.php');?>
     <?php include ('dang_bai/dangbai.php');?>
+    <?php include ('baidang/baidang.php');?>
     
   </body>
 </html>

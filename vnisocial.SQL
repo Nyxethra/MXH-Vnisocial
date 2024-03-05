@@ -5,13 +5,13 @@ CREATE TABLE nguoidung(
   email varchar(150), 
   gioitinh varchar(15),
   ngaysinh date, 
-  avartar varchar(600) DEFAULT 'nguoidung.jpeg',
+  avatar varchar(600) DEFAULT 'nguoidung.jpeg',
   anhbia varchar(600) DEFAULT 'anhbia.jpg',
   tieusu varchar(250)
   
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-INSERT INTO nguoidung(ten_nguoidung, matkhau, email, gioitinh, ngaysinh, avartar, anhbia,tieusu) VALUES
+INSERT INTO nguoidung(ten_nguoidung, matkhau, email, gioitinh, ngaysinh, avatar, anhbia,tieusu) VALUES
 ('Nguyễn Hải Đăng','abcde','HAIDANG@gmail.com','nam','1999-02-18', 'anh2.jpg','anh3.jpg','ahahha'),
 ('Tạ Hà Quỳnh Anh', 'abcde', 'QUYNHANH@gmail.com','nữ','2500-07-08', 'nguoidung.jpeg','anhbia.jpg','ihihiii'),
 ('Nguyễn Văn Quang','abcde','VANQUANG@gmail.com','nữ','2505-03-14','anh2.jpeg','anhbia.jpg','ohoooho'),

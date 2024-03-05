@@ -59,6 +59,6 @@
             <option value="nu">Nu</option>
             </select>
             <p class="agreement">Đồng ý các <a href="#">điều khoản</a>.</p>
-            <button class="signup">Đăng ký </button>
+            <button class="signup">Đăng ký</button>
 </body>
 </html>

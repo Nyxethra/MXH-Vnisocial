@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Lấy dữ liệu từ form
   $content = htmlspecialchars($_POST['content']);
-  $image = $_FILES['image'];  
+  $image = $_FILES['image'];
 
   // Lấy thông tin người đăng bài từ phiên làm việc
   $dang_boi = $_SESSION['ma_nguoidung']; // Đây là giả định 'ma_nguoidung' là trường ID của người dùng trong bảng 'nguoidung'
