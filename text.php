@@ -1,71 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-    <style>
-        .profile-picture {
-            position: relative;
-            display: inline-block;
-        }
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["file"])) {
+    $targetDir = "uploads/"; // Thư mục lưu trữ tệp tin
+    $targetFile = $targetDir . basename($_FILES["file"]["name"]); // Đường dẫn đầy đủ đến tệp tin được tải lên
 
-        .profile-picture img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            cursor: pointer;
-        }
+    // Kiểm tra kiểu tệp tin hợp lệ
+    $allowedTypes = array('jpg', 'jpeg', 'png', 'gif');
+    $fileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+    if (!in_array($fileType, $allowedTypes)) {
+        echo "Chỉ được phép tải lên các tệp tin JPG, JPEG, PNG, GIF.";
+        exit;
+    }
 
-        .edit-avatar {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            background-color: #4267B2;
-            color: #fff;
-            border: none;
-            padding: 8px 16px;
-            cursor: pointer;
-        }
+    // Kiểm tra kích thước tệp tin
+    $maxFileSize = 5 * 1024 * 1024; // Giới hạn kích thước tệp tin (đơn vị: byte)
+    if ($_FILES["file"]["size"] > $maxFileSize) {
+        echo "Kích thước tệp tin vượt quá giới hạn cho phép (5MB).";
+        exit;
+    }
 
-        .edit-avatar i {
-            margin-right: 5px;
-        }
+    // Di chuyển tệp tin vào thư mục lưu trữ
+    if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFile)) {
+        echo "Tải lên tệp tin thành công!";
+    } else {
+        echo "Lỗi trong quá trình tải lên tệp tin.";
+    }
+}
+?>
 
-        .edit-avatar:hover {
-            background-color: #29487d;
-        }
-    </style>
-</head>
-<body>
-
-        <div class="profile-intro-content">
-            <div class="profile-picture">
-                <form method="POST" enctype="multipart/form-data">
-                <img id="avatar-img" class="profile_pic">
-                <input type="file" id="avatar-input" accept="image/*" style="display:none">
-                <button id="edit-avatar-btn" class="edit-avatar">
-                    <i class="fas fa-camera"></i>
-                </button>
-                </form>
-            </div>
-        </div>
-
-
-    <script>
-        document.getElementById('edit-avatar-btn').addEventListener('click', function() {
-            document.getElementById('avatar-input').click();
-        });
-
-        document.getElementById('avatar-input').addEventListener('change', function(e) {
-            var reader = new FileReader();
-            reader.onload = function(event) {
-                document.getElementById('avatar-img').src = event.target.result;
-            };
-            reader.readAsDataURL(e.target.files[0]);
-        });
-    </script>
-</body>
-</html>
+<!-- Mẫu biểu mẫu HTML cho việc tải lên tệp tin -->
+<form method="POST" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <input type="submit" value="Tải lên">
+</form>
