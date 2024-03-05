@@ -134,7 +134,7 @@ if ($num_rows == 0) {
   ?>
   <div class="item">
     <div class="anh_va_ten">
-    <img class="avatar" src="<?php echo $row['avatar']; ?>" alt="<?php echo $row['ten_nguoidung']; ?>">
+    <img class="avatar" src="../img/<?php echo $row['avatar']; ?>" alt="<?php echo $row['ten_nguoidung']; ?>">
     <h2><?php echo $row['ten_nguoidung']; ?></h2>
   </div>
     <p><?php echo $row['hoc_tai']; ?></p>
