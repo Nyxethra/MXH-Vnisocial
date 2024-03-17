@@ -1,3 +1,4 @@
+<?php include("comment.php")?>;
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +48,7 @@
     </style>
 </head>
 <body>
-    <?php include("comment.php")?>;
+
     <div class="binhluan-form">
         <h3>Thêm bình luận</h3>
         <form method="post" action="">
