@@ -25,7 +25,7 @@
                     
                     <img src="../img/pic.jpg" class="anhbia">
                     <div class="head__user" style="display:flex">
-                    <div style="width: 803px; text-align:center ; background-color: white; position: absolute; bottom: 0;    ">
+                    <div style="width: 654px;right:171px; text-align:center ; position: absolute; bottom: 153px;    ">
                         <div class="menu_buttons">Dòng thời gian </div>
                         <div class="menu_buttons">Giới thiệu </div>
                         <div class="menu_buttons">Bạn bè</div>
