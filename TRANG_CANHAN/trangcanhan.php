@@ -1,3 +1,25 @@
+<?php
+session_start();
+$ma_nguoidung = $_SESSION['ma_nguoidung'];
+// var_dump($ma_nguoidung);
+include "suaavatar.php";
+// if($ma_nguoidung){
+//     var_dump($ma_nguoidung);
+//     echo"hien lan 2";
+// }
+
+
+// hien thi avatar
+$sql = "SELECT avatar FROM nguoidung where ma_nguoidung ='$ma_nguoidung'  limit 1;";
+$stmt = mysqli_stmt_init($conn);
+if (!mysqli_stmt_prepare($stmt, $sql)) {
+    echo "Lỗi câu truy vấn SQL";
+} else {
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,36 +44,43 @@
         <div class="main_interface">
             <div style="width:100%">
                 <div class="head__img">
-                    
+
                     <img src="../img/pic.jpg" class="anhbia">
                     <div class="head__user" style="display:flex">
-                    <div style="width: 654px;right:171px; text-align:center ; position: absolute; bottom: 153px;    ">
-                        <div class="menu_buttons">Dòng thời gian </div>
-                        <div class="menu_buttons">Giới thiệu </div>
-                        <div class="menu_buttons">Bạn bè</div>
-                        <div class="menu_buttons">Ảnh</div>
-                        <div class="menu_buttons">Lưu trữ </div>
-                    </div>
-                    <div class="head__avatar">
-                        <img id="avatar-img" src="../img/cat.jpg" class="profile_pic">
-                        <form action="" method="POST" enctype="multipart/form-data">
-                            <input type="file" name="avatar" id="avatar-input" accept="image/*" style="display:none">
-                            <button type="button" id="edit-avatar-btn" class="edit-avatar">
-                                <i class="fas fa-camera"></i>
-                            </button>
-                            <input type="submit" value="Lưu" id='show' style="display:none">
+                        <div style="width: 654px;right:171px; text-align:center ; position: absolute; bottom: 153px;    ">
+                            <div class="menu_buttons">Dòng thời gian </div>
+                            <div class="menu_buttons">Giới thiệu </div>
+                            <div class="menu_buttons">Bạn bè</div>
+                            <div class="menu_buttons">Ảnh</div>
+                            <div class="menu_buttons">Lưu trữ </div>
+                        </div>
+                        <div class="head__avatar">
+                            <?php
+                            if (isset($result) && $row = mysqli_fetch_assoc($result)) {
+                            ?>
+                                <img id="avatar-img" src="../IMG/gallery/<?= $row['avatar'] ?>" class="profile_pic">
+                            <?php
+                            } else { ?>
+                                <img id="avatar-img" src="../IMG/gallery/ban.jpg" class="profile_pic">
+                            <?php
+                            } ?>
+                            
+                            <form action="" method="POST" enctype="multipart/form-data">
+                                <input type="file" name="avatar" id="avatar-input" accept="image/*" style="display:none">
+                                <button type="button" id="edit-avatar-btn" class="edit-avatar">
+                                    <i class="fas fa-camera"></i>
+                                </button>
+                                <input type="submit" value="Lưu" id='show' style="display:none">
+                            </form>
 
-                        </form>
+                        </div>
+                        <div class="info__user">
+                            <p class="name__user">Nguyễn Hiếu</b>
+                            <p class="total__friends">123</p>
+                        </div>
 
                     </div>
-                    
-                    <div class="info__user">
-                        <p class="name__user">Nguyễn Hiếu</b>
-                        <p class="total__friends">123</p>
-                    </div>
-            
-                    </div>
-                
+
                 </div>
 
 

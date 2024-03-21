@@ -14,6 +14,8 @@ if ($conn->connect_error) {
     $noidung_binhluan="";
 // Xử lý khi người dùng gửi bình luận
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    
     // Lấy dữ liệu từ form
     $noidung_binhluan = $_POST["noidung_binhluan"];
     
