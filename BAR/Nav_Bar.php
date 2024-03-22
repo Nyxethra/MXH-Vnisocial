@@ -135,8 +135,8 @@ $conn->close();
       top: 50px; /* Đặt top bằng chiều cao của navbar */
       right: 20px; /* Đặt right bằng padding của navbar */
       transform: none; /* Xóa thuộc tính transform */
-      background-color: rgba(0, 0, 0, 0.8);
-      color: white;
+      background-color: #FFFFFF;    
+      color: black;
       padding: 15px;
       border-radius: 10px;
       margin-left: 50px;
@@ -153,7 +153,7 @@ $conn->close();
       position: absolute;
       top: 10px;
       right: 10px;
-      color: white;
+      color: black;
       cursor: pointer;
     }
     svg:not(:root).svg-inline--fa {
