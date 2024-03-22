@@ -6,7 +6,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/1.12.4/sweetalert2.min.css" integrity="sha512-R4+jpnl778pSWzCYwg41gTtdtYZNb3nx8Qk/9M3L5N1qU79qUffkGq9lQS38wQ1m139prU6T8w1oB4Nh9o" crossorigin="anonymous" referrerpolicy="no-referrer">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/1.12.4/sweetalert2.min.js" integrity="sha512-n1U/pYmLwhY/Rbk5C56V2W56kRvm65xSUaEzFBdrF1zZdP9MqHmn5qNq7yNSuZ7iZYR/jOiI5IX43sULm9yA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <style>
@@ -83,101 +82,6 @@
       height: 50px; /* Tăng kích thước của hình ảnh đại diện */
       border-radius: 50%; /* Tăng độ bo tròn của hình ảnh đại diện */
     }
-    /* Khung popup */
-.popup1 {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 500px;
-  background-color: #fff;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  z-index: 9999;
-}
-
-/* Thanh tiêu đề */
-.tren {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-}
-
-.tren h2 {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.tren .ui.icon.button {
-  padding: 0;
-  cursor: pointer;
-}
-
-.tren .ui.icon.button i.close.icon {
-  color: #999;
-}
-
-/* Nội dung bài đăng */
-.duoi {
-  padding: 10px;
-}
-
-.duoi .item {
-  display: flex;
-  margin-bottom: 10px;
-}
-
-.duoi .item img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.duoi .item .username {
-  font-weight: bold;
-  margin-left: 10px;
-  line-height: 30px;
-}
-
-.duoi .item textarea {
-  width: 100%;
-  height: 100px;
-  resize: none;
-  padding: 10px;
-  border: 1px solid #ccc;
-  outline: none;
-}
-
-.duoi .item span {
-  display: inline-block;
-  padding: 5px 10px;
-  background-color: #eee;
-  margin-right: 10px;
-  border-radius: 5px;
-}
-
-.duoi .item .ui.icon.button {
-  padding: 0;
-  cursor: pointer;
-}
-
-.duoi .item .ui.icon.button i {
-  color: #ccc;
-}
-
-.duoi .item button.ui.red.button {
-  background-color: #e74c3c;
-  color: #fff;
-  padding: 5px 10px;
-  border: none;
-  cursor: pointer;
-}
-.swal2-actions {
-    display: none;
-}
-    
   </style>
 </head>
 <body>
@@ -205,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $image_name = '';
   if (!empty($image['name'])) {
     $image_name = uniqid() . '.' . pathinfo($image['name'], PATHINFO_EXTENSION);
-    $image_path = "IMG/" . $image_name;
+    $image_path = "../IMG/" . $image_name;
     if (!move_uploaded_file($image['tmp_name'], $image_path)) {
       $image_name = '';
     }
@@ -264,19 +168,14 @@ if (isset($error_message)) {
 
 
 <?php
-        // Kết nối vào cơ sở dữ liệu
         $conn = new mysqli('localhost', 'root', '', 'vnisocial');
-
-        // Kiểm tra kết nối
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
-        
         $sql = "SELECT avatar, ten_nguoidung
         FROM nguoidung
         WHERE ma_nguoidung = $user_id;
         ";
- 
         $result = $conn->query($sql);
         ?>
 
@@ -315,7 +214,7 @@ if (isset($error_message)) {
       e.stopPropagation(); // Ngăn chặn sự kiện click lan truyền
       Swal.fire({
         title: 'Đăng bài',
-        html: '<?php $conn = new mysqli('localhost', 'root', '', 'vnisocial'); if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error); } $sql = "SELECT avatar, ten_nguoidung FROM nguoidung WHERE ma_nguoidung = $user_id; "; $result = $conn->query($sql); ?><div class="popup1">'+'<div class="tren">'+'<h2>Tạo bài đăng</h2>'+'<button class="ui icon button"><i class="close icon"></i></button>'+'</div>'+'<form action="" method="post" enctype="multipart/form-data"><div class="duoi"><div class="item"><?php while($row=$result->fetch_assoc()){?><img class="ui avatar image" src="img/<?php echo $row["avatar"];?>"><span class="username"><?php echo $row['ten_nguoidung']; ?></span><?php }?></div><div class="item"><textarea name="content" placeholder="Nhập nội dung bài viết..."></textarea></div><div class="item"><span>Thêm hình ảnh/video vào bài viết của bạn</span><button type="button" class="ui icon_img button" id="image"> <i class="material-icons">add_photo_alternate</i> <span>Chọn ảnh/video</span> </button> <input type="file" id="image_input" name="image" style="display: none;"></button></div><div class="item"><button type="submit" class="ui red button">Đăng bài</button></div></div></div></form>',
+        html: '<?php $conn = new mysqli('localhost', 'root', '', 'vnisocial'); if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error); } $sql = "SELECT avatar, ten_nguoidung FROM nguoidung WHERE ma_nguoidung = $user_id; "; $result = $conn->query($sql); ?><div class="popup1">'+'<div class="tren">'+'<h2>Tạo bài đăng</h2>'+'<button class="ui icon button"><i class="close icon"></i></button>'+'</div>'+'<form action="" method="post" enctype="multipart/form-data"><div class="duoi"><div class="item"><img class="ui avatar image" src="img/may_dep.jpg"><span class="username">Tên người dùng</span></div><div class="item"><textarea name="content" placeholder="Nhập nội dung bài viết..."></textarea></div><div class="item"><span>Thêm vào bài viết của bạn</span><input type="file" class="ui icon_img button  id="image" name="image"  ><i class="image outline icon"></i></button></div><div class="item"><button type="submit" class="ui red button">Đăng bài</button></div></div></div></form>',
         width: '100%',
         heightAuto: false,
         padding: '3em',
@@ -337,12 +236,7 @@ if (isset($error_message)) {
           Swal.close();
         }
       });
-      const imageButton = document.getElementById('image');
-    const imageInput = document.getElementById('image_input');
 
-    imageButton.addEventListener('click', () => {
-      imageInput.click();
-    });
       // Xử lý sự kiện khi click vào nút "Ẩn pop-up"
       $(".ui.icon.button").click(function(){
         Swal.close(); // Ẩn pop-up
