@@ -8,15 +8,17 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <style>
     .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      padding-right: 20px;
-      padding-bottom: 20px;
-      box-sizing: border-box;
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    /* box-sizing: border-box; */
+    flex-wrap: nowrap;
+    padding-top: 80px;
+}
 
     .baidang {
       width: 570px;
@@ -81,10 +83,35 @@
   </style>
 </head>
 <body>
+<?php
+        // Kết nối vào cơ sở dữ liệu
+        $conn = new mysqli('localhost', 'root', '', 'vnisocial');
+
+        // Kiểm tra kết nối
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        
+        $sql = "SELECT avatar
+        FROM nguoidung
+        WHERE ma_nguoidung = $user_id;
+        ";
+
+        $result = $conn->query($sql);
+        ?>
+
+<?php
+                while($row=$result->fetch_assoc())
+                {
+            ?>
+
   <div class="container">
     <div class="ui segment baidang">
       <div class="phiatren">
-        <img class="ui avatar image" src="img/may_dep.jpg">
+        <img class="ui avatar image" src="img/<?php echo $row["avatar"]; ?>">
+        <?php
+                }
+            ?>
         <div class="ui input">
           <input type="text" placeholder="Nhập nội dung tại đây...">
         </div>
@@ -108,7 +135,7 @@
       e.stopPropagation(); // Ngăn chặn sự kiện click lan truyền
       Swal.fire({
         title: 'Đăng bài',
-        html: '<div class="popup1">'+'<div class="tren">'+'<h2>Tạo bài đăng</h2>'+'<button class="ui icon button"><i class="close icon"></i></button>'+'</div>'+'<form action="Dang_bai/post_create.php" method="post" enctype="multipart/form-data"><div class="duoi"><div class="item"><img class="ui avatar image" src="img/may_dep.jpg"><span class="username">Tên người dùng</span></div><div class="item"><textarea name="content" placeholder="Nhập nội dung bài viết..."></textarea></div><div class="item"><span>Thêm vào bài viết của bạn</span><input type="file" class="ui icon_img button  id="image" name="image" style="display:none" ><i class="image outline icon"></i></button></div><div class="item"><button type="submit" class="ui red button">Đăng bài</button></div></div></div></form>',
+        html: '<div class="popup1">'+'<div class="tren">'+'<h2>Tạo bài đăng</h2>'+'<button class="ui icon button"><i class="close icon"></i></button>'+'</div>'+'<form action="Dang_bai/post_create.php" method="post" enctype="multipart/form-data"><div class="duoi"><div class="item"><img class="ui avatar image" src="img/may_dep.jpg"><span class="username">Tên người dùng</span></div><div class="item"><textarea name="content" placeholder="Nhập nội dung bài viết..."></textarea></div><div class="item"><span>Thêm vào bài viết của bạn</span><input type="file" class="ui icon_img button  id="image" name="image"  ><i class="image outline icon"></i></button></div><div class="item"><button type="submit" class="ui red button">Đăng bài</button></div></div></div></form>',
         width: '100%',
         heightAuto: false,
         padding: '3em',

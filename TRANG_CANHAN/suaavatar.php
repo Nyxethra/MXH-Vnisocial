@@ -1,68 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-    <style>
-        .profile-picture {
-            position: relative;
-            display: inline-block;
+<?php
+
+//Kết nối cơ sở dữ liệu
+$dbHost = 'localhost';
+$dbUser = 'root';
+$dbPass = '';
+$dbName = 'vnisocial';
+
+$conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
+
+if (!$conn) {
+    die("Không thể kết nối đến cơ sở dữ liệu: " . mysqli_connect_error());
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["avatar"])) {
+    $avatar = $_FILES["avatar"];
+
+    // Kiểm tra xem có lỗi xảy ra trong quá trình tải lên không
+    if ($avatar["error"] > 0) {
+        echo "Lỗi tải lên ảnh: " . $avatar["error"];
+    } else {
+        $uploadDir = "../img/gallery/";
+        $uploadPath = $uploadDir . basename($avatar["name"]);
+
+        // Di chuyển tệp ảnh vào thư mục lưu trữ
+        if ($avatar["tmp_name"]) {
+            // Lưu đường dẫn tệp ảnh avatar vào cơ sở dữ liệu
+            @move_uploaded_file($avatar["tmp_name"], $uploadPath);
+            $avatar_n = $avatar["name"];
+            // $data_n = date("y-m-d h:i:s");
+            // $timestamp = strtotime($data_n);
+            // 1231312312.jpg 
+            $query = "UPDATE nguoidung
+            SET avatar = '$avatar_n'
+            WHERE ma_nguoidung = '$ma_nguoidung'";
+            mysqli_query($conn, $query);
+
+            $_SESSION['thongbao'] = "Tải lên ảnh avatar thành công!";
+            header("location:trangcanhan.php");
+            exit;
+        } else {
+            $_SESSION['thongbao'] = "Lỗi tải lên ảnh avatar.";
+            header("location:trangcanhan.php");
+            exit;
         }
-
-        .profile-picture img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            cursor: pointer;
-        }
-        .edit-avatar {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            background-color: #4267B2;
-            color: #fff;
-            border: none;
-            padding: 8px 16px;
-            cursor: pointer;
-        }
-
-        .edit-avatar i {
-            margin-right: 5px;
-        }
-
-        .edit-avatar:hover {
-            background-color: #29487d;
-        }
-    </style>
-</head>
-<body>
-
-        <div class="profile-intro-content">
-            <div class="profile_pic">
-                <img id="avatar-img" >
-                <input type="file" id="avatar-input" accept="image/*" style="display:none">
-                <button for="avatar-input" id="edit-avatar-btn" class="edit-avatar">
-            <i class="fas fa-camera"></i> 
-        </button>
-            </div>
-        </div>
+    }
+}
 
 
-    <script>
-        document.getElementById('edit-avatar-btn').addEventListener('click', function() {
-            document.getElementById('avatar-input').click();
-        });
-
-        document.getElementById('avatar-input').addEventListener('change', function(e) {
-            var reader = new FileReader();
-            reader.onload = function(event) {
-                document.getElementById('avatar-img').src = event.target.result;
-            };
-            reader.readAsDataURL(e.target.files[0]);
-        });
-    </script>
-</body>
-</html>
+// mysqli_close($conn);
