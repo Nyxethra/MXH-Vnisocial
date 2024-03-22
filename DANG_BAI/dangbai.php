@@ -84,99 +84,7 @@
       border-radius: 50%; /* Tăng độ bo tròn của hình ảnh đại diện */
     }
     /* Khung popup */
-.popup1 {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 500px;
-  background-color: #fff;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  z-index: 9999;
-}
 
-/* Thanh tiêu đề */
-.tren {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-}
-
-.tren h2 {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.tren .ui.icon.button {
-  padding: 0;
-  cursor: pointer;
-}
-
-.tren .ui.icon.button i.close.icon {
-  color: #999;
-}
-
-/* Nội dung bài đăng */
-.duoi {
-  padding: 10px;
-}
-
-.duoi .item {
-  display: flex;
-  margin-bottom: 10px;
-}
-
-.duoi .item img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.duoi .item .username {
-  font-weight: bold;
-  margin-left: 10px;
-  line-height: 30px;
-}
-
-.duoi .item textarea {
-  width: 100%;
-  height: 100px;
-  resize: none;
-  padding: 10px;
-  border: 1px solid #ccc;
-  outline: none;
-}
-
-.duoi .item span {
-  display: inline-block;
-  padding: 5px 10px;
-  background-color: #eee;
-  margin-right: 10px;
-  border-radius: 5px;
-}
-
-.duoi .item .ui.icon.button {
-  padding: 0;
-  cursor: pointer;
-}
-
-.duoi .item .ui.icon.button i {
-  color: #ccc;
-}
-
-.duoi .item button.ui.red.button {
-  background-color: #e74c3c;
-  color: #fff;
-  padding: 5px 10px;
-  border: none;
-  cursor: pointer;
-}
-.swal2-actions {
-    display: none;
-}
     
   </style>
 </head>
@@ -436,6 +344,99 @@ if (isset($error_message)) {
     .duoi .item .ui.red.button {
       width: 100%;
     }
+    .popup1 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+}
+
+/* Thanh tiêu đề */
+.tren {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.tren h2 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.tren .ui.icon.button {
+  padding: 0;
+  cursor: pointer;
+}
+
+.tren .ui.icon.button i.close.icon {
+  color: #999;
+}
+
+/* Nội dung bài đăng */
+.duoi {
+  padding: 10px;
+}
+
+.duoi .item {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.duoi .item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.duoi .item .username {
+  font-weight: bold;
+  margin-left: 10px;
+  line-height: 30px;
+}
+
+.duoi .item textarea {
+  width: 100%;
+  height: 100px;
+  resize: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.duoi .item span {
+  display: inline-block;
+  padding: 5px 10px;
+
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.duoi .item .ui.icon.button {
+  padding: 0;
+  cursor: pointer;
+}
+
+.duoi .item .ui.icon.button i {
+  color: #ccc;
+}
+
+.duoi .item button.ui.red.button {
+  background-color: #e74c3c;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+.swal2-actions {
+    display: none;
+}
   </style>
 </body>
 </html>
