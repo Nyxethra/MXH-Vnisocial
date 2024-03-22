@@ -1,16 +1,15 @@
 <?php
-session_start();
-$ma_nguoidung = $_SESSION['ma_nguoidung'];
-// var_dump($ma_nguoidung);
-include "suaavatar.php";
-// if($ma_nguoidung){
-//     var_dump($ma_nguoidung);
+
+// var_dump($user_id);
+include "trang_canhan/suaavatar.php";
+// if($user_id){
+//     var_dump($user_id);
 //     echo"hien lan 2";
 // }
 
 
 // hien thi avatar
-$sql = "SELECT avatar FROM nguoidung where ma_nguoidung ='$ma_nguoidung'  limit 1;";
+$sql = "SELECT avatar FROM nguoidung where ma_nguoidung ='$user_id'  limit 1;";
 $stmt = mysqli_stmt_init($conn);
 if (!mysqli_stmt_prepare($stmt, $sql)) {
     echo "Lỗi câu truy vấn SQL";
@@ -26,7 +25,7 @@ if (!mysqli_stmt_prepare($stmt, $sql)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style_trangcanhan.css">
+    <link rel="stylesheet" href="trang_canhan/style_trangcanhan.css">
     <title>Trang cá nhân của bạn</title>
     <style>
         .abc {
@@ -38,14 +37,14 @@ if (!mysqli_stmt_prepare($stmt, $sql)) {
 
 <body>
     <!-- Thanh công cụ -->
-    <?php include('../BAR/Nav_Bar.php'); ?>
+
     <!-- phần giao diện chính -->
     <div class="abc">
         <div class="main_interface">
             <div style="width:100%">
                 <div class="head__img">
 
-                    <img src="../img/pic.jpg" class="anhbia">
+                    <img src="img/pic.jpg" class="anhbia">
                     <div class="head__user" style="display:flex">
                         <div style="width: 654px;right:171px; text-align:center ; position: absolute; bottom: 153px;    ">
                             <div class="menu_buttons">Dòng thời gian </div>
@@ -58,10 +57,10 @@ if (!mysqli_stmt_prepare($stmt, $sql)) {
                             <?php
                             if (isset($result) && $row = mysqli_fetch_assoc($result)) {
                             ?>
-                                <img id="avatar-img" src="../IMG/gallery/<?= $row['avatar'] ?>" class="profile_pic">
+                                <img id="avatar-img" src="IMG/gallery/<?= $row['avatar'] ?>" class="profile_pic">
                             <?php
                             } else { ?>
-                                <img id="avatar-img" src="../IMG/gallery/ban.jpg" class="profile_pic">
+                                <img id="avatar-img" src="IMG/gallery/ban.jpg" class="profile_pic">
                             <?php
                             } ?>
                             
