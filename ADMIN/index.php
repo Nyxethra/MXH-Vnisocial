@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMIN | VNISOCIAL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.js"></script>
+
     <style>
         body {  
             font-family: Arial, sans-serif;
@@ -59,22 +62,24 @@
             margin-top: 5px;
             font-size: 14px;
         }
+        
     </style>
 </head>
 <body>
+<img class="logonen" src="../img/logo_nen.jpg" style="position: absolute; top: 120px; left: 250px ;">
     <div class="sidebar">
         <div class="admin-info">
-            <h2><i class="fas fa-user"></i> Admin Name</h2>
+            <h2><i class="fas fa-user"></i> Admin       </h2>
             <p><i class="fas fa-crown"></i> Role: Administrator</p>
         </div>
         <a href="#"><i class="fas fa-tachometer-alt"></i> TRANG CHỦ</a>
         <a href="manageusers.php"><i class="fas fa-users"></i> QUẢN LÝ NGƯỜI DÙNG</a>
-        <a href="#"><i class="fas fa-cog"></i> CÀI ĐẶT</a>
         <a href="logoutadmin.php"><i class="fas fa-sign-out-alt"></i> ĐĂNG XUẤT</a>
     </div>
 
     <div class="content">
-        <h1>CHÀO MỪNG ĐẾN VỚI TRANG QUẢN TRỊ CỦA VNISOCIAL</h1>
+        <h1>CHÀO MỪNG ĐẾN VỚI TRANG QUẢN TRỊ CỦA VNISOCIAL</h1> 
+        
         <!-- Your content goes here -->
     </div>
 </body>

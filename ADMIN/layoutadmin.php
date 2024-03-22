@@ -1,6 +1,4 @@
-<?php
-  include ('loginadmin.php');
-?>
+
 
 <!DOCTYPE html>
 <html>
@@ -13,19 +11,23 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background: lightgray;
+      background: #fbf6e4;
       font-family: "Roboto", sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;      
     }
     .formngoai {
+       img {
+        width: 100px; /* Điều chỉnh kích thước hình ảnh */
+        height: 100px;
+      }
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      width: 360px;
-      padding: 45px;
-      background: #A72F2F;
+      width: 300px;
+      padding: 30px;
+      background: red;
       box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
       border-radius:2%;
     }
@@ -58,9 +60,9 @@
     }
   </style>
 </head>
-<body>
+<body> 
   <div class="formngoai">
-    <h1>ADMIN | VNISOCIAL</h1>
+    <img src="../IMG/logo.png">
     <form action="loginadmin.php" method="post">
       <input type="text" placeholder="Email" class="formInput" name="email"/>
       <input type="password" placeholder="Mật khẩu" class="formInput" name="matkhau"/>
