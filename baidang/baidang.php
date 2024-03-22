@@ -107,7 +107,7 @@
         $sql = "SELECT baidang.ma_baidang, baidang.*, nguoidung.ten_nguoidung, nguoidung.avatar 
                 FROM baidang 
                 INNER JOIN nguoidung ON baidang.dang_boi = nguoidung.ma_nguoidung 
-                ORDER BY baidang.thoigian_dang DESC 
+                ORDER BY baidang.thoigian_dang ASC
                 LIMIT 1";
         $result = $conn->query($sql);
 
@@ -142,18 +142,25 @@
                     <div class="custom-post-actions">
                         <button class="star" data-post-id="<?php echo $row['ma_baidang']; ?>"><i class="fas fa-star"></i></button>
                         <button id="comment-btn">Comment</button>
+                        <?php
+
+                        // @var_dump($row['ma_baidang']);
+                        ?>
                         <script>
                             var commentBtn = document.getElementById("comment-btn");
                             // Lắng nghe sự kiện click của nút "Comment"
                             document.getElementById("comment-btn").addEventListener("click", function() {
                                 // Lấy giá trị session của bài đăng
+
                                 var ma_baidang = "<?php echo $row['ma_baidang']; ?>"; // Thay đổi $row['ma_baidang'] thành biến chứa giá trị session
-                                <?php 
-                            @var_dump($_SESSION['ma_baidang']);
-                            ?>  
-                                // Chuyển hướng tới trang bình luận với giá trị session được truyền qua URL query parameter
-                                window.location.href = "../Vnisocial_For_Vietnamese/BINHLUAN/comment_layout.php?ma_baidang=" + ma_baidang;
-                            });
+                        //     <?php
+                        // @var_dump($_SESSION['ma_baidang']);
+                        // ?>
+
+                        // Chuyển hướng tới trang bình luận với giá trị session được truyền qua URL query parameter
+                        window.location.href = "../Vnisocial_For_Vietnamese/BINHLUAN/comment_layout.php?ma_baidang=" + ma_baidang;
+                        // $_SESSION['ma_baidang']=$row['ma_baidang'];
+                        });
 
                         </script>
                         <button>Share</button>
