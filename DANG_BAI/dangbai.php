@@ -139,6 +139,7 @@ if (isset($error_message)) {
             text: '$error_message',
             icon: 'error',
             confirmButtonColor: '#3085d6',
+            timer: 1400,
             confirmButtonText: 'Đóng'
         });
     </script>";
@@ -150,6 +151,7 @@ if (isset($error_message)) {
             text: '$success_message',
             icon: 'success',
             confirmButtonColor: '#3085d6',
+            timer: 1400,
             confirmButtonText: 'Đóng'
         });
     </script>";
@@ -218,46 +220,59 @@ if (isset($error_message)) {
   </div>
 
   <script>
-  $(document).ready(function(){
-    $(".ui.input input, .ui.icon.button").click(function(e){
-      e.stopPropagation(); // Ngăn chặn sự kiện click lan truyền
-      Swal.fire({
-        title: 'Đăng bài',
-        html: '<?php $conn = new mysqli('localhost', 'root', '', 'vnisocial'); if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error); } $sql = "SELECT avatar, ten_nguoidung FROM nguoidung WHERE ma_nguoidung = $user_id; "; $result = $conn->query($sql); ?><div class="popup1">'+'<div class="tren">'+'<h2>Tạo bài đăng</h2>'+'<button class="ui icon button"><i class="close icon"></i></button>'+'</div>'+'<form action="" method="post" enctype="multipart/form-data"><div class="duoi"><div class="item"><?php while($row=$result->fetch_assoc()){?><img class="ui avatar image" src="img/<?php echo $row["avatar"];?>"><span class="username"><?php echo $row['ten_nguoidung']; ?></span><?php }?></div><div class="item"><textarea name="content" placeholder="Nhập nội dung bài viết..."></textarea></div><div class="item"><span>Thêm hình ảnh/video vào bài viết của bạn</span><button type="button" class="ui icon_img button" id="image"> <i class="material-icons">add_photo_alternate</i> <span>Chọn ảnh/video</span> </button> <input type="file" id="image_input" name="image" style="display: none;"></button></div><div class="item"><button type="submit" class="ui red button">Đăng bài</button></div></div></div></form>',
-        width: '100%',
-        heightAuto: false,
-        padding: '3em',
-        background: 'rgba(0, 0, 0, 0.5)',
-        backdrop: `
-          rgba(255,255,255,0.4)
-          no-repeat
-        `,
-        customClass: {
-          popup: 'custom-popup1'
-        }
-      });
+$(document).ready(function() {
+  $(".ui.input input, .ui.icon.button").click(function(e) {
+    e.stopPropagation(); // Ngăn chặn sự kiện click lan truyền
 
-      // Xử lý sự kiện click vào nền đen xung quanh pop-up
-      $(".swal2-container").click(function(e){
-        // Kiểm tra xem nơi click có phải là pop-up hay không
-        if (!$(e.target).closest('.popup1').length) {
-          // Nếu không phải, ẩn pop-up đi
-          Swal.close();
-        }
-      });
-      const imageButton = document.getElementById('image');
+    Swal.fire({
+      title: 'Đăng bài',
+      html: '<?php $conn = new mysqli('localhost', 'root', '', 'vnisocial'); if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error); } $sql = "SELECT avatar, ten_nguoidung FROM nguoidung WHERE ma_nguoidung = $user_id; "; $result = $conn->query($sql); ?><div class="popup1">' + '<div class="tren">' + '<h2>Tạo bài đăng</h2>' + '<button class="ui icon button"><i class="close icon"></i></button>' + '</div>' + '<form action="" method="post" enctype="multipart/form-data"><div class="duoi"><div class="item"><?php while($row=$result->fetch_assoc()){?><img class="ui avatar image" src="img/<?php echo $row["avatar"];?>"><span class="username"><?php echo $row['ten_nguoidung']; ?></span><?php }?></div><div class="item"><textarea name="content" placeholder="Nhập nội dung bài viết..."></textarea></div><div class="item"><span>Thêm hình ảnh/video vào bài viết của bạn</span><div class="image-preview"><img id="image_preview" src="" alt="Hình ảnh được chọn"></div><button type="button" class="ui icon_img button" id="image"> <i class="material-icons">add_photo_alternate</i>  </button> <input type="file" id="image_input" name="image" style="display: none;"></div><div class="item"><button type="submit" class="ui red button">Đăng bài</button></div></div></div></form>',
+      width: '100%',
+      heightAuto: false,
+      padding: '3em',
+      background: 'rgba(0, 0, 0, 0.5)',
+      backdrop: `
+rgba(255,255,255,0.4)
+no-repeat
+`,
+      customClass: {
+        popup: 'custom-popup1'
+      }
+    });
+
+    // Xử lý sự kiện click vào nền đen xung quanh pop-up
+    $(".swal2-container").click(function(e) {
+      // Kiểm tra xem nơi click có phải là pop-up hay không
+      if (!$(e.target).closest('.popup1').length) {
+        // Nếu không phải, ẩn pop-up đi
+        Swal.close();
+      }
+    });
+
+    const imageButton = document.getElementById('image');
     const imageInput = document.getElementById('image_input');
+    const imagePreview = document.getElementById('image_preview');
 
     imageButton.addEventListener('click', () => {
       imageInput.click();
     });
-      // Xử lý sự kiện khi click vào nút "Ẩn pop-up"
-      $(".ui.icon.button").click(function(){
-        Swal.close(); // Ẩn pop-up
-      });
+
+    imageInput.addEventListener('change', function() {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        imagePreview.src = e.target.result;
+      };
+      reader.readAsDataURL(this.files[0]);
+    });
+
+    // Xử lý sự kiện khi click vào nút "Ẩn pop-up"
+    $(".ui.icon.button").click(function() {
+      Swal.close(); // Ẩn pop-up
     });
   });
+});
 </script>
+
 
 
 
@@ -332,9 +347,11 @@ if (isset($error_message)) {
       border: 1px solid #ddd;
     }
 
-    .duoi .item span {
-      margin-right: 10px;
-    }
+    .duoi .item img {
+    /* width: 58px; */
+    height: 102px;
+    object-fit: cover;
+}
 
     .duoi .item .ui.icon
     .ui.icon.button {
@@ -386,13 +403,13 @@ if (isset($error_message)) {
 .duoi .item {
   display: flex;
   margin-bottom: 10px;
+  position: relative;
 }
 
-.duoi .item img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
+
+button#image {
+    width: 58px;
+    height: 100px;
 }
 
 .duoi .item .username {
@@ -437,6 +454,7 @@ if (isset($error_message)) {
 .swal2-actions {
     display: none;
 }
+
   </style>
 </body>
 </html>
