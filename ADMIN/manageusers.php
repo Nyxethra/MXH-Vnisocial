@@ -128,7 +128,7 @@
                     <div class="description">' . $row["email"] . '</div>
                 </div>
                 <div class="ui two bottom attached buttons">
-                    <a href="../TRANG_CANHAN/trangcanhan.php">s
+                    <a href="../TRANG_CANHAN/xemuser.php">
                     <div class="ui button">
                  
                         Xem trang cá nhân 
