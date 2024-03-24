@@ -7,7 +7,7 @@ $conn = mysqli_connect("localhost", "root", "", "vnisocial");
 if ($conn->connect_error){
   die("Kết nối đến cơ sở dữ liệu thất bại: " . $conn->connect_error);
 }
-
+ 
 // Truy vấn nội dung thông báo từ cơ sở dữ liệu
 $sql = "SELECT nguoidung.ten_nguoidung, thongbao.noidung_thongbao 
         FROM thongbao 
@@ -135,8 +135,8 @@ $conn->close();
       top: 50px; /* Đặt top bằng chiều cao của navbar */
       right: 20px; /* Đặt right bằng padding của navbar */
       transform: none; /* Xóa thuộc tính transform */
-      background-color: rgba(0, 0, 0, 0.8);
-      color: white;
+      background-color: #FFFFFF;    
+      color: black;
       padding: 15px;
       border-radius: 10px;
       margin-left: 50px;
@@ -153,7 +153,7 @@ $conn->close();
       position: absolute;
       top: 10px;
       right: 10px;
-      color: white;
+      color: black;
       cursor: pointer;
     }
     svg:not(:root).svg-inline--fa {
@@ -176,9 +176,9 @@ $conn->close();
       </form>
     </div>
     <div class="nav-links">
-      <a class="nav-link" href="#"><b>Trang chủ</b></a>
+      <a class="nav-link" href="home.php?pid=0"><b>Trang chủ</b></a>
       <a class="nav-link" href="#"><b>|</b></a>
-      <a class="nav-link" href="TRANG_CANHAN/trangcanhan.php"><b>Trang cá nhân</b></a>
+      <a class="nav-link" href="home.php?pid=1"><b>Trang cá nhân</b></a>
     </div>
     <div class="nav-icons">
     <div class="nav-icons">

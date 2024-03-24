@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         .custom-post {
-            margin-top: 150px;
+            margin-top: 30px;
+            margin-bottom: 30px;
             border: 1px solid #ddd;
             border-radius: 8px;
             padding: 20px;
@@ -102,13 +103,13 @@
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
-
+ 
         // Truy vấn lấy dữ liệu bài đăng
         $sql = "SELECT baidang.ma_baidang, baidang.*, nguoidung.ten_nguoidung, nguoidung.avatar 
                 FROM baidang 
                 INNER JOIN nguoidung ON baidang.dang_boi = nguoidung.ma_nguoidung 
-                ORDER BY baidang.thoigian_dang ASC
-                LIMIT 1";
+                ORDER BY baidang.thoigian_dang 
+                LIMIT 10";
         $result = $conn->query($sql);
 
         // Hiển thị bài đăng
