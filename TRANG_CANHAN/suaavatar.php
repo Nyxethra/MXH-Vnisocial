@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["avatar"])) {
     if ($avatar["error"] > 0) {
         echo "Lỗi tải lên ảnh: " . $avatar["error"];
     } else {
-        $uploadDir = "../IMG/gallery/";
+        $uploadDir = "img/";
         $uploadPath = $uploadDir . basename($avatar["name"]);
 
         // Di chuyển tệp ảnh vào thư mục lưu trữ
@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["avatar"])) {
             // 1231312312.jpg 
             $query = "UPDATE nguoidung
             SET avatar = '$avatar_n'
-            WHERE ma_nguoidung = '$ma_nguoidung'";
+            WHERE ma_nguoidung = '$user_id'";
             mysqli_query($conn, $query);
 
             $_SESSION['thongbao'] = "Tải lên ảnh avatar thành công!";

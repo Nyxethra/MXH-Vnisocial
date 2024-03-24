@@ -110,7 +110,7 @@ if ($result) {
                                 // var_dump($avatar);
                                 // exit;
                             ?>
-                                <img id="avatar-img" src="IMG/gallery/<?= $avatar ?>" class="profile_pic">
+                                <img id="avatar-img" src="img/<?= $avatar ?>" class="profile_pic">
                             <?php
 
                             } else {
@@ -124,7 +124,7 @@ if ($result) {
                                 <button type="button" id="edit-avatar-btn" class="edit-avatar">
                                     <i class="fas fa-camera"></i>
                                 </button>
-                                <input type="submit" value="Lưu" id='show' style="display:none">
+                                <input type="submit" value="Lưu" id='show' >
                             </form>
 
                         </div>
