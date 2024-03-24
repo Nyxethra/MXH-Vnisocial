@@ -38,7 +38,24 @@ if (!$conn) {
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["anhbia"])) {
     $anhbia = $_FILES["anhbia"];
 
+//Kết nối cơ sở dữ liệu
+$dbHost = 'localhost';
+$dbUser = 'root';
+$dbPass = '';
+$dbName = 'vnisocial';
+
+$conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
+
+if (!$conn) {
+    die("Không thể kết nối đến cơ sở dữ liệu: " . mysqli_connect_error());
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["anhbia"])) {
+    $anhbia = $_FILES["anhbia"];
+
     // Kiểm tra xem có lỗi xảy ra trong quá trình tải lên không
+    if ($anhbia["error"] > 0) {
+        echo "Lỗi tải lên ảnh: " . $anhbia["error"];
     if ($anhbia["error"] > 0) {
         echo "Lỗi tải lên ảnh: " . $anhbia["error"];
     } else {
