@@ -1,13 +1,13 @@
+
 <?php
-session_start();
-$ma_nguoidung = $_SESSION['ma_nguoidung'];
+
 // var_dump($ma_nguoidung);
 include "suaavatar.php";
 include "suaanhbia.php";
 
 
 // hien thi avatar
-$sql = "SELECT avatar FROM nguoidung where ma_nguoidung ='$ma_nguoidung'  limit 1;";
+$sql = "SELECT avatar FROM nguoidung where ma_nguoidung ='$user_id'  limit 1;";
 $result = mysqli_query($conn, $sql);
 
 if ($result) {
@@ -26,7 +26,7 @@ if ($result) {
 }
 
 // hien thi anhbia
-$sqli = "SELECT anhbia FROM nguoidung where ma_nguoidung ='$ma_nguoidung'  limit 1;";
+$sqli = "SELECT anhbia FROM nguoidung where ma_nguoidung ='$user_id'  limit 1;";
 $result_n = mysqli_query($conn, $sqli);
 
 if ($result) {
@@ -63,7 +63,7 @@ if ($result) {
 
 <body>
     <!-- Thanh công cụ -->
-    <?php include('../BAR/Nav_Bar.php'); ?>
+
     <!-- phần giao diện chính -->
     <div class="abc">
         <div class="main_interface">
