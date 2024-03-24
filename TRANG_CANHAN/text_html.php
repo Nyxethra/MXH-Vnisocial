@@ -13,11 +13,13 @@ if (!mysqli_stmt_prepare($stmt, $sql)) {
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
 }
+$arr=(array)$result;
+var_dump($arr);
 ?>
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 
 <head>
     <meta charset="UTF-8">

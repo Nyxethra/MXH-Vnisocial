@@ -3,6 +3,8 @@ session_start();
 $ma_nguoidung = $_SESSION['ma_nguoidung'];
 // var_dump($ma_nguoidung);
 include "suaavatar.php";
+include "suaanhbia.php";
+
 
 // hien thi avatar
 $sql = "SELECT avatar FROM nguoidung where ma_nguoidung ='$ma_nguoidung'  limit 1;";
@@ -18,6 +20,25 @@ if ($result) {
         // echo "Avatar: " . $avatar;
     } else {
         echo "Không có dữ liệu avatar.";
+    }
+} else {
+    echo "Lỗi truy vấn: " . mysqli_error($conn);
+}
+
+// hien thi anhbia
+$sqli = "SELECT anhbia FROM nguoidung where ma_nguoidung ='$ma_nguoidung'  limit 1;";
+$result_n = mysqli_query($conn, $sqli);
+
+if ($result) {
+    // Kiểm tra xem có bản ghi trả về hay không
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result_n);
+        $anhbia = $row['anhbia'];
+        // Tiếp tục xử lý thông tin anhbia
+
+        // echo "anhbia: " . $anhbia;
+    } else {
+        echo "Không có dữ liệu anhbia.";
     }
 } else {
     echo "Lỗi truy vấn: " . mysqli_error($conn);
@@ -49,7 +70,31 @@ if ($result) {
             <div style="width:100%">
                 <div class="head__img">
 
-                    <img src="../img/pic.jpg" class="anhbia">
+                    <!-- <img src="../img/pic.jpg" class="anhbia"> -->
+                    <div class="anhbia">
+                        <?php
+                        if (mysqli_num_rows($result_n) > 0) {
+                            $row = mysqli_fetch_assoc($result_n);
+                            // var_dump($avatar);
+                            // exit;
+                        ?>
+                            <img id="anhbia-img" src="../IMG/gallery/<?= $anhbia ?>" class="anhbia">
+                        <?php
+
+                        } else {
+                        ?>
+                            <img id="anhbia-img" src="../IMG/gallery/pic.jpg" class="anhbia">
+                        <?php
+                        } ?>
+
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            <input type="file" name="anhbia" id="anhbia-input" accept="image/*" style="display:none">
+                            <button type="button" id="edit-anhbia-btn" class="edit-anhbia">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                            <input type="submit" value="Lưu" id='show' style="display:none; float:right">
+                        </form>
+                    </div>
                     <div class="head__user" style="display:flex">
                         <div style="width: 654px;right:171px; text-align:center ; position: absolute; bottom: 153px;    ">
                             <div class="menu_buttons">Dòng thời gian </div>
@@ -60,19 +105,16 @@ if ($result) {
                         </div>
                         <div class="head__avatar">
                             <?php
-                            
-                            
-                                if (mysqli_num_rows($result) > 0) {
-                                    $row = mysqli_fetch_assoc($result);
-                                    // var_dump($avatar);
-                                    // exit;
-                                    
+                            if (mysqli_num_rows($result) > 0) {
+                                $row = mysqli_fetch_assoc($result);
+                                // var_dump($avatar);
+                                // exit;
                             ?>
-                                    <img id="avatar-img" src="../IMG/gallery/<?= $avatar ?>" class="profile_pic">
-                                <?php
-                                
-                            } else { 
-                                ?>
+                                <img id="avatar-img" src="../IMG/gallery/<?= $avatar ?>" class="profile_pic">
+                            <?php
+
+                            } else {
+                            ?>
                                 <img id="avatar-img" src="../IMG/gallery/ban.jpg" class="profile_pic">
                             <?php
                             } ?>
@@ -189,6 +231,20 @@ if ($result) {
             reader.onload = function(event) {
                 document.getElementById('show').style.display = 'block';
                 document.getElementById('avatar-img').src = event.target.result;
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        });
+    </script>
+    <script>
+        document.getElementById('edit-anhbia-btn').addEventListener('click', function() {
+            document.getElementById('anhbia-input').click();
+        });
+
+        document.getElementById('anhbia-input').addEventListener('change', function(e) {
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                document.getElementById('show').style.display = 'block';
+                document.getElementById('anhbia-img').src = event.target.result;
             };
             reader.readAsDataURL(e.target.files[0]);
         });

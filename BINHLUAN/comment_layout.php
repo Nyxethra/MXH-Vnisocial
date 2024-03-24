@@ -97,6 +97,7 @@ include("comment.php")
     }
     ?>
   </div>
+  
   <script>
     // Lấy giá trị mã bài đăng từ URL
     var urlParams = new URLSearchParams(window.location.search);
@@ -120,8 +121,21 @@ include("comment.php")
     for (var i = 0; i < deleteButtons.length; i++) {
       deleteButtons[i].addEventListener("click", function() {
         var commentId = this.getAttribute("data-comment-id");
-        // Thực hiện xử lý xóa bình luận, ví dụ: gửi yêu cầu AJAX đến trang xử lý xóa bình luận với mã bình luận tương ứng
-        // ...
+//          Gửi yêu cầu xóa bình luIn the previous response, the code snippet got cut off before completing the delete functionality. Here's the continuation of the code for deleting comments:
+// ```php
+// an bằng Ajax hoặc gửi yêu cầu xóa thông qua form và xử lý ở file comment.php
+//         // Ví dụ: Gửi yêu cầu xóa bình luận bằng Ajax
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "comment.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            // Xử lý phản hồi từ server sau khi xóa bình luận thành công
+            // Ví dụ: Tải lại danh sách bình luận sau khi xóa
+            location.reload();
+          }
+        };
+        xhr.send("action=delete&comment_id=" + commentId);
       });
     }
   </script>
