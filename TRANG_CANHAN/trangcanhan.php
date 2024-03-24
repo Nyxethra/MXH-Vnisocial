@@ -25,7 +25,7 @@ if (!mysqli_stmt_prepare($stmt, $sql)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="trang_canhan/style_trangcanhan.css">
+    <link rel="stylesheet" href="trang_canhan/style_trangcanhan.css">c:\Users\Admin\Videos\Vnisocial_For_Vietnamese\dexuatbanbe.php
     <title>Trang cá nhân của bạn</title>
     <style>
         .abc {
@@ -85,6 +85,8 @@ if (!mysqli_stmt_prepare($stmt, $sql)) {
 
                 <!--phần kết bạn  -->
                 <div class="friend_request">
+
+                    <?php include("dexuatbanbe.php")?>
                 </div>
                 <div style="display :flex ">
                     <!-- phần giới thiệu -->

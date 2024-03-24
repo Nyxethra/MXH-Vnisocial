@@ -55,7 +55,7 @@
 .friend_request{
     width:100%;
     min-height: 200px;
-    background-color: black;
+    background-color: #767676;
 }
 .friend_bar{
     flex:0.5;
