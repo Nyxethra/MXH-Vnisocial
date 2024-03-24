@@ -14,7 +14,7 @@
 <style>
  .swal2-actions {
     display: none;
-}
+} 
 </style>
 </head>
 <body>

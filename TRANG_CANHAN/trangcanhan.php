@@ -78,12 +78,12 @@ if ($result) {
                             // var_dump($avatar);
                             // exit;
                         ?>
-                            <img id="anhbia-img" src="../IMG/gallery/<?= $anhbia ?>" class="anhbia">
+                            <img id="anhbia-img" src="IMG/gallery/<?= $anhbia ?>" class="anhbia">
                         <?php
 
                         } else {
                         ?>
-                            <img id="anhbia-img" src="../IMG/gallery/pic.jpg" class="anhbia">
+                            <img id="anhbia-img" src="IMG/gallery/pic.jpg" class="anhbia">
                         <?php
                         } ?>
 
@@ -110,12 +110,12 @@ if ($result) {
                                 // var_dump($avatar);
                                 // exit;
                             ?>
-                                <img id="avatar-img" src="../IMG/gallery/<?= $avatar ?>" class="profile_pic">
+                                <img id="avatar-img" src="IMG/gallery/<?= $avatar ?>" class="profile_pic">
                             <?php
 
                             } else {
                             ?>
-                                <img id="avatar-img" src="../IMG/gallery/ban.jpg" class="profile_pic">
+                                <img id="avatar-img" src="IMG/gallery/ban.jpg" class="profile_pic">
                             <?php
                             } ?>
 
