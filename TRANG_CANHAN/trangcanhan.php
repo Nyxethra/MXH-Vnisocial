@@ -3,20 +3,24 @@ session_start();
 $ma_nguoidung = $_SESSION['ma_nguoidung'];
 // var_dump($ma_nguoidung);
 include "suaavatar.php";
-// if($ma_nguoidung){
-//     var_dump($ma_nguoidung);
-//     echo"hien lan 2";
-// }
-
 
 // hien thi avatar
 $sql = "SELECT avatar FROM nguoidung where ma_nguoidung ='$ma_nguoidung'  limit 1;";
-$stmt = mysqli_stmt_init($conn);
-if (!mysqli_stmt_prepare($stmt, $sql)) {
-    echo "Lỗi câu truy vấn SQL";
+$result = mysqli_query($conn, $sql);
+
+if ($result) {
+    // Kiểm tra xem có bản ghi trả về hay không
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $avatar = $row['avatar'];
+        // Tiếp tục xử lý thông tin avatar
+
+        // echo "Avatar: " . $avatar;
+    } else {
+        echo "Không có dữ liệu avatar.";
+    }
 } else {
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
+    echo "Lỗi truy vấn: " . mysqli_error($conn);
 }
 
 ?>
@@ -56,15 +60,23 @@ if (!mysqli_stmt_prepare($stmt, $sql)) {
                         </div>
                         <div class="head__avatar">
                             <?php
-                            if (isset($result) && $row = mysqli_fetch_assoc($result)) {
+                            
+                            
+                                if (mysqli_num_rows($result) > 0) {
+                                    $row = mysqli_fetch_assoc($result);
+                                    // var_dump($avatar);
+                                    // exit;
+                                    
                             ?>
-                                <img id="avatar-img" src="../IMG/gallery/<?= $row['avatar'] ?>" class="profile_pic">
-                            <?php
-                            } else { ?>
+                                    <img id="avatar-img" src="../IMG/gallery/<?= $avatar ?>" class="profile_pic">
+                                <?php
+                                
+                            } else { 
+                                ?>
                                 <img id="avatar-img" src="../IMG/gallery/ban.jpg" class="profile_pic">
                             <?php
                             } ?>
-                            
+
                             <form action="" method="POST" enctype="multipart/form-data">
                                 <input type="file" name="avatar" id="avatar-input" accept="image/*" style="display:none">
                                 <button type="button" id="edit-avatar-btn" class="edit-avatar">
