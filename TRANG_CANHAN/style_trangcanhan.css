@@ -9,10 +9,14 @@
     min-height: 400px;
 }
 .anhbia{
+    object-fit: cover;
     display: block;
     width: 100%;
     height: 300px;
 } 
+.anhbia .edit-anhbia{
+    float:right;
+}
 .head__avatar {
     display: flex;
     align-items: baseline;
