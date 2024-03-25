@@ -1,5 +1,34 @@
 
 <?php
+session_start();
+
+// Lấy ID của người dùng từ session
+$user_id = $_SESSION['ma_nguoidung'];
+
+// Kết nối đến cơ sở dữ liệu
+$conn = new mysqli('localhost', 'root', '', 'vnisocial');
+
+// Kiểm tra kết nối
+if ($conn->connect_error) {
+    die("Kết nối không thành công: " . $conn->connect_error);
+}
+
+// Thực hiện truy vấn SQL để lấy tên người dùng
+$name_query = "SELECT ten_nguoidung FROM nguoidung WHERE ma_nguoidung = '$user_id'";
+$name_result = $conn->query($name_query);
+
+// Kiểm tra kết quả của truy vấn
+if ($name_result && $name_result->num_rows > 0) {
+    $name_row = $name_result->fetch_assoc();
+    $ten_nguoidung = $name_row['ten_nguoidung'];
+} else {
+    $ten_nguoidung = "Tên người dùng không khả dụng"; // Giá trị mặc định nếu không có dữ liệu
+}
+
+// Đóng kết nối
+$conn->close();
+?>
+<?php
 
 // var_dump($ma_nguoidung);
 include "suaavatar.php";
@@ -128,9 +157,12 @@ if ($result) {
                             </form>
 
                         </div>
+                        </div>
                         <div class="info__user">
-                            <p class="name__user">Nguyễn Hiếu</b>
+                            <!-- Hiển thị tên người dùng -->
+                            <p class="name__user"><?= $ten_nguoidung ?></p>
                             <p class="total__friends">123</p>
+
                         </div>
 
                     </div>
