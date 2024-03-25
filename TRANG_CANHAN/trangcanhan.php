@@ -1,4 +1,3 @@
-
 <?php
 
 // var_dump($ma_nguoidung);
@@ -70,7 +69,7 @@ if ($result) {
             <div style="width:100%">
                 <div class="head__img">
 
-                    <!-- <img src="../img/pic.jpg" class="anhbia"> -->
+                    <!-- <img src="img/pic.jpg" class="anhbia"> -->
                     <div class="anhbia">
                         <?php
                         if (mysqli_num_rows($result_n) > 0) {
@@ -96,13 +95,13 @@ if ($result) {
                         </form>
                     </div>
                     <div class="head__user" style="display:flex">
-                        <div style="width: 654px;right:171px; text-align:center ; position: absolute; bottom: 153px;    ">
+                        <!-- <div style="width: 654px;right:171px; text-align:center ; position: absolute; bottom: 153px;    ">
                             <div class="menu_buttons">Dòng thời gian </div>
                             <div class="menu_buttons">Giới thiệu </div>
                             <div class="menu_buttons">Bạn bè</div>
                             <div class="menu_buttons">Ảnh</div>
                             <div class="menu_buttons">Lưu trữ </div>
-                        </div>
+                        </div> -->
                         <div class="head__avatar">
                             <?php
                             if (mysqli_num_rows($result) > 0) {
@@ -110,7 +109,7 @@ if ($result) {
                                 // var_dump($avatar);
                                 // exit;
                             ?>
-                                <img id="avatar-img" src="img/<?= $avatar ?>" class="profile_pic">
+                                <img id="avatar-img" src="IMG/gallery/<?= $avatar ?>" class="profile_pic">
                             <?php
 
                             } else {
@@ -141,7 +140,7 @@ if ($result) {
                 <!--phần kết bạn  -->
                 <div class="friend_request">
 
-                    <?php include("dexuatbanbe.php")?>
+                    <?php include("dexuatbanbe.php") ?>
                 </div>
                 <div style="display :flex ">
                     <!-- phần giới thiệu -->
