@@ -89,4 +89,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["avatar"])) {
 
 ?>
 
-// mysqli_close($conn);
