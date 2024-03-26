@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+session_start();
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -136,49 +139,19 @@
                             </div>
                         </div>
                     </div>
+                    <?php
+                        // Ép kiểu integer
+                        $changeTypeBd = (int)$row['ma_baidang'];
+                        $maNd = $_SESSION['ma_nguoidung'];
+                        ?>
                     <div class="custom-post-content">
                         <p><?php echo $row["noidung"]; ?></p>
                     </div>
                     <div class="custom-post-image"><img src="<?php echo $imagePath; ?>" alt="Post Image"></div>
                     <div class="custom-post-actions">
                         <button class="star" data-post-id="<?php echo $row['ma_baidang']; ?>"><i class="fas fa-star"></i></button>
-                        <button id="comment-btn" data-ma_nguoidung="<?php echo $row['ma_baidang']?>" data-ma_baidang="<?php echo $row['ma_baidang']?>">Comment</button>
-                        <?php
-
-
-                        // Ép kiểu integer
-                        $int = (int)$row['ma_baidang'];
-                        $row['ma_baidang'] = $int;
-                        var_dump($row['ma_baidang']);
-                        var_dump($_SESSION['ma_nguoidung'])
-                        ?>
-                        <script>
-                            // //su kien binh luan
-                            // document.getElementById('comment-btn').addEventListener('click', function() {
-                            //     // Lấy giá trị session của bài đăng
-                            //     var ma_baidang = "<?php echo $row['ma_baidang']; ?>"; // Thay đổi $row['ma_baidang'] thành biến chứa giá trị session
-                            //     // Chuyển hướng tới trang bình luận với giá trị session được truyền qua URL query parameter
-                            //     window.location.href = "../VNISOCIAL_FOR_VIETNAMESE/BINHLUAN/comment_layout.php?ma_baidang=" + ma_baidang;
-                            //     // $_SESSION['ma_baidang']=$row['ma_baidang'];
-                            // });
-                            var commentBtn = document.getElementById("comment-btn");
-
-                            commentBtn.addEventListener("click", function() {
-                                // Lấy giá trị ma_nguoidung và ma_baidang từ thuộc tính data
-                                var ma_nguoidung = commentBtn.getAttribute("data-ma_nguoidung");
-                                var ma_baidang = commentBtn.getAttribute("data-ma_baidang");
-
-                                // Thực hiện các thao tác mong muốn với ma_nguoidung và ma_baidang
-                                // Ví dụ:
-                                console.log("Mã người dùng: " + ma_nguoidung);
-                                console.log("Mã bài đăng: " + ma_baidang);
-
-                                // Chuyển hướng tới trang bình luận với các giá trị được truyền qua URL query parameter
-                                window.location.href = "../Vnisocial_For_Vietnamese/BINHLUAN/comment_layout.php?ma_nguoidung=" + ma_nguoidung + "&ma_baidang=" + ma_baidang;
-                            });
-                        </script>
-
-
+                        <button onclick="handleOnclick(<?php echo $changeTypeBd; ?>, <?php echo $maNd; ?>)">Comment</button>
+                
                         <button>Share</button>
                     </div>
                 </div>
@@ -193,7 +166,15 @@
 
 
     </div>
+    <script>
+        // //su kien binh luan
+        const handleOnclick = (a ,b) => {
+            const ma_baidang = a
+            const ma_nguoidung = b
+            window.location.href = `BINHLUAN/comment_layout.php?ma_nguoidung=${ma_nguoidung}&ma_baidang=${ma_baidang}`;
+        }
 
+    </script>
     <!-- Thư viện Bootstrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- Thư viện FontAwesome -->
