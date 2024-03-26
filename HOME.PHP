@@ -15,9 +15,6 @@ if(!isset($user_id)){
         if (isset($_GET["pid"])){
             $id=$_GET["pid"];
             switch ($id){
-              // case 0:
-              //   include("view/public_dichvu.php");
-              //   break;
               case 1: 
                 include("TRANG_CANHAN/trangcanhan.php");
                 break;
