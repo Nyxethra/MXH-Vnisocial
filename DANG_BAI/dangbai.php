@@ -184,7 +184,7 @@ if (isset($error_message)) {
         
         $sql = "SELECT avatar, ten_nguoidung
         FROM nguoidung
-        WHERE ma_nguoidung = $user_id;
+        WHERE ma_nguoidung = $user_id; 
         ";
  
         $result = $conn->query($sql);
