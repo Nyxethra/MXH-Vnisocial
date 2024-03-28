@@ -94,6 +94,7 @@
         }
         .ui.segment.baidang {
     margin-left: 24px;
+   
 }
     </style>
 </head>
@@ -110,13 +111,16 @@
         }
 
         // Truy vấn lấy dữ liệu bài đăng
-        $sql = "SELECT  baidang.*, nguoidung.ten_nguoidung, nguoidung.avatar 
-                FROM baidang 
-                INNER JOIN nguoidung ON baidang.dang_boi = nguoidung.ma_nguoidung 
-                ORDER BY baidang.thoigian_dang 
-                LIMIT 10";
-        $sqlnd = "SELECT * from nguoidung ";
-        $resultnd = $conn->query($sqlnd);
+        $sql = "SELECT baidang.*, nguoidung.ten_nguoidung, nguoidung.avatar 
+        FROM baidang 
+        INNER JOIN nguoidung ON baidang.dang_boi = nguoidung.ma_nguoidung 
+        INNER JOIN banbe ON (baidang.dang_boi = banbe.ma_nguoidung1 AND banbe.ma_nguoidung2 = $user_id)
+        OR (baidang.dang_boi = banbe.ma_nguoidung2 AND banbe.ma_nguoidung1 = $user_id)
+        ORDER BY baidang.thoigian_dang DESC
+        LIMIT 10;
+        ";
+       
+        
 
         $result = $conn->query($sql);
 
