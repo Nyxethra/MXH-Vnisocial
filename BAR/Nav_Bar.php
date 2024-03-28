@@ -100,6 +100,7 @@ $conn->close();
       gap: 20px;
       margin-right: 40px;
       margin-left: 50px;
+      align-items: center;
     }
 
     .nav-icons i {
@@ -168,7 +169,11 @@ $conn->close();
 <body>
   <div class="nav-bar">
     <div class="nav-logo">
-      <img src="IMG/logo.png" class="logo">
+
+    <a class="nav-link" href="home.php?diden=trangchu"><b>
+      <img src="IMG/logo.png" class="logo"></b>
+    </a>
+ 
     </div>
     <div class="nav-search">
       <form action="TIM_KIEM/KETQUA.php" method="post">
@@ -176,9 +181,9 @@ $conn->close();
       </form>
     </div>
     <div class="nav-links">
-      <a class="nav-link" href="home.php?pid=0"><b>Trang chủ</b></a>
+      <a class="nav-link" href="home.php?diden=trangchu"><b>Trang chủ</b></a>
       <a class="nav-link" href="#"><b>|</b></a>
-      <a class="nav-link" href="home.php?pid=1"><b>Trang cá nhân</b></a>
+      <a class="nav-link" href="home.php?diden=trangcanhan"><b>Trang cá nhân</b></a>
     </div>
     <div class="nav-icons">
     <div class="nav-icons">

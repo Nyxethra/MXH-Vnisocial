@@ -109,7 +109,7 @@ if ($result) {
                                 // var_dump($avatar);
                                 // exit;
                             ?>
-                                <img id="avatar-img" src="IMG/gallery/<?= $avatar ?>" class="profile_pic">
+                                <img id="avatar-img" src="IMG/<?= $avatar ?>" class="profile_pic">
                             <?php
 
                             } else {
