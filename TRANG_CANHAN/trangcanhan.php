@@ -50,7 +50,7 @@ if ($result) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="trang_canhan/style_trangcanhan.css">c:\Users\Admin\Videos\Vnisocial_For_Vietnamese\dexuatbanbe.php
+    <link rel="stylesheet" href="trang_canhan/style_trangcanhan.css">
     <title>Trang cá nhân của bạn</title>
     <style>
         .abc {

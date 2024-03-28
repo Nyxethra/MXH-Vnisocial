@@ -114,7 +114,7 @@ INSERT INTO thongbao(thongbao_tu,noidung_thongbao) VALUES
   (1, 'đã thích bài viết của bạn'),
   (3, 'đã bình luận vào bài viết của bạn'),
   (2, 'đã thích bài viết của bạn'),
-  (1, 'đã gửi một lời mời kết bạn'),
+  
   (5, 'đã thích bài viết của bạn');
 
 
