@@ -116,7 +116,17 @@
                 ORDER BY baidang.thoigian_dang 
                 LIMIT 10";
         $result = $conn->query($sql);
-        $rownguoidung= $result->fetch_assoc();
+
+
+        $sqlnd = "SELECT *
+        FROM nguoidung
+        WHERE ma_nguoidung = $user_id; 
+        ";
+        $resultnd = $conn->query($sqlnd);
+
+        $rownguoidung= $resultnd->fetch_assoc();
+
+
 
         // Hiển thị bài đăng
         if ($result->num_rows > 0) {
