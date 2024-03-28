@@ -89,10 +89,7 @@
   
             $conn->close();
         ?>
-        <!-- Thêm hai nút cuộn vào trong .container -->
-        <button class="ui icon button scroll-button scroll-left"><i class="left arrow icon"></i></button>
-        <button class="ui icon button scroll-button scroll-right"><i class="right arrow icon"></i></button>
-    </div>
+        
 
     <script>
         $(document).ready(function() {
