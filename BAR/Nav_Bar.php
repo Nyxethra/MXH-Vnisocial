@@ -52,12 +52,14 @@
     }
 
     .nav-icons {
-      display: flex;
-      gap: 20px;
-      margin-right: 40px;
-      margin-left: 50px;
-      align-items: center;
-    }
+    display: flex;
+    gap: 20px;
+    margin-right: 40px;
+    margin-left: 50px;
+    /* align-items: center; */
+    position: relative;
+    top: 5px;
+}
 
     .nav-icons i {
       color: white;
@@ -148,7 +150,7 @@
     <i class="far fa-bell"></i>
     <span class="badge"><?php echo $notification_count; ?></span>
   </div>
-  <a class="nav-link" href="SIGNUP.LOGIN.LOGOUT/dangxuat.php"><i class="fas fa-sign-out-alt"></i></a> <!-- Sử dụng biểu tượng đăng xuất từ Font Awesome -->
+  <a class="nav-link " href="SIGNUP.LOGIN.LOGOUT/dangxuat.php"><i class="fas fa-sign-out-alt"></i></a> <!-- Sử dụng biểu tượng đăng xuất từ Font Awesome -->
 </div>
 
       </div>
