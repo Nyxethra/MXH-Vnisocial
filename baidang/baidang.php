@@ -115,8 +115,12 @@
                 INNER JOIN nguoidung ON baidang.dang_boi = nguoidung.ma_nguoidung 
                 ORDER BY baidang.thoigian_dang 
                 LIMIT 10";
+        $sqlnd = "SELECT * from nguoidung ";
+        $resultnd = $conn->query($sqlnd);
+
         $result = $conn->query($sql);
-        $rownguoidung= $result->fetch_assoc();
+
+        $rownguoidung= $resultnd->fetch_assoc();
 
         // Hiển thị bài đăng
         if ($result->num_rows > 0) {
