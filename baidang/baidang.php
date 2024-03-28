@@ -17,6 +17,7 @@
             padding: 20px;
             width: 570px;
             background: white;
+            margin-left: 19px;
         }
 
         .custom-user-info {

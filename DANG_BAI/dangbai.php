@@ -206,7 +206,7 @@ if (isset($error_message)) {
           <input type="text" placeholder="Nhập nội dung tại đây...">
         </div>
       </div>
-      <div class="divider"></div> <div class="phiaduoi">
+      <div class="divider">.</div> <div class="phiaduoi">
         <button class="ui icon button" id="insert-media">
           <i class="image icon"></i>
           Ảnh/video
