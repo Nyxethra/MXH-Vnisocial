@@ -24,11 +24,10 @@
       z-index:100;
     }
     .badge{
-      margin
-:
+      margin-left:0.5px;
 
 
--10px;
+
     }
     .nav-logo {
       flex-basis: 200px; 
@@ -102,6 +101,7 @@
       width: 30%;
       max-width: 500px; /* Thêm max-width để hạn chế chiều rộng tối đa của pop-up */
       word-wrap: break-word; /* Đảm bảo rằng văn bản không vượt quá khung pop-up */
+      z-index:1;
     }
 
     .popup-content {
