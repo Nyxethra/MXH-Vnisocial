@@ -123,8 +123,7 @@
 
         $sqlnd = "SELECT *
         FROM nguoidung
-        WHERE ma_nguoidung = $user_id; 
-        ";
+        WHERE ma_nguoidung = $user_id;";
         $resultnd = $conn->query($sqlnd);
 
         $rownguoidung= $resultnd->fetch_assoc();
