@@ -16,6 +16,7 @@
             border-radius: 8px;
             padding: 20px;
             width: 570px;
+            background: white;
         }
 
         .custom-user-info {
@@ -90,6 +91,9 @@
             object-position: center;
             /* Căn giữa */
         }
+        .ui.segment.baidang {
+    margin-left: 24px;
+}
     </style>
 </head>
 
@@ -111,6 +115,7 @@
                 ORDER BY baidang.thoigian_dang 
                 LIMIT 10";
         $result = $conn->query($sql);
+        $rownguoidung= $result->fetch_assoc();
 
         // Hiển thị bài đăng
         if ($result->num_rows > 0) {

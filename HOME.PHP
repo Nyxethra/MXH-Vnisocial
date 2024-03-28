@@ -6,19 +6,19 @@ $user_id = $_SESSION['ma_nguoidung'];
 if(!isset($user_id)){
    header('location:SIGNUP.LOGIN.LOGOUT/login.php');
 }; 
-?>
+?> 
 
     <?php include ('BAR/Nav_Bar.php');?>
 
 
     <?php 
-        if (isset($_GET["pid"])){
-            $id=$_GET["pid"];
+        if (isset($_GET["diden"])){
+            $id=$_GET["diden"];
             switch ($id){
-              case 1: 
+              case 'trangcanhan': 
                 include("TRANG_CANHAN/trangcanhan.php");
                 break;
-              case 0:
+              case 'trangchu':
                 include("subhome.php");
                 break;
           }

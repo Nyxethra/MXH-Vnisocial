@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["avatar"])) {
     if ($avatar["error"] > 0) {
         echo "Lỗi tải lên ảnh: " . $avatar["error"];
     } else {
-        $uploadDir = "IMG/gallery/";
+        $uploadDir = "IMG/";
         $uploadPath = $uploadDir . basename($avatar["name"]);
 
         // Di chuyển tệp ảnh vào thư mục lưu trữ
