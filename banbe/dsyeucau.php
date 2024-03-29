@@ -135,7 +135,7 @@
     <script>
         function acceptRequest(user_id, sender_id) {
             $.ajax({
-                url: "accept_request.php",
+                url: "banbe/accept_request.php",
                 method: "POST",
                 data: { user_id: user_id, sender_id: sender_id },
                 success: function(response) {
@@ -149,7 +149,7 @@
 
         function rejectRequest(user_id, sender_id) {
             $.ajax({
-                url: "reject_request.php",
+                url: "banbe/reject_request.php",
                 method: "POST",
                 data: { user_id: user_id, sender_id: sender_id },
                 success: function(response) {
