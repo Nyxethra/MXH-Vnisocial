@@ -1,4 +1,3 @@
-
 <?php
 $servername = "localhost";
 $username = "root";
@@ -28,7 +27,7 @@ if ($matkhau == $user['matkhau']) {
     $_SESSION['email'] = $email;
 
     // Nếu người dùng là quản trị viên, chuyển hướng họ đến trang index của quản trị viên
-    if ($email == 'quang') {
+    if ($email == 'email') {
         $_SESSION['isAdmin'] = true;
         header('Location: index.php');
         exit();
