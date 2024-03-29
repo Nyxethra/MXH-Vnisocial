@@ -9,26 +9,30 @@ if(!isset($user_id)){
 ?> 
 
     <?php include ('BAR/Nav_Bar.php');?>
+   <?php $id2=2;?>
 
-
-    <?php 
-        if (isset($_GET["diden"])){
-            $id=$_GET["diden"];
-            switch ($id){
-              case 'trangcanhan': 
-                include("TRANG_CANHAN/trangcanhan.php");
+   <?php 
+    if (isset($_GET["diden"])){
+        $id=$_GET["diden"];
+        switch ($id){
+            case 'trangcanhan': 
+                include("TRANG_CANHAN/trangcanhan.php");  
                 break;
-              case 'trangchu':
+            case 'trangchu':
                 include("subhome.php");
                 break;
-                case 'dsyeucau':
-                  include("banbe/dsyeucau.php");
-                  break;
-                  
-                
-          }
-        }else {include("subhome.php");}
-    ?> 
+            case 'dsyeucau':
+                include("banbe/dsyeucau.php");
+                break;
+            case 'trangcanhan_nl':
+                $id2 = $_GET["id2"]; // Lấy tham số id2 từ URL
+                include("TRANG_CANHAN/trangcanhan_nl.php");
+                break;
+        }
+    }
+?>
+
+
   </body>
 </html>
  
