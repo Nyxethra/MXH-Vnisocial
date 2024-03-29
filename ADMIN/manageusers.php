@@ -7,8 +7,8 @@
     <title>ADMIN | VNISOCIAL - Quản Lý Nguời Dùng </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css">
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> 
-<script src="https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.js"></script>
 
     <style>
         body {
@@ -73,7 +73,6 @@
         .ui.card {
         flex: 0 0 30%; /* Đảm bảo rằng mỗi dòng có tối đa 3 khung hình */
         margin: 1em; /* Thêm một chút không gian giữa các khung hình */
- 
         height: 270px; /* Cố định chiều cao của khung hình */
             }
       

@@ -1,39 +1,37 @@
 <?php
+// Thông tin kết nối CSDL
 $servername = "localhost";
 $username = "root";
-$password = "";
+$matkhau = "";
 $dbname = "admin";
-session_start();
 
-// Tạo kết nối
-$db = new mysqli($servername, $username, $password, $dbname);
+// Khởi động phiên
+session_start();
+$conn = new mysqli($servername, $username, $matkhau, $dbname);
 
 // Kiểm tra kết nối
-if ($db->connect_error) {
-  die("Kết nối thất bại: " . $db->connect_error);
+if ($conn->connect_error) {
+    die("Kết nối đến cơ sở dữ liệu thất bại: " . $conn->connect_error);
 }
 
-// Lấy dữ liệu từ form đăng nhập
-$email = $_POST['email'];
-$matkhau = $_POST['matkhau'];
+    // Xử lý đăng nhập
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $email = $_POST['email'];
+        $matkhau = $_POST['matkhau'];
 
-// Kiểm tra thông tin đăng nhập
-$query = "SELECT * FROM inforadmin WHERE email = '$email'";
-$result = $db->query($query);
-$user = $result->fetch_assoc();
+    // Xây dựng truy vấn SQL
+    $sql = "SELECT * FROM inforadmin WHERE email='$email' AND matkhau='$matkhau'";
+    $result = $conn->query($sql);
 
-if ($matkhau == $user['matkhau']) {
-    // Nếu thông tin đăng nhập chính xác, thiết lập phiên
-    $_SESSION['email'] = $email;
-
-    // Nếu người dùng là quản trị viên, chuyển hướng họ đến trang index của quản trị viên
-    if ($email == 'email') {
-        $_SESSION['isAdmin'] = true;
-        header('Location: index.php');
+    if ($result->num_rows > 0) {
+        // Đăng nhập thành công, chuyển hướng đến trang index.php
+        header("Location: index.php");
         exit();
+    } else {
+        // Đăng nhập thất bại
+        echo "Email hoặc mật khẩu không đúng.";
     }
-} else {
-    // Nếu thông tin đăng nhập không chính xác, hiển thị lỗi
-    echo "Thông tin đăng nhập không chính xác.";
 }
+
+$conn->close();
 ?>
