@@ -52,9 +52,38 @@ html {
         h3 {
     color: black;
 }
+.custom-user-avatar img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+.custom-user-info {
+    display: flex;
+    align-items: center;
+}
+.custom-user-details h3 {
+    margin-left: 13px;
+    
+}
     </style>
 </head>
 <body>
+    <?php 
+        $conn = new mysqli('localhost', 'root', '', 'vnisocial');
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        $result = $conn->query($sql);
+        $sqlnd = "SELECT *
+        FROM nguoidung
+        WHERE ma_nguoidung = $user_id;";
+        $resultnd = $conn->query($sqlnd);
+
+        $rownguoidung= $resultnd->fetch_assoc();
+
+    ?>
     <div class="menu-trai">
         <a href="home.php?diden=trangcanhan">
         <button class="btn-trang-ca-nhan">
@@ -86,7 +115,7 @@ html {
                         </div>
                     </button>
         </a>
-        <a href="home.php?diden=yeucau">
+        <a href="home.php?diden=dsyeucau">
             <button class="btn-yeu-cau-ket-ban">
             <div class="custom-user-info">
                             <div class="custom-user-avatar">
