@@ -21,9 +21,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Thêm bản ghi mới vào bảng banbe
             $add_friend_sql = "INSERT INTO banbe (ma_nguoidung1, ma_nguoidung2) VALUES ($user_id, $sender_id)";
             if ($conn->query($add_friend_sql) === TRUE) {
-                // Trả về phản hồi JSON thành công
-                $response = array("success" => true, "message" => "Đã chấp nhận yêu cầu kết bạn từ người dùng có ID $sender_id");
-                echo json_encode($response);
+                // Thêm bản ghi mới vào bảng thongbao
+                $add_notification_sql = "INSERT INTO thongbao (thongbao_tu, thongbao_den, noidung_thongbao) VALUES ($sender_id, $user_id, 'đã đồng ý kết bạn')";
+                if ($conn->query($add_notification_sql) === TRUE) {
+                    // Trả về phản hồi JSON thành công
+                    $response = array("success" => true, "message" => "Đã chấp nhận yêu cầu kết bạn từ người dùng có ID $sender_id");
+                    echo json_encode($response);
+                } else {
+                    // Trả về phản hồi JSON với thông báo lỗi nếu không thể thêm vào bảng thongbao
+                    $response = array("success" => false, "message" => "Lỗi khi thêm vào bảng thongbao: " . $conn->error);
+                    echo json_encode($response);
+                }
             } else {
                 // Trả về phản hồi JSON với thông báo lỗi nếu không thể thêm vào bảng banbe
                 $response = array("success" => false, "message" => "Lỗi khi thêm vào bảng banbe: " . $conn->error);

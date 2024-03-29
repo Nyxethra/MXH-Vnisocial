@@ -134,32 +134,61 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         function acceptRequest(user_id, sender_id) {
-            $.ajax({
-                url: "banbe/accept_request.php",
-                method: "POST",
-                data: { user_id: user_id, sender_id: sender_id },
-                success: function(response) {
-                    alert(response);
-                },
-                error: function(xhr, status, error) {
-                    alert("Có lỗi xảy ra: " + error);
-                }
-            });
+    $.ajax({
+        url: "banbe/accept_request.php",
+        method: "POST",
+        data: { user_id: user_id, sender_id: sender_id },
+        success: function(response) {
+            // Parse response as JSON
+            var jsonResponse = JSON.parse(response);
+            
+            // Xử lý kết quả phản hồi từ server
+            if (jsonResponse.success) {
+                alert("Đã đồng ý kết bạn ");
+                // Tự động tải lại trang
+                location.reload();
+            } else {
+                alert(jsonResponse.message);
+                // Tùy chọn: có thể thêm location.reload(); ở đây nếu muốn tải lại trang dù có lỗi
+            }
+        },
+        error: function(xhr, status, error) {
+            // Xử lý lỗi nếu có
+            alert("Có lỗi xảy ra: " + error);
+            // Tự động tải lại trang sau khi thông báo lỗi
+            location.reload();
         }
+    });
+} 
 
-        function rejectRequest(user_id, sender_id) {
-            $.ajax({
-                url: "banbe/reject_request.php",
-                method: "POST",
-                data: { user_id: user_id, sender_id: sender_id },
-                success: function(response) {
-                    alert(response);
-                },
-                error: function(xhr, status, error) {
-                    alert("Có lỗi xảy ra: " + error);
-                }
-            });
+function rejectRequest(user_id, sender_id) {
+    $.ajax({
+        url: "banbe/reject_request.php",
+        method: "POST",
+        data: { user_id: user_id, sender_id: sender_id },
+        success: function(response) {
+            // Parse response as JSON
+            var jsonResponse = JSON.parse(response);
+            
+            // Xử lý kết quả phản hồi từ server
+            if (jsonResponse.success) {
+                alert("Đã từ chối kết bạn ");
+                // Tự động tải lại trang
+                location.reload();
+            } else {
+                alert(jsonResponse.message);
+                // Tùy chọn: có thể thêm location.reload(); ở đây nếu muốn tải lại trang dù có lỗi
+            }
+        },
+        error: function(xhr, status, error) {
+            // Xử lý lỗi nếu có
+            alert("Có lỗi xảy ra: " + error);
+            // Tự động tải lại trang sau khi thông báo lỗi
+            location.reload();
         }
+    });
+}
+
     </script>
 </body>
 </html>
