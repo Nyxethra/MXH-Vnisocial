@@ -134,7 +134,7 @@
                     <!-- Nội dung pop-up sẽ được nạp từ tệp PHP -->
                 </div>
             </div>
-        </div>
+        </div> 
 
     <div class="container">
         <?php
@@ -215,7 +215,7 @@
                                 <p class="custom-post-date">Posted on <span class="custom-post-date"><?php echo $row["thoigian_dang"]; ?></span></p>
                             </div>
                             <div class="custom-post-actions">
-                             <button class="edit-post" data-post-id="<?php echo $row['ma_baidang']; ?>">Edit</button>
+                             <button class="edit-post"` data-post-id="<?php echo $row['ma_baidang']; ?>">Edit</button>
                             </div>
                         </div>
                     </div>
@@ -224,8 +224,8 @@
                     </div>
                     <div class="custom-post-image"><img src="<?php echo $imagePath; ?>" alt="Post Image"></div>
                     <div class="custom-post-actions">
-                        <button class="star" data-ma_baidang="<?php echo $row['ma_baidang']; ?>"><i class="fas fa-star"></i></button>
-                        <button id="comment-btn" data-ma_nguoidung="<?php echo $row['ma_baidang']?>" data-ma_baidang="<?php echo $row['ma_baidang']?>">Comment</button>
+                        <button class="star" data-post-id="<?php echo $row['ma_baidang']; ?>"><i class="fas fa-star"></i></button>
+                        <button id="comment-btn" data-ma_nguoidung="<?php echo $row['ma_baidang']?>" data-post-id="<?php echo $row['ma_baidang']?>">Comment</button>
                         <button>Share</button>
                     </div>
                 </div>
@@ -242,7 +242,28 @@
     <!-- Thư viện FontAwesome -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
     <script>
-        // JavaScript để mở và đóng pop-up
+       // Thêm sự kiện click vào nút chỉnh sửa
+document.addEventListener('DOMContentLoaded', function() {
+    const editButtons = document.querySelectorAll('.edit-post');
+    editButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Lấy ID bài đăng từ thuộc tính data
+            const ma_baidang = button.getAttribute('data-post-id');
+            
+            // In ra giá trị của ma_baidang vào console
+            console.log('Giá trị của ma_baidang:', ma_baidang);
+            
+            // Kiểm tra xem ma_baidang có tồn tại không
+            if (ma_baidang) {
+                openEditPopup(ma_baidang);
+            } else {
+                console.error('Không tìm thấy giá trị ma_baidang.');
+            }
+        });
+    });
+});
+
+// JavaScript để mở và đóng pop-up
 function openEditPopup(ma_baidang) {
     // Lấy nội dung chỉnh sửa từ trang edit_post.php và nạp vào pop-up
     fetch('baidang/edit_post.php?ma_baidang=' + ma_baidang)
@@ -259,17 +280,6 @@ function closeEditPopup() {
     document.getElementById('edit-popup-overlay').style.display = 'none';
 }
 
-// Thêm sự kiện click vào nút chỉnh sửa
-document.addEventListener('DOMContentLoaded', function() {
-    const editButtons = document.querySelectorAll('.edit-post');
-    editButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Lấy ID bài đăng từ thuộc tính data
-            const ma_baidang = button.getAttribute('data-ma_baidang');
-            openEditPopup(ma_baidang);
-        });
-    });
-});
 </script>
 </body>
 </html>
