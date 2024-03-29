@@ -20,7 +20,7 @@ $stmt->execute([$user_id, $friend_id, 'Đã gửi']);
 // Tạo bản ghi mới trong bảng `thongbao`
 $sql = "INSERT INTO thongbao (thongbao_tu, noidung_thongbao, thongbao_den, thoidiem_thongbao) VALUES (?, ?, ?, ?)";
 $stmt = $pdo->prepare($sql);
-$stmt->execute([$friend_id, " $user_name Đã gửi lời mới kết bạn cho bạn ", $user_id, date('Y-m-d H:i:s')]);
+$stmt->execute([ $user_id, " $user_name Đã gửi lời mới kết bạn cho bạn ",$friend_id, date('Y-m-d H:i:s')]);
 
 // Phản hồi về dưới dạng JSON
 $response = array("success" => true, "message" => "Yêu cầu kết bạn đã được gửi.");
