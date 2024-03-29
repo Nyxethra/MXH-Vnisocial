@@ -161,6 +161,8 @@
     });
 } 
 
+
+
 function rejectRequest(user_id, sender_id) {
     $.ajax({
         url: "banbe/reject_request.php",
@@ -187,7 +189,10 @@ function rejectRequest(user_id, sender_id) {
             location.reload();
         }
     });
-}
+} 
+
+
+
 
     </script>
 </body>

@@ -224,8 +224,8 @@
                     </div>
                     <div class="custom-post-image"><img src="<?php echo $imagePath; ?>" alt="Post Image"></div>
                     <div class="custom-post-actions">
-                        <button class="star" data-post-id="<?php echo $row['ma_baidang']; ?>"><i class="fas fa-star"></i></button>
-                        <button id="comment-btn" data-ma_nguoidung="<?php echo $row['ma_baidang']?>" data-post-id="<?php echo $row['ma_baidang']?>">Comment</button>
+                        <button class="star" data-ma_baidang="<?php echo $row['ma_baidang']; ?>"><i class="fas fa-star"></i></button>
+                        <button id="comment-btn" data-ma_nguoidung="<?php echo $row['ma_baidang']?>" data-ma_baidang="<?php echo $row['ma_baidang']?>">Comment</button>
                         <button>Share</button>
                     </div>
                 </div>
@@ -241,6 +241,49 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- Thư viện FontAwesome -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <?php
+// Kiểm tra xem yêu cầu có phải là phương thức GET không
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    // Kiểm tra xem có tham số ma_baidang được gửi đến không
+    if (isset($_GET['ma_baidang'])) {
+        // Lấy ma_baidang từ tham số GET
+        $ma_baidang = $_GET['ma_baidang'];
+        // Giả sử rằng thich_boi là ID của người dùng đang thực hiện hành động like,
+        // bạn cần thay đổi phần này để lấy ID của người dùng từ hồ sơ người dùng hoặc bất kỳ phương thức nào khác
+        $thich_boi = 1; // ID của người dùng đang thực hiện hành động like
+
+        // Kết nối đến cơ sở dữ liệu
+        $conn = new mysqli('localhost', 'root', '', 'vnisocial');
+
+        // Kiểm tra kết nối
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        // Kiểm tra xem người dùng đã thích bài đăng này trước đó chưa
+        $sql_check_like = "SELECT * FROM thich WHERE thich_boi = $thich_boi AND ma_baidang = $ma_baidang";
+        $result_check_like = $conn->query($sql_check_like);
+
+        if ($result_check_like->num_rows > 0) {
+            // Nếu đã like, trả về kết quả là đã like
+            echo json_encode(array("success" => true, "isLiked" => true));
+        } else {
+            // Nếu chưa like, trả về kết quả là chưa like
+            echo json_encode(array("success" => true, "isLiked" => false));
+        }
+
+        // Đóng kết nối
+        $conn->close();
+    } else {
+        // Thiếu tham số ma_baidang, trả về thông báo lỗi
+        echo json_encode(array("success" => false, "message" => "Post ID is missing."));
+    }
+} else {
+    // Yêu cầu không hợp lệ, trả về thông báo lỗi
+    echo json_encode(array("success" => false, "message" => "Invalid request method."));
+}
+?>
+
     <script>
        // Thêm sự kiện click vào nút chỉnh sửa
 document.addEventListener('DOMContentLoaded', function() {
