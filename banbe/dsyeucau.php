@@ -111,7 +111,7 @@
                     while($row = $result->fetch_assoc()) {
                         echo "<li>";
                         echo "<div class='user-info'>";
-                        echo "<img class='user-avatar' src='" . $row["avatar"] . "'>";
+                        echo "<img class='user-avatar' src='img/" . $row["avatar"] . "'>";
                         echo "<div>";
                         echo "<span class='tnd'><strong>" . $row["ten_nguoidung"] . "</strong></span><br>";
                         echo "<span class='st'>Sống tại " . $row["song_tai"] . "</span><br>";
