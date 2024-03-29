@@ -29,7 +29,7 @@ if(!isset($user_id)){
                 include("TRANG_CANHAN/trangcanhan_nl.php");
                 break;
         }
-    }
+    }else {include("subhome.php");}
 ?>
 
 
