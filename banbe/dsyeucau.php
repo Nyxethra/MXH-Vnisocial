@@ -1,6 +1,5 @@
-<?php 
-include("bar/thanhbentrai.php");
-?>
+<?php include("bar/thanhbentrai.php"); ?>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -29,16 +28,16 @@ include("bar/thanhbentrai.php");
             padding: 0;
         }
         li {
-    margin-top: 35px;
-    padding: 17px;
-    background-color: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-left: 10%;
-}
+            margin-top: 35px;
+            padding: 17px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-left: 10%;
+        }
         .user-info {
             display: flex;
             align-items: center;
@@ -53,10 +52,10 @@ include("bar/thanhbentrai.php");
             border-radius: 50%;
         }
         .btn-group {
-    display: flex;
-    align-items: baseline;
-    flex-direction: column;
-}
+            display: flex;
+            align-items: baseline;
+            flex-direction: column;
+        }
         .btn-accept, .btn-reject {
             padding: 5px 10px;
             border-radius: 5px;
@@ -69,26 +68,26 @@ include("bar/thanhbentrai.php");
             margin-right: 10px;
         }
         .btn-reject {
-    background-color: #bd726d;
-    color: white;
-    border: none;
-    margin-top: 10px;
-}
+            background-color: #bd726d;
+            color: white;
+            border: none;
+            margin-top: 10px;
+        }
         .user-info div {
-    margin-left: 10px;
-    display: flex;
-    align-content: center;
-    justify-content: space-around;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: flex-start;
-}
-.user-avatar {
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    margin-right: 20px;
-}
+            margin-left: 10px;
+            display: flex;
+            align-content: center;
+            justify-content: space-around;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-items: flex-start;
+        }
+        .user-avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
     </style>
 </head>
 <body>
@@ -120,8 +119,8 @@ include("bar/thanhbentrai.php");
                         echo "</div>";
                         echo "</div>";
                         echo "<div class='btn-group'>";
-                        echo "<button class='btn-accept' onclick='acceptRequest(" . $row["ma_nguoidung"] . ")'>Đồng ý</button>";
-                        echo "<button class='btn-reject' onclick='rejectRequest(" . $row["ma_nguoidung"] . ")'>Từ chối</button>";
+                        echo "<button class='btn-accept' onclick='acceptRequest(" . $user_id . ", " . $row["ma_nguoidung"] . ")'>Đồng ý</button>";
+                        echo "<button class='btn-reject' onclick='rejectRequest(" . $user_id . ", " . $row["ma_nguoidung"] . ")'>Từ chối</button>";
                         echo "</div>";
                         echo "</li>";
                     }
@@ -132,15 +131,34 @@ include("bar/thanhbentrai.php");
             ?>
         </ul>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        function acceptRequest(userId) {
-            // Viết code xử lý đồng ý yêu cầu kết bạn ở đây
-            alert("Đã đồng ý yêu cầu kết bạn từ người dùng có ID " + userId);
+        function acceptRequest(user_id, sender_id) {
+            $.ajax({
+                url: "accept_request.php",
+                method: "POST",
+                data: { user_id: user_id, sender_id: sender_id },
+                success: function(response) {
+                    alert(response);
+                },
+                error: function(xhr, status, error) {
+                    alert("Có lỗi xảy ra: " + error);
+                }
+            });
         }
 
-        function rejectRequest(userId) {
-            // Viết code xử lý từ chối yêu cầu kết bạn ở đây
-            alert("Đã từ chối yêu cầu kết bạn từ người dùng có ID " + userId);
+        function rejectRequest(user_id, sender_id) {
+            $.ajax({
+                url: "reject_request.php",
+                method: "POST",
+                data: { user_id: user_id, sender_id: sender_id },
+                success: function(response) {
+                    alert(response);
+                },
+                error: function(xhr, status, error) {
+                    alert("Có lỗi xảy ra: " + error);
+                }
+            });
         }
     </script>
 </body>

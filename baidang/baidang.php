@@ -111,14 +111,60 @@
         }
 
         // Truy vấn lấy dữ liệu bài đăng
-        $sql = "SELECT baidang.*, nguoidung.ten_nguoidung, nguoidung.avatar 
-        FROM baidang 
-        INNER JOIN nguoidung ON baidang.dang_boi = nguoidung.ma_nguoidung 
-        INNER JOIN banbe ON (baidang.dang_boi = banbe.ma_nguoidung1 AND banbe.ma_nguoidung2 = $user_id)
+       // Truy vấn để lấy bài đăng mới nhất của bạn và tối đa 2 bài đăng của bạn bè
+// Truy vấn để lấy bài đăng mới nhất của bạn và tối đa 2 bài đăng của bạn bè
+$sql = "
+    (SELECT 
+        baidang.*, 
+        nguoidung.ten_nguoidung, 
+        nguoidung.avatar 
+    FROM 
+        baidang 
+    INNER JOIN 
+        nguoidung ON baidang.dang_boi = nguoidung.ma_nguoidung 
+    WHERE 
+        baidang.dang_boi = $user_id
+    ORDER BY 
+        baidang.thoigian_dang DESC
+    LIMIT 
+        1)
+    UNION ALL
+    (SELECT 
+        baidang.*, 
+        nguoidung.ten_nguoidung, 
+        nguoidung.avatar 
+    FROM 
+        baidang 
+    INNER JOIN 
+        nguoidung ON baidang.dang_boi = nguoidung.ma_nguoidung 
+    INNER JOIN 
+        banbe ON (baidang.dang_boi = banbe.ma_nguoidung1 AND banbe.ma_nguoidung2 = $user_id)
         OR (baidang.dang_boi = banbe.ma_nguoidung2 AND banbe.ma_nguoidung1 = $user_id)
-        ORDER BY baidang.thoigian_dang DESC
-        LIMIT 10;
-        ";
+    WHERE
+        baidang.dang_boi IN (
+            SELECT
+                ma_nguoidung1 AS ma_nguoidung
+            FROM
+                banbe
+            WHERE
+                ma_nguoidung2 = $user_id
+            UNION
+            SELECT
+                ma_nguoidung2 AS ma_nguoidung
+            FROM
+                banbe
+            WHERE
+                ma_nguoidung1 = $user_id
+        )
+    ORDER BY 
+        RAND()  /* Sắp xếp ngẫu nhiên */
+    LIMIT 10
+    )
+";
+
+
+
+
        
         
 
