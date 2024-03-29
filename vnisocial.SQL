@@ -14,12 +14,12 @@ CREATE TABLE nguoidung(
   
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-INSERT INTO nguoidung(hoc_tai,ten_nguoidung, matkhau, email, gioitinh, ngaysinh, avatar, anhbia,tieusu) VALUES
-('ĐĂNG UNI','Nguyễn Hải Đăng','abcde','HAIDANG@gmail.com','nam','1999-02-18', 'anh2.jpg','anh3.jpg','ahahha'),
-('HỌC VIÊN PHÓNG KHÔNG - KHÔNG QUÂN','Tạ Hà Quỳnh Anh', 'abcde', 'QUYNHANH@gmail.com','nữ','2500-07-08', 'nguoidung.jpeg','anhbia.jpg','ihihiii'),
-('HỌC VIỆN ANH NINH NHÂN DÂN','Nguyễn Văn Quang','abcde','VANQUANG@gmail.com','nữ','2505-03-14','anh2.jpeg','anhbia.jpg','ohoooho'),
-('ĐẠI HỌC LUẬT ĐÀ NẴNG','Nguyễn Quốc khánh','abcde','QUOCKHANH@gmail.com','nam','2504-07-02','nguoidung.jpeg','anhbia.jpg','một cộng một bằng 2'),
-('HỌC VIÊN BƯU CHÍNH VIỄN THÔNG','Bảo Ngọc ','abcde','BAONGOC@gmail.com','nam','2502-07-15','nguoidung.jpeg','anhbia.jpg','worldcup 2024');
+INSERT INTO nguoidung(song_tai,hoc_tai,ten_nguoidung, matkhau, email, gioitinh, ngaysinh, avatar, anhbia,tieusu) VALUES
+('Thanh Xuân, Hà Nội','ĐĂNG UNI','Nguyễn Hải Đăng','abcde','HAIDANG@gmail.com','nam','1999-02-18', 'anh2.jpg','anh3.jpg','ahahha'),
+('Thanh Xuân, Hà Nội','HỌC VIÊN PHÓNG KHÔNG - KHÔNG QUÂN','Tạ Hà Quỳnh Anh', 'abcde', 'QUYNHANH@gmail.com','nữ','2500-07-08', 'nguoidung.jpeg','anhbia.jpg','ihihiii'),
+('Thanh Xuân, Hà Nội','HỌC VIỆN ANH NINH NHÂN DÂN','Nguyễn Văn Quang','abcde','VANQUANG@gmail.com','nữ','2505-03-14','anh2.jpeg','anhbia.jpg','ohoooho'),
+('Thanh Xuân, Hà Nội','ĐẠI HỌC LUẬT ĐÀ NẴNG','Nguyễn Quốc khánh','abcde','QUOCKHANH@gmail.com','nam','2504-07-02','nguoidung.jpeg','anhbia.jpg','một cộng một bằng 2'),
+('Thanh Xuân, Hà Nội','HỌC VIÊN BƯU CHÍNH VIỄN THÔNG','Bảo Ngọc ','abcde','BAONGOC@gmail.com','nam','2502-07-15','nguoidung.jpeg','anhbia.jpg','worldcup 2024');
 
 
 

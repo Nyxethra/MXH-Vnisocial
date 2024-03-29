@@ -75,7 +75,7 @@ button.ui.icon.button.scroll-button.scroll-right {
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
-
+            
             // Truy vấn dữ liệu từ bảng nguoidung
             $sql = "SELECT ma_nguoidung, ten_nguoidung, email FROM nguoidung";
             $result = $conn->query($sql);
@@ -93,13 +93,13 @@ button.ui.icon.button.scroll-button.scroll-right {
                             <div class="description">' . $row["email"] . '</div>
                         </div>
                         <div class="ui two bottom attached buttons">
-                <button class="ui button btn-ketban" onclick="guiYeuCauKetBan( ' . $row["ma_nguoidung"] . ')">
+                <button class="ui button btn-ketban" onclick="guiYeuCauKetBan( ' . $row["ma_nguoidung"] . ','. $user_id.')">
                     Kết bạn
                 </button>
             </div>  
                     </div>
                     <script>
-function guiYeuCauKetBan(friend_id) {
+function guiYeuCauKetBan(friend_id, user_id) {
 // Chuyển đổi friend_id thành số nguyên 
 friend_id = parseInt(friend_id);
 
@@ -108,7 +108,8 @@ $.ajax({
 url: "banbe/yeucau.php",
 method: "POST",
 data: {
-    friend_id: friend_id
+    friend_id: friend_id,
+    user_id: user_id
 },
 success: function(response) {
     // Parse response as JSON

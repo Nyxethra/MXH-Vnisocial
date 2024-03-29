@@ -40,7 +40,7 @@
 </head>
 <body>
   <?php
-
+ $user_id=1;
   // Lấy thông tin người dùng
   $conn = new mysqli('localhost', 'root', '', 'vnisocial');
   $sql = "SELECT * FROM nguoidung WHERE ma_nguoidung = 1";
@@ -53,20 +53,21 @@
   <div class="user-info">
     <img class="user-avatar" src="../img/<?php echo $user['avatar']; ?>">
     <span class="user-name"><?php echo $user['ten_nguoidung']; ?></span>
-    <button class="btn-ketban" onclick="guiYeuCauKetBan(<?php echo  $user['ma_nguoidung']; ?>)">Kết bạn</button>
+    <button class="btn-ketban" onclick="guiYeuCauKetBan(<?php echo  $user['ma_nguoidung']; ?>,  <?php echo   $user_id; ?>)">Kết bạn</button>
   </div>
 
   <script>
-    function guiYeuCauKetBan(friend_id) {
+    function guiYeuCauKetBan(friend_id, user_id) {
   // Chuyển đổi friend_id thành số nguyên
   friend_id = parseInt(friend_id);
 
   // Gửi yêu cầu kết bạn bằng AJAX
   $.ajax({
-    url: "banbe/yeucau.php",
+    url: "yeucau.php",
     method: "POST",
     data: {
-      friend_id: friend_id
+      friend_id: friend_id,
+      user_id: user_id
     },
     success: function(response) {
       // Parse response as JSON

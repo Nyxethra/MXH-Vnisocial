@@ -3,8 +3,9 @@
 $pdo = new PDO('mysql:host=localhost;dbname=vnisocial', 'root', '');
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$user_id = 2;
-$friend_id = 1;
+$user_id = $_POST['user_id'];
+$friend_id = $_POST['friend_id'];
+
 
 // Lấy thông tin người gửi
 $stmt = $pdo->prepare("SELECT ten_nguoidung FROM nguoidung WHERE ma_nguoidung = ?");
