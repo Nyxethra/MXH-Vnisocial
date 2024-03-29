@@ -11,15 +11,18 @@
 
     <style>
         .container {
-            display: flex;
-            justify-content: space-between;
-            flex-direction: row; 
-            flex-wrap: nowrap;
-            overflow-x: auto;
-            width: 100%;
-            margin: auto;
-            position: relative; /* Thêm thuộc tính này để định vị các nút cuộn */
-        }
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    width: 100%;
+    /* margin-bottom: 25px; */
+    margin-top: 40px;
+    position: relative;
+    background: #f3f5f5;
+    overflow-x: hidden;
+}
 
         .ui.card {
             flex: 0 0 auto;
@@ -40,6 +43,19 @@
         .scroll-right {
             right: 0; /* Đặt nút cuộn phải ở bên phải */
         }
+        .ui.card:first-child {
+    margin-top: 14px;
+}
+button.ui.icon.button.scroll-button.scroll-left {
+    position: absolute;
+    left: 56px;
+    top: 534px;
+}
+button.ui.icon.button.scroll-button.scroll-right {
+    position: absolute;
+    right: 17.5%;
+    top: 534px;
+}
     </style>
 
 </head> 
@@ -59,9 +75,9 @@
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
-
+            
             // Truy vấn dữ liệu từ bảng nguoidung
-            $sql = "SELECT ten_nguoidung, email FROM nguoidung";
+            $sql = "SELECT ma_nguoidung, ten_nguoidung, email FROM nguoidung";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -77,11 +93,42 @@
                             <div class="description">' . $row["email"] . '</div>
                         </div>
                         <div class="ui two bottom attached buttons">
-                            <div class="ui button">
-                                Kết bạn 
-                            </div>
-                        </div>
-                    </div>';
+                <button class="ui button btn-ketban" onclick="guiYeuCauKetBan( ' . $row["ma_nguoidung"] . ','. $user_id.')">
+                    Kết bạn
+                </button>
+            </div>  
+                    </div>
+                    <script>
+function guiYeuCauKetBan(friend_id, user_id) {
+// Chuyển đổi friend_id thành số nguyên 
+friend_id = parseInt(friend_id);
+
+// Gửi yêu cầu kết bạn bằng AJAX
+$.ajax({
+url: "banbe/yeucau.php",
+method: "POST",
+data: {
+    friend_id: friend_id,
+    user_id: user_id
+},
+success: function(response) {
+    // Parse response as JSON
+    var jsonResponse = JSON.parse(response);
+    
+    // Xử lý kết quả phản hồi từ server
+    if (jsonResponse.success) {
+        alert("Yêu cầu kết bạn đã được gửi.");
+    } else {
+        alert(jsonResponse.message);
+    }
+},
+error: function(xhr, status, error) {
+    // Xử lý lỗi nếu có
+    alert("Có lỗi xảy ra: " + error);
+}
+});
+}
+</script>';
                 }
             } else {
                 echo "Không có kết quả";
@@ -90,9 +137,10 @@
             $conn->close();
         ?>
         <!-- Thêm hai nút cuộn vào trong .container -->
+        </div>
         <button class="ui icon button scroll-button scroll-left"><i class="left arrow icon"></i></button>
         <button class="ui icon button scroll-button scroll-right"><i class="right arrow icon"></i></button>
-    </div>
+    
 
     <script>
         $(document).ready(function() {

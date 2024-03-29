@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 
@@ -80,13 +79,14 @@ if ($result) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="trang_canhan/style_trangcanhan.css">c:\Users\Admin\Videos\Vnisocial_For_Vietnamese\dexuatbanbe.php
+    <link rel="stylesheet" href="trang_canhan/style_trangcanhan.css">
     <title>Trang cá nhân của bạn</title>
     <style>
         .abc {
-            display: flex;
-            flex-direction: row;
-        }
+    display: flex;
+    flex-direction: row;
+    background: #f3f5f5;
+}
     </style>
 </head>
 
@@ -99,7 +99,7 @@ if ($result) {
             <div style="width:100%">
                 <div class="head__img">
 
-                    <!-- <img src="../img/pic.jpg" class="anhbia"> -->
+                    <!-- <img src="img/pic.jpg" class="anhbia"> -->
                     <div class="anhbia">
                         <?php
                         if (mysqli_num_rows($result_n) > 0) {
@@ -125,13 +125,13 @@ if ($result) {
                         </form>
                     </div>
                     <div class="head__user" style="display:flex">
-                        <div style="width: 654px;right:171px; text-align:center ; position: absolute; bottom: 153px;    ">
+                        <!-- <div style="width: 654px;right:171px; text-align:center ; position: absolute; bottom: 153px;    ">
                             <div class="menu_buttons">Dòng thời gian </div>
                             <div class="menu_buttons">Giới thiệu </div>
                             <div class="menu_buttons">Bạn bè</div>
                             <div class="menu_buttons">Ảnh</div>
                             <div class="menu_buttons">Lưu trữ </div>
-                        </div>
+                        </div> -->
                         <div class="head__avatar">
                             <?php
                             if (mysqli_num_rows($result) > 0) {
@@ -139,7 +139,7 @@ if ($result) {
                                 // var_dump($avatar);
                                 // exit;
                             ?>
-                                <img id="avatar-img" src="img/<?= $avatar ?>" class="profile_pic">
+                                <img id="avatar-img" src="IMG/<?= $avatar ?>" class="profile_pic">
                             <?php
 
                             } else {
@@ -173,11 +173,11 @@ if ($result) {
                 <!--phần kết bạn  -->
                 <div class="friend_request">
 
-                    <?php include("dexuatbanbe.php")?>
+                    <?php include("dexuatbanbe.php") ?>
                 </div>
                 <div style="display :flex ">
                     <!-- phần giới thiệu -->
-                    <div style="background-color:green; min-height:400px; flex:1">
+                    <div class="gioithieu" >
                         <div class="inside_gioithieu">
                             <div style="font-size :15px; color:black; text-align:center">Gioi thieu</div>
                             <div>Tieu su<br>
@@ -186,7 +186,7 @@ if ($result) {
                         </div>
                     </div>
                     <!-- phần bài đăng -->
-                    <div style="background-color:#aaa; min-height:400px; flex:2.5; padding:20px; padding-right:0px">
+                    <div style="background-color:#f3f5f5; min-height:400px; flex:2.5; padding:20px; padding-right:0px">
                         <div style="border: solid thin #aaa ;padding: 10px; background-color:white">
                             <div></div>
                             <br>

@@ -21,9 +21,10 @@ include "suaavatar.php";
     <title>Trang cá nhân của bạn</title>
     <style>
         .abc {
-            display: flex;
-            flex-direction: row;
-        }
+    display: flex;
+    flex-direction: row;
+    background: #f3f5f5;
+}
     </style>
 </head>
 
@@ -89,7 +90,7 @@ include "suaavatar.php";
                         </div>
                     </div>
                     <!-- phần bài đăng -->
-                    <div style="background-color:#aaa; min-height:400px; flex:2.5; padding:20px; padding-right:0px">
+                    <div style="background-color:#f3f5f5; min-height:400px; flex:2.5; padding:20px; padding-right:0px">
                         <div style="border: solid thin #aaa ;padding: 10px; background-color:white">
                             <div></div>
                             <br>

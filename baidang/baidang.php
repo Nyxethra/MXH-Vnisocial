@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facebook Post</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
     <!-- Thư viện FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
@@ -16,6 +16,8 @@
             border-radius: 8px;
             padding: 20px;
             width: 570px;
+            background: white;
+            margin-left: 19px;
         }
 
         .custom-user-info {
@@ -90,6 +92,10 @@
             object-position: center;
             /* Căn giữa */
         }
+        .ui.segment.baidang {
+    margin-left: 24px;
+   
+}
     </style>
 </head>
 
@@ -103,13 +109,65 @@
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
- 
+
         // Truy vấn lấy dữ liệu bài đăng
-        $sql = "SELECT baidang.ma_baidang, baidang.*, nguoidung.ten_nguoidung, nguoidung.avatar 
-                FROM baidang 
-                INNER JOIN nguoidung ON baidang.dang_boi = nguoidung.ma_nguoidung 
-                ORDER BY baidang.thoigian_dang 
-                LIMIT 10";
+       // Truy vấn để lấy bài đăng mới nhất của bạn và tối đa 2 bài đăng của bạn bè
+// Truy vấn để lấy bài đăng mới nhất của bạn và tối đa 2 bài đăng của bạn bè
+$sql = "
+    (SELECT 
+        baidang.*, 
+        nguoidung.ten_nguoidung, 
+        nguoidung.avatar 
+    FROM 
+        baidang 
+    INNER JOIN 
+        nguoidung ON baidang.dang_boi = nguoidung.ma_nguoidung 
+    WHERE 
+        baidang.dang_boi = $user_id
+    ORDER BY 
+        baidang.thoigian_dang DESC
+    LIMIT 
+        1)
+    UNION ALL
+    (SELECT 
+        baidang.*, 
+        nguoidung.ten_nguoidung, 
+        nguoidung.avatar 
+    FROM 
+        baidang 
+    INNER JOIN 
+        nguoidung ON baidang.dang_boi = nguoidung.ma_nguoidung 
+    INNER JOIN 
+        banbe ON (baidang.dang_boi = banbe.ma_nguoidung1 AND banbe.ma_nguoidung2 = $user_id)
+        OR (baidang.dang_boi = banbe.ma_nguoidung2 AND banbe.ma_nguoidung1 = $user_id)
+    WHERE
+        baidang.dang_boi IN (
+            SELECT
+                ma_nguoidung1 AS ma_nguoidung
+            FROM
+                banbe
+            WHERE
+                ma_nguoidung2 = $user_id
+            UNION
+            SELECT
+                ma_nguoidung2 AS ma_nguoidung
+            FROM
+                banbe
+            WHERE
+                ma_nguoidung1 = $user_id
+        )
+    ORDER BY 
+        RAND()  /* Sắp xếp ngẫu nhiên */
+    LIMIT 10
+    )
+";
+
+
+
+
+       
+        
+
         $result = $conn->query($sql);
 
         // Hiển thị bài đăng
@@ -142,28 +200,43 @@
                     <div class="custom-post-image"><img src="<?php echo $imagePath; ?>" alt="Post Image"></div>
                     <div class="custom-post-actions">
                         <button class="star" data-post-id="<?php echo $row['ma_baidang']; ?>"><i class="fas fa-star"></i></button>
-                        <button id="comment-btn">Comment</button>
+                        <button id="comment-btn" data-ma_nguoidung="<?php echo $row['ma_baidang']?>" data-ma_baidang="<?php echo $row['ma_baidang']?>">Comment</button>
                         <?php
 
-                        // @var_dump($row['ma_baidang']);
+
+                        // Ép kiểu integer
+                        $int = (int)$row['ma_baidang'];
+                        $row['ma_baidang'] = $int;
+                        var_dump($row['ma_baidang']);
+                        var_dump($_SESSION['ma_nguoidung'])
                         ?>
                         <script>
+                            // //su kien binh luan
+                            // document.getElementById('comment-btn').addEventListener('click', function() {
+                            //     // Lấy giá trị session của bài đăng
+                            //     var ma_baidang = "<?php echo $row['ma_baidang']; ?>"; // Thay đổi $row['ma_baidang'] thành biến chứa giá trị session
+                            //     // Chuyển hướng tới trang bình luận với giá trị session được truyền qua URL query parameter
+                            //     window.location.href = "../VNISOCIAL_FOR_VIETNAMESE/BINHLUAN/comment_layout.php?ma_baidang=" + ma_baidang;
+                            //     // $_SESSION['ma_baidang']=$row['ma_baidang'];
+                            // });
                             var commentBtn = document.getElementById("comment-btn");
-                            // Lắng nghe sự kiện click của nút "Comment"
-                            document.getElementById("comment-btn").addEventListener("click", function() {
-                                // Lấy giá trị session của bài đăng
 
-                                var ma_baidang = "<?php echo $row['ma_baidang']; ?>"; // Thay đổi $row['ma_baidang'] thành biến chứa giá trị session
-                        //     <?php
-                        // @var_dump($_SESSION['ma_baidang']);
-                        // ?>
+                            commentBtn.addEventListener("click", function() {
+                                // Lấy giá trị ma_nguoidung và ma_baidang từ thuộc tính data
+                                var ma_nguoidung = commentBtn.getAttribute("data-ma_nguoidung");
+                                var ma_baidang = commentBtn.getAttribute("data-ma_baidang");
 
-                        // Chuyển hướng tới trang bình luận với giá trị session được truyền qua URL query parameter
-                        window.location.href = "../Vnisocial_For_Vietnamese/BINHLUAN/comment_layout.php?ma_baidang=" + ma_baidang;
-                        // $_SESSION['ma_baidang']=$row['ma_baidang'];
-                        });
+                                // Thực hiện các thao tác mong muốn với ma_nguoidung và ma_baidang
+                                // Ví dụ:
+                                console.log("Mã người dùng: " + ma_nguoidung);
+                                console.log("Mã bài đăng: " + ma_baidang);
 
+                                // Chuyển hướng tới trang bình luận với các giá trị được truyền qua URL query parameter
+                                window.location.href = "../Vnisocial_For_Vietnamese/BINHLUAN/comment_layout.php?ma_nguoidung=" + ma_nguoidung + "&ma_baidang=" + ma_baidang;
+                            });
                         </script>
+
+
                         <button>Share</button>
                     </div>
                 </div>
@@ -184,19 +257,19 @@
     <!-- Thư viện FontAwesome -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
     <script>
-        // JavaScript để xử lý sự kiện click vào nút "Sao"
-        document.addEventListener('DOMContentLoaded', function() {
-            const stars = document.querySelectorAll('.star');
-            stars.forEach(star => {
-                star.addEventListener('click', function() {
-                    if (star.classList.contains('clicked')) {
-                        star.classList.remove('clicked');
-                    } else {
-                        star.classList.add('clicked');
-                    }
-                });
-            });
-        });
+        // // JavaScript để xử lý sự kiện click vào nút "Sao"
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const stars = document.querySelectorAll('.star');
+        //     stars.forEach(star => {
+        //         star.addEventListener('click', function() {
+        //             if (star.classList.contains('clicked')) {
+        //                 star.classList.remove('clicked');
+        //             } else {
+        //                 star.classList.add('clicked');
+        //             }
+        //         });
+        //     });
+        // });
     </script>
 
 </body>

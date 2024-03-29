@@ -7,33 +7,22 @@ CREATE TABLE nguoidung(
   ngaysinh date, 
   avatar varchar(600) DEFAULT 'nguoidung.jpeg',
   anhbia varchar(600) DEFAULT 'anhbia.jpg',
-  tieusu varchar(250)
+  tieusu varchar(250),
+  hoc_tai varchar(250),
+  lam_tai varchar(250),
+  song_tai varchar(250)
   
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-INSERT INTO nguoidung(ten_nguoidung, matkhau, email, gioitinh, ngaysinh, avatar, anhbia,tieusu) VALUES
-('Nguyễn Hải Đăng','abcde','HAIDANG@gmail.com','nam','1999-02-18', 'anh2.jpg','anh3.jpg','ahahha'),
-('Tạ Hà Quỳnh Anh', 'abcde', 'QUYNHANH@gmail.com','nữ','2500-07-08', 'nguoidung.jpeg','anhbia.jpg','ihihiii'),
-('Nguyễn Văn Quang','abcde','VANQUANG@gmail.com','nữ','2505-03-14','anh2.jpeg','anhbia.jpg','ohoooho'),
-('Nguyễn Quốc khánh','abcde','QUOCKHANH@gmail.com','nam','2504-07-02','nguoidung.jpeg','anhbia.jpg','một cộng một bằng 2'),
-('Bảo Ngọc ','abcde','BAONGOC@gmail.com','nam','2502-07-15','nguoidung.jpeg','anhbia.jpg','worldcup 2024');
+INSERT INTO nguoidung(song_tai,hoc_tai,ten_nguoidung, matkhau, email, gioitinh, ngaysinh, avatar, anhbia,tieusu) VALUES
+('Thanh Xuân, Hà Nội','ĐĂNG UNI','Nguyễn Hải Đăng','abcde','HAIDANG@gmail.com','nam','1999-02-18', 'anh2.jpg','anh3.jpg','ahahha'),
+('Thanh Xuân, Hà Nội','HỌC VIÊN PHÓNG KHÔNG - KHÔNG QUÂN','Tạ Hà Quỳnh Anh', 'abcde', 'QUYNHANH@gmail.com','nữ','2500-07-08', 'nguoidung.jpeg','anhbia.jpg','ihihiii'),
+('Thanh Xuân, Hà Nội','HỌC VIỆN ANH NINH NHÂN DÂN','Nguyễn Văn Quang','abcde','VANQUANG@gmail.com','nữ','2505-03-14','anh2.jpeg','anhbia.jpg','ohoooho'),
+('Thanh Xuân, Hà Nội','ĐẠI HỌC LUẬT ĐÀ NẴNG','Nguyễn Quốc khánh','abcde','QUOCKHANH@gmail.com','nam','2504-07-02','nguoidung.jpeg','anhbia.jpg','một cộng một bằng 2'),
+('Thanh Xuân, Hà Nội','HỌC VIÊN BƯU CHÍNH VIỄN THÔNG','Bảo Ngọc ','abcde','BAONGOC@gmail.com','nam','2502-07-15','nguoidung.jpeg','anhbia.jpg','worldcup 2024');
 
 
-CREATE TABLE tt_nguoidung(
-  tt_ma_nguoidung bigint(19) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  ma_nguoidung bigint(19),
-  FOREIGN KEY (ma_nguoidung) REFERENCES nguoidung(ma_nguoidung),
-  trangthai varchar(250),
-  hoc_tai varchar(250),
-  lam_tai varchar(250),
-  moi_quan_he varchar(150)
-);
-INSERT INTO tt_nguoidung(ma_nguoidung, hoc_tai, lam_tai, moi_quan_he) VALUES
-(1,'ĐẠI HỌC CỘNG NGHỆ ĐHQGHN',null,'Độc thân'),
-(2,'HỌC VIÊN BƯU CHÍNH VIỄN THÔNG',null, 'Độc Thân'),
-(3,'HỌC VIÊN PHÓNG KHÔNG - KHÔNG QUÂN',null,'Độc thân'),
-(4,'HỌC VIỆN ANH NINH NHÂN DÂN',null, 'Độc Thân'),
-(5,'ĐẠI HỌC LUẬT ĐÀ NẴNG',null,'Độc thân');
+
 
 CREATE TABLE nhan_tin(
   ma_tin_nhan int NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -102,6 +91,8 @@ CREATE TABLE thongbao (
   ma_thongbao int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   thongbao_tu bigint(19),
   FOREIGN KEY (thongbao_tu) REFERENCES nguoidung(ma_nguoidung),
+  thongbao_den bigint(19),
+  FOREIGN KEY (thongbao_den) REFERENCES nguoidung(ma_nguoidung),
   noidung_thongbao varchar(250),
   ma_baidang bigint(19),
   FOREIGN KEY (ma_baidang) REFERENCES baidang(ma_baidang),
@@ -110,12 +101,10 @@ CREATE TABLE thongbao (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-INSERT INTO thongbao(thongbao_tu,noidung_thongbao) VALUES 
-  (1, 'đã thích bài viết của bạn'),
-  (3, 'đã bình luận vào bài viết của bạn'),
-  (2, 'đã thích bài viết của bạn'),
-  (1, 'đã gửi một lời mời kết bạn'),
-  (5, 'đã thích bài viết của bạn');
+INSERT INTO thongbao(thongbao_tu,thongbao_den,noidung_thongbao) VALUES 
+   (2,3, 'đã thích bài viết của bạn'),
+  (1,3, 'đã gửi một lời mời kết bạn'),
+  (5,2, 'đã thích bài viết của bạn');
 
 
 

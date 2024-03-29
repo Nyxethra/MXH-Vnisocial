@@ -1,5 +1,7 @@
 <?php session_start();
-include("comment.php")
+
+include "comment.php"
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -60,16 +62,19 @@ include("comment.php")
     }
   </style>
 </head>
-
+<?php
+$ma_baidang = isset($_GET['ma_baidang']) ? $_GET['ma_baidang'] : '';
+$ma_nguoidung = isset($_GET['ma_nguoidung']) ? $_GET['ma_nguoidung'] : '';
+// var_dump($ma_nguoidung);
+ ?>
 <body>
-  <?php
-  $ma_baidang = $_GET['ma_baidang'];
-  ?>
+
   <div class="binhluan-form">
     <h3>Thêm bình luận</h3>
-    <form method="post" action="comment.php">
+    <form method="post" action="comment.php?ma_baidang=<?php echo $ma_baidang ?> &ma_nguoidung=<?php echo $ma_nguoidung?>">
       <textarea name="noidung_binhluan" placeholder="Nhập bình luận của bạn"></textarea>
       <button type="submit">Gửi</button>
+
     </form>
   </div>
   <div class="binhluan-list">
@@ -85,7 +90,7 @@ include("comment.php")
     if ($result->num_rows > 0) {
       while ($row = $result->fetch_assoc()) {
         echo "<div class='binhluan'>";
-        echo $row["ten_nguoidung"];
+        echo "<b>". $row["ten_nguoidung"]. "</b>";
         echo "<br>";
         echo $row["noidung_binhluan"];
         echo "<button class='edit-btn' data-comment-id='" . $row["ma_binhluan"] . "'>Sửa</button>";
@@ -97,7 +102,7 @@ include("comment.php")
     }
     ?>
   </div>
-  
+
   <script>
     // Lấy giá trị mã bài đăng từ URL
     var urlParams = new URLSearchParams(window.location.search);
@@ -116,28 +121,29 @@ include("comment.php")
       });
     }
 
-    // Sự kiện click nút "Xóa"
-    var deleteButtons = document.getElementsByClassName("delete-btn");
-    for (var i = 0; i < deleteButtons.length; i++) {
-      deleteButtons[i].addEventListener("click", function() {
-        var commentId = this.getAttribute("data-comment-id");
-//          Gửi yêu cầu xóa bình luIn the previous response, the code snippet got cut off before completing the delete functionality. Here's the continuation of the code for deleting comments:
-// ```php
-// an bằng Ajax hoặc gửi yêu cầu xóa thông qua form và xử lý ở file comment.php
-//         // Ví dụ: Gửi yêu cầu xóa bình luận bằng Ajax
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "comment.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function() {
-          if (xhr.readyState === 4 && xhr.status === 200) {
-            // Xử lý phản hồi từ server sau khi xóa bình luận thành công
-            // Ví dụ: Tải lại danh sách bình luận sau khi xóa
-            location.reload();
-          }
-        };
-        xhr.send("action=delete&comment_id=" + commentId);
-      });
-    }
+    //     // Sự kiện click nút "Xóa"
+    //     var deleteButtons = document.getElementsByClassName("delete-btn");
+    //     for (var i = 0; i < deleteButtons.length; i++) {
+    //       deleteButtons[i].addEventListener("click", function() {
+    //         var commentId = this.getAttribute("data-comment-id");
+    // //          Gửi yêu cầu xóa bình luIn the previous response, the code snippet got cut off before completing the delete functionality. Here's the continuation of the code for deleting comments:
+    // // ```php
+    // // an bằng Ajax hoặc gửi yêu cầu xóa thông qua form và xử lý ở file comment.php
+    // //         // Ví dụ: Gửi yêu cầu xóa bình luận bằng Ajax
+    //         var xhr = new XMLHttpRequest();
+    //         xhr.open("POST", "comment.php", true);
+    //         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    //         xhr.onreadystatechange = function() {
+    //           if (xhr.readyState === 4 && xhr.status === 200) {
+    //             // Xử lý phản hồi từ server sau khi xóa bình luận thành công
+    //             // Ví dụ: Tải lại danh sách bình luận sau khi xóa
+    //             location.reload();
+    //           }
+    //         };
+    //         xhr.send("action=delete&comment_id=" + commentId);
+    //       });
+    //     }
+    //   
   </script>
   <script>
     // Lấy giá trị mã bài đăng từ URL
