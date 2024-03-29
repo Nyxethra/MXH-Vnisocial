@@ -124,16 +124,6 @@
 
         $result = $conn->query($sql);
 
-
-        $sqlnd = "SELECT *
-        FROM nguoidung
-        WHERE ma_nguoidung = $user_id;";
-        $resultnd = $conn->query($sqlnd);
-
-        $rownguoidung= $resultnd->fetch_assoc();
-
-
-
         // Hiển thị bài đăng
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
