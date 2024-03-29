@@ -21,9 +21,10 @@ if(!isset($user_id)){
               case 'trangchu':
                 include("subhome.php");
                 break;
-                case 'yeucau':
-                  include("banbe/yeucau.php");
+                case 'dsyeucau':
+                  include("banbe/dsyeucau.php");
                   break;
+                  
                 
           }
         }else {include("subhome.php");}

@@ -57,7 +57,7 @@
     margin-left: 50px;
     /* align-items: center; */
     position: relative;
-    top: 5px;
+
 }
 
     .nav-icons i {

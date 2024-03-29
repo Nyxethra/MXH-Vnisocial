@@ -26,14 +26,13 @@ CREATE TABLE tt_nguoidung(
   trangthai varchar(250),
   hoc_tai varchar(250),
   lam_tai varchar(250),
-  moi_quan_he varchar(150)
 );
-INSERT INTO tt_nguoidung(ma_nguoidung, hoc_tai, lam_tai, moi_quan_he) VALUES
-(1,'ĐẠI HỌC CỘNG NGHỆ ĐHQGHN',null,'Độc thân'),
-(2,'HỌC VIÊN BƯU CHÍNH VIỄN THÔNG',null, 'Độc Thân'),
-(3,'HỌC VIÊN PHÓNG KHÔNG - KHÔNG QUÂN',null,'Độc thân'),
-(4,'HỌC VIỆN ANH NINH NHÂN DÂN',null, 'Độc Thân'),
-(5,'ĐẠI HỌC LUẬT ĐÀ NẴNG',null,'Độc thân');
+INSERT INTO tt_nguoidung(ma_nguoidung, hoc_tai, lam_tai,) VALUES
+(1,'ĐẠI HỌC CỘNG NGHỆ ĐHQGHN',null,),
+(2,'HỌC VIÊN BƯU CHÍNH VIỄN THÔNG',null,),
+(3,'HỌC VIÊN PHÓNG KHÔNG - KHÔNG QUÂN',null,),
+(4,'HỌC VIỆN ANH NINH NHÂN DÂN',null, ),
+(5,'ĐẠI HỌC LUẬT ĐÀ NẴNG',null,);
 
 CREATE TABLE nhan_tin(
   ma_tin_nhan int NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -102,6 +101,8 @@ CREATE TABLE thongbao (
   ma_thongbao int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   thongbao_tu bigint(19),
   FOREIGN KEY (thongbao_tu) REFERENCES nguoidung(ma_nguoidung),
+  thongbao_den bigint(19),
+  FOREIGN KEY (thongbao_den) REFERENCES nguoidung(ma_nguoidung),
   noidung_thongbao varchar(250),
   ma_baidang bigint(19),
   FOREIGN KEY (ma_baidang) REFERENCES baidang(ma_baidang),
@@ -110,10 +111,10 @@ CREATE TABLE thongbao (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
-INSERT INTO thongbao(thongbao_tu,noidung_thongbao) VALUES 
-   (2, 'đã thích bài viết của bạn'),
-  (1, 'đã gửi một lời mời kết bạn'),
-  (5, 'đã thích bài viết của bạn');
+INSERT INTO thongbao(thongbao_tu,thongbao_den,noidung_thongbao) VALUES 
+   (2,3, 'đã thích bài viết của bạn'),
+  (1,3, 'đã gửi một lời mời kết bạn'),
+  (5,2, 'đã thích bài viết của bạn');
 
 
 
