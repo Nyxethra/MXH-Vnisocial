@@ -184,8 +184,7 @@ if (isset($error_message)) {
         
         $sql = "SELECT avatar, ten_nguoidung
         FROM nguoidung
-        WHERE ma_nguoidung = $user_id;
-        ";
+        WHERE ma_nguoidung = $user_id; ";
  
         $result = $conn->query($sql);
         ?>
@@ -206,7 +205,7 @@ if (isset($error_message)) {
           <input type="text" placeholder="Nhập nội dung tại đây...">
         </div>
       </div>
-      <div class="divider"></div> <div class="phiaduoi">
+      <div class="divider">.</div> <div class="phiaduoi">
         <button class="ui icon button" id="insert-media">
           <i class="image icon"></i>
           Ảnh/video

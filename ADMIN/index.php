@@ -6,7 +6,7 @@
     <title>ADMIN | VNISOCIAL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> 
-<script src="https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.js"></script>
 
     <style>
         body {  
@@ -43,10 +43,22 @@
             background-color: #c0392b;
         }
         
-        .content {
-            margin-left: 250px;
-            padding: 20px;
+            .logonen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Đảm bảo hình ảnh nằm dưới nền */
         }
+
+        .content {
+            margin-left: 350px;
+            padding: 40px;
+            position: relative; /* Thiết lập vị trí tương đối để có thể đặt vị trí tương đối với hình nền */
+            z-index: 1; /* Đảm bảo nội dung nằm trên hình nền */
+        }
+
         
         .admin-info {
             padding-bottom: 20px;
@@ -66,7 +78,7 @@
     </style>
 </head>
 <body>
-<img class="logonen" src="../img/logo_nen.jpg" style="position: absolute; top: 120px; left: 250px ;">
+<img class="logonen" src="../img/logo_nen.jpg">
     <div class="sidebar">
         <div class="admin-info">
             <h2><i class="fas fa-user"></i> Admin       </h2>

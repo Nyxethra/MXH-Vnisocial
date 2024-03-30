@@ -50,13 +50,14 @@ if ($result) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="trang_canhan/style_trangcanhan.css">c:\Users\Admin\Videos\Vnisocial_For_Vietnamese\dexuatbanbe.php
+    <link rel="stylesheet" href="trang_canhan/style_trangcanhan.css">
     <title>Trang cá nhân của bạn</title>
     <style>
         .abc {
-            display: flex;
-            flex-direction: row;
-        }
+    display: flex;
+    flex-direction: row;
+    background: #f3f5f5;
+}
     </style>
 </head>
 
@@ -109,7 +110,7 @@ if ($result) {
                                 // var_dump($avatar);
                                 // exit;
                             ?>
-                                <img id="avatar-img" src="IMG/gallery/<?= $avatar ?>" class="profile_pic">
+                                <img id="avatar-img" src="IMG/<?= $avatar ?>" class="profile_pic">
                             <?php
 
                             } else {
@@ -144,7 +145,7 @@ if ($result) {
                 </div>
                 <div style="display :flex ">
                     <!-- phần giới thiệu -->
-                    <div style="background-color:green; min-height:400px; flex:1">
+                    <div class="gioithieu" >
                         <div class="inside_gioithieu">
                             <div style="font-size :15px; color:black; text-align:center">Gioi thieu</div>
                             <div>Tieu su<br>
@@ -153,7 +154,7 @@ if ($result) {
                         </div>
                     </div>
                     <!-- phần bài đăng -->
-                    <div style="background-color:#aaa; min-height:400px; flex:2.5; padding:20px; padding-right:0px">
+                    <div style="background-color:#f3f5f5; min-height:400px; flex:2.5; padding:20px; padding-right:0px">
                         <div style="border: solid thin #aaa ;padding: 10px; background-color:white">
                             <div></div>
                             <br>
