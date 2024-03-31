@@ -146,9 +146,12 @@
     <div class="nav-icons">
   <i class="fab fa-facebook-messenger"></i>
   <div class="notification" onclick="showPopup()">
-    <i class="far fa-bell"></i>
+  <i class="far fa-bell"></i>
+  <?php if (isset($notification_count) && $notification_count > 0): ?>
     <span class="badge"><?php echo $notification_count; ?></span>
+  <?php endif; ?>
   </div>
+
   <a class="nav-link " href="SIGNUP.LOGIN.LOGOUT/dangxuat.php"><i class="fas fa-sign-out-alt"></i></a> <!-- Sử dụng biểu tượng đăng xuất từ Font Awesome -->
 </div>
 

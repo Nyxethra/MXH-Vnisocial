@@ -21,6 +21,8 @@ if(isset($_GET['ma_baidang'])) {
         <!-- Hiển thị form chỉnh sửa -->
         <form action="baidang/update_post.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="ma_baidang" value="<?php echo $ma_baidang; ?>">
+            <!-- Hiển thị nội dung bài viết -->
+            <textarea name="noidung_moi"><?php echo $row['noidung']; ?></textarea>
             <!-- Hiển thị ảnh hiện tại (nếu có) -->
             <?php if(!empty($row['image'])): ?>
                 <img src="<?php echo $row['image']; ?>" alt="Post Image">
@@ -28,8 +30,6 @@ if(isset($_GET['ma_baidang'])) {
                 <label>Xóa ảnh hiện tại:</label>
                 <input type="checkbox" name="xoa_anh" value="1">
             <?php endif; ?>
-            <!-- Trường để người dùng nhập nội dung bài viết mới -->
-            <textarea name="noidung_moi"><?php echo $row['noidung']; ?></textarea>
             <!-- Trường để người dùng chọn và tải lên ảnh mới -->
             <label>Chọn ảnh mới:</label>
             <input type="file" name="anh_moi">
