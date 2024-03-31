@@ -3,7 +3,7 @@
 // var_dump($ma_nguoidung);
 include "suaavatar.php";
 include "suaanhbia.php";
-
+include "thongtinnguoidung.php";
 
 // hien thi avatar
 $sql = "SELECT avatar FROM nguoidung where ma_nguoidung ='$user_id'  limit 1;";
@@ -43,7 +43,20 @@ if ($result) {
     echo "Lỗi truy vấn: " . mysqli_error($conn);
 }
 
+//thong tin nguoi dung
+if (mysqli_num_rows($result_t) > 0) {
+    $row = mysqli_fetch_assoc($result_t);
+    $ten_nguoidung = $row['ten_nguoidung'];
+    $tieusu = $row['tieusu'];
+}
+if (mysqli_num_rows($result_tt) > 0) {
+    $row = mysqli_fetch_assoc($result_tt);
+    $hoc_tai = $row['hoc_tai'];
+    $mqh = $row['moi_quan_he'];
+}
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,10 +67,10 @@ if ($result) {
     <title>Trang cá nhân của bạn</title>
     <style>
         .abc {
-    display: flex;
-    flex-direction: row;
-    background: #f3f5f5;
-}
+            display: flex;
+            flex-direction: row;
+            background: #f3f5f5;
+        }
     </style>
 </head>
 
@@ -96,13 +109,7 @@ if ($result) {
                         </form>
                     </div>
                     <div class="head__user" style="display:flex">
-                        <!-- <div style="width: 654px;right:171px; text-align:center ; position: absolute; bottom: 153px;    ">
-                            <div class="menu_buttons">Dòng thời gian </div>
-                            <div class="menu_buttons">Giới thiệu </div>
-                            <div class="menu_buttons">Bạn bè</div>
-                            <div class="menu_buttons">Ảnh</div>
-                            <div class="menu_buttons">Lưu trữ </div>
-                        </div> -->
+
                         <div class="head__avatar">
                             <?php
                             if (mysqli_num_rows($result) > 0) {
@@ -124,13 +131,13 @@ if ($result) {
                                 <button type="button" id="edit-avatar-btn" class="edit-avatar">
                                     <i class="fas fa-camera"></i>
                                 </button>
-                                <input type="submit" value="Lưu" id='show' >
+                                <input type="submit" value="Lưu" id='show'>
                             </form>
 
                         </div>
                         <div class="info__user">
-                            <p class="name__user">Nguyễn Hiếu</b>
-                            <p class="total__friends">123</p>
+
+                            <p class="name__user"><?php echo $ten_nguoidung ?></b>
                         </div>
 
                     </div>
@@ -145,12 +152,16 @@ if ($result) {
                 </div>
                 <div style="display :flex ">
                     <!-- phần giới thiệu -->
-                    <div class="gioithieu" >
+                    <div class="gioithieu">
                         <div class="inside_gioithieu">
-                            <div style="font-size :15px; color:black; text-align:center">Gioi thieu</div>
-                            <div>Tieu su<br>
-                                Thich an choi nhung khong danh mat ban than
+                            <div style="font-size :15px; color:black; text-align:center ">Gioi thieu</div>
+                            <div>Tiểu sử<br>
+                                <?php echo $tieusu ?>
                             </div>
+                            <div>Đang học</div>
+                            <?php echo $hoc_tai ?>
+                            <div>Mối quan hệ</div>
+                            <?php echo $mqh ?>
                         </div>
                     </div>
                     <!-- phần bài đăng -->

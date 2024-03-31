@@ -38,7 +38,7 @@ if (!empty($ngay) && !empty($thang) && !empty($nam)) {
 {
     echo "Trống ngày tháng năm";
 }
-    $ten_nguoidung= ucfirst($firstname) . ucfirst($lastname);
+    $ten_nguoidung= ucfirst($firstname) ." ". ucfirst($lastname);
 
 
     // Truy vấn cơ sở dữ liệu để kiểm tra xem tên người dùng đã tồn tại hay chưa

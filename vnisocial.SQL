@@ -88,6 +88,7 @@ INSERT INTO binhluan(binhluan_boi, ma_baidang,noidung_binhluan ,thoidiem_binhlua
 
 
 CREATE TABLE thongbao (
+  da_xem BOOLEAN DEFAULT FALSE;
   ma_thongbao int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   thongbao_tu bigint(19),
   FOREIGN KEY (thongbao_tu) REFERENCES nguoidung(ma_nguoidung),

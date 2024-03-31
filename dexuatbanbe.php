@@ -11,18 +11,17 @@
 
     <style>
         .container {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    width: 100%;
-    /* margin-bottom: 25px; */
-    margin-top: 40px;
-    position: relative;
-    background: #f3f5f5;
-    overflow-x: hidden;
-}
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        width: 100%;
+        margin-top: 40px;
+        position: relative;
+        background: #f3f5f5;
+        overflow-x: hidden;
+    }
 
         .ui.card {
             flex: 0 0 auto;
@@ -31,9 +30,9 @@
         }
 
         .scroll-button {
-            position: absolute; /* Thay đổi từ fixed thành absolute */
-            top: 50%; /* Đặt nút ở giữa theo chiều dọc */
-            transform: translateY(-50%); /* Điều chỉnh vị trí của nút để nó ở chính xác giữa */
+            position: absolute; 
+            top: 50%; 
+            transform: translateY(-50%); 
         }
 
         .scroll-left {
@@ -44,18 +43,20 @@
             right: 0; /* Đặt nút cuộn phải ở bên phải */
         }
         .ui.card:first-child {
-    margin-top: 14px;
-}
-button.ui.icon.button.scroll-button.scroll-left {
-    position: absolute;
-    left: 56px;
-    top: 534px;
-}
-button.ui.icon.button.scroll-button.scroll-right {
-    position: absolute;
-    right: 17.5%;
-    top: 534px;
-}
+         margin-top: 14px;
+        }
+        button.ui.icon.button.scroll-button.scroll-left {
+            position: absolute;
+            left: 56px;
+            top: 91%;
+        }
+        button.ui.icon.button.scroll-button.scroll-right {
+            position: absolute;
+            right: 17.5%;
+            top: 91%;
+        }
+        
+
     </style>
 
 </head> 
@@ -68,7 +69,7 @@ button.ui.icon.button.scroll-button.scroll-right {
             $password = "password";
             $dbname = "database";
 
-            // Tạo kết nối
+       
             $conn = mysqli_connect("localhost", "root", "", "vnisocial");
 
             // Kiểm tra kết nối
@@ -77,7 +78,7 @@ button.ui.icon.button.scroll-button.scroll-right {
             }
             
             // Truy vấn dữ liệu từ bảng nguoidung
-            $sql = "SELECT ma_nguoidung, ten_nguoidung, email FROM nguoidung";
+            $sql = "SELECT ma_nguoidung, ten_nguoidung FROM nguoidung";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -90,7 +91,7 @@ button.ui.icon.button.scroll-button.scroll-right {
                         </div>
                         <div class="content">
                             <div class="header">' . $row["ten_nguoidung"] . '</div>
-                            <div class="description">' . $row["email"] . '</div>
+                         
                         </div>
                         <div class="ui two bottom attached buttons">
                 <button class="ui button btn-ketban" onclick="guiYeuCauKetBan( ' . $row["ma_nguoidung"] . ','. $user_id.')">
