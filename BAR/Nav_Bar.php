@@ -158,29 +158,29 @@
   </div>
 
   <!-- Phần pop-up thông báo -->
-  <div class="poppup" id="popup">
-    <div class="popup-content">
-      <span class="close" onclick="closePopup()">×</span>
-      <!-- Nội dung của pop-up sẽ được đưa vào đây -->
-      <h3>Thông báo mới</h3>
-      <?php foreach ($notifications as $notification) { ?>
-        <p><?php echo $notification; ?></p>
-      <?php } ?>
-    </div>
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <span class="close" onclick="closePopup()">×</span>
+    <!-- Nội dung của pop-up sẽ được đưa vào đây -->
+    <h3>Thông báo mới</h3>
+    <?php foreach ($notifications as $notification) { ?>
+      <p><?php echo $notification; ?></p>
+    <?php } ?>
   </div>
+</div>
 
-  <script>
-    // Hàm để hiển thị pop-up
-    function showPopup() {
-      var popup = document.getElementById("popup");
-      popup.style.display = "block";
-    }
+<script>
+  // Hàm để hiển thị pop-up
+  function showPopup() {
+    var popup = document.getElementById("popup");
+    popup.style.display = "block";
+  }
 
-    // Hàm để ẩn pop-up
-    function closePopup() {
-      var popup = document.getElementById("popup");
-      popup.style.display = "none";
-    }
-  </script>
+  // Hàm để ẩn pop-up
+  function closePopup() {
+    var popup = document.getElementById("popup");
+    popup.style.display = "none";
+  }
+</script>
 </body>
 </html>
