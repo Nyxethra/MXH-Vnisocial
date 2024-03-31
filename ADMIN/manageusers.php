@@ -136,7 +136,7 @@
                     <form method="POST" action="#">
                     <input type="hidden" name="ten_nguoidung" value="' . $row["ten_nguoidung"] . '">
                     <button type="submit" class="ui primary button">
-                        xóa tài khoản 
+                        xóa TK
                     </button>
                     </form>
                 
