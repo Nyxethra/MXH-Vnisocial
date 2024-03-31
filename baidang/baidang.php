@@ -331,9 +331,6 @@
                     window.location.href = 'BINHLUAN/comment.php?ma_nguoidung=' + ma_nguoidung + '&ma_baidang=' + ma_baidang;
                 });
             });
-
-            // Thêm sự kiện click vào nút like và chỉnh sửa
-document.addEventListener('DOMContentLoaded', function() {
     // Thêm sự kiện click vào nút like
     const likeButtons = document.querySelectorAll('.like-post');
     likeButtons.forEach(button => {
@@ -356,23 +353,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 .catch(error => console.error('Error:', error));
         });
     });
+// Thêm sự kiện click cho nút chỉnh sửa
+const editButtons = document.querySelectorAll('.edit-post');
+editButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        const ma_baidang = button.getAttribute('data-post-id');
+        openEditPopup(ma_baidang);
+    });
 });
-          
-            // JavaScript để mở và đóng pop-up
-            function openEditPopup(ma_baidang) {
-                fetch('baidang/edit_post.php?ma_baidang=' + ma_baidang)
-                    .then(response => response.text())
-                    .then(data => {
-                        document.getElementById('edit-popup-content-container').innerHTML = data;
-                        document.getElementById('edit-popup-overlay').style.display = 'block';
-                    })
-                    .catch(error => console.error('Error:', error));
-            }
 
-            function closeEditPopup() {
-                document.getElementById('edit-popup-overlay').style.display = 'none';
+// JavaScript để mở và đóng pop-up
+function openEditPopup(ma_baidang) {
+    // Sử dụng AJAX để lấy dữ liệu từ edit_post.php
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                // Thêm dữ liệu vào phần tử edit-popup-content-container
+                document.getElementById('edit-popup-content-container').innerHTML = xhr.responseText;
+                // Hiển thị pop-up
+                document.getElementById('edit-popup-overlay').style.display = 'block';
+            } else {
+                console.error('Error:', xhr.status);
             }
-        </script>
+        }
+    };
+    xhr.open('GET', 'baidang/edit_post.php?ma_baidang=' + ma_baidang, true);
+    xhr.send();
+}
+</script>
 </body>
 
 </html>
