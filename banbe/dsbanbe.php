@@ -124,7 +124,7 @@
          
                 $sql = "SELECT nd.* FROM nguoidung nd
         JOIN banbe bb ON nd.ma_nguoidung = bb.ma_nguoidung1 OR nd.ma_nguoidung = bb.ma_nguoidung2
-        WHERE bb.ma_nguoidung1 = $user_id OR bb.ma_nguoidung2 = $user_id AND nd.ma_nguoidung != $user_id";
+        WHERE bb.ma_nguoidung1 = $user_id AND nd.ma_nguoidung != $user_id OR bb.ma_nguoidung2 = $user_id AND nd.ma_nguoidung != $user_id";
          $result = $conn->query($sql);
                 // Hiển thị danh sách người muốn kết bạn
                 if ($result->num_rows > 0) {
