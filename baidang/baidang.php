@@ -4,21 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facebook Post</title>
-    
+
     <!-- Thư viện FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-    /* CSS để ẩn và thiết kế pop-up */
-/* CSS để ẩn và thiết kế pop-up */
-.edit-popup-overlay {
+        /* CSS để ẩn và thiết kế pop-up */
+        /* CSS để ẩn và thiết kế pop-up */
+        .edit-popup-overlay {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Màu nền mờ */
-            z-index: 999; /* Đảm bảo pop-up hiển thị trên cùng */
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Màu nền mờ */
+            z-index: 999;
+            /* Đảm bảo pop-up hiển thị trên cùng */
             overflow: auto;
         }
 
@@ -28,7 +30,8 @@
             padding: 20px;
             border: 1px solid #888;
             width: 80%;
-            max-width: 600px; /* Chiều rộng tối đa của pop-up */
+            max-width: 600px;
+            /* Chiều rộng tối đa của pop-up */
             border-radius: 8px;
             position: relative;
         }
@@ -46,6 +49,7 @@
             color: black;
             text-decoration: none;
         }
+<<<<<<< HEAD
         .custom-post {
     margin-top: 30px; /* Khoảng cách giữa các bài đăng */
     margin-bottom: 30px;
@@ -57,11 +61,26 @@
     max-width: 700px; /* Chiều rộng tối đa của mỗi bài đăng */
 }
 
+=======
+
+        .custom-post {
+            margin-top: 30px;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            width: 570px;
+            background: white;
+            margin-left: 41px;
+        }
+
+>>>>>>> ce00a880a6a6c7e3d59a4aafa06824b8d376b4c2
         .custom-post-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: relative; /* Thêm thuộc tính position để tạo vùng chứa cho icon */
+            position: relative;
+            /* Thêm thuộc tính position để tạo vùng chứa cho icon */
         }
 
         .edit-post {
@@ -69,10 +88,14 @@
             border: none;
             cursor: pointer;
             font-size: 20px;
-            color: #a72f2f; /* Màu của icon */
-            position: absolute; /* Thiết lập vị trí tuyệt đối */
-            top: 0; /* Đẩy nút lên đỉnh header */
-            right: 0; /* Đẩy nút sang phải cùng */
+            color: #a72f2f;
+            /* Màu của icon */
+            position: absolute;
+            /* Thiết lập vị trí tuyệt đối */
+            top: 0;
+            /* Đẩy nút lên đỉnh header */
+            right: 0;
+            /* Đẩy nút sang phải cùng */
         }
 
 
@@ -135,9 +158,11 @@
             object-fit: cover;
             object-position: center;
         }
-            /* Màu của biểu tượng bánh răng */
+
+        /* Màu của biểu tượng bánh răng */
         .edit-post i.fa-cog {
-            color: #a72f2f; /* Màu #a72f2f */
+            color: #a72f2f;
+            /* Màu #a72f2f */
         }
 
         .custom-post-actions .star.liked {
@@ -156,70 +181,77 @@
             object-fit: cover;
             object-position: center;
         }
+
         /* Phần overlay pop-up chỉnh sửa */
-    .edit-popup-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* Màu nền mờ */
-        z-index: 999; /* Đảm bảo pop-up hiển thị trên cùng */
-        overflow: auto;
-    }
-         /* Nội dung pop-up chỉnh sửa */
-    .edit-popup-content {
-        background-color: #fff;
-        margin: 5% auto; /* Hiển thị pop-up ở giữa màn hình */
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%; /* Chiều rộng pop-up */
-        max-width: 600px; /* Chiều rộng tối đa của pop-up */
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+        .edit-popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Màu nền mờ */
+            z-index: 999;
+            /* Đảm bảo pop-up hiển thị trên cùng */
+            overflow: auto;
+        }
 
-    /* Nút đóng pop-up */
-    
-    .edit-popup-close {
-        color: #a72f2f;
-        float: right;
-        font-size: 30px;
-        font-weight: bold;
-    }
+        /* Nội dung pop-up chỉnh sửa */
+        .edit-popup-content {
+            background-color: #fff;
+            margin: 5% auto;
+            /* Hiển thị pop-up ở giữa màn hình */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            /* Chiều rộng pop-up */
+            max-width: 600px;
+            /* Chiều rộng tối đa của pop-up */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-    .edit-popup-close:hover,
-    .edit-popup-close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
+        /* Nút đóng pop-up */
+
+        .edit-popup-close {
+            color: #a72f2f;
+            float: right;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .edit-popup-close:hover,
+        .edit-popup-close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
-<div class="edit-popup-overlay" id="edit-popup-overlay">
-    <div class="edit-popup-content">
-        <span class="edit-popup-close" onclick="closeEditPopup()">&times;</span>
-        <div id="edit-popup-content-container"></div>
+    <div class="edit-popup-overlay" id="edit-popup-overlay">
+        <div class="edit-popup-content">
+            <span class="edit-popup-close" onclick="closeEditPopup()">&times;</span>
+            <div id="edit-popup-content-container"></div>
+        </div>
     </div>
-</div>
 
- 
-        <div class="container">
-            <?php
-            // Kết nối vào cơ sở dữ liệu
-            $conn = new mysqli('localhost', 'root', '', 'vnisocial');
 
-            // Kiểm tra kết nối
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
+    <div class="container">
+        <?php
+        // Kết nối vào cơ sở dữ liệu
+        $conn = new mysqli('localhost', 'root', '', 'vnisocial');
 
-            // Truy vấn lấy dữ liệu bài đăng
-            // Truy vấn để lấy bài đăng mới nhất của bạn và tối đa 2 bài đăng của bạn bè
-            $sql = "
+        // Kiểm tra kết nối
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        // Truy vấn lấy dữ liệu bài đăng
+        // Truy vấn để lấy bài đăng mới nhất của bạn và tối đa 2 bài đăng của bạn bè
+        $sql = "
                 (SELECT 
                     baidang.*, 
                     nguoidung.ten_nguoidung, 
@@ -267,7 +299,7 @@
                 LIMIT 10)
             ";
 
-            $result = $conn->query($sql);
+        $result = $conn->query($sql);
 
         // Hiển thị bài đăng
         if ($result->num_rows > 0) {
@@ -284,12 +316,12 @@
                                 ?>
                             </div>
                             <div class="custom-user-details">
-                                <h3><a style="color:#333;" href='home.php?diden=trangcanhan_nl&id2=" . urlencode($row["ma_nguoidung"]) . "' target='_blank' class='user-link'><span class='tnd'> <?php echo$row["ten_nguoidung"];?></span></a><br></h3>
+                                <h3><a style="color:#333;" href='home.php?diden=trangcanhan_nl&id2=" . urlencode($row["ma_nguoidung"]) . "' target='_blank' class='user-link'><span class='tnd'> <?php echo $row["ten_nguoidung"]; ?></span></a><br></h3>
                                 <p class="custom-post-date">Posted on <span class="custom-post-date"><?php echo $row["thoigian_dang"]; ?></span></p>
                             </div>
                             <div class="custom-post-actions">
-                                     <button class="edit-post" data-post-id="<?php echo $row['ma_baidang']; ?>"><i class="fas fa-cog" style="color: #a72f2f;"></i></button>
-                                </div>
+                                <button class="edit-post" data-post-id="<?php echo $row['ma_baidang']; ?>"><i class="fas fa-cog" style="color: #a72f2f;"></i></button>
+                            </div>
                         </div>
                     </div>
                     <div class="custom-post-content">
@@ -303,106 +335,108 @@
                                 <i class="fas fa-thumbs-up" style="color: #a72f2f;"></i>
                                 <span class="like-count">(<?php echo $row['luong_like']; ?>)</span>
                             </button>
-                            <button id="comment-btn" data-ma_nguoidung="<?php echo $row['ma_baidang']?>" data-ma_baidang="<?php echo $row['ma_baidang']?>">
-                              <i class="fas fa-comment"style="color: #a72f2f;"></i> <!-- Assuming you're using Font Awesome -->
+                            <?php
+                            // Ép kiểu integer
+                            $changeTypeBd = (int)$row['ma_baidang'];
+                            $maNd = $_SESSION['ma_nguoidung'];
+                            ?>
+                            <button onclick="handleOnclick(<?php echo $changeTypeBd; ?>, <?php echo $maNd; ?>)">
+                                <i class="fas fa-comment" style="color: #a72f2f;"></i> <!-- Assuming you're using Font Awesome -->
                             </button>
                             <button>
-                             <i class="fas fa-share"style="color: #a72f2f;"></i> <!-- Assuming you're using Font Awesome -->
+                                <i class="fas fa-share" style="color: #a72f2f;"></i> <!-- Assuming you're using Font Awesome -->
                             </button>
 
+                        </div>
                     </div>
-                </div>
-        <?php
+            <?php
             }
         } else {
             echo "No posts found";
         }
-        ?>
-    </div>
+            ?>
+                </div>
 
-    <!-- Thư viện Bootstrap JS -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- Thư viện FontAwesome -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
-    <script>
-            // Thêm sự kiện click cho nút "Comment"
-            const commentButtons = document.querySelectorAll('.comment-btn');
-            commentButtons.forEach(button => {
+                <!-- Thư viện Bootstrap JS -->
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                <!-- Thư viện FontAwesome -->
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+                <script>
+                    // //su kien binh luan
+                    const handleOnclick = (a, b) => {
+                        const ma_baidang = a
+                        const ma_nguoidung = b
+                        window.location.href = `BINHLUAN/comment_layout.php?ma_nguoidung=${ma_nguoidung}&ma_baidang=${ma_baidang}`;
+                    }
+                // Thêm sự kiện click vào nút like
+                const likeButtons = document.querySelectorAll('.like-post');
+                likeButtons.forEach(button => {
                 button.addEventListener('click', function() {
-                    const ma_nguoidung = button.getAttribute('data-ma_nguoidung');
-                    const ma_baidang = button.getAttribute('data-ma_baidang');
-                    window.location.href = 'BINHLUAN/comment.php?ma_nguoidung=' + ma_nguoidung + '&ma_baidang=' + ma_baidang;
-                });
-            });
-            // Thêm sự kiện click vào nút like
-            const likeButtons = document.querySelectorAll('.like-post');
-            likeButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const ma_baidang = button.getAttribute('data-ma_baidang');
-                    const isLiked = button.classList.contains('liked'); // Kiểm tra xem đã like chưa
+                const ma_baidang = button.getAttribute('data-ma_baidang');
+                const isLiked = button.classList.contains('liked'); // Kiểm tra xem đã like chưa
 
-             // Gửi yêu cầu đến add_like.php để thêm hoặc xóa like
-            fetch('baidang/add_like.php?ma_baidang=' + ma_baidang + '&isLiked=' + isLiked)
-            .then(response => response.json())
-            .then(data => {
+                // Gửi yêu cầu đến add_like.php để thêm hoặc xóa like
+                fetch('baidang/add_like.php?ma_baidang=' + ma_baidang + '&isLiked=' + isLiked)
+                .then(response => response.json())
+                .then(data => {
                 if (data.success) {
-                    // Đảo trạng thái của like
-                    button.classList.toggle('liked');
+                // Đảo trạng thái của like
+                button.classList.toggle('liked');
 
-                    // Cập nhật số lượt like sau khi đã like hoặc bỏ like
-                    const likeCountElement = button.querySelector('.like-count');
-                    if (likeCountElement) {
-                        likeCountElement.innerText = '(' + data.likeCount + ')';
-                    }
-                    
-                    // Thay đổi màu của nút like
-                    if (button.classList.contains('liked')) {
-                        button.innerHTML = '<i class="fas fa-thumbs-up" style="color: red;"></i>';
-                    } else {
-                        button.innerHTML = '<i class="fas fa-thumbs-up" style="color: #a72f2f;"></i>';
-                    }
-                } else {
-                    console.error(data.message);
+                // Cập nhật số lượt like sau khi đã like hoặc bỏ like
+                const likeCountElement = button.querySelector('.like-count');
+                if (likeCountElement) {
+                likeCountElement.innerText = '(' + data.likeCount + ')';
                 }
-            })
-            .catch(error => console.error('Error:', error));
-    });
-});
 
-// Thêm sự kiện click cho nút chỉnh sửa
-const editButtons = document.querySelectorAll('.edit-post');
-editButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        const ma_baidang = button.getAttribute('data-post-id');
-        openEditPopup(ma_baidang);
-    });
-});
+                // Thay đổi màu của nút like
+                if (button.classList.contains('liked')) {
+                button.innerHTML = '<i class="fas fa-thumbs-up" style="color: red;"></i>';
+                } else {
+                button.innerHTML = '<i class="fas fa-thumbs-up" style="color: #a72f2f;"></i>';
+                }
+                } else {
+                console.error(data.message);
+                }
+                })
+                .catch(error => console.error('Error:', error));
+                });
+                });
 
-// JavaScript để mở và đóng pop-up
-function openEditPopup(ma_baidang) {
-    // Sử dụng AJAX để lấy dữ liệu từ edit_post.php
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
+                // Thêm sự kiện click cho nút chỉnh sửa
+                const editButtons = document.querySelectorAll('.edit-post');
+                editButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                const ma_baidang = button.getAttribute('data-post-id');
+                openEditPopup(ma_baidang);
+                });
+                });
+
+                // JavaScript để mở và đóng pop-up
+                function openEditPopup(ma_baidang) {
+                // Sử dụng AJAX để lấy dữ liệu từ edit_post.php
+                const xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
                 // Thêm dữ liệu vào phần tử edit-popup-content-container
                 document.getElementById('edit-popup-content-container').innerHTML = xhr.responseText;
                 // Hiển thị pop-up
                 document.getElementById('edit-popup-overlay').style.display = 'block';
-            } else {
+                } else {
                 console.error('Error:', xhr.status);
-            }
-        }
-    };
-    xhr.open('GET', 'baidang/edit_post.php?ma_baidang=' + ma_baidang, true);
-    xhr.send();
-        }
+                }
+                }
+                };
+                xhr.open('GET', 'baidang/edit_post.php?ma_baidang=' + ma_baidang, true);
+                xhr.send();
+                }
 
-        // Hàm đóng pop-up
-        function closeEditPopup() {
-            document.getElementById('edit-popup-overlay').style.display = 'none';
-        }
-    </script>
+                // Hàm đóng pop-up
+                function closeEditPopup() {
+                document.getElementById('edit-popup-overlay').style.display = 'none';
+                }
+                </script>
 </body>
 
 </html>

@@ -26,7 +26,8 @@
             </div>
             <p class="birthday" > Ngày sinh</p>
             <div class="birth_date">
-                <select class="Day" name="ngay">
+                <input type="date" name="birthday" class="birth_date">
+                <!-- <select class="Day" name="ngay">
                     
                     <option>Ngày</option><option>1</option><option>2</option>
                     <option>13</option><option>14</option><option>15</option>
@@ -52,8 +53,8 @@
                     <option>2000</option><option>2001</option><option>2002</option>
                     <option>2003</option><option>2004</option><option>2005</option>
                     <option>2006</option><option>2007</option><option>2008</option>
-                </select>
-            </div>
+                </select>-->
+            </div> 
 
             <p class="birthday" > Giới tính</p>
             <select class="gender" name="gioitinh">
