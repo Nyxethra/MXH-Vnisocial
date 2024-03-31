@@ -69,7 +69,7 @@
             $password = "password";
             $dbname = "database";
 
-            // Tạo kết nối
+       
             $conn = mysqli_connect("localhost", "root", "", "vnisocial");
 
             // Kiểm tra kết nối
