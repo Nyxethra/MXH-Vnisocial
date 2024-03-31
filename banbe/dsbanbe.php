@@ -122,8 +122,10 @@
                 
                 // Truy vấn dữ liệu từ bảng yeucau_ketban và kết hợp với bảng nguoidung để lấy thông tin người muốn kết bạn
          
-                $sql = "SELECT * FROM banbe WHERE ma_nguoidung = $user_id ORDER BY ten_nguoidung ASC ";
-                $result = $conn->query($sql);
+                $sql = "SELECT nd.* FROM nguoidung nd
+        JOIN banbe bb ON nd.ma_nguoidung = bb.ma_nguoidung1 OR nd.ma_nguoidung = bb.ma_nguoidung2
+        WHERE bb.ma_nguoidung1 = $user_id OR bb.ma_nguoidung2 = $user_id AND nd.ma_nguoidung != $user_id";
+         $result = $conn->query($sql);
                 // Hiển thị danh sách người muốn kết bạn
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
@@ -137,12 +139,12 @@
                         echo "</div>";
                         echo "</div>";
                         echo "<div class='btn-group'>";
-                        echo "<button class='btn-accept' onclick='guiYeuCauKetBan(" . $user_id . ", " . $row["ma_nguoidung"] . ")'>Thêm Bạn Bè</button>";
+                        echo "<button class='btn-accept' onclick='huyKetBan(" . $user_id . ", " . $row["ma_nguoidung"] . ")'>Hủy Kết Bạn</button>";
                         echo "</div>";
                         echo "</li>";
                     }
                 } else {
-                    echo "<li>Không tìm thấy người này.</li>";
+                    echo "<li>Bạn hiện chưa kết bạn với ai, hãy kết thêm nhiều bạn mới nhé.</li>";
                 }
                 $conn->close();
             ?>
@@ -151,13 +153,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
     <script>
-function guiYeuCauKetBan(user_id, friend_id) {
+function huyKetBan(user_id, friend_id) {
 // Chuyển đổi friend_id thành số nguyên 
 friend_id = parseInt(friend_id);
 
 // Gửi yêu cầu kết bạn bằng AJAX
 $.ajax({
-url: "banbe/yeucau.php",
+url: "banbe/huyyeucau.php",
 method: "POST",
 data: {
     friend_id: friend_id,
@@ -169,7 +171,8 @@ success: function(response) {
     
     // Xử lý kết quả phản hồi từ server
     if (jsonResponse.success) {
-        alert("Yêu cầu kết bạn đã được gửi.");
+        alert("Đã Hủy Kết Bạn.");
+        location.reload();
     } else {
         alert(jsonResponse.message);
     }

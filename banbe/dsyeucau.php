@@ -130,8 +130,8 @@
                         echo "</div>";
                         echo "</div>";
                         echo "<div class='btn-group'>";
-                        echo "<button class='btn-accept' onclick='acceptRequest(" . $user_id . ", " . $row["ma_nguoidung"] . ")'>Đồng ý</button>";
-                        echo "<button class='btn-reject' onclick='rejectRequest(" . $user_id . ", " . $row["ma_nguoidung"] . ")'>Từ chối</button>";
+                        echo "<button class='btn-accept' onclick='acceptRequest(" . $user_id . ", " . $row["ma_nguoidung"] . ")'>Đồng Ý</button>";
+                        echo "<button class='btn-reject' onclick='rejectRequest(" . $user_id . ", " . $row["ma_nguoidung"] . ")'>Từ Chối</button>";
                         echo "</div>";
                         echo "</li>";
                     }
