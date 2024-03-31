@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,25 +40,24 @@
             right: 10px;
             font-size: 24px;
             cursor: pointer;
-        }
-
+        } 
         .edit-popup-close:hover,
         .edit-popup-close:focus {
             color: black;
             text-decoration: none;
         }
-.custom-post {
-    margin-top: 30px;
+        .custom-post {
+    margin-top: 30px; /* Khoảng cách giữa các bài đăng */
     margin-bottom: 30px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
     padding: 20px;
-    width: 570px;
     background: white;
-    margin-left: 41px;
+    border-radius: 8px;
+    width: 100%; /* Đảm bảo bài đăng đầy đủ chiều rộng của container */
+    box-sizing: border-box; /* Bao gồm padding và border trong kích thước */
+    max-width: 700px; /* Chiều rộng tối đa của mỗi bài đăng */
 }
 
-                .custom-post-header {
+        .custom-post-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -236,7 +233,7 @@
                 ORDER BY 
                     baidang.thoigian_dang DESC
                 LIMIT 
-                    1)
+                    5)
                 UNION ALL
                 (SELECT 
                     baidang.*, 
