@@ -17,24 +17,24 @@ if(isset($_GET['ma_baidang'])) {
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        // Hiển thị form chỉnh sửa bài viết
-        ?>
-        <form method="post" action="update_post.php">
-            <input type="hidden" name="ma_baidang" value="<?php echo $row['ma_baidang']; ?>">
-            <div class="form-group">
-                <label for="content">Nội dung: </label>
-                <textarea class="form-control" id="content" name="content" rows="5"><?php echo $row['noidung']; ?></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
-        </form>
-        <?php
+        // Hiển thị hình ảnh bài đăng (nếu có)
+        if (!empty($row['image'])) {
+            echo '<img src="' . $row['image'] . '" alt="Post Image">';
+            // Thêm nút xóa ảnh và form để xử lý khi người dùng nhấp vào nút này
+            echo '<form method="post" action="delete_image.php">';
+            echo '<input type="hidden" name="ma_baidang" value="' . $row['ma_baidang'] . '">';
+            echo '<button type="submit" name="delete_image">Xóa Ảnh</button>';
+            echo '</form>';
+        } else {
+            echo 'Không có hình ảnh cho bài đăng này.';
+        }
     } else {
-        echo "Post not found.";
+        echo "Bài viết không tồn tại.";
     }
 
     // Đóng kết nối
     $conn->close();
 } else {
-    echo "Post ID is missing.";
+    echo "Thiếu ID bài viết.";
 }
 ?>
