@@ -37,6 +37,7 @@ if(!isset($user_id)){
                 break;
         }
     }else {include("subhome.php");}
+    include ("css/css.php");
 ?>
 
 
