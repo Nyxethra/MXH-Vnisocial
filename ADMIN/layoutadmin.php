@@ -16,7 +16,7 @@
     }
     .formngoai {
        img {
-        width: 100px; /* Điều chỉnh kích thước hình ảnh */
+        width: 100px; 
         height: 100px;
       }
       display: flex;

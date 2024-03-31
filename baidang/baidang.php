@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -224,67 +223,52 @@
 
             $result = $conn->query($sql);
 
-            // Hiển thị bài đăng
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    $imagePath = "img/" . $row["image"];
-            ?>
-                    <div class="custom-post">
-                        <div class="custom-post-header">
-                            <div class="custom-user-info">
-                                <div class="custom-user-avatar">
-                                    <?php
-                                    $avatarPath = "img/" . $row["avatar"];
-                                    echo '<img src="' . $avatarPath . '" alt="User Avatar">';
-                                    ?>
-                                </div>
-                                <div class="custom-user-details">
-                                    <h3><?php echo $row["ten_nguoidung"]; ?></h3>
-                                    <p class="custom-post-date">Posted on <span class="custom-post-date"><?php echo $row["thoigian_dang"]; ?></span></p>
-                                </div>
-                                <div class="custom-post-actions">
-                                     <button class="edit-post" data-post-id="<?php echo $row['ma_baidang']; ?>"><i class="fas fa-cog" style="color: #a72f2f;"></i></button>
-                                </div>
-
+        // Hiển thị bài đăng
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $imagePath = "img/" . $row["image"];
+        ?>
+                <div class="custom-post">
+                    <div class="custom-post-header">
+                        <div class="custom-user-info">
+                            <div class="custom-user-avatar">
+                                <?php
+                                $avatarPath = "img/" . $row["avatar"];
+                                echo '<img src="' . $avatarPath . '" alt="User Avatar">';
+                                ?>
+                            </div>
+                            <div class="custom-user-details">
+                                <h3><?php echo $row["ten_nguoidung"]; ?></h3>
+                                <p class="custom-post-date">Posted on <span class="custom-post-date"><?php echo $row["thoigian_dang"]; ?></span></p>
+                            </div>
+                            <div class="custom-post-actions">
+                             <button class="edit-post"` data-post-id="<?php echo $row['ma_baidang']; ?>">Edit</button>
                             </div>
                         </div>
-                        <div class="custom-post-content">
-                            <p><?php echo $row["noidung"]; ?></p>
-                        </div>
-                        <div class="custom-post-image"><img src="<?php echo $imagePath; ?>" alt="Post Image"></div>
-                        <div class="custom-post-actions">
-                            <button class="star" data-post-id="<?php echo $row['ma_baidang']; ?>"><i class="fas fa-star"></i></button>
-                            <button class="like-post" data-ma_baidang="<?php echo $row['ma_baidang']; ?>">Like</button>
-                            <button class="comment-btn" data-ma_nguoidung="<?php echo $row['ma_baidang']; ?>" data-ma_baidang="<?php echo $row['ma_baidang']; ?>">Comment</button>
-                            <button>Share</button>
-                        </div>
                     </div>
-            <?php
-                }
-            } else {
-                echo "Chưa có bài viết";
-            }
-            ?>
-               <div class="container">
-        <!-- Phần overlay pop-up chỉnh sửa -->
-        <div id="edit-popup-overlay" class="edit-popup-overlay">
-            <!-- Nội dung pop-up chỉnh sửa -->
-            <div class="edit-popup-content">
-                <!-- Nút đóng pop-up -->
-                <span class="edit-popup-close" onclick="closeEditPopup()">&times;</span>
-                <!-- Nội dung pop-up chỉnh sửa -->
-                <div id="edit-popup-content-container">
-                    <!-- Nội dung pop-up sẽ được nạp từ tệp PHP -->
+                    <div class="custom-post-content">
+                        <p><?php echo $row["noidung"]; ?></p>
+                    </div>
+                    <div class="custom-post-image"><img src="<?php echo $imagePath; ?>" alt="Post Image"></div>
+                    <div class="custom-post-actions">
+                        <button class="star" data-ma_baidang="<?php echo $row['ma_baidang']; ?>"><i class="fas fa-star"></i></button>
+                        <button id="comment-btn" data-ma_nguoidung="<?php echo $row['ma_baidang']?>" data-ma_baidang="<?php echo $row['ma_baidang']?>">Comment</button>
+                        <button>Share</button>
+                    </div>
                 </div>
-            </div>
-        </div> 
-        </div>
-
-        <!-- Thư viện Bootstrap JS -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <!-- Thư viện FontAwesome -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
         <?php
+            }
+        } else {
+            echo "No posts found";
+        }
+        ?>
+    </div>
+
+    <!-- Thư viện Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Thư viện FontAwesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <?php
 // Kiểm tra xem yêu cầu có phải là phương thức GET không
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     // Kiểm tra xem có tham số ma_baidang được gửi đến không

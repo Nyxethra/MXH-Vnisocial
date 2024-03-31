@@ -16,7 +16,7 @@ if (isset($_POST["sender_id"]) && isset($_POST["user_id"])) {
     // Xóa yêu cầu kết bạn từ bảng yeucau_ketban
     $sql = "DELETE FROM yeucau_ketban WHERE ma_nguoigui = $sender_id AND ma_nguoinhan = $user_id";
     if ($conn->query($sql) === TRUE) {
-        $response = array("success" => true, "message" => "Xóa yêu cầu kết bạn thành công", "user_name" => $user_name);
+        $response = array("success" => true, "message" => "Xóa yêu cầu kết bạn thành công");
         echo json_encode($response);
     } else {
         $response = array("success" => false, "message" => "Lỗi: " . $conn->error);
