@@ -55,7 +55,15 @@
             right: 17.5%;
             top: 91%;
         }
-        
+        .image {
+            display: flex; /* Sử dụng flexbox để căn chỉnh hình ảnh */
+            justify-content: center; /* Căn chỉnh hình ảnh theo trục ngang */
+            align-items: center; /* Căn chỉnh hình ảnh theo trục dọc */
+            width: 40%; /* Chiều rộng của div image bằng với chiều rộng của div cha */
+            height: auto; /* Chiều cao tự động điều chỉnh tùy thuộc vào tỷ lệ chiều rộng */
+           
+        }
+     
 
     </style>
 
@@ -77,17 +85,18 @@
                 die("Connection failed: " . $conn->connect_error);
             }
             
+            
             // Truy vấn dữ liệu từ bảng nguoidung
-            $sql = "SELECT ma_nguoidung, ten_nguoidung FROM nguoidung";
+            $sql = "SELECT ma_nguoidung, ten_nguoidung, avatar FROM nguoidung WHERE ma_nguoidung != $user_id";
             $result = $conn->query($sql);
-
             if ($result->num_rows > 0) {
                 // Duyệt qua mỗi hàng dữ liệu
                 while($row = $result->fetch_assoc()) {
+                    $avatar = "IMG/" . $avatar = $row["avatar"];
                     echo '
                     <div class="ui card">
                         <div class="image">
-                            <img src="">
+                        <img src="' . $avatar . '">
                         </div>
                         <div class="content">
                             <div class="header">' . $row["ten_nguoidung"] . '</div>
@@ -98,38 +107,38 @@
                     Kết bạn
                 </button>
             </div>  
-                    </div>
-                    <script>
-function guiYeuCauKetBan(friend_id, user_id) {
-// Chuyển đổi friend_id thành số nguyên 
-friend_id = parseInt(friend_id);
+                                </div>
+                                    <script>
+                function guiYeuCauKetBan(friend_id, user_id) {
+                // Chuyển đổi friend_id thành số nguyên 
+                friend_id = parseInt(friend_id);
 
-// Gửi yêu cầu kết bạn bằng AJAX
-$.ajax({
-url: "banbe/yeucau.php",
-method: "POST",
-data: {
-    friend_id: friend_id,
-    user_id: user_id
-},
-success: function(response) {
-    // Parse response as JSON
-    var jsonResponse = JSON.parse(response);
-    
-    // Xử lý kết quả phản hồi từ server
-    if (jsonResponse.success) {
-        alert("Yêu cầu kết bạn đã được gửi.");
-    } else {
-        alert(jsonResponse.message);
-    }
-},
-error: function(xhr, status, error) {
-    // Xử lý lỗi nếu có
-    alert("Có lỗi xảy ra: " + error);
-}
-});
-}
-</script>';
+                // Gửi yêu cầu kết bạn bằng AJAX
+                $.ajax({
+                url: "banbe/yeucau.php",
+                method: "POST",
+                data: {
+                    friend_id: friend_id,
+                    user_id: user_id
+                },
+                success: function(response) {
+                    // Parse response as JSON
+                    var jsonResponse = JSON.parse(response);
+                    
+                    // Xử lý kết quả phản hồi từ server
+                    if (jsonResponse.success) {
+                        alert("Yêu cầu kết bạn đã được gửi.");
+                    } else {
+                        alert(jsonResponse.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Xử lý lỗi nếu có
+                    alert("Có lỗi xảy ra: " + error);
+                }
+                });
+                }
+                </script>';
                 }
             } else {
                 echo "Không có kết quả";
