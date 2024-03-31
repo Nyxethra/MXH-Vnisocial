@@ -22,7 +22,7 @@ if(isset($_GET['ma_baidang'])) {
         <form action="baidang/update_post.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="ma_baidang" value="<?php echo $ma_baidang; ?>">
             <!-- Hiển thị nội dung bài viết -->
-            <textarea name="noidung_moi"><?php echo $row['noidung']; ?></textarea>
+            <textarea name="noidung_moi" width: 550px;height: 206px;resize: none;><?php echo $row['noidung']; ?> </textarea>
             <!-- Hiển thị ảnh hiện tại (nếu có) -->
             <?php if(!empty($row['image'])): ?>
                 <img src="<?php echo $row['image']; ?>" alt="Post Image">

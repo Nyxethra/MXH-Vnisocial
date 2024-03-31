@@ -202,11 +202,11 @@
     <div class="edit-popup-overlay" id="edit-popup-overlay">
         <div class="edit-popup-content">
             <span class="edit-popup-close" onclick="closeEditPopup()">&times;</span>
-            <div id="edit-popup-content-container"></div>
+            <div id="edit-popup-content-container_baidang"></div>
         </div>
     </div>
 
-    <div class="container">
+    <div class="container_baidang">
         <?php
         // Kết nối vào cơ sở dữ liệu
         $conn = new mysqli('localhost', 'root', '', 'vnisocial');
@@ -384,7 +384,7 @@
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
-                        document.getElementById('edit-popup-content-container').innerHTML = xhr.responseText;
+                        document.getElementById('edit-popup-content-container_baidang').innerHTML = xhr.responseText;
                         document.getElementById('edit-popup-overlay').style.display = 'block';
                     } else {
                         console.error('Error:', xhr.status);
