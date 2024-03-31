@@ -19,15 +19,15 @@ if(isset($_GET['ma_baidang'])) {
         $row = $result->fetch_assoc();
         // Hiển thị hình ảnh bài đăng (nếu có)
         if (!empty($row['image'])) {
-            echo '<img src="' . $row['image'] . '" alt="Post Image">';
-            // Thêm nút xóa ảnh và form để xử lý khi người dùng nhấp vào nút này
-            echo '<form method="post" action="delete_image.php">';
-            echo '<input type="hidden" name="ma_baidang" value="' . $row['ma_baidang'] . '">';
-            echo '<button type="submit" name="delete_image">Xóa Ảnh</button>';
-            echo '</form>';
-        } else {
-            echo 'Không có hình ảnh cho bài đăng này.';
+            echo '<img src="' . $row['image'] . '" alt="Post Image"><br>';
         }
+        // Hiển thị nội dung văn bản của bài đăng
+        echo '<p>' . $row['noidung'] . '</p>';
+        // Thêm nút xóa ảnh và form để xử lý khi người dùng nhấp vào nút này
+        echo '<form method="post" action="delete_image.php">';
+        echo '<input type="hidden" name="ma_baidang" value="' . $row['ma_baidang'] . '">';
+        echo '<button type="submit" name="delete_image">Xóa Ảnh</button>';
+        echo '</form>';
     } else {
         echo "Bài viết không tồn tại.";
     }
