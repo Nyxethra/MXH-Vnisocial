@@ -91,8 +91,6 @@
 
     <div class="content">
         <h1>CHÀO MỪNG ĐẾN VỚI TRANG QUẢN TRỊ CỦA VNISOCIAL</h1> 
-        
-        <!-- Your content goes here -->
     </div>
 </body>
 </html>

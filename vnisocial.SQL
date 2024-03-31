@@ -88,17 +88,17 @@ INSERT INTO binhluan(binhluan_boi, ma_baidang,noidung_binhluan ,thoidiem_binhlua
 
 
 CREATE TABLE thongbao (
-  da_xem BOOLEAN DEFAULT FALSE;
-  ma_thongbao int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  thongbao_tu bigint(19),
+  da_xem BOOLEAN DEFAULT FALSE,
+  ma_thongbao INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  thongbao_tu BIGINT(19),
   FOREIGN KEY (thongbao_tu) REFERENCES nguoidung(ma_nguoidung),
-  thongbao_den bigint(19),
+  thongbao_den BIGINT(19),
   FOREIGN KEY (thongbao_den) REFERENCES nguoidung(ma_nguoidung),
-  noidung_thongbao varchar(250),
-  ma_baidang bigint(19),
+  noidung_thongbao VARCHAR(250),
+  ma_baidang BIGINT(19),
   FOREIGN KEY (ma_baidang) REFERENCES baidang(ma_baidang),
-  thoidiem_thongbao varchar(250),
-  tong_tb int DEFAULT 0 -- Thêm cột tổng thông báo và đặt giá trị mặc định là 0
+  thoidiem_thongbao TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Sử dụng kiểu dữ liệu TIMESTAMP để lưu thời điểm thông báo
+  tong_tb INT DEFAULT 0 -- Thêm cột tổng thông báo và đặt giá trị mặc định là 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 

@@ -63,18 +63,19 @@
             cursor: pointer;
         }
         .btn-accept {
-            background-color: #4caf507d;
-            color: white;
-            border: none;
-            margin-right: 10px;
-            font-size: 18px;
-        }
+    background-color: #d1c7c7d1;
+    color: #a72f2f;
+    border: none;
+    margin-right: 10px;
+    width: 97%;
+    /* height: 19%; */
+    font-size: 18px;
+}
         .btn-reject {
             background-color: #bd726d;
             color: white;
             border: none;
             margin-top: 10px;
-            font-size: 17px;
         }
         .user-info div {
             margin-left: 10px;
@@ -91,7 +92,7 @@
     border-radius: 50%;
     margin-right: 10px;
 }
-.user-link {
+        .user-link {
     text-decoration: none; /* Không gạch chân mặc định */
     color: inherit; /* Sử dụng màu kế thừa hoặc đặt màu cụ thể */
 }
@@ -99,12 +100,15 @@
 .user-link:hover {
     text-decoration: underline; /* Thêm gạch chân khi hover */
 }
+
+
     </style>
 </head>
 <body>
     <div class="container">
         <ul>
             <?php
+            
                 // Kết nối với cơ sở dữ liệu
                 $conn = new mysqli('localhost', 'root', '', 'vnisocial');
                 // Kiểm tra kết nối
@@ -112,11 +116,16 @@
                     die("Connection failed: " . $conn->connect_error);
                 }
                 // Lấy ID người dùng hiện tại
+
                 // Đây là ID người dùng hiện tại, bạn có thể thay đổi hoặc lấy từ session
 
+                
                 // Truy vấn dữ liệu từ bảng yeucau_ketban và kết hợp với bảng nguoidung để lấy thông tin người muốn kết bạn
-                $sql = "SELECT nguoidung.*, yeucau_ketban.status FROM nguoidung INNER JOIN yeucau_ketban ON nguoidung.ma_nguoidung = yeucau_ketban.ma_nguoigui WHERE yeucau_ketban.ma_nguoinhan = $user_id";
-                $result = $conn->query($sql);
+         
+                $sql = "SELECT nd.* FROM nguoidung nd
+        JOIN banbe bb ON nd.ma_nguoidung = bb.ma_nguoidung1 OR nd.ma_nguoidung = bb.ma_nguoidung2
+        WHERE bb.ma_nguoidung1 = $user_id AND nd.ma_nguoidung != $user_id OR bb.ma_nguoidung2 = $user_id AND nd.ma_nguoidung != $user_id";
+         $result = $conn->query($sql);
                 // Hiển thị danh sách người muốn kết bạn
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
@@ -130,81 +139,50 @@
                         echo "</div>";
                         echo "</div>";
                         echo "<div class='btn-group'>";
-                        echo "<button class='btn-accept' onclick='acceptRequest(" . $user_id . ", " . $row["ma_nguoidung"] . ")'>Đồng Ý</button>";
-                        echo "<button class='btn-reject' onclick='rejectRequest(" . $user_id . ", " . $row["ma_nguoidung"] . ")'>Từ Chối</button>";
+                        echo "<button class='btn-accept' onclick='huyKetBan(" . $user_id . ", " . $row["ma_nguoidung"] . ")'>Hủy Kết Bạn</button>";
                         echo "</div>";
                         echo "</li>";
                     }
                 } else {
-                    echo "<li>Hiện không có ai muốn kết bạn với bạn.</li>";
+                    echo "<li>Bạn hiện chưa kết bạn với ai, hãy kết thêm nhiều bạn mới nhé.</li>";
                 }
                 $conn->close();
             ?>
         </ul>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
     <script>
-        function acceptRequest(user_id, sender_id) {
-    $.ajax({
-        url: "banbe/accept_request.php",
-        method: "POST",
-        data: { user_id: user_id, sender_id: sender_id },
-        success: function(response) {
-            // Parse response as JSON
-            var jsonResponse = JSON.parse(response);
-            
-            // Xử lý kết quả phản hồi từ server
-            if (jsonResponse.success) {
-                alert("Đã đồng ý kết bạn ");
-                // Tự động tải lại trang
-                location.reload();
-            } else {
-                alert(jsonResponse.message);
-                // Tùy chọn: có thể thêm location.reload(); ở đây nếu muốn tải lại trang dù có lỗi
-            }
-        },
-        error: function(xhr, status, error) {
-            // Xử lý lỗi nếu có
-            alert("Có lỗi xảy ra: " + error);
-            // Tự động tải lại trang sau khi thông báo lỗi
-            location.reload();
-        }
-    });
-} 
+function huyKetBan(user_id, friend_id) {
+// Chuyển đổi friend_id thành số nguyên 
+friend_id = parseInt(friend_id);
 
-
-
-function rejectRequest(user_id, sender_id) {
-    $.ajax({
-        url: "banbe/reject_request.php",
-        method: "POST",
-        data: { user_id: user_id, sender_id: sender_id },
-        success: function(response) {
-            // Parse response as JSON
-            var jsonResponse = JSON.parse(response);
-            
-            // Xử lý kết quả phản hồi từ server
-            if (jsonResponse.success) {
-                alert("Đã từ chối kết bạn ");
-                // Tự động tải lại trang
-                location.reload();
-            } else {
-                alert(jsonResponse.message);
-                // Tùy chọn: có thể thêm location.reload(); ở đây nếu muốn tải lại trang dù có lỗi
-            }
-        },
-        error: function(xhr, status, error) {
-            // Xử lý lỗi nếu có
-            alert("Có lỗi xảy ra: " + error);
-            // Tự động tải lại trang sau khi thông báo lỗi
-            location.reload();
-        }
-    }); 
-} 
-
-
-
-
-    </script>
+// Gửi yêu cầu kết bạn bằng AJAX
+$.ajax({
+url: "banbe/huyyeucau.php",
+method: "POST",
+data: {
+    friend_id: friend_id,
+    user_id: user_id
+},
+success: function(response) {
+    // Parse response as JSON
+    var jsonResponse = JSON.parse(response);
+    
+    // Xử lý kết quả phản hồi từ server
+    if (jsonResponse.success) {
+        alert("Đã Hủy Kết Bạn.");
+        location.reload();
+    } else {
+        alert(jsonResponse.message);
+    }
+},
+error: function(xhr, status, error) {
+    // Xử lý lỗi nếu có
+    alert("Có lỗi xảy ra: " + error);
+}
+});
+}
+</script>
 </body>
 </html>

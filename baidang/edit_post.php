@@ -1,7 +1,7 @@
 <?php
-// Kiểm tra xem post_id có tồn tại không
+// Kiểm tra xem ma_baidang đã được gửi từ form không
 if(isset($_GET['ma_baidang'])) {
-    $post_id = $_GET['ma_baidang'];
+    $ma_baidang = $_GET['ma_baidang'];
 
     // Kết nối vào cơ sở dữ liệu
     $conn = new mysqli('localhost', 'root', '', 'vnisocial');
@@ -12,22 +12,31 @@ if(isset($_GET['ma_baidang'])) {
     }
 
     // Truy vấn lấy thông tin của bài viết cần chỉnh sửa
-    $sql = "SELECT * FROM baidang WHERE ma_baidang = $post_id";
+    $sql = "SELECT * FROM baidang WHERE ma_baidang = $ma_baidang";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        // Hiển thị hình ảnh bài đăng (nếu có)
-        if (!empty($row['image'])) {
-            echo '<img src="' . $row['image'] . '" alt="Post Image">';
-            // Thêm nút xóa ảnh và form để xử lý khi người dùng nhấp vào nút này
-            echo '<form method="post" action="delete_image.php">';
-            echo '<input type="hidden" name="ma_baidang" value="' . $row['ma_baidang'] . '">';
-            echo '<button type="submit" name="delete_image">Xóa Ảnh</button>';
-            echo '</form>';
-        } else {
-            echo 'Không có hình ảnh cho bài đăng này.';
-        }
+        ?>
+        <!-- Hiển thị form chỉnh sửa -->
+        <form action="baidang/update_post.php" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="ma_baidang" value="<?php echo $ma_baidang; ?>">
+            <!-- Hiển thị nội dung bài viết -->
+            <textarea name="noidung_moi"><?php echo $row['noidung']; ?></textarea>
+            <!-- Hiển thị ảnh hiện tại (nếu có) -->
+            <?php if(!empty($row['image'])): ?>
+                <img src="<?php echo $row['image']; ?>" alt="Post Image">
+                <!-- Thêm nút để người dùng xóa ảnh hiện tại -->
+                <label>Xóa ảnh hiện tại:</label>
+                <input type="checkbox" name="xoa_anh" value="1">
+            <?php endif; ?>
+            <!-- Trường để người dùng chọn và tải lên ảnh mới -->
+            <label>Chọn ảnh mới:</label>
+            <input type="file" name="anh_moi">
+            <!-- Nút "Lưu" để gửi dữ liệu form -->
+            <button type="submit">Lưu</button>
+        </form>
+        <?php
     } else {
         echo "Bài viết không tồn tại.";
     }

@@ -36,17 +36,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $matkhau = $_POST['matkhau'];
 
-    //truy vấn email hợp lệ
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "<script>
-            Swal.fire({
-                title: 'Email không hợp lệ!',
-                icon: 'error',
-                button: 'Đóng'
-            });
-        </script>";
-        // exit; // Dừng việc thực thi mã PHP tiếp theo
-    }
+    // //truy vấn email hợp lệ
+    // if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    //     echo "<script>
+    //         Swal.fire({
+    //             title: 'Email không hợp lệ!',
+    //             icon: 'error',
+    //             button: 'Đóng'
+    //         });
+    //     </script>";
+    //     // exit; // Dừng việc thực thi mã PHP tiếp theo
+    // }
 
     // Truy vấn cơ sở dữ liệu để kiểm tra xem tên người dùng và mật khẩu có khớp hay không
     $query = "SELECT * FROM nguoidung WHERE email = '$email' OR matkhau = '$matkhau'";
@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }else{
                 echo "<script>
                 swal.fire({
-                    title: 'Đăng nhập không thành công!',
+                    title: 'Tài khoản không tồn tại!',
                     icon: 'error',
                     button: 'Đóng'
                 });
@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ?>
     <div class="thanhbar">
         <img src="../IMG/logo.png" class="logo">
-        <form class="login_form" method="POST" action="">
+        <form class="login_form" name ="login_form" method="POST" action="">
             <div class="email">
                 <div class="font">Email</div>
                 <input type="text" name="email" require>

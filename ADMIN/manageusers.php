@@ -72,9 +72,12 @@
 
         .ui.card {
         flex: 0 0 30%; /* Đảm bảo rằng mỗi dòng có tối đa 3 khung hình */
-        margin: 1em; /* Thêm một chút không gian giữa các khung hình */
+        margin: 1em; 
         height: 270px; /* Cố định chiều cao của khung hình */
             }
+        .ui button {
+            background: #c0392b;
+        }
       
 </style>
 
@@ -108,11 +111,11 @@
         if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
         }
-
+        
         // Truy vấn dữ liệu từ bảng nguoidung
-        $sql = "SELECT ten_nguoidung, email FROM nguoidung";
+        $sql = "SELECT ten_nguoidung, email, ma_nguoidung FROM nguoidung";
         $result = $conn->query($sql);
-
+       
         if ($result->num_rows > 0) {
         // Duyệt qua mỗi hàng dữ liệu
         echo '<div class="container">';
@@ -127,23 +130,11 @@
                     <div class="description">' . $row["email"] . '</div>
                 </div>
                 <div class="ui two bottom attached buttons">
-                    <a href="../TRANG_CANHAN/xemuser.php">
-                    <div class="ui button">
-                 
-                        Xem trang cá nhân 
-                    </div>
-                </a>
-                    <form method="POST" action="#">
-                    <input type="hidden" name="ten_nguoidung" value="' . $row["ten_nguoidung"] . '">
-                    <button type="submit" class="ui primary button">
-                        xóa TK
-                    </button>
-                    </form>
-                
+                    <div class="ui button delete-btn" data-user-id="' . $row["ma_nguoidung"] . '">Xóa Tài Khoản</div>
                 </div>
             </div>';
         }
-        echo '</div>';
+        
         
         } else {
         echo "Không có kết quả";
@@ -152,6 +143,27 @@
         $conn->close();
 
 ?>
+<script>
+    $(document).ready(function() {
+        $('.delete-btn').click(function() {
+            var user_id = $(this).data('user-id');
+            if (confirm("Bạn có chắc chắn muốn xóa tài khoản này không?")) {
+                $.ajax({
+                    url: 'delete_user.php', // Đường dẫn đến script xử lý xóa tài khoản ở phía máy chủ
+                    method: 'POST',
+                    data: { user_id: user_id },
+                    success: function(response) {
+                        alert("Tài khoản đã được xóa thành công.");
+                        location.reload(); // Tải lại trang sau khi xóa thành công
+                    },
+                    error: function(xhr, status, error) {
+                        alert("Đã xảy ra lỗi: " + error);
+                    }
+                });
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
