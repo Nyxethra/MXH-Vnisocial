@@ -160,6 +160,13 @@
 </head>
 
 <body>
+<div class="edit-popup-overlay" id="edit-popup-overlay">
+    <div class="edit-popup-content">
+        <span class="edit-popup-close" onclick="closeEditPopup()">&times;</span>
+        <div id="edit-popup-content-container"></div>
+    </div>
+</div>
+
  
         <div class="container">
             <?php
@@ -289,44 +296,31 @@
             });
 
             // Thêm sự kiện click vào nút like và chỉnh sửa
-            document.addEventListener('DOMContentLoaded', function() {
-                // Thêm sự kiện click vào nút like
-                const likeButtons = document.querySelectorAll('.like-post');
-                likeButtons.forEach(button => {
-                    button.addEventListener('click', function() {
-                        const ma_baidang = button.getAttribute('data-ma_baidang');
-                        fetch('baidang/add_like.php?ma_baidang=' + ma_baidang)
-                            .then(response => response.json())
-                            .then(data => {
-                                if (data.success) {
-                                    button.classList.toggle('liked');
-                                    // Update số lượt like sau khi đã like hoặc bỏ like
-                                    const likeCountElement = button.parentNode.querySelector('.like-count');
-                                    if (likeCountElement) {
-                                        likeCountElement.innerText = data.likeCount;
-                                    }
-                                } else {
-                                    console.error(data.message);
-                                }
-                            })
-                            .catch(error => console.error('Error:', error));
-                    });
-                });
-
-                // Thêm sự kiện click vào nút chỉnh sửa
-                const editButtons = document.querySelectorAll('.edit-post');
-                editButtons.forEach(button => {
-                    button.addEventListener('click', function() {
-                        const ma_baidang = button.getAttribute('data-post-id');
-                        if (ma_baidang) {
-                            openEditPopup(ma_baidang);
-                        } else {
-                            console.error('Không tìm thấy giá trị ma_baidang.');
+document.addEventListener('DOMContentLoaded', function() {
+    // Thêm sự kiện click vào nút like
+    const likeButtons = document.querySelectorAll('.like-post');
+    likeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const ma_baidang = button.getAttribute('data-ma_baidang');
+            fetch('baidang/add_like.php?ma_baidang=' + ma_baidang)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        button.classList.toggle('liked');
+                        // Update số lượt like sau khi đã like hoặc bỏ like
+                        const likeCountElement = button.parentNode.querySelector('.like-count');
+                        if (likeCountElement) {
+                            likeCountElement.innerText = data.likeCount;
                         }
-                    });
-                });
-            });
-
+                    } else {
+                        console.error(data.message);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    });
+});
+          
             // JavaScript để mở và đóng pop-up
             function openEditPopup(ma_baidang) {
                 fetch('baidang/edit_post.php?ma_baidang=' + ma_baidang)
