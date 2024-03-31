@@ -52,10 +52,11 @@
             border-radius: 50%;
         }
         .btn-group {
-            display: flex;
-            align-items: baseline;
-            flex-direction: column;
-        }
+    display: flex;
+    align-items: baseline;
+    flex-direction: column;
+    margin-right: 20px;
+}
         .btn-accept, .btn-reject {
             padding: 5px 10px;
             border-radius: 5px;
@@ -66,12 +67,14 @@
             color: white;
             border: none;
             margin-right: 10px;
+            font-size: 18px;
         }
         .btn-reject {
             background-color: #bd726d;
             color: white;
             border: none;
             margin-top: 10px;
+            font-size: 17px;
         }
         .user-info div {
             margin-left: 10px;
@@ -83,11 +86,19 @@
             align-items: flex-start;
         }
         .user-avatar {
-            width: 72px;
-            height: 72px;
-            border-radius: 50%;
-            margin-right: 20px;
-        }
+    width: 90px;
+    height: 92px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.user-link {
+    text-decoration: none; /* Không gạch chân mặc định */
+    color: inherit; /* Sử dụng màu kế thừa hoặc đặt màu cụ thể */
+}
+
+.user-link:hover {
+    text-decoration: underline; /* Thêm gạch chân khi hover */
+}
     </style>
 </head>
 <body>
@@ -113,7 +124,7 @@
                         echo "<div class='user-info'>";
                         echo "<img class='user-avatar' src='img/" . $row["avatar"] . "'>";
                         echo "<div>";
-                        echo "<span class='tnd'><strong>" . $row["ten_nguoidung"] . "</strong></span><br>";
+                        echo "<a href='home.php?diden=trangcanhan_nl&id2=" . urlencode($row["ma_nguoidung"]) . "' target='_blank' class='user-link'><span class='tnd'><strong>" . $row["ten_nguoidung"] . "</strong></span></a><br>";
                         echo "<span class='st'>Sống tại " . $row["song_tai"] . "</span><br>";
                         echo "<span class='ts'> " . $row["tieusu"] . "</span>";
                         echo "</div>";
@@ -188,7 +199,7 @@ function rejectRequest(user_id, sender_id) {
             // Tự động tải lại trang sau khi thông báo lỗi
             location.reload();
         }
-    });
+    }); 
 } 
 
 

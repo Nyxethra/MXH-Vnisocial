@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php
-session_start();
-?>
+
 
 <head>
     <meta charset="UTF-8">
@@ -55,7 +53,7 @@ session_start();
     padding: 20px;
     width: 570px;
     background: white;
-    margin-left: 19px;
+    margin-left: 41px;
 }
 
 .custom-post-header {
@@ -215,7 +213,7 @@ session_start();
                                 ?>
                             </div>
                             <div class="custom-user-details">
-                                <h3><?php echo $row["ten_nguoidung"]; ?></h3>
+                                <h3><a style="color:#333;" href='home.php?diden=trangcanhan_nl&id2=" . urlencode($row["ma_nguoidung"]) . "' target='_blank' class='user-link'><span class='tnd'> <?php echo$row["ten_nguoidung"];?></span></a><br></h3>
                                 <p class="custom-post-date">Posted on <span class="custom-post-date"><?php echo $row["thoigian_dang"]; ?></span></p>
                             </div>
                             <div class="custom-post-actions">

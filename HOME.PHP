@@ -28,6 +28,13 @@ if(!isset($user_id)){
                 $id2 = $_GET["id2"]; // Lấy tham số id2 từ URL
                 include("TRANG_CANHAN/trangcanhan_nl.php");
                 break;
+            case 'ketqua_timkiem':
+                // Lấy tham số id2 từ URL
+                include("tim_kiem/ketqua.php");
+                break;
+            case 'dsbanbe':
+                include("banbe/dsbanbe.php");
+                break;
         }
     }else {include("subhome.php");}
 ?>

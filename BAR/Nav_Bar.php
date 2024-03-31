@@ -69,6 +69,7 @@
       display: flex;
       align-items: center;
       margin-left: auto; /* Align links to the right */
+      
     }
 
     .nav-links a {
@@ -78,9 +79,7 @@
       font-size: 14px;
     }
 
-    .nav-links a:hover {
-      text-decoration: underline;
-    }
+    
 
     .nav-search {
       margin-left: 10px; /* Adjust the value for desired distance */
@@ -134,7 +133,7 @@
  
     </div>
     <div class="nav-search">
-      <form action="TIM_KIEM/KETQUA.php" method="post">
+      <form action="home.php?diden=ketqua_timkiem" method="post">
         <input type="text" name="ten" placeholder="Nhập tên người dùng">
       </form>
     </div>
