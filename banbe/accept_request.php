@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $add_friend_sql = "INSERT INTO banbe (ma_nguoidung1, ma_nguoidung2) VALUES ($user_id, $sender_id)";
             if ($conn->query($add_friend_sql) === TRUE) {
                 // Thêm bản ghi mới vào bảng thongbao
-                $add_notification_sql = "INSERT INTO thongbao (thongbao_tu, thongbao_den, noidung_thongbao) VALUES ($sender_id, $user_id, 'đã đồng ý kết bạn')";
+                $add_notification_sql = "INSERT INTO thongbao (thongbao_tu, thongbao_den, noidung_thongbao) VALUES ($user_id, $sender_id,  'đã đồng ý kết bạn')";
                 if ($conn->query($add_notification_sql) === TRUE) {
                     // Trả về phản hồi JSON thành công
                     $response = array("success" => true, "message" => "Đã chấp nhận yêu cầu kết bạn từ người dùng có ID $sender_id");

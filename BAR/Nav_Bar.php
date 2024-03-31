@@ -69,6 +69,7 @@
       display: flex;
       align-items: center;
       margin-left: auto; /* Align links to the right */
+      
     }
 
     .nav-links a {
@@ -78,9 +79,7 @@
       font-size: 14px;
     }
 
-    .nav-links a:hover {
-      text-decoration: underline;
-    }
+    
 
     .nav-search {
       margin-left: 10px; /* Adjust the value for desired distance */
@@ -134,7 +133,7 @@
  
     </div>
     <div class="nav-search">
-      <form action="TIM_KIEM/KETQUA.php" method="post">
+      <form action="home.php?diden=ketqua_timkiem" method="post">
         <input type="text" name="ten" placeholder="Nhập tên người dùng">
       </form>
     </div>
@@ -158,29 +157,29 @@
   </div>
 
   <!-- Phần pop-up thông báo -->
-<div class="popup" id="popup">
-  <div class="popup-content">
-    <span class="close" onclick="closePopup()">×</span>
-    <!-- Nội dung của pop-up sẽ được đưa vào đây -->
-    <h3>Thông báo mới</h3>
-    <?php foreach ($notifications as $notification) { ?>
-      <p><?php echo $notification; ?></p>
-    <?php } ?>
+  <div class="poppup" id="popup">
+    <div class="popup-content">
+      <span class="close" onclick="closePopup()">×</span>
+      <!-- Nội dung của pop-up sẽ được đưa vào đây -->
+      <h3>Thông báo mới</h3>
+      <?php foreach ($notifications as $notification) { ?>
+        <p><?php echo $notification; ?></p>
+      <?php } ?>
+    </div>
   </div>
-</div>
 
-<script>
-  // Hàm để hiển thị pop-up
-  function showPopup() {
-    var popup = document.getElementById("popup");
-    popup.style.display = "block";
-  }
+  <script>
+    // Hàm để hiển thị pop-up
+    function showPopup() {
+      var popup = document.getElementById("popup");
+      popup.style.display = "block";
+    }
 
-  // Hàm để ẩn pop-up
-  function closePopup() {
-    var popup = document.getElementById("popup");
-    popup.style.display = "none";
-  }
-</script>
+    // Hàm để ẩn pop-up
+    function closePopup() {
+      var popup = document.getElementById("popup");
+      popup.style.display = "none";
+    }
+  </script>
 </body>
 </html>

@@ -48,12 +48,10 @@ if (mysqli_num_rows($result_t) > 0) {
     $row = mysqli_fetch_assoc($result_t);
     $ten_nguoidung = $row['ten_nguoidung'];
     $tieusu = $row['tieusu'];
-}
-if (mysqli_num_rows($result_tt) > 0) {
-    $row = mysqli_fetch_assoc($result_tt);
     $hoc_tai = $row['hoc_tai'];
-    $mqh = $row['moi_quan_he'];
+    $mqh = $row['song_tai'];
 }
+
 
 ?>
 
@@ -160,7 +158,7 @@ if (mysqli_num_rows($result_tt) > 0) {
                             </div>
                             <div>Đang học</div>
                             <?php echo $hoc_tai ?>
-                            <div>Mối quan hệ</div>
+                            <div>Sống Tại</div>
                             <?php echo $mqh ?>
                         </div>
                     </div>
