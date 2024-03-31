@@ -128,6 +128,19 @@ html {
                         </div>
                     </button>
         </a>
+        <a href="home.php?diden=dsbanbe">
+            <button class="btn-yeu-cau-ket-ban">
+            <div class="custom-user-info">
+                            <div class="custom-user-avatar">
+                            <img src="img/friends.png" alt="User Avatar">
+                            </div>
+                            <div class="custom-user-details">
+                                <h3 style =" font-size: 17px;">Danh sách bạn bè</h3>
+                                
+                            </div>
+                        </div>
+                    </button>
+        
        
     </div>
 </body>

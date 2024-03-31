@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,16 +10,51 @@
     <!-- Thư viện FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-                .custom-post {
-            margin-top: 30px;
-            margin-bottom: 30px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            width: 570px;
-            background: white;
-            margin-left: 19px;
-        }
+    /* CSS để ẩn và thiết kế pop-up */
+.edit-popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Màu nền mờ */
+    z-index: 999; /* Đảm bảo pop-up hiển thị trên cùng */
+    overflow: auto;
+}
+
+.edit-popup-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.edit-popup-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.edit-popup-close:hover,
+.edit-popup-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.custom-post {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 570px;
+    background: white;
+    margin-left: 41px;
+}
 
                 .custom-post-header {
             display: flex;
@@ -245,7 +282,7 @@
                                 ?>
                             </div>
                             <div class="custom-user-details">
-                                <h3><?php echo $row["ten_nguoidung"]; ?></h3>
+                                <h3><a style="color:#333;" href='home.php?diden=trangcanhan_nl&id2=" . urlencode($row["ma_nguoidung"]) . "' target='_blank' class='user-link'><span class='tnd'> <?php echo$row["ten_nguoidung"];?></span></a><br></h3>
                                 <p class="custom-post-date">Posted on <span class="custom-post-date"><?php echo $row["thoigian_dang"]; ?></span></p>
                             </div>
                             <div class="custom-post-actions">

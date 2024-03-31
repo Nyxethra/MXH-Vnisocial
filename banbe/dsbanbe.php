@@ -121,8 +121,8 @@
 
                 
                 // Truy vấn dữ liệu từ bảng yeucau_ketban và kết hợp với bảng nguoidung để lấy thông tin người muốn kết bạn
-                $ten = $_POST['ten'];
-                $sql = "SELECT * FROM nguoidung WHERE ten_nguoidung LIKE '%$ten%' ORDER BY ten_nguoidung ASC ";
+         
+                $sql = "SELECT * FROM banbe WHERE ma_nguoidung = $user_id ORDER BY ten_nguoidung ASC ";
                 $result = $conn->query($sql);
                 // Hiển thị danh sách người muốn kết bạn
                 if ($result->num_rows > 0) {
