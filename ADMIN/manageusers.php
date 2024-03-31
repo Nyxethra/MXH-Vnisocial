@@ -105,14 +105,10 @@
 
         // Tạo kết nối
         $conn = mysqli_connect("localhost", "root", "", "vnisocial");
-
-
         // Kiểm tra kết nối
         if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
         }
-        
-        // Truy vấn dữ liệu từ bảng nguoidung
         $sql = "SELECT ten_nguoidung, email, ma_nguoidung FROM nguoidung";
         $result = $conn->query($sql);
        
