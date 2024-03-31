@@ -54,7 +54,7 @@ if (!empty($ngay) && !empty($thang) && !empty($nam)) {
         VALUES ('$email', '$matkhau','$ten_nguoidung','$gioitinh','" . $datetime->format('Y-m-d H:i:s') . "')";
         if ($conn->query($insertQuery) === TRUE) {
             // Đăng ký thành công
-            header("location:../TRANG_CANHAN/trangcanhan.php");
+            header("location:../home.php");
         } else {
             // Đăng ký không thành công
             echo 'Đăng ký không thành công. Vui lòng thử lại!';

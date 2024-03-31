@@ -1,7 +1,8 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html <html>
 
 <head>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <title>Bảng pop-up đăng nhập sai</title>
     <style>
         /* CSS cho bảng pop-up */
@@ -37,16 +38,6 @@
 </head>
 
 <body>
-    <button onclick="showPopup()">Đăng nhập sai</button>
-
-    <!-- Bảng pop-up -->
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <span class="close-btn" onclick="hidePopup()">&times;</span>
-            <h3>Thông báo</h3>
-            <p>Thông tin đăng nhập không chính xác. Vui lòng thử lại.</p>
-        </div>
-    </div>
 
     <script>
         // JavaScript để hiển thị và ẩn bảng pop-up
@@ -57,6 +48,12 @@
         function hidePopup() {
             document.getElementById('popup').style.display = 'none';
         }
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer: '<a href="#">Why do I have this issue?</a>'
+        });
     </script>
 </body>
 
