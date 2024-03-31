@@ -27,7 +27,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Kết nối tới cơ sở dữ liệu thất bại: " . $conn->connect_error);
 }
-    $ten_nguoidung= ucfirst($firstname) ." ". ucfirst($lastname);
+   
 // Kiểm tra xem người dùng đã gửi biểu mẫu đăng ký chưa
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Lấy giá trị từ biểu mẫu đăng ký
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ngay = $_POST['ngay'];
     $thang = $_POST['thang'];
     $nam = $_POST['nam'];
-    
+    $ten_nguoidung= ucfirst($firstname) ." ". ucfirst($lastname);
     // Kiểm tra nếu ngày, tháng, năm không rỗng và đúng định dạng
     if (!empty($ngay) && !empty($thang) && !empty($nam)) {
         // Tạo chuỗi ngày tháng hợp lệ
@@ -94,7 +94,7 @@ if (!empty($error_msg)) {
             confirmButtonColor: '#d33',
             confirmButtonText: 'Đóng'
         }).then(() => {
-            window.location.href = 'SIGUP.LOGIN.LOGOUT/login.php'; // Chuyển hướng về trang login.php
+            window.location.href = 'login.php'; // Chuyển hướng về trang login.php
         });
     </script>";
 }

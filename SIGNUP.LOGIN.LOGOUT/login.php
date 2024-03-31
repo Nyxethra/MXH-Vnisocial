@@ -18,34 +18,58 @@
         <p class="acc_crt"style="color:white"><b>Đăng ký</b></p>
         <p class="free_hint" style="color:white">Mạng Xã Hội Mang Bản Sắc Việt.</p>
         <form class="signup_form" method="POST" action="dangki.php">
-            <div>
-                <input  class="firstname" type="text" name="firstname" placeholder="Họ" required>
-                <input  class="lastname" type="text" name="lastname" placeholder="Tên" required>
-                <input  class="email" type="email" name="email" placeholder="Điền email của bạn" required>
-                <input  class="password" type="password" name="matkhau" placeholder="Mật khẩu" required>
-                <input  class="password2" type="password" name="matkhau2" placeholder="Xác nhận mật khẩu" required>
-            </div>
-            <div class="form-group">
-                <!-- Trường input văn bản -->
-                <div class="date-input"> <p class="birthday"> Ngày sinh</p>
-                    <input type= date required>
-                <!-- Icon date -->
-                <i class="far fa-calendar-alt" style="color: #a72f2f;"></i>
+    <div>
+        <input  class="firstname" type="text" name="firstname" placeholder="Họ" required>
+        <input  class="lastname" type="text" name="lastname" placeholder="Tên" required>
+        <input  class="email" type="email" name="email" placeholder="Điền email của bạn" required>
+        <input  class="password" type="password" name="matkhau" placeholder="Mật khẩu" required>
+        <input  class="password2" type="password" name="matkhau2" placeholder="Xác nhận mật khẩu" required>
+    </div>
+    <div class="form-group">
+        <label class="birthday">Ngày sinh</label>
+        <input type="date" id="ngaysinh" required>
+        <!-- Ba trường ẩn để chứa giá trị ngày, tháng và năm -->
+        <input type="hidden" name="ngay" id="ngay">
+        <input type="hidden" name="thang" id="thang">
+        <input type="hidden" name="nam" id="nam">
+    </div>
+    <div class="form-group">
+        <p class="birthday" > Giới tính</p>
+        <select class="gender" name="gioitinh" required>
+            <option value="nam">Nam</option>
+            <option value="nu">Nữ</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <p class="agreement">Nhấn đăng ký đồng nghĩa với việc bạn đã đồng ý với các <a href="#">điều khoản</a>.</p>
+        <button class="signup" type="submit">Đăng ký</button>
+    </div>
+</form>
+<script>
+// Bắt sự kiện khi submit form
+$(".signup_form").submit(function(event) {
+    // Ngăn chặn việc submit form mặc định
+    event.preventDefault();
 
-                </div>
-            </div>
-            <div class="form-group">
-                <p class="birthday" > Giới tính</p>
-                <select class="gender" name="gioitinh" required>
-                    <option value="nam">Nam</option>
-                    <option value="nu">Nữ</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <p class="agreement">Nhấn đăng ký đồng nghĩa với việc bạn đã đồng ý với các <a href="#">điều khoản</a>.</p>
-                <button class="signup" type="submit">Đăng ký</button>
-            </div>
-        </form>
+    // Lấy giá trị ngày sinh từ trường input
+    var ngaysinhValue = document.getElementById('ngaysinh').value;
+
+    // Phân tách giá trị ngày, tháng và năm
+    var parts = ngaysinhValue.split("-");
+    var ngay = parts[2];
+    var thang = parts[1];
+    var nam = parts[0];
+
+    // Gán giá trị vào các trường input ẩn
+    document.getElementById('ngay').value = ngay;
+    document.getElementById('thang').value = thang;
+    document.getElementById('nam').value = nam;
+
+    // Submit form
+    this.submit();
+});
+</script>
+
     </div>
     <img class="logonen" src="../img/logo_nen.jpg" style="position: absolute; top: 133px; left: 529px; width: 700px;">
 </section>
