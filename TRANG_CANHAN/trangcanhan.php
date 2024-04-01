@@ -69,6 +69,11 @@ if (mysqli_num_rows($result_t) > 0) {
             flex-direction: row;
             background: #f3f5f5;
         }
+        .post_bar .custom-post{
+            width:95%;
+            box-shadow: 9px 12px 28px rgba(0, 0, 0, 0.3);
+            border: 1px solid;
+        }
     </style>
 </head>
 
@@ -163,34 +168,12 @@ if (mysqli_num_rows($result_t) > 0) {
                         </div>
                     </div>
                     <!-- phần bài đăng -->
-                    <div style="background-color:#f3f5f5; min-height:400px; flex:2.5; padding:20px; padding-right:0px">
-                        <div style="border: solid thin #aaa ;padding: 10px; background-color:white">
-                            <div></div>
-                            <br>
-                        </div>
-                        <div class="post_bar">
-                            <div class="post">
-                                <div>
-                                    <div><img src="ban.jpg" style="width:75px; margin-right:4px; "></div>
-                                    <div>
-                                        <div style="font-weight: bold; color:black;flex:2">First user</div>
-                                        Ngược lại với flex-grow, flex-shrink khiến cho các item co lại khi container được thay đổi độ rộng. Flex-shrink là thuộc tính Display Flex trong CSS có giá trị mặc định bằng 1. Như vậy khi container giảm độ rộng thì kích thước các item sẽ được thu hẹp lại bằng nhau.
-                                        <br /><br />
-                                        <a href="">Like</a> .<a href=""> Comments </a>. <span style="color:#999">21/12/2004</span>
-                                    </div>
-                                </div>
-                                <div class="post">
-                                    <div>
-                                        <div><img src="ban.jpg" style="width:75px; margin-right:4px; "></div>
-                                        <div>
-                                            <div style="font-weight: bold; color:black;">First user</div>
-                                            Theo Trung tâm Dự báo khí tượng thuỷ văn quốc gia, khoảng chiều tối và đêm nay 26/2, đợt không khí lạnh tăng cường sẽ ảnh hưởng đến thời tiết Đông Bắc Bộ, một số nơi ở Tây Bắc Bộ và Bắc Trung Bộ. Gió đông bắc trong đất liền mạnh dần lên cấp 2-3, vùng ven biển cấp 3
-                                            <br /><br />
-                                            <a href="">Like</a> .<a href=""> Comments </a>. <span style="color:#999">21/12/2004</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div style="background-color:#f3f5f5; min-height:400px; flex:2.5; padding:0px 10px; padding-right:0px">
+                        <div class="post_bar" >
+                            
+                                <?php include ("baidang/baidang.php") ?>
+                                
+                            
                         </div>
                     </div>
                 </div>
