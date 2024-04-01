@@ -173,9 +173,9 @@ if (mysqli_num_rows($result_t) > 0) {
                 
                         
                     
-                        <div class="post_bar">
+                        
                            <?php include ("baidang/baidang_tcn.php"); ?>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

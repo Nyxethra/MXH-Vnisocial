@@ -21,6 +21,11 @@
             z-index: 999;
             overflow: auto;
         }
+        .container_baidang {
+    margin-left: -7%;
+    width: 97%;
+    margin-top: 15%;
+}
 
         .edit-popup-content {
             background-color: #fefefe;

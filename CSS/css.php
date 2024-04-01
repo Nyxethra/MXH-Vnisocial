@@ -77,11 +77,7 @@ button.ui.icon.button.scroll-button.scroll-right {
 .friends {
     margin-top: 10px;
 }
-.post_bar {
-    margin-top: -29%;
-    background-color: white;
-    padding: 10px;
-}
+
 .aaa {
     position: relative;
 }
