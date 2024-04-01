@@ -94,7 +94,7 @@ $ma_nguoidung = isset($_GET['ma_nguoidung']) ? $_GET['ma_nguoidung'] : '';
         echo "<br>";
         echo $row["noidung_binhluan"];
         echo "<button class='edit-btn' data-comment-id='" . $row["ma_binhluan"] . "'>Sửa</button>";
-        echo "<button class='delete-btn' data-comment-id='" . $row["ma_binhluan"] . "'>Xóa</button>";
+        // echo "<button class='delete-btn' data-comment-id='" . $row["ma_binhluan"] . "'>Xóa</button>";
         echo "</div>";
       }
     } else {
@@ -145,14 +145,7 @@ $ma_nguoidung = isset($_GET['ma_nguoidung']) ? $_GET['ma_nguoidung'] : '';
     //     }
     //   
   </script>
-  <script>
-    // Lấy giá trị mã bài đăng từ URL
-    var urlParams = new URLSearchParams(window.location.search);
-    var ma_baidang = urlParams.get('ma_baidang');
 
-    // Sử dụng mã bài đăng để thực hiện các xử lý khác, ví dụ: truy vấn cơ sở dữ liệu để lấy các comment liên quan
-    // ...
-  </script>
 </body>
 
 </html>
