@@ -48,16 +48,18 @@
             text-decoration: none;
         }
 
-        .custom-post {
-            margin-top: 30px;
-            margin-bottom: 30px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            background: white;
-        }
+        .custom-post_dxbb {
+    margin-top: 30px;
+    /* margin-bottom: 30px; */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    background: white;
+    width: 95%;
+    margin-left: 19px;
+}
 
-        .custom-post-header {
+        .custom-post_dxbb-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -89,28 +91,28 @@
             flex-direction: column;
         }
 
-        .custom-post-date {
+        .custom-post_dxbb-date {
             margin-top: 5px;
         }
 
-        .custom-post-content p {
+        .custom-post_dxbb-content p {
             font-size: 16px;
             margin: 16px 0px 16px 0px;
         }
 
-        .custom-post-image img {
+        .custom-post_dxbb-image img {
             max-width: 100%;
             border-radius: 8px;
         }
 
-        .custom-post-actions button {
+        .custom-post_dxbb-actions button {
             background-color: transparent;
             border: none;
             color: #333;
             margin-right: 10px;
         }
 
-        .custom-post-actions .star {
+        .custom-post_dxbb-actions .star {
             background: none;
             border: none;
             cursor: pointer;
@@ -118,7 +120,7 @@
             color: yellow;
         }
 
-        .custom-post-actions .star.clicked {
+        .custom-post_dxbb-actions .star.clicked {
             color: red;
         }
 
@@ -139,7 +141,7 @@
             color: #a72f2f;
         }
 
-        .custom-post-actions .star.liked {
+        .custom-post_dxbb-actions .star.liked {
             color: red;
         }
 
@@ -232,38 +234,8 @@
             ORDER BY 
                 baidang.thoigian_dang DESC
             LIMIT 
-                1)
-            UNION ALL
-            (SELECT 
-                baidang.*, 
-                nguoidung.ten_nguoidung, 
-                nguoidung.avatar 
-            FROM 
-                baidang 
-            INNER JOIN 
-                nguoidung ON baidang.dang_boi = nguoidung.ma_nguoidung 
-            INNER JOIN 
-                banbe ON (baidang.dang_boi = banbe.ma_nguoidung1 AND banbe.ma_nguoidung2 = $user_id)
-                OR (baidang.dang_boi = banbe.ma_nguoidung2 AND banbe.ma_nguoidung1 = $user_id)
-            WHERE
-                baidang.dang_boi IN (
-                    SELECT
-                        ma_nguoidung1 AS ma_nguoidung
-                    FROM
-                        banbe
-                    WHERE
-                        ma_nguoidung2 = $user_id
-                    UNION
-                    SELECT
-                        ma_nguoidung2 AS ma_nguoidung
-                    FROM
-                        banbe
-                    WHERE
-                        ma_nguoidung1 = $user_id
-                )
-            ORDER BY 
-                RAND()  
-            LIMIT 10)
+                10)
+            
         ";
 
         $result = $conn->query($sql);
@@ -273,8 +245,8 @@
             while ($row = $result->fetch_assoc()) {
                 $imagePath = "img/" . $row["image"];
         ?>
-                <div class="custom-post">
-                    <div class="custom-post-header">
+                <div class="custom-post_dxbb">
+                    <div class="custom-post_dxbb-header">
                         <div class="custom-user-info">
                             <div class="custom-user-avatar">
                                 <?php
@@ -284,20 +256,20 @@
                             </div>
                             <div class="custom-user-details">
                                 <h3><a style="color:#333;" href='home.php?diden=trangcanhan_nl&id2=<?php echo urlencode($row["ma_nguoidung"]); ?>' target='_blank' class='user-link'><span class='tnd'> <?php echo $row["ten_nguoidung"]; ?></span></a><br></h3>
-                                <p class="custom-post-date">Posted on <span class="custom-post-date"><?php echo $row["thoigian_dang"]; ?></span></p>
+                                <p class="custom-post_dxbb-date">Posted on <span class="custom-post_dxbb-date"><?php echo $row["thoigian_dang"]; ?></span></p>
                             </div>
-                            <div class="custom-post-actions">
+                            <div class="custom-post_dxbb-actions">
                                 <button class="edit-post" data-post-id="<?php echo $row['ma_baidang']; ?>"><i class="fas fa-cog" style="color: #a72f2f;"></i></button>
                             </div>
                         </div>
                     </div>
-                    <div class="custom-post-content">
+                    <div class="custom-post_dxbb-content">
                         <p><?php echo $row["noidung"]; ?></p>
                     </div>
-                    <div class="custom-post-image"><img src="<?php echo $imagePath; ?>" alt="Post Image"></div>
-                    <div class="custom-post-actions">
+                    <div class="custom-post_dxbb-image"><img src="<?php echo $imagePath; ?>" alt="Post Image"></div>
+                    <div class="custom-post_dxbb-actions">
                         <button class="star" data-ma_baidang="<?php echo $row['ma_baidang']; ?>"><i class="fas fa-star"></i></button>
-                        <div class="custom-post-actions">
+                        <div class="custom-post_dxbb-actions">
                             <button class="like-post" data-ma_baidang="<?php echo $row['ma_baidang']; ?>">
                                 <i class="fas fa-thumbs-up" style="color: #a72f2f;"></i>
                                 <span class="like-count">(<?php echo $row['luong_like']; ?>)</span>

@@ -49,8 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // }
 
     // Truy vấn cơ sở dữ liệu để kiểm tra xem tên người dùng và mật khẩu có khớp hay không
-    $query = "SELECT * FROM nguoidung WHERE email = '$email' OR matkhau = '$matkhau'";
-    $result = $conn->query($query);
+    $query = "SELECT * FROM nguoidung WHERE email = '$email' AND matkhau = '$matkhau'"; // :))
+    $result = $conn->query($query); //  :)))))))
 
 
     if ($result->num_rows > 0) {
