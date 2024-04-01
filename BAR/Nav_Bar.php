@@ -13,16 +13,17 @@
     }
 
     .nav-bar {
-      position: fixed; /* Sử dụng position: fixed thay vì static */
-      top: 0; /* Đặt top là 0 để thanh navbar luôn ở đầu trang */
-      width: 100%;
-      height: 50px;
-      background-color: #a72f2f; /* Facebook blue */
-      display: flex;
-      align-items: center;
-      padding: 0 20px;
-      z-index:100;
-    }
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #a72f2f;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 100;
+    left: 0px;
+}
     .badge{
       margin-left:0.5px;
 

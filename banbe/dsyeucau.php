@@ -136,7 +136,7 @@
                         echo "</li>";
                     }
                 } else {
-                    echo "<li>Hiện không có ai muốn kết bạn với bạn.</li>";
+                    echo "<li>Hiện không có lời mời kết bạn nào.</li>";
                 }
                 $conn->close();
             ?>

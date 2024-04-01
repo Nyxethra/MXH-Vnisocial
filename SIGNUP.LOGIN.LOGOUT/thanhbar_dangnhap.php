@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($email != $email_r) {
             echo "<script>
         swal.fire({
-            title: 'Email không đúng!',
+            title: 'Email hoặc mật khẩu không đúng!',
             icon: 'error',
             button: 'Đóng'
         });
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($matkhau != $matkhau_r) {
                 echo "<script>
         swal.fire({
-            title: 'Mật khẩu không đúng!',
+            title: 'Email hoặc mật khẩu không đúng!',
             icon: 'error',
             button: 'Đóng'
         });
