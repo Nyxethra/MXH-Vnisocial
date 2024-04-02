@@ -108,13 +108,6 @@
     <div class="container">
         <ul>
             <?php
-            
-                // Kết nối với cơ sở dữ liệu
-                $conn = new mysqli('localhost', 'root', '', 'vnisocial');
-                // Kiểm tra kết nối
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
                 // Lấy ID người dùng hiện tại
 
                 // Đây là ID người dùng hiện tại, bạn có thể thay đổi hoặc lấy từ session
@@ -131,7 +124,7 @@
                     while($row = $result->fetch_assoc()) {
                         echo "<li>";
                         echo "<div class='user-info'>";
-                        echo "<img class='user-avatar' src='img/" . $row["avatar"] . "'>";
+                        echo "<img class='user-avatar' src='IMG/" . $row["avatar"] . "'>";
                         echo "<div>";
                         echo "<a href='index.php?diden=trangcanhan_nl&id2=" . urlencode($row["ma_nguoidung"]) . "' target='_blank' class='user-link'><span class='tnd'><strong>" . $row["ten_nguoidung"] . "</strong></span></a><br>";
                         echo "<span class='st'>Sống tại " . $row["song_tai"] . "</span><br>";

@@ -7,14 +7,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $friend_id = $_POST["friend_id"];
         $user_id = $_POST["user_id"];
 
-        // Kết nối đến cơ sở dữ liệu
-        $conn = new mysqli('localhost', 'root', '', 'vnisocial');
-
-        // Kiểm tra kết nối
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
         // Xóa bản ghi từ bảng banbe
         $delete_friend_sql = "DELETE FROM banbe WHERE (ma_nguoidung1 = $user_id AND ma_nguoidung2 = $friend_id) OR (ma_nguoidung1 = $friend_id AND ma_nguoidung2 = $user_id)";
         if ($conn->query($delete_friend_sql) === TRUE) {

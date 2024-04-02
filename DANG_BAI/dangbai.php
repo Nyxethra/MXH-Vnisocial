@@ -93,12 +93,6 @@
 <?php
  // Bắt đầu phiên làm việc
 
-// Bao gồm tập lệnh kết nối cơ sở dữ liệu (thay thế bằng chi tiết kết nối thực tế của bạn)
-$conn = new mysqli("localhost", "root", "", "vnisocial");
-
-if ($conn->connect_error) {
-  die("Kết nối thất bại: " . $conn->connect_error);
-}
 
 // Kiểm tra xem form đã được gửi hay chưa
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -189,13 +183,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <?php
-        // Kết nối vào cơ sở dữ liệu
-        $conn = new mysqli('localhost', 'root', '', 'vnisocial');
-
-        // Kiểm tra kết nối
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+    
         
         $sql = "SELECT avatar, ten_nguoidung
         FROM nguoidung

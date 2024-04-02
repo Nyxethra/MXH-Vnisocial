@@ -105,12 +105,6 @@
     <div class="container">
         <ul>
             <?php
-                // Kết nối với cơ sở dữ liệu
-                $conn = new mysqli('localhost', 'root', '', 'vnisocial');
-                // Kiểm tra kết nối
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
                 // Lấy ID người dùng hiện tại
                 // Đây là ID người dùng hiện tại, bạn có thể thay đổi hoặc lấy từ session
 

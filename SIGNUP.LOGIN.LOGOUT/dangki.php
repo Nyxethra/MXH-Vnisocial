@@ -15,18 +15,7 @@ session_start();
 // Khai báo biến để lưu thông báo lỗi
 $error_msg = "";
 
-// Kết nối đến cơ sở dữ liệu MySQL
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "vnisocial";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Kiểm tra kết nối
-if ($conn->connect_error) {
-    die("Kết nối tới cơ sở dữ liệu thất bại: " . $conn->connect_error);
-}
    
 // Kiểm tra xem người dùng đã gửi biểu mẫu đăng ký chưa
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

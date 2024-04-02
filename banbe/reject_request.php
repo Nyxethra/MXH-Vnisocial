@@ -5,14 +5,6 @@ if (isset($_POST["sender_id"]) && isset($_POST["user_id"])) {
     $sender_id = $_POST["sender_id"];
     $user_id = $_POST["user_id"];
 
-    // Kết nối đến cơ sở dữ liệu
-    $conn = new mysqli('localhost', 'root', '', 'vnisocial');
-
-    // Kiểm tra kết nối
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
     // Xóa yêu cầu kết bạn từ bảng yeucau_ketban
     $sql = "DELETE FROM yeucau_ketban WHERE ma_nguoigui = $sender_id AND ma_nguoinhan = $user_id";
     if ($conn->query($sql) === TRUE) {

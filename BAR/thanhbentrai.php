@@ -71,10 +71,7 @@ html {
 </head>
 <body>
     <?php 
-        $conn = new mysqli('localhost', 'root', '', 'vnisocial');
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+
         $result = $conn->query($sql);
         $sqlnd = "SELECT *
         FROM nguoidung
@@ -91,7 +88,7 @@ html {
                             <div class="custom-user-avatar">
                                 <?php
                                 // Tạo đường dẫn hoàn chỉnh cho avatar người dùng
-                                $avatarPath = "img/" . $rownguoidung["avatar"];
+                                $avatarPath = "IMG/" . $rownguoidung["avatar"];
                                 echo '<img src="' . $avatarPath . '" alt="User Avatar">';
                                 ?>
                             </div>
@@ -106,7 +103,7 @@ html {
             <button class="btn-yeu-cau-ket-ban">
             <div class="custom-user-info">
                             <div class="custom-user-avatar">
-                            <img src="img/newsfeed.png" alt="User Avatar">
+                            <img src="IMG/newsfeed.png" alt="User Avatar">
                             </div>
                             <div class="custom-user-details">
                                 <h3 style =" font-size: 17px;">Bảng Tin</h3>
@@ -119,7 +116,7 @@ html {
             <button class="btn-yeu-cau-ket-ban">
             <div class="custom-user-info">
                             <div class="custom-user-avatar">
-                            <img src="img/add-friend.png" alt="User Avatar">
+                            <img src="IMG/add-friend.png" alt="User Avatar">
                             </div>
                             <div class="custom-user-details">
                                 <h3 style =" font-size: 17px;">Yêu cầu kết bạn</h3>
@@ -132,7 +129,7 @@ html {
             <button class="btn-yeu-cau-ket-ban">
             <div class="custom-user-info">
                             <div class="custom-user-avatar">
-                            <img src="img/friends.png" alt="User Avatar">
+                            <img src="IMG/friends.png" alt="User Avatar">
                             </div>
                             <div class="custom-user-details">
                                 <h3 style =" font-size: 17px;">Danh sách bạn bè</h3>
