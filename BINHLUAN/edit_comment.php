@@ -3,6 +3,9 @@ session_start();
 include("db_connection.php"); // Thay thế "db_connection.php" bằng tệp kết nối cơ sở dữ liệu của bạn
 
 // Kiểm tra xem người dùng đã gửi yêu cầu cập nhật bình luận chưa
+$ma_baidang = isset($_GET['ma_baidang']) ? $_GET['ma_baidang'] : '';
+$ma_nguoidung = isset($_GET['ma_nguoidung']) ? $_GET['ma_nguoidung'] : '';
+// var_dump($ma_nguoidung);
 if (isset($_POST['update_comment'])) {
     $commentId = $_POST['comment_id'];
     $editedComment = $_POST['edited_comment'];
@@ -12,10 +15,14 @@ if (isset($_POST['update_comment'])) {
     $result = $conn->query($sql);
 
     if ($result) {
-        // Cập nhật bình luận thành công
-        // Có thể chuyển hướng hoặc hiển thị thông báo thành công
+        echo "<script>
+        alert('Cập nhật bình luận thành công!');
+    </script>";;
     } else {
-        // Cập nhật bình luận thất bại
+        echo "<script>
+        alert('Cập nhật bình luận thất bại!');
+    </script>";;
+       
         // Có thể chuyển hướng hoặc hiển thị thông báo lỗi
     }
 }
@@ -34,7 +41,7 @@ if (isset($_GET['comment_id'])) {
 
         // Hiển thị biểu mẫu chỉnh sửa bình luận với nội dung bình luận ban đầu
         echo "
-        <form method='post' action='edit_comment.php'>
+        <form method='post' action=''>
             <textarea name='edited_comment'>$commentContent</textarea>
             <input type='hidden' name='comment_id' value='$commentId'>
             <button type='submit' name='update_comment'>Cập nhật</button>
@@ -43,5 +50,4 @@ if (isset($_GET['comment_id'])) {
         // Không tìm thấy bình luận
         // Có thể chuyển hướng hoặc hiển thị thông báo lỗi
     }
-}
-?>
+}?>

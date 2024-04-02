@@ -75,6 +75,19 @@ if ($resultThongTin->num_rows > 0) {
             flex-direction: row;
             background: #f3f5f5;
         }
+        .post_bar .custom-post{
+            margin-left:0;
+            margin-top:100px;
+            width:110%;
+            box-shadow: 9px 12px 28px rgba(0, 0, 0, 0.3);
+            border: 1px solid;
+        }
+        .post_bar .container_baidang{
+            margin: 0;
+        }
+        .post_bar .container_dangbai {
+            padding:0 20px 20px ;
+        }
     </style>
 </head>
 
@@ -201,7 +214,7 @@ if ($resultThongTin->num_rows > 0) {
             </div>
         </div>
         <div class="friend_bar">
-            Người Liên Hệ<br>
+            Bạn bè<br>
             <div class="friends">
                 <img src="ban.jpg" class="friend_img">
                 <br>First user

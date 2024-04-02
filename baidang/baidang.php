@@ -291,22 +291,33 @@
                                 <h3><a style="color:#333;" href='home.php?diden=trangcanhan_nl&id2=<?php echo urlencode($row["ma_nguoidung"]); ?>' target='_blank' class='user-link'><span class='tnd'> <?php echo $row["ten_nguoidung"]; ?></span></a><br></h3>
                                 <p class="custom-post-date">Posted on <span class="custom-post-date"><?php echo $row["thoigian_dang"]; ?></span></p>
                             </div>
-                            <div class="custom-post-actions">
-                                <button class="edit-post" data-post-id="<?php echo $row['ma_baidang']; ?>"><i class="fas fa-cog" style="color: #a72f2f;"></i></button>
-                            </div>
                         </div>
                     </div>
                     <div class="custom-post-content">
                         <p><?php echo $row["noidung"]; ?></p>
                     </div>
-                    <div class="custom-post-image"><img src="<?php echo $imagePath; ?>" alt="Post Image"></div>
+                    <?php if (!empty($row["image"]) && file_exists("img/" . $row["image"])) { ?>
+                 <div class="custom-post-image">
+                    <?php
+                    $imagePath = "img/" . $row["image"];
+                    echo '<img src="' . $imagePath . '" alt="Post Image">';
+                    ?>
+                </div>
+            <?php } ?>
+
+                    
                     <div class="custom-post-actions">
-                        <button class="star" data-ma_baidang="<?php echo $row['ma_baidang']; ?>"><i class="fas fa-star"></i></button>
                         <div class="custom-post-actions">
-                            <button class="like-post" data-ma_baidang="<?php echo $row['ma_baidang']; ?>">
-                                <i class="fas fa-thumbs-up" style="color: #a72f2f;"></i>
-                                <span class="like-count">(<?php echo $row['luong_like']; ?>)</span>
-                            </button>
+                        <button class="like-post" data-ma_baidang="<?php echo $row['ma_baidang']; ?>">
+    <?php
+    // Hiển thị số lượt like nếu có
+    if ($row['luong_like'] > 0) {
+        echo '<span class="like-count">(' . $row['luong_like'] . ')</span>';
+    }
+    ?>
+    <i class="fas fa-thumbs-up" style="color: #a72f2f;"></i>
+</button>
+
                             <?php
                             // Ép kiểu integer
                             $changeTypeBd = (int)$row['ma_baidang'];
@@ -343,68 +354,38 @@
         }
 
         // Thêm sự kiện click vào nút like
-        const likeButtons = document.querySelectorAll('.like-post');
-        likeButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const ma_baidang = button.getAttribute('data-ma_baidang');
-                const isLiked = button.classList.contains('liked');
+const likeButtons = document.querySelectorAll('.like-post');
+likeButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        const ma_baidang = button.getAttribute('data-ma_baidang');
+        const isLiked = button.classList.contains('liked');
 
-                // Gửi yêu cầu đến add_like.php để thêm hoặc xóa like
-                fetch('baidang/add_like.php?ma_baidang=' + ma_baidang + '&isLiked=' + isLiked)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            button.classList.toggle('liked');
+        // Gửi yêu cầu đến add_like.php để thêm hoặc xóa like
+        fetch('baidang/add_like.php?ma_baidang=' + ma_baidang + '&isLiked=' + isLiked)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    button.classList.toggle('liked');
 
-                            const likeCountElement = button.querySelector('.like-count');
-                            if (likeCountElement) {
-                                likeCountElement.innerText = '(' + data.likeCount + ')';
-                            }
-
-                            if (button.classList.contains('liked')) {
-                                button.innerHTML = '<i class="fas fa-thumbs-up" style="color: red;"></i>';
-                            } else {
-                                button.innerHTML = '<i class="fas fa-thumbs-up" style="color: #a72f2f;"></i>';
-                            }
-                        } else {
-                            console.error(data.message);
-                        }
-                    })
-                    .catch(error => console.error('Error:', error));
-            });
-        });
-
-        // Thêm sự kiện click cho nút chỉnh sửa
-        const editButtons = document.querySelectorAll('.edit-post');
-        editButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const ma_baidang = button.getAttribute('data-post-id');
-                openEditPopup(ma_baidang);
-            });
-        });
-
-        // JavaScript để mở và đóng pop-up
-        function openEditPopup(ma_baidang) {
-            const xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        document.getElementById('edit-popup-content-container_baidang').innerHTML = xhr.responseText;
-                        document.getElementById('edit-popup-overlay').style.display = 'block';
-                    } else {
-                        console.error('Error:', xhr.status);
+                    const likeCountElement = button.querySelector('.like-count');
+                    if (likeCountElement) {
+                        likeCountElement.innerText = '(' + data.luong_like + ')';
                     }
-                }
-            };
-            xhr.open('GET', 'baidang/edit_post.php?ma_baidang=' + ma_baidang, true);
-            xhr.send();
-        }
 
-        // Hàm đóng pop-up
-        function closeEditPopup() {
-            document.getElementById('edit-popup-overlay').style.display = 'none';
-        }
-    </script>
+                    if (button.classList.contains('liked')) {
+                        button.innerHTML = '<i class="fas fa-thumbs-up" style="color: red;"></i>';
+                    } else {
+                        button.innerHTML = '<i class="fas fa-thumbs-up" style="color: #a72f2f;"></i>';
+                    }
+                } else {
+                    console.error(data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    });
+});
+
+</script>
 </body>
 
 </html>

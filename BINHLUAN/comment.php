@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         VALUES ('$ma_nguoidung', '$ma_baidang', '$noidung_binhluan', current_timestamp())";
 
         if ($conn->query($sql) === TRUE) {
-            echo "Bình luận đã được lưu thành công.";
+            echo "<script>alert('Bình luận đã được lưu!')</script>;";
         } else {
             echo "Lỗi: " . $sql . "<br>" . $conn->error;
         }
@@ -26,44 +26,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Vui lòng nhập bình luận của bạn.";
     }
 }
-
-// Xử lý yêu cầu sửa bình luận
-if (isset($_POST['edit_comment'])) {
-    $commentId = $_POST['comment_id'];
-    $editedComment = $_POST['edited_comment'];
-
-    // Thực hiện câu truy vấn để cập nhật bình luận trong cơ sở dữ liệu
-    $sql = "UPDATE binhluan SET noidung_binhluan = '$editedComment' WHERE ma_binhluan = '$commentId'";
-    $result = $conn->query($sql);
-
-    if ($result) {
-        echo "Cập nhật bình luận thành công";
-
-        // Có thể chuyển hướng hoặc hiển thị thông báo thành công
-    } else {
-        echo "Cập nhật bình luận thất bại";
-
-        // Có thể chuyển hướng hoặc hiển thị thông báo lỗi
-    }
-}
-
-// Xử lý yêu cầu xóa bình luận
-if (isset($_POST['delete_comment'])) {
-    $commentId = $_POST['comment_id'];
-
-    // Thực hiện câu truy vấn để xóa bình luận khỏi cơ sở dữ liệu
-    $sql = "DELETE FROM binhluan WHERE ma_binhluan = '$commentId'";
-    $result = $conn->query($sql);
-
-    if ($result) {
-        echo "Xóa bình luận thành công";
-
-        // Có thể chuyển hướng hoặc hiển thị thông báo thành công
-    } else {
-        echo "Xóa bình luận thất bại";
-        // Có thể chuyển hướng hoặc hiển thị thông báo lỗi
-    }
-}
-
-// Sau khi xử lý yêu cầu sửa hoặc xóa bình luận, bạn có thể chuyển hướng người dùng hoặc hiển thị thông báo thành công.
-// ...
