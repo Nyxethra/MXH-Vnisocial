@@ -291,9 +291,6 @@
                                 <h3><a style="color:#333;" href='home.php?diden=trangcanhan_nl&id2=<?php echo urlencode($row["ma_nguoidung"]); ?>' target='_blank' class='user-link'><span class='tnd'> <?php echo $row["ten_nguoidung"]; ?></span></a><br></h3>
                                 <p class="custom-post-date">Posted on <span class="custom-post-date"><?php echo $row["thoigian_dang"]; ?></span></p>
                             </div>
-                            <div class="custom-post-actions">
-                                <button class="edit-post" data-post-id="<?php echo $row['ma_baidang']; ?>"><i class="fas fa-cog" style="color: #a72f2f;"></i></button>
-                            </div>
                         </div>
                     </div>
                     <div class="custom-post-content">
@@ -301,7 +298,6 @@
                     </div>
                     <div class="custom-post-image"><img src="<?php echo $imagePath; ?>" alt="Post Image"></div>
                     <div class="custom-post-actions">
-                        <button class="star" data-ma_baidang="<?php echo $row['ma_baidang']; ?>"><i class="fas fa-star"></i></button>
                         <div class="custom-post-actions">
                             <button class="like-post" data-ma_baidang="<?php echo $row['ma_baidang']; ?>">
                                 <i class="fas fa-thumbs-up" style="color: #a72f2f;"></i>
@@ -373,38 +369,7 @@
                     .catch(error => console.error('Error:', error));
             });
         });
-
-        // Thêm sự kiện click cho nút chỉnh sửa
-        const editButtons = document.querySelectorAll('.edit-post');
-        editButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const ma_baidang = button.getAttribute('data-post-id');
-                openEditPopup(ma_baidang);
-            });
-        });
-
-        // JavaScript để mở và đóng pop-up
-        function openEditPopup(ma_baidang) {
-            const xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        document.getElementById('edit-popup-content-container_baidang').innerHTML = xhr.responseText;
-                        document.getElementById('edit-popup-overlay').style.display = 'block';
-                    } else {
-                        console.error('Error:', xhr.status);
-                    }
-                }
-            };
-            xhr.open('GET', 'baidang/edit_post.php?ma_baidang=' + ma_baidang, true);
-            xhr.send();
-        }
-
-        // Hàm đóng pop-up
-        function closeEditPopup() {
-            document.getElementById('edit-popup-overlay').style.display = 'none';
-        }
-    </script>
+</script>
 </body>
 
 </html>
