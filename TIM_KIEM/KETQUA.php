@@ -122,8 +122,15 @@
                 
                 // Truy vấn dữ liệu từ bảng yeucau_ketban và kết hợp với bảng nguoidung để lấy thông tin người muốn kết bạn
                 $ten = $_POST['ten'];
-                $sql = "SELECT * FROM nguoidung WHERE ten_nguoidung LIKE '%$ten%'  AND ma_nguoidung != $user_id ORDER BY ten_nguoidung ASC ";
-                $result = $conn->query($sql);
+                $sql = "SELECT nguoidung.*, 
+                CASE WHEN EXISTS (
+                    SELECT * FROM banbe 
+                    WHERE (ma_nguoidung1 = $user_id AND ma_nguoidung2 = nguoidung.ma_nguoidung) 
+                    OR (ma_nguoidung2 = $user_id AND ma_nguoidung1 = nguoidung.ma_nguoidung)
+                ) THEN 1 ELSE 0 END AS la_ban_be
+                FROM nguoidung 
+                WHERE ten_nguoidung LIKE '%$ten%' AND ma_nguoidung != $user_id 
+                ORDER BY ten_nguoidung ASC";                $result = $conn->query($sql);
                 // Hiển thị danh sách người muốn kết bạn
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
@@ -137,13 +144,19 @@
                         echo "</div>";
                         echo "</div>";
                         echo "<div class='btn-group'>";
-                        echo "<button class='btn-accept' onclick='guiYeuCauKetBan(" . $user_id . ", " . $row["ma_nguoidung"] . ")'>Thêm Bạn Bè</button>";
-                        echo "</div>";
-                        echo "</li>";
-                    }
-                } else {
-                    echo "<li>Không tìm thấy người này.</li>";
-                }
+                         // Nếu là bạn bè, hiển thị nút Hủy Bạn Bè, ngược lại hiển thị nút Thêm Bạn Bè
+        if ($row["la_ban_be"] == 1) {
+            echo "<button class='btn-accept' onclick='huyBanBe(" . $user_id . ", " . $row["ma_nguoidung"] . ")'>Hủy Bạn Bè</button>";
+        } else {
+            echo "<button class='btn-accept' onclick='huyKetBan(" . $user_id . ", " . $row["ma_nguoidung"] . ")'>Thêm Bạn Bè</button>";
+        }
+        
+        echo "</div>";
+        echo "</li>";
+    }
+} else {
+    echo "<li>Không tìm thấy người này.</li>";
+}
                 $conn->close();
             ?>
         </ul>
@@ -170,6 +183,38 @@ success: function(response) {
     // Xử lý kết quả phản hồi từ server
     if (jsonResponse.success) {
         alert("Yêu cầu kết bạn đã được gửi.");
+    } else {
+        alert(jsonResponse.message);
+    }
+},
+error: function(xhr, status, error) {
+    // Xử lý lỗi nếu có
+    alert("Có lỗi xảy ra: " + error);
+}
+});
+}
+</script>
+<script>
+function huyKetBan(user_id, friend_id) {
+// Chuyển đổi friend_id thành số nguyên 
+friend_id = parseInt(friend_id);
+
+// Gửi yêu cầu kết bạn bằng AJAX
+$.ajax({
+url: "banbe/huyyeucau.php",
+method: "POST",
+data: {
+    friend_id: friend_id,
+    user_id: user_id
+},
+success: function(response) {
+    // Parse response as JSON
+    var jsonResponse = JSON.parse(response);
+    
+    // Xử lý kết quả phản hồi từ server
+    if (jsonResponse.success) {
+        alert("Đã Hủy Kết Bạn.");
+        location.reload();
     } else {
         alert(jsonResponse.message);
     }
