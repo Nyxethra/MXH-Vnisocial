@@ -11,6 +11,8 @@ include "suaanhbia.php";
 
 $hideChangeAvatar = '';
 $hideChangeAnhBia = '';
+$annut = '';
+
 
 if (isset($_GET['id2'])) {
     $user_id = $_GET['id2'];
@@ -18,6 +20,8 @@ if (isset($_GET['id2'])) {
     // Ẩn chức năng thay đổi avatar và ảnh bìa nếu tồn tại id2
     $hideChangeAvatar = 'display:none;';
     $hideChangeAnhBia = 'display:none;';
+    $annut = 'display:none;';
+
 }
 
 $sqlAvatar = "SELECT avatar FROM nguoidung WHERE ma_nguoidung ='$user_id'  LIMIT 1;";
@@ -205,7 +209,7 @@ if ($resultThongTin->num_rows > 0) {
                                     <button type="button" id="edit-avatar-btn" class="edit-avatar" style="<?php echo $hideChangeAvatar; ?>">
                                         <i class="fas fa-camera" style="margin:0;"></i>
                                     </button>
-                                    <input type="submit" value="Lưu"  id='show'>
+                                    <input type="submit" value="Lưu"  id='show' style="<?php echo $annut; ?>">
                                 </form>
                             </div>
                             <div class="info__user">
@@ -221,7 +225,7 @@ if ($resultThongTin->num_rows > 0) {
                         <div class="inside_gioithieu">
                             <div class="gioithieu_title"><i class="fa fa-info-circle" style="font-size: 17px; margin: 2px;color:black"></i> Giới thiệu</div>
                             <div class="gioithieu_part"><i class="fas fa-edit" style="font-size: 17px; margin: 2px;color:black"></i>Tiểu sử :
-                                <div class="text_gioithieu" style="float:right; margin:0;font-weight:normal"><?php echo $tieusu ?>
+                                <div class="text_gioithieu"  margin:0;font-weight:normal"><?php echo $tieusu ?>
                                 </div>
                             </div>
                             <div class="gioithieu_part"><i class="fas fa-book-open" style="font-size: 17px; margin: 2px;color:black"></i>Đang học :
@@ -233,7 +237,7 @@ if ($resultThongTin->num_rows > 0) {
                             <div class="text_gioithieu"><?php echo $mqh ?>
                             </div>
                             <div class="text-center mt-3">
-                                <button class="btn btn-sm btn-outline-primary" onclick="window.location.href='TRANG_CANHAN/chinh_sua_thong_tin.php'">Chỉnh sửa thông tin cá nhân</button>
+                                <button style="<?php echo $annut; ?>" class="btn btn-sm btn-outline-primary" onclick="window.location.href='TRANG_CANHAN/chinh_sua_thong_tin.php'">Chỉnh sửa thông tin cá nhân</button>
                             </div>
                         </div>
                     </div>
@@ -291,7 +295,7 @@ if ($resultThongTin->num_rows > 0) {
         </div>
     </div>
     <div class="col-md-4">
-        <div class="friend_bar">
+        <div class="friend_bar" style="<?php echo $annut; ?>">
             <h3>Bạn bè</h3>
             <?php
             $sqlFriends = "SELECT * FROM banbe WHERE ma_nguoidung1 = '$user_id' OR ma_nguoidung2 = '$user_id'";
