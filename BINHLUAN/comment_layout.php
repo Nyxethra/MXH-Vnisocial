@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -57,7 +56,7 @@
       margin-left: 10px;
     }
   </style>
-      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <?php
 session_start();
@@ -82,7 +81,24 @@ $ma_nguoidung = isset($_GET['ma_nguoidung']) ? $_GET['ma_nguoidung'] : '';
   <div class="binhluan-list">
     <h3>Danh sách bình luận</h3>
     <?php
+    echo "<style>
+  .back-button {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 9999;
+  }
+</style>";
 
+    echo "<button class='back-button' onclick='gohome()'>Trở về</button>";
+
+    echo "<script>
+  function gohome() {
+    
+        window.location.href = '../home.php?ma_nguoidung=$ma_nguoidung';
+    
+  }
+</script>";
     // Hiển thị danh sách bình luận
     $sql = "SELECT binhluan.*, nguoidung.ten_nguoidung FROM binhluan 
       JOIN nguoidung ON binhluan.binhluan_boi = nguoidung.ma_nguoidung 

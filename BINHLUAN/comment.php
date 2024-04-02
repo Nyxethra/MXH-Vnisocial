@@ -67,8 +67,8 @@ if (isset($_POST['update_comment'])) {
               Swal.fire('Đã lưu!', '', 'success',);
               window.location.href = 'comment_layout.php?ma_baidang=$ma_baidang&ma_nguoidung=$ma_nguoidung';
             } else if (result.isDenied) {
-              Swal.fire('Các thay đổi không được lưu', '', 'info');
-                
+                Swal.fire('Các thay đổi không được lưu', '', 'info');
+
               // Code để ở lại trang hiện tại
             }
           });
@@ -100,7 +100,13 @@ if (isset($_GET['comment_id'])) {
             <textarea name='edited_comment'>$commentContent</textarea>
             <input type='hidden' name='comment_id' value='$commentId'>
             <button type='submit' name='update_comment'>Cập nhật</button>
-        </form>";
+            <button type='button' onclick='goBack()'>Trở về</button>
+        </form>;
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>";
     } else {
         echo "Không tìm thấy bình luận";
         // Có thể chuyển hướng hoặc hiển thị thông báo lỗi

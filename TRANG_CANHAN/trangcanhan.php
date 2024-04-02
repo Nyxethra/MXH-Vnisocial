@@ -124,7 +124,7 @@ if ($resultThongTin->num_rows > 0) {
                                 <form action="" method="POST" enctype="multipart/form-data">
                                     <input type="file" name="avatar" id="avatar-input" accept="image/*" style="display:none">
                                     <button type="button" id="edit-avatar-btn" class="edit-avatar" style="<?php echo $hideChangeAvatar; ?>">
-                                        <i class="fas fa-camera"></i>
+                                        <i class="fas fa-camera" style="margin:0;"></i>
                                     </button>
                                     <input type="submit" value="Lưu" id='show'>
                                 </form>
