@@ -91,17 +91,7 @@
     </script>
 <?php
 
-//Kết nối cơ sở dữ liệu
-$dbHost = 'localhost';
-$dbUser = 'root';
-$dbPass = '';
-$dbName = 'vnisocial';
 
-$conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
-
-if (!$conn) {
-    die("Không thể kết nối đến cơ sở dữ liệu: " . mysqli_connect_error());
-}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["avatar"])) {
     $avatar = $_FILES["avatar"];

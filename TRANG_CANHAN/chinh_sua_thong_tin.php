@@ -62,19 +62,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Nếu tên người dùng dài hơn 30 ký tự, thông báo lỗi
             echo "Tên người dùng không được vượt quá 30 ký tự.";
         } else {
-            // Kết nối đến cơ sở dữ liệu (thay đổi các thông số kết nối tùy theo cài đặt của bạn)
-            $servername = "localhost";
-            $username = "ten_nguoidung";
-            $password = "matkhau";
-            $database = "vnisocial";
+            // // Kết nối đến cơ sở dữ liệu (thay đổi các thông số kết nối tùy theo cài đặt của bạn)
+            // $servername = "localhost";
+            // $username = "ten_nguoidung";
+            // $password = "matkhau";
+            // $database = "vnisocial";
 
-            // Kết nối đến cơ sở dữ liệu
-            $conn = new mysqli($servername, $username, $password, $database);
+            // // Kết nối đến cơ sở dữ liệu
+            // $conn = new mysqli($servername, $username, $password, $database);
 
-            // Kiểm tra kết nối
-            if ($conn->connect_error) {
-                die("Kết nối không thành công: " . $conn->connect_error);
-            }
+            // // Kiểm tra kết nối
+            // if ($conn->connect_error) {
+            //     die("Kết nối không thành công: " . $conn->connect_error);
+            // }
 
             // Chuẩn bị câu lệnh SQL để cập nhật thông tin cá nhân trong cơ sở dữ liệu
             $sql = "UPDATE nguoidung SET ten_nguoidung='$newUsername', tieusu='$bio', hoc_tai='$school', song_tai='$location' WHERE ma_nguoidung='$user_id'";
