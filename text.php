@@ -1,60 +1,38 @@
-<!DOCTYPE html <html>
-
+<!DOCTYPE html>
+<html>
 <head>
+  <title>Example Page</title>
+  <script>
+    function gohome(personalPageURL, homePageURL) {
+      var foundPersonalPage = false;
+      var foundHomePage = false;
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <title>Bảng pop-up đăng nhập sai</title>
-    <style>
-        /* CSS cho bảng pop-up */
-        .popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
+      for (var i = window.history.length - 1; i >= 0; i--) {
+        if (window.history[i] !== undefined) {
+          var url = window.history[i].toString();
 
-        .popup-content {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+          if (url.includes(personalPageURL)) {
+            foundPersonalPage = true;
+            window.location.href = url;
+            break;
+          } else if (url.includes(homePageURL)) {
+            foundHomePage = true;
+            window.location.href = url;
+            break;
+          }
         }
+      }
 
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-    </style>
+      if (!foundPersonalPage && !foundHomePage) {
+        console.log("Trang không tìm thấy trong lịch sử duyệt web");
+      }
+    }
+  </script>
 </head>
-
 <body>
+  <button onclick="gohome('https://www.google.com/chrome', 'https://www.youtube.com')">Trở về</button>
 
-    <script>
-        // JavaScript để hiển thị và ẩn bảng pop-up
-        function showPopup() {
-            document.getElementById('popup').style.display = 'block';
-        }
-
-        function hidePopup() {
-            document.getElementById('popup').style.display = 'none';
-        }
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Something went wrong!",
-            footer: '<a href="#">Why do I have this issue?</a>'
-        });
-    </script>
+  <h1>Example Page</h1>
+  <p>This is an example page.</p>
 </body>
-
 </html>
