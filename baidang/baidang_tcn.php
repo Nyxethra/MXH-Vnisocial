@@ -272,7 +272,11 @@
                     <div class="custom-post_dxbb-content">
                         <p><?php echo $row["noidung"]; ?></p>
                     </div>
-                    <div class="custom-post_dxbb-image"><img src="<?php echo $imagePath; ?>" alt="Post Image"></div>
+                    <?php if (!empty($row["image"])) { ?>
+                        <div class="custom-post_dxbb-image">
+                            <img src="<?php echo $imagePath; ?>" alt="Post Image">
+                        </div>
+                    <?php } ?>
                     <div class="custom-post_dxbb-actions">
                         <button class="star" data-ma_baidang="<?php echo $row['ma_baidang']; ?>"><i class="fas fa-star"></i></button>
                         <div class="custom-post_dxbb-actions">
