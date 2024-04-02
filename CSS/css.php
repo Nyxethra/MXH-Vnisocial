@@ -22,19 +22,7 @@ button.ui.icon.button.scroll-button.scroll-right {
 .dxbb {
     position: relative;
 }
-.container_dxbb {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    width: 100%;
-    margin-top: 40px;
-    position: relative;
-    background: #f3f5f5;
-    overflow-x: hidden;
-    height: 267px;
-}
+
 .ui.card {
     margin: 10px;
 }
@@ -48,8 +36,8 @@ button.ui.icon.button.scroll-button.scroll-right {
     max-width: 34%;
 }
 .db_tcn {
-    margin-left: 4%;
-    margin-top: -8%;
+    margin-left: 43%;
+    margin-top: -48%;
 }
 .abc {
     display: flex;
@@ -88,7 +76,7 @@ button.ui.icon.button.scroll-button.scroll-right {
     border-radius: 8px;
     padding: 20px;
     background: white;
-    width: 61%;
-    margin-left: 189px;
+    width: 570px;
+    margin-left: 8px;
 }
 </style>

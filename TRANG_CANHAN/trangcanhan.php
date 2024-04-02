@@ -149,7 +149,7 @@ if (mysqli_num_rows($result_t) > 0) {
 
                     <?php include("dexuatbanbe.php") ?>
                 </div>
-                <div class = "aaa" style="display :flex ">
+                <div class = "aaa" >
                     <!-- phần giới thiệu -->
                     <div class="gioithieu">
                         <div class="inside_gioithieu">
