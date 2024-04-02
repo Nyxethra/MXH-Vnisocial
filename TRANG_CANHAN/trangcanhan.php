@@ -69,11 +69,18 @@ if (mysqli_num_rows($result_t) > 0) {
             flex-direction: row;
             background: #f3f5f5;
         }
-
-        .post_bar .custom-post {
-            width: 95%;
+        .post_bar .custom-post{
+            margin-left:0;
+            margin-top:100px;
+            width:110%;
             box-shadow: 9px 12px 28px rgba(0, 0, 0, 0.3);
-            border: 1px solid #ccc;
+            border: 1px solid;
+        }
+        .post_bar .container_baidang{
+            margin: 0;
+        }
+        .post_bar .container_dangbai {
+            padding:0 20px 20px ;
         }
     </style>
 </head>
@@ -82,7 +89,6 @@ if (mysqli_num_rows($result_t) > 0) {
     <!-- Thanh công cụ -->
 
     <!-- phần giao diện chính -->
-    <div class = "truoc_">
     <div class="abc">
         <div class="main_interface">
             <div style="width:100%">
@@ -155,48 +161,36 @@ if (mysqli_num_rows($result_t) > 0) {
 
                     <?php include("dexuatbanbe.php") ?>
                 </div>
-                <div class = "aaa" >
+                <div style="display :flex ">
                     <!-- phần giới thiệu -->
-                    <div class="gioithieu" style="display:flex">
-                        <div class="inside_gioithieu"   >
+                    <div class="gioithieu">
+                        <div class="inside_gioithieu">
                             <div style="font-size :15px; color:black; text-align:center ">Gioi thieu</div>
-                            <div style="flex:1">Tiểu sử<br>
+                            <div>Tiểu sử<br>
                                 <?php echo $tieusu ?>
                             </div>
-                            <div style="flex:2">Đang học <br>
-                                <?php echo $hoc_tai ?>
-                            </div>
-
-                            <div style="flex:1" >Sống Tại<br>
-                                <?php echo $mqh ?>
-                            </div>
-
+                            <div>Đang học</div>
+                            <?php echo $hoc_tai ?>
+                            <div>Sống Tại</div>
+                            <?php echo $mqh ?>
                         </div>
                     </div>
                     <!-- phần bài đăng -->
-                    
-                      
-                        <div class = "db_tcn"> 
-                         <div class= "fsafafa">  
-                        <?php include ("dang_bai/dangbai.php") ?>
+                    <div style="background-color:#f3f5f5; min-height:400px; flex:2.5; padding:0px 10px; padding-right:0px">
+                        <div class="post_bar" >
+                                <?php include ("dang_bai/dangbai.php") ?>
+                                <?php include ("baidang/baidang.php") ?>
+                                
+                            
                         </div>
-                </div>
-                
-                        
-                    
-                        
-                           <?php include ("baidang/baidang_tcn.php"); ?>
-                           </div> 
-                        
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
         <!-- Phần bạn bè -->
         <div class="friend_bar">
-            Người Liên Hệ<br>
+            Bạn bè<br>
             <div class="friends">
                 <img src="ban.jpg" class="friend_img">
                 <br>
@@ -229,7 +223,6 @@ if (mysqli_num_rows($result_t) > 0) {
         </div>
     </div>
     </div>
-    
     <script>
         document.getElementById('edit-avatar-btn').addEventListener('click', function() {
             document.getElementById('avatar-input').click();

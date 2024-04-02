@@ -107,6 +107,7 @@
 .post_bar {
   background-color: white;
   padding: 10px;
+  width:100%;
 }
 .post {
   padding: 4px;
