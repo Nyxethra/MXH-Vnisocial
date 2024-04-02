@@ -1,8 +1,4 @@
-<?php session_start();
 
-include "comment.php"
-
-?>
 <!DOCTYPE html>
 <html>
 
@@ -61,11 +57,16 @@ include "comment.php"
       margin-left: 10px;
     }
   </style>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <?php
+session_start();
+
+include "comment.php";
+
+
 $ma_baidang = isset($_GET['ma_baidang']) ? $_GET['ma_baidang'] : '';
 $ma_nguoidung = isset($_GET['ma_nguoidung']) ? $_GET['ma_nguoidung'] : '';
-// var_dump($ma_nguoidung);
 ?>
 
 <body>
@@ -81,10 +82,11 @@ $ma_nguoidung = isset($_GET['ma_nguoidung']) ? $_GET['ma_nguoidung'] : '';
   <div class="binhluan-list">
     <h3>Danh sách bình luận</h3>
     <?php
+
     // Hiển thị danh sách bình luận
     $sql = "SELECT binhluan.*, nguoidung.ten_nguoidung FROM binhluan 
       JOIN nguoidung ON binhluan.binhluan_boi = nguoidung.ma_nguoidung 
-      WHERE binhluan.ma_baidang = '$ma_baidang' 
+      WHERE binhluan.ma_baidang = '$ma_baidang'  ORDER BY thoidiem_binhluan DESC
       LIMIT 10";
     $result = $conn->query($sql);
 
@@ -94,14 +96,14 @@ $ma_nguoidung = isset($_GET['ma_nguoidung']) ? $_GET['ma_nguoidung'] : '';
         echo "<b>" . $row["ten_nguoidung"] . "</b>";
         echo "<br>";
         echo $row["noidung_binhluan"];
-        echo "<button class='edit-btn' data-comment-id='" . $row["ma_binhluan"] . "'>Sửa</button>";
+        echo "<button class='edit-btn' data-comment-id='" . $row["ma_binhluan"] . "' data-ma-bai-dang='$ma_baidang' data-ma-nguoi-dung='$ma_nguoidung'>Sửa</button>";
         echo "</div>";
       }
     } else {
       echo "Chưa có bình luận nào.";
     }
-    
-    
+
+
     ?>
   </div>
 
@@ -111,15 +113,17 @@ $ma_nguoidung = isset($_GET['ma_nguoidung']) ? $_GET['ma_nguoidung'] : '';
     var ma_baidang = urlParams.get('ma_baidang');
 
     // Sử dụng mã bài đăng để thực hiện các xử lý khác, ví dụ: truy vấn cơ sở dữ liệu để lấy các comment liên quan
-    // ...
+    // 
 
     // Sự kiện click nút "Sửa"
     var editButtons = document.getElementsByClassName("edit-btn");
     for (var i = 0; i < editButtons.length; i++) {
       editButtons[i].addEventListener("click", function() {
         var commentId = this.getAttribute("data-comment-id");
+        var maBaiDang = this.getAttribute("data-ma-bai-dang");
+        var maNguoiDung = this.getAttribute("data-ma-nguoi-dung");
         // Thực hiện xử lý sửa bình luận, ví dụ: chuyển hướng người dùng đến trang sửa bình luận với mã bình luận tương ứng
-        window.location.href = "edit_comment.php?comment_id=" + commentId;
+        window.location.href = "comment.php?comment_id=" + commentId + "&ma_baidang=" + maBaiDang + "&ma_nguoidung=" + maNguoiDung;
       });
     }
   </script>
