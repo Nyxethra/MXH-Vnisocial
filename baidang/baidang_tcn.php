@@ -251,7 +251,7 @@
                             </div>
                             <div class="custom-user-details">
                             <h3>
-    <a style="color:#333;" href="<?php echo ($row['dang_boi'] == $user_id) ? 'index.php?diden=trangcanhan' : 'index.php?diden=trangcanhan&id2=' . $row['dang_boi']; ?>" target="_blank" class="user-link">
+                            <a style="color:#333;" href="<?php echo ($row['dang_boi'] == $user_id) ? 'index.php?diden=trangcanhan' : 'index.php?diden=trangcanhan&id2=' . $row['dang_boi']; ?>" target="_blank" class="user-link">
         <span class="tnd"><?php echo $row["ten_nguoidung"]; ?></span>
     </a>
     <br>

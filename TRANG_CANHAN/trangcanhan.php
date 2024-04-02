@@ -241,13 +241,7 @@ if ($resultThongTin->num_rows > 0) {
 
                     <div class="db_tcn">
                         <?php
-                        $servername = "localhost"; // Tên máy chủ MySQL
-                        $username = "root"; // Tên người dùng MySQL
-                        $password = ""; // Mật khẩu của người dùng MySQL
-                        $database = "vnisocial"; // Tên cơ sở dữ liệu MySQL
-
-                        // Tạo kết nối đến cơ sở dữ liệu
-                        $conn = new mysqli($servername, $username, $password, $database);
+                        
 
                         if (!isset($_GET['id2'])) {
                             echo '<div class="fsafafa"> <div>';
@@ -262,6 +256,7 @@ if ($resultThongTin->num_rows > 0) {
                             $resultCheckFriendship = mysqli_query($conn, $sqlCheckFriendship);
                             if ($resultCheckFriendship) {
                                 if (mysqli_num_rows($resultCheckFriendship) > 0) {
+                                    
                                     include("baidang/baidang_tcn.php");
                                 } else {
                                     echo '<p class="thongbao">Không có bài viết để hiển thị</p>';
