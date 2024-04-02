@@ -103,76 +103,91 @@ if ($conn->connect_error) {
 // Kiểm tra xem form đã được gửi hay chưa
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Lấy dữ liệu từ form
-  $content = htmlspecialchars($_POST['content']);
-  $image = $_FILES['image'];
 
-  // Lấy thông tin người đăng bài từ phiên làm việc
-  $dang_boi = $_SESSION['ma_nguoidung']; // Đây là giả định 'ma_nguoidung' là trường ID của người dùng trong bảng 'nguoidung'
+  // Kiểm tra xem form đã được gửi hay chưa
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // Lấy dữ liệu từ form
+  $content = "";
+  $image = "";
 
-  // Tải ảnh (thay thế bằng logic xử lý ảnh của bạn)
-  $image_name = '';
-  if (!empty($image['name'])) {
-    $image_name = uniqid() . '.' . pathinfo($image['name'], PATHINFO_EXTENSION);
-    $image_path = "IMG/" . $image_name;
-    if (!move_uploaded_file($image['tmp_name'], $image_path)) {
-      $image_name = '';
+  if (isset($_POST['content'])) {
+    $content = htmlspecialchars($_POST['content']);
+  }
+
+  if (isset($_FILES['image'])) {
+    $image = $_FILES['image'];
+  }
+
+  // Kiểm tra xem cả hai biến $content và $image đều không rỗng
+  if (!empty($content) || !empty($image['name'])) {
+    // Lấy thông tin người đăng bài từ phiên làm việc
+    $dang_boi = $_SESSION['ma_nguoidung']; // Đây là giả định 'ma_nguoidung' là trường ID của người dùng trong bảng 'nguoidung'
+
+    // Tải ảnh (thay thế bằng logic xử lý ảnh của bạn)
+    $image_name = '';
+    if (!empty($image['name'])) {
+      $image_name = uniqid() . '.' . pathinfo($image['name'], PATHINFO_EXTENSION);
+      $image_path = "IMG/" . $image_name;
+      if (!move_uploaded_file($image['tmp_name'], $image_path)) {
+        $image_name = '';
+      }
     }
-  }
 
-  // Chuẩn bị câu lệnh SQL
-  $sql = "INSERT INTO baidang (dang_boi, noidung, image) VALUES (?, ?, ?)";
-  $stmt = $conn->prepare($sql);
-  $stmt->bind_param("iss", $dang_boi, $content, $image_name);
+    // Chuẩn bị câu lệnh SQL
+    $sql = "INSERT INTO baidang (dang_boi, noidung, image) VALUES (?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("iss", $dang_boi, $content, $image_name);
 
-  if ($stmt->execute()) {
-    $success_message = "Đăng bài thành công!";
+    if ($stmt->execute()) {
+      $success_message = "Đăng bài thành công!";
+    } else {
+      $error_message = "Đăng bài thất bại.";
+    }
+
+    if (isset($error_message)) {
+      // Hiển thị thông báo lỗi
+      echo "<script>
+          Swal.fire({
+              title: 'Lỗi!',
+              text: '$error_message',
+              icon: 'error',
+              confirmButtonColor: '#3085d6',
+              confirmButtonText: 'Đóng'
+          });
+      </script>";
+    } else if (isset($success_message)) {
+      // Hiển thị thông báo thành công
+      echo "<script>
+          Swal.fire({
+              title: 'Thành công!',
+              text: '$success_message',
+              icon: 'success',
+              confirmButtonColor: '#3085d6',
+              confirmButtonText: 'Đóng'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = 'url-cua-trang-chuyen-huong'; // Thay thế 'url-cua-trang-chuyen-huong' bằng URL thực tế bạn muốn chuyển hướng tới
+            }
+          });
+      </script>";
+    }
   } else {
-    $error_message = "Đăng bài thất bại.";
-  }
+    // $error_message = "Vui lòng nhập nội dung hoặc chọn hình ảnh để đăng bài.";
 
-  
-if (isset($error_message)) {
     // Hiển thị thông báo lỗi
-    echo "<script>
-        Swal.fire({
-            title: 'Lỗi!',
-            text: '$error_message',
-            icon: 'error',
-            confirmButtonColor: '#3085d6',
-            timer: 1400,
-            confirmButtonText: 'Đóng'
-        });
-    </script>";
-} else if (isset($success_message)) {
-    // Hiển thị thông báo thành công
-    echo "<script>
-        Swal.fire({
-            title: 'Thành công!',
-            text: '$success_message',
-            icon: 'success',
-            confirmButtonColor: '#3085d6',
-            timer: 1400,
-            confirmButtonText: 'Đóng'
-        });
-    </script>";
+    // echo "<script>
+    //     Swal.fire({
+    //         title: 'Lỗi!',
+    //         text: '$error_message',
+    //         icon: 'error',
+    //         confirmButtonColor: '#3085d6',
+    //         confirmButtonText: 'Đóng'
+    //     });
+    // </script>";
+  }
 }
-
 }
-
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
 <?php
         // Kết nối vào cơ sở dữ liệu
         $conn = new mysqli('localhost', 'root', '', 'vnisocial');
@@ -202,7 +217,7 @@ if (isset($error_message)) {
                 }
             ?>
         <div class="ui input">
-          <input type="text" placeholder="Nhập nội dung tại đây...">
+          <input type="text" placeholder="Nhập nội dung tại đây..." name="content">
         </div>
       </div>
       <div class="divider">.</div> <div class="phiaduoi">
@@ -225,7 +240,7 @@ $(document).ready(function() {
 
     Swal.fire({
       title: 'Đăng bài',
-      html: '<?php $conn = new mysqli('localhost', 'root', '', 'vnisocial'); if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error); } $sql = "SELECT avatar, ten_nguoidung FROM nguoidung WHERE ma_nguoidung = $user_id; "; $result = $conn->query($sql); ?><div class="popup1">' + '<div class="tren">' + '<h2>Tạo bài đăng</h2>' + '<button class="ui icon button"><i class="close icon"></i></button>' + '</div>' + '<form action="" method="post" enctype="multipart/form-data"><div class="duoi"><div class="item"><?php while($row=$result->fetch_assoc()){?><img class="ui avatar image" src="img/<?php echo $row["avatar"];?>"><span class="username"><?php echo $row['ten_nguoidung']; ?></span><?php }?></div><div class="item"><textarea name="content" placeholder="Nhập nội dung bài viết..."></textarea></div><div class="item"><span>Thêm hình ảnh/video vào bài viết của bạn</span><div class="image-preview"><img id="image_preview" src="" alt="Hình ảnh được chọn"></div><button type="button" class="ui icon_img button" id="image"> <i class="material-icons">add_photo_alternate</i>  </button> <input type="file" id="image_input" name="image" style="display: none;"></div><div class="item"><button type="submit" class="ui red button">Đăng bài</button></div></div></div></form>',
+      html: '<?php $conn = new mysqli('localhost', 'root', '', 'vnisocial'); if ($conn->connect_error) { die("Connection failed: " . $conn->connect_error); } $sql = "SELECT avatar, ten_nguoidung FROM nguoidung WHERE ma_nguoidung = $user_id; "; $result = $conn->query($sql); ?><div class="popup1">' + '<div class="tren">' + '<h2>Tạo bài đăng</h2>' + '<button class="ui icon button"><i class="close icon"></i></button>' + '</div>' + '<form action="" name ="abcd" method="post" enctype="multipart/form-data"><div class="duoi"><div class="item"><?php while($row=$result->fetch_assoc()){?><img class="ui avatar image" src="img/<?php echo $row["avatar"];?>"><span class="username"><?php echo $row['ten_nguoidung']; ?></span><?php }?></div><div class="item"><textarea name="content" placeholder="Nhập nội dung bài viết..."></textarea></div><div class="item"><span>Thêm hình ảnh/video vào bài viết của bạn</span><div class="image-preview"><img id="image_preview" src="" alt="Hình ảnh được chọn"></div><button type="button" class="ui icon_img button" id="image"> <i class="material-icons">add_photo_alternate</i>  </button> <input type="file" id="image_input" name="image" style="display: none;"></div><div class="item"><button type="submit" name="dangbai_button" class="ui red button">Đăng bài</button></div></div></div></form>',
       width: '100%',
       heightAuto: false,
       padding: '3em',

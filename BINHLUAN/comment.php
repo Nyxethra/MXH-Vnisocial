@@ -32,10 +32,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'Your work has been saved',
+                title: 'Lưu bình luận thành công',
                 showConfirmButton: false,
                 timer: 1500,
-              });</script>";
+                });</script>";
         } else {
             echo "Lỗi: " . $sql . "<br>" . $conn->error;
         }

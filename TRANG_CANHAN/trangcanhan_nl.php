@@ -74,6 +74,59 @@ if ($resultThongTin->num_rows > 0) {
             display: flex;
             flex-direction: row;
             background: #f3f5f5;
+        } 
+        .post_bar .custom-post {
+            margin-left: 0;
+            margin-top: 100px;
+            width: 110%;
+            box-shadow: 9px 12px 28px rgba(0, 0, 0, 0.3);
+            border: 1px solid;
+        }
+
+        .post_bar .container_baidang {
+            margin: 0;
+        }
+
+        .post_bar .container_dangbai {
+            padding: 0 20px 20px;
+        }
+
+        .gioithieu {
+            text-align: center;
+            margin-top: 10px;
+            border-radius: 12%;
+        }
+
+        .inside_gioithieu {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #333333;
+
+        }
+
+        .gioithieu_title {
+            border-radius: 16%;
+            margin-top: 0;
+            height: 50px;
+            padding: 10px;
+            background-color: #a72f2f;
+            font-size: 30px;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 10px;
+        }
+
+        .gioithieu_part {
+            font-weight: bold;
+            font-size: 24px;
+            width: 90%;
+            text-align: left;
+            margin: 22px 0 22px 20px;
+        }
+
+        .text_gioithieu {
+            margin: 10px;
+            font-size: 20px;
         }
     </style>
 </head>
@@ -125,12 +178,22 @@ if ($resultThongTin->num_rows > 0) {
                         <?php include("dexuatbanbe.php") ?>
                     </div>
                     <div class="aaa">
-                        <div class="gioithieu">
+                        <!-- Phần giới thiệu -->
+                        <div class="gioithieu" style=" background-color:#ccc">
                             <div class="inside_gioithieu">
-                                <div style="font-size: 15px; color:black; text-align:center ">Gioi thieu</div>
-                                <div>Tiểu sử<br><?php echo $tieusu ?></div>
-                                <div>Đang học</div><?php echo $hoc_tai ?>
-                                <div>Sống Tại</div><?php echo $mqh ?>
+                                <div class="gioithieu_title"><i class="fa fa-info-circle" style="font-size: 17px; margin: 2px;color:black"></i> Giới thiệu</div>
+                                <div class="gioithieu_part"><i class="fas fa-edit" style="font-size: 17px; margin: 2px;color:black"></i>Tiểu sử :
+                                    <div class="text_gioithieu" style="float:right; margin:0;font-weight:normal"><?php echo $tieusu ?>
+                                    </div>
+                                </div>
+                                <div class="gioithieu_part"><i class="fas fa-book-open" style="font-size: 17px; margin: 2px;color:black"></i>Đang học :
+                                </div>
+                                <div class="text_gioithieu"><?php echo $hoc_tai ?>
+                                </div>
+                                <div class="gioithieu_part"><i class="fas fa-home" style="font-size: 17px; margin: 2px;color:black"></i>Sống Tại :
+                                </div>
+                                <div class="text_gioithieu"><?php echo $mqh ?>
+                                </div>
                             </div>
                         </div>
 
@@ -144,39 +207,40 @@ if ($resultThongTin->num_rows > 0) {
 
 
 
+
                         <div class="db_tcn">
-    <?php
-    $servername = "localhost"; // Tên máy chủ MySQL
-    $username = "root"; // Tên người dùng MySQL
-    $password = ""; // Mật khẩu của người dùng MySQL
-    $database = "vnisocial"; // Tên cơ sở dữ liệu MySQL
+                            <?php
+                            $servername = "localhost"; // Tên máy chủ MySQL
+                            $username = "root"; // Tên người dùng MySQL
+                            $password = ""; // Mật khẩu của người dùng MySQL
+                            $database = "vnisocial"; // Tên cơ sở dữ liệu MySQL
 
-    // Tạo kết nối đến cơ sở dữ liệu
-    $conn = new mysqli($servername, $username, $password, $database);
+                            // Tạo kết nối đến cơ sở dữ liệu
+                            $conn = new mysqli($servername, $username, $password, $database);
 
-    if (!isset($_GET['id2'])) {
-        echo '<div class="fsafafa">';
-        include("dang_bai/dangbai.php");
-        echo '</div>';
+                            if (!isset($_GET['id2'])) {
+                                echo '<div class="fsafafa">';
+                                include("dang_bai/dangbai.php");
+                                echo '</div>';
 
-        // Bao gồm cả file baidang_tcn.php
-        include("baidang/baidang_tcn.php");
-    } else {
-        $user_id3 = $_GET['id2'];
-        $sqlCheckFriendship = "SELECT * FROM banbe WHERE (ma_nguoidung1 = '$user_id3' AND ma_nguoidung2 = '$user_id2') OR (ma_nguoidung1 = '$user_id2' AND ma_nguoidung2 = '$user_id3')";
-        $resultCheckFriendship = mysqli_query($conn, $sqlCheckFriendship);
-        if ($resultCheckFriendship) {
-            if (mysqli_num_rows($resultCheckFriendship) > 0) {
-                include("baidang/baidang_tcn.php");
-            } else {
-                echo '<p class="thongbao">Không có bài viết để hiển thị</p>';
-            }
-        } else {
-            echo "Lỗi truy vấn kiểm tra bạn bè: " . mysqli_error($conn);
-        }
-    }
-    ?>
-</div>
+                                // Bao gồm cả file baidang_tcn.php
+                                include("baidang/baidang_tcn.php");
+                            } else {
+                                $user_id3 = $_GET['id2'];
+                                $sqlCheckFriendship = "SELECT * FROM banbe WHERE (ma_nguoidung1 = '$user_id3' AND ma_nguoidung2 = '$user_id2') OR (ma_nguoidung1 = '$user_id2' AND ma_nguoidung2 = '$user_id3')";
+                                $resultCheckFriendship = mysqli_query($conn, $sqlCheckFriendship);
+                                if ($resultCheckFriendship) {
+                                    if (mysqli_num_rows($resultCheckFriendship) > 0) {
+                                        include("baidang/baidang_tcn.php");
+                                    } else {
+                                        echo '<p class="thongbao">Không có bài viết để hiển thị</p>';
+                                    }
+                                } else {
+                                    echo "Lỗi truy vấn kiểm tra bạn bè: " . mysqli_error($conn);
+                                }
+                            }
+                            ?>
+                        </div>
 
 
 
