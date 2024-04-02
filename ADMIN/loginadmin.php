@@ -51,7 +51,7 @@
         }
     }
 
-    $conn->close();
+    
     ?>
 
 </body>

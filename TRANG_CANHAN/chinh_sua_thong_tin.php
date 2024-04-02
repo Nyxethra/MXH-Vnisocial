@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Thực thi câu lệnh SQL và kiểm tra kết quả
             if ($conn->query($sql) === TRUE) {
                 // Đóng kết nối
-                $conn->close();
+                
                 // Chuyển hướng về trang cá nhân sau khi cập nhật thành công
                 echo "<script>window.location.href = 'trangcanhan.php';</script>";
                 exit(); // Dừng kịch bản để ngăn chặn mã HTML sau khi chuyển hướng
@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             // Đóng kết nối
-            $conn->close();
+            
         }
     } else {
         // Nếu không có đủ dữ liệu được gửi từ form, thông báo lỗi

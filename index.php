@@ -1,4 +1,5 @@
 <?php
+@include 'connect.php';
 session_start();
 
 $user_id = $_SESSION['ma_nguoidung'];
@@ -31,14 +32,14 @@ if(!isset($user_id)){
                 break;
             case 'ketqua_timkiem':
                 // Lấy tham số id2 từ URL
-                include("tim_kiem/ketqua.php");
+                include("TIM_KIEM/ketqua.php");
                 break;
             case 'dsbanbe':
                 include("banbe/dsbanbe.php");
                 break;
         }
     }else {include("subindex.php");}
-    include ("css/css.php");
+    include ("CSS/css.php");
 ?>
 
 

@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Đóng kết nối đến cơ sở dữ liệu
-        $conn->close();
+        
     } else {
         // Trả về phản hồi JSON với thông báo lỗi nếu dữ liệu không hợp lệ
         $response = array("success" => false, "message" => "Dữ liệu không hợp lệ");

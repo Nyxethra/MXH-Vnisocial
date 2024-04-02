@@ -24,5 +24,5 @@ if(isset($_POST['user_id'])) {
     }
 }
 
-$conn->close();
+
 ?>

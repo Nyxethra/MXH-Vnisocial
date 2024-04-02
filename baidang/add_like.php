@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         }
 
         // Đóng kết nối
-        $conn->close();
+        
     } else {
         // Thiếu tham số ma_baidang, trả về thông báo lỗi
         echo json_encode(array("success" => false, "message" => "Post ID is missing."));

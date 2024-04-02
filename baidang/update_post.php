@@ -1,3 +1,5 @@
+<?php
+    include ("../connect.php");?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -97,7 +99,7 @@ if(isset($_POST['ma_baidang'], $_POST['noidung_moi'])) {
     }
 
     // Đóng kết nối
-    $conn->close();
+    
 
 } else {
     echo "Thiếu thông tin cần thiết.";

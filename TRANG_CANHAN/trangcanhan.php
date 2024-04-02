@@ -196,7 +196,7 @@ if ($resultThongTin->num_rows > 0) {
                                     <button type="button" id="edit-avatar-btn" class="edit-avatar" style="<?php echo $hideChangeAvatar; ?>">
                                         <i class="fas fa-camera" style="margin:0;"></i>
                                     </button>
-                                    <input type="submit" value="Lưu" id='show'>
+                                    <input type="submit" value="Lưu"  id='show'>
                                 </form>
                             </div>
                             <div class="info__user">
@@ -205,7 +205,7 @@ if ($resultThongTin->num_rows > 0) {
                         </div>
                     </div>
                     <div class="friend_request">
-                        <?php include("../banbe/dexuatbanbe.php") ?>
+                        <?php include("banbe/dexuatbanbe.php") ?>
                     </div>
                     <!-- Phần giới thiệu -->
                     <div class="gioithieu" style=" background-color:#ccc">

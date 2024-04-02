@@ -1,3 +1,5 @@
+<?php
+    include ("../connect.php");?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -62,6 +64,8 @@
   <div class="popup">
     <h2>Chỉnh sửa bài đăng</h2>
     <?php
+
+
     $ma_baidang = isset($_GET['ma_baidang']) ? $_GET['ma_baidang'] : '';
     $ma_nguoidung = isset($_GET['ma_nguoidung']) ? $_GET['ma_nguoidung'] : '';
     
@@ -71,7 +75,7 @@
 
         // Truy vấn lấy thông tin của bài viết cần chỉnh sửa
         $sql = "SELECT * FROM baidang WHERE ma_baidang = $ma_baidang";
-        $result = $conn->query($sql);
+        @$result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
@@ -103,7 +107,7 @@
         }
 
         // Đóng kết nối
-        $conn->close();
+        
     } else {
         echo "Thiếu ID bài viết.";
     }

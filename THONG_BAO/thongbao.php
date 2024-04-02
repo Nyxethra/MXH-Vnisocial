@@ -29,5 +29,5 @@ if ($result->num_rows > 0) {
 }
 
 // Đóng kết nối đến cơ sở dữ liệu
-$conn->close();
+
 ?>

@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Đóng kết nối đến cơ sở dữ liệu
-$conn->close();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

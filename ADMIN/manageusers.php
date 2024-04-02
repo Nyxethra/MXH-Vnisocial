@@ -135,7 +135,7 @@
         echo "Không có kết quả ";
         }
   
-        $conn->close();
+        
 
 ?>
 <script>

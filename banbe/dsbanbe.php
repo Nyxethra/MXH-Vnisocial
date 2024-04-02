@@ -139,7 +139,7 @@
                 } else {
                     echo "<li>Bạn hiện chưa kết bạn với ai, hãy kết thêm nhiều bạn mới nhé.</li>";
                 }
-                $conn->close();
+                
             ?>
         </ul>
     </div>
