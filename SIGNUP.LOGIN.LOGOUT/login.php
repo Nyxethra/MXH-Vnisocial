@@ -71,7 +71,7 @@ $(".signup_form").submit(function(event) {
 </script>
 
     </div>
-    <img class="logonen" src="../img/logo_nen.jpg" style="position: absolute; top: 133px; left: 529px; width: 700px;">
+    <img class="logonen" src="../IMG/logo_nen.jpg" style="position: absolute; top: 133px; left: 529px; width: 60%;">
 </section>
 </body>
 <script>

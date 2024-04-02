@@ -67,6 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               VALUES ('$email', '$matkhau', '$ten_nguoidung', '$gioitinh', '" . $datetime->format('Y-m-d H:i:s') . "')";
               
               if ($conn->query($insertQuery) === TRUE) {
+                
                   // Đăng ký thành công
                   echo "<script>
                       Swal.fire({

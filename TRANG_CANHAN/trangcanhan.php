@@ -130,6 +130,10 @@ if ($resultThongTin->num_rows > 0) {
             margin: 10px;
             font-size: 20px;
         }
+        .friend_request .ui.card,.ui.cards>.card {
+            height: 200px;
+            width: 300px;
+        }
     </style>
 </head>
 

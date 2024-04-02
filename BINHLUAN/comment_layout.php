@@ -2,12 +2,14 @@
 <html>
 
 <head>
+  <title>Trang bình luận</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <style>
-    * {
-
-      font-size: 100%;
-    }
-
     .binhluan-form {
       margin-bottom: 20px;
     }
@@ -27,12 +29,6 @@
 
     .binhluan-form button {
       margin-top: 10px;
-      background-color: #1877f2;
-      color: #fff;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 4px;
-      cursor: pointer;
     }
 
     .binhluan-list {
@@ -46,13 +42,16 @@
     }
 
     .binhluan-list .binhluan {
+      width: 70%;
       background: #f1f1f1;
       padding: 10px;
       margin-bottom: 10px;
+      border-radius: 20px;
     }
 
     .binhluan-list .edit_btn,
     .binhluan-list .delete_btn {
+      
       margin-left: 10px;
     }
   </style>
@@ -112,7 +111,7 @@ $ma_nguoidung = isset($_GET['ma_nguoidung']) ? $_GET['ma_nguoidung'] : '';
         echo "<b>" . $row["ten_nguoidung"] . "</b>";
         echo "<br>";
         echo $row["noidung_binhluan"];
-        echo "<button class='edit-btn' data-comment-id='" . $row["ma_binhluan"] . "' data-ma-bai-dang='$ma_baidang' data-ma-nguoi-dung='$ma_nguoidung'>Sửa</button>";
+        echo "<button class='edit-btn' style='float: right;' data-comment-id='" . $row["ma_binhluan"] . "' data-ma-bai-dang='$ma_baidang' data-ma-nguoi-dung='$ma_nguoidung'>Sửa</button>";
         echo "</div>";
       }
     } else {
