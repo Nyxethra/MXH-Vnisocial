@@ -81,5 +81,14 @@ button.ui.icon.button.scroll-button.scroll-right {
 .aaa {
     position: relative;
 }
-
+.custom-post_dxbb {
+    margin-top: 30px;
+    /* margin-bottom: 30px; */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    background: white;
+    width: 61%;
+    margin-left: 189px;
+}
 </style>
