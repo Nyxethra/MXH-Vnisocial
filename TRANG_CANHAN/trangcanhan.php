@@ -76,6 +76,7 @@ if (mysqli_num_rows($result_t) > 0) {
     <!-- Thanh công cụ -->
 
     <!-- phần giao diện chính -->
+    <div class = "truoc_">
     <div class="abc">
         <div class="main_interface">
             <div style="width:100%">
@@ -148,7 +149,7 @@ if (mysqli_num_rows($result_t) > 0) {
 
                     <?php include("dexuatbanbe.php") ?>
                 </div>
-                <div style="display :flex ">
+                <div class = "aaa" >
                     <!-- phần giới thiệu -->
                     <div class="gioithieu">
                         <div class="inside_gioithieu">
@@ -163,43 +164,29 @@ if (mysqli_num_rows($result_t) > 0) {
                         </div>
                     </div>
                     <!-- phần bài đăng -->
-                    <div style="background-color:#f3f5f5; min-height:400px; flex:2.5; padding:20px; padding-right:0px">
-                        <div style="border: solid thin #aaa ;padding: 10px; background-color:white">
-                            <div></div>
-                            <br>
+                    
+                      
+                        <div class = "db_tcn"> 
+                         <div class= "fsafafa">  
+                        <?php include ("dang_bai/dangbai.php") ?>
                         </div>
-                        <div class="post_bar">
-                            <div class="post">
-                                <div>
-                                    <div><img src="ban.jpg" style="width:75px; margin-right:4px; "></div>
-                                    <div>
-                                        <div style="font-weight: bold; color:black;flex:2">First user</div>
-                                        Ngược lại với flex-grow, flex-shrink khiến cho các item co lại khi container được thay đổi độ rộng. Flex-shrink là thuộc tính Display Flex trong CSS có giá trị mặc định bằng 1. Như vậy khi container giảm độ rộng thì kích thước các item sẽ được thu hẹp lại bằng nhau.
-                                        <br /><br />
-                                        <a href="">Like</a> .<a href=""> Comments </a>. <span style="color:#999">21/12/2004</span>
-                                    </div>
-                                </div>
-                                <div class="post">
-                                    <div>
-                                        <div><img src="ban.jpg" style="width:75px; margin-right:4px; "></div>
-                                        <div>
-                                            <div style="font-weight: bold; color:black;">First user</div>
-                                            Theo Trung tâm Dự báo khí tượng thuỷ văn quốc gia, khoảng chiều tối và đêm nay 26/2, đợt không khí lạnh tăng cường sẽ ảnh hưởng đến thời tiết Đông Bắc Bộ, một số nơi ở Tây Bắc Bộ và Bắc Trung Bộ. Gió đông bắc trong đất liền mạnh dần lên cấp 2-3, vùng ven biển cấp 3
-                                            <br /><br />
-                                            <a href="">Like</a> .<a href=""> Comments </a>. <span style="color:#999">21/12/2004</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                </div>
+                
+                        
+                    
+                        
+                           <?php include ("baidang/baidang_tcn.php"); ?>
+                           </div> 
+                        
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
         <!-- Phần bạn bè -->
         <div class="friend_bar">
-            Bạn bè<br>
+            Người Liên Hệ<br>
             <div class="friends">
                 <img src="ban.jpg" class="friend_img">
                 <br>
@@ -232,6 +219,7 @@ if (mysqli_num_rows($result_t) > 0) {
         </div>
     </div>
     </div>
+    
     <script>
         document.getElementById('edit-avatar-btn').addEventListener('click', function() {
             document.getElementById('avatar-input').click();

@@ -49,8 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // }
 
     // Truy vấn cơ sở dữ liệu để kiểm tra xem tên người dùng và mật khẩu có khớp hay không
-    $query = "SELECT * FROM nguoidung WHERE email = '$email' OR matkhau = '$matkhau'";
-    $result = $conn->query($query);
+    $query = "SELECT * FROM nguoidung WHERE email = '$email' AND matkhau = '$matkhau'"; // :))
+    $result = $conn->query($query); //  :)))))))
 
 
     if ($result->num_rows > 0) {
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($email != $email_r) {
             echo "<script>
         swal.fire({
-            title: 'Email không đúng!',
+            title: 'Email hoặc mật khẩu không đúng!',
             icon: 'error',
             button: 'Đóng'
         });
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($matkhau != $matkhau_r) {
                 echo "<script>
         swal.fire({
-            title: 'Mật khẩu không đúng!',
+            title: 'Email hoặc mật khẩu không đúng!',
             icon: 'error',
             button: 'Đóng'
         });
