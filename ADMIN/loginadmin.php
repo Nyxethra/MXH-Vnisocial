@@ -42,7 +42,7 @@
             Swal.fire({
                 icon: "error",
                 title: "ERROR...",
-                text: "Email hoặc mật khẩu không đúng!",
+                text: "Dăng nhập thất bại!",
                timer:3000
             }).then(function() {
                 window.location = "layoutadmin.php";
