@@ -205,7 +205,7 @@ if ($resultThongTin->num_rows > 0) {
                         </div>
                     </div>
                     <div class="friend_request">
-                        <?php include("dexuatbanbe.php") ?>
+                        <?php include("../banbe/dexuatbanbe.php") ?>
                     </div>
                     <!-- Phần giới thiệu -->
                     <div class="gioithieu" style=" background-color:#ccc">
