@@ -14,21 +14,10 @@
 
 <?php
 
-// Kiểm tra xem thư mục uploads đã tồn tại chưa
-if (!file_exists('uploads')) {
-    // Nếu không tồn tại, tạo thư mục uploads
-    mkdir('uploads', 0777, true);
-}
 
 if(isset($_POST['ma_baidang'], $_POST['noidung_moi'])) {
     $ma_baidang = $_POST['ma_baidang'];
     $noidung_moi = $_POST['noidung_moi'];
-
-    $conn = new mysqli('localhost', 'root', '', 'vnisocial');
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
     // Xóa ảnh nếu được chọn
     if(isset($_POST['xoa_anh']) && $_POST['xoa_anh'] == 1) {

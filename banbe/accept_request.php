@@ -7,14 +7,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sender_id = $_POST["sender_id"];
         $user_id = $_POST["user_id"];
 
-        // Kết nối đến cơ sở dữ liệu
-        $conn = new mysqli('localhost', 'root', '', 'vnisocial');
-
-        // Kiểm tra kết nối
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
         // Xóa yêu cầu kết bạn từ bảng yeucau_ketban
         $delete_request_sql = "DELETE FROM yeucau_ketban WHERE ma_nguoinhan = $user_id AND ma_nguoigui = $sender_id";
         if ($conn->query($delete_request_sql) === TRUE) {
