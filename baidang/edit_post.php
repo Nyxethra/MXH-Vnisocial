@@ -69,14 +69,6 @@
     if(isset($_GET['ma_baidang'])) {
         $ma_baidang = $_GET['ma_baidang'];
 
-        // Kết nối vào cơ sở dữ liệu
-        $conn = new mysqli('localhost', 'root', '', 'vnisocial');
-
-        // Kiểm tra kết nối
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
         // Truy vấn lấy thông tin của bài viết cần chỉnh sửa
         $sql = "SELECT * FROM baidang WHERE ma_baidang = $ma_baidang";
         $result = $conn->query($sql);

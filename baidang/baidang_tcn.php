@@ -212,13 +212,6 @@
 
     <div class="container_baidang_tcn">
         <?php
-        // Kết nối vào cơ sở dữ liệu
-        $conn = new mysqli('localhost', 'root', '', 'vnisocial');
-
-        // Kiểm tra kết nối
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
 
         // Truy vấn lấy dữ liệu bài đăng
         // Truy vấn để lấy bài đăng mới nhất của bạn và tối đa 2 bài đăng của bạn bè

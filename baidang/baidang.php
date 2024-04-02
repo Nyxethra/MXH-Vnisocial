@@ -212,13 +212,6 @@
     </div>
     <div class="container_baidang">
     <?php
-    // Kết nối vào cơ sở dữ liệu
-    $conn = new mysqli('localhost', 'root', '', 'vnisocial');
-
-    // Kiểm tra kết nối
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
     // Truy vấn lấy dữ liệu bài đăng
     // Truy vấn để lấy bài đăng mới nhất của bạn và tối đa 2 bài đăng của bạn bè
@@ -303,7 +296,7 @@
                 <?php if (!empty($row["image"]) && file_exists("img/" . $row["image"])) { ?>
                     <div class="custom-post-image">
                         <?php
-                        $imagePath = "img/" . $row["image"];
+                        $imagePath = "IMG/" . $row["image"];
                         echo '<img src="' . $imagePath . '" alt="Post Image">';
                         ?>
                     </div>

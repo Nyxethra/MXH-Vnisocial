@@ -9,14 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         // bạn cần thay đổi phần này để lấy ID của người dùng từ hồ sơ người dùng hoặc bất kỳ phương thức nào khác
         $thich_boi = 1; // ID của người dùng đang thực hiện hành động like
 
-        // Kết nối đến cơ sở dữ liệu
-        $conn = new mysqli('localhost', 'root', '', 'vnisocial');
-
-        // Kiểm tra kết nối
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
+    
         // Kiểm tra xem người dùng đã like bài đăng này trước đó chưa
         $sql_check_like = "SELECT * FROM thich WHERE thich_boi = $thich_boi AND ma_baidang = $ma_baidang";
         $result_check_like = $conn->query($sql_check_like);
