@@ -237,7 +237,6 @@ if ($resultThongTin->num_rows > 0) {
             </div>
         </div>
     </div>
-
     <script>
         document.getElementById('edit-avatar-btn').addEventListener('click', function() {
             document.getElementById('avatar-input').click();

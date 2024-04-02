@@ -33,14 +33,14 @@ button.ui.icon.button.scroll-button.scroll-right {
     box-shadow: 0px 1px 5px 0px rgba(34,36,38,.15);
     border-radius: 7px;
     border: 1px solid #ccc;
-    max-width: 296px;
+    max-width: 313px;
     position: relative;
     top: 12px;
     left: -13px;
 }
 .db_tcn {
     margin-left: 374px;
-    margin-top: -433px;
+    margin-top: -522px;
 }
 .abc {
     display: flex;

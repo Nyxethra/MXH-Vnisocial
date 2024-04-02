@@ -210,20 +210,19 @@
             <div id="edit-popup-content-container_baidang"></div>
         </div>
     </div>
-
     <div class="container_baidang">
-        <?php
-        // Kết nối vào cơ sở dữ liệu
-        $conn = new mysqli('localhost', 'root', '', 'vnisocial');
+    <?php
+    // Kết nối vào cơ sở dữ liệu
+    $conn = new mysqli('localhost', 'root', '', 'vnisocial');
 
-        // Kiểm tra kết nối
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+    // Kiểm tra kết nối
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-        // Truy vấn lấy dữ liệu bài đăng
-        // Truy vấn để lấy bài đăng mới nhất của bạn và tối đa 2 bài đăng của bạn bè
-        $sql = "
+    // Truy vấn lấy dữ liệu bài đăng
+    // Truy vấn để lấy bài đăng mới nhất của bạn và tối đa 2 bài đăng của bạn bè
+    $sql = "
             (SELECT 
                 baidang.*, 
                 nguoidung.ten_nguoidung, 
@@ -271,75 +270,81 @@
             LIMIT 10)
         ";
 
-        $result = $conn->query($sql);
+    $result = $conn->query($sql);
 
-        // Hiển thị bài đăng
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $imagePath = "img/" . $row["image"];
-        ?>
-                <div class="custom-post">
-                    <div class="custom-post-header">
-                        <div class="custom-user-info">
-                            <div class="custom-user-avatar">
-                                <?php
-                                $avatarPath = "img/" . $row["avatar"];
-                                echo '<img src="' . $avatarPath . '" alt="User Avatar">';
-                                ?>
-                            </div>
-                            <div class="custom-user-details">
-                                <h3><a style="color:#333;" href='home.php?diden=trangcanhan_nl&id2=<?php echo urlencode($row["ma_nguoidung"]); ?>' target='_blank' class='user-link'><span class='tnd'> <?php echo $row["ten_nguoidung"]; ?></span></a><br></h3>
-                                <p class="custom-post-date">Posted on <span class="custom-post-date"><?php echo $row["thoigian_dang"]; ?></span></p>
-                            </div>
+    // Hiển thị bài đăng
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $imagePath = "img/" . $row["image"];
+    ?>
+            <div class="custom-post">
+                <div class="custom-post-header">
+                    <div class="custom-user-info">
+                        <div class="custom-user-avatar">
+                            <?php
+                            $avatarPath = "img/" . $row["avatar"];
+                            echo '<img src="' . $avatarPath . '" alt="User Avatar">';
+                            ?>
+                        </div>
+                        <div class="custom-user-details">
+                        <h3>
+    <a style="color:#333;" href="<?php echo ($row['dang_boi'] == $user_id) ? 'home.php?diden=trangcanhan' : 'home.php?diden=trangcanhan&id2=' . $row['dang_boi']; ?>" target="_blank" class="user-link">
+        <span class="tnd"><?php echo $row["ten_nguoidung"]; ?></span>
+    </a>
+    <br>
+</h3>
+                            <p class="custom-post-date">Posted on <span class="custom-post-date"><?php echo $row["thoigian_dang"]; ?></span></p>
                         </div>
                     </div>
-                    <div class="custom-post-content">
-                        <p><?php echo $row["noidung"]; ?></p>
-                    </div>
-                    <?php if (!empty($row["image"]) && file_exists("img/" . $row["image"])) { ?>
-                 <div class="custom-post-image">
-                    <?php
-                    $imagePath = "img/" . $row["image"];
-                    echo '<img src="' . $imagePath . '" alt="Post Image">';
-                    ?>
                 </div>
-            <?php } ?>
+                <div class="custom-post-content">
+                    <p><?php echo $row["noidung"]; ?></p>
+                </div>
+                <?php if (!empty($row["image"]) && file_exists("img/" . $row["image"])) { ?>
+                    <div class="custom-post-image">
+                        <?php
+                        $imagePath = "img/" . $row["image"];
+                        echo '<img src="' . $imagePath . '" alt="Post Image">';
+                        ?>
+                    </div>
+                <?php } ?>
 
-                    
+
+                <div class="custom-post-actions">
                     <div class="custom-post-actions">
-                        <div class="custom-post-actions">
                         <button class="like-post" data-ma_baidang="<?php echo $row['ma_baidang']; ?>">
+                            <?php
+                            // Hiển thị số lượt like nếu có
+                            if ($row['luong_like'] > 0) {
+                                echo '<span class="like-count">(' . $row['luong_like'] . ')</span>';
+                            }
+                            ?>
+                            <i class="fas fa-thumbs-up" style="color: #a72f2f;"></i>
+                        </button>
+
+                        <?php
+                        // Ép kiểu integer
+                        $changeTypeBd = (int)$row['ma_baidang'];
+                        $maNd = $_SESSION['ma_nguoidung'];
+                        ?>
+                        <button onclick="handleOnclick(<?php echo $changeTypeBd; ?>, <?php echo $maNd; ?>)">
+                            <i class="fas fa-comment" style="color: #a72f2f;"></i>
+                        </button>
+                        <button>
+                            <i class="fas fa-share" style="color: #a72f2f;"></i>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
     <?php
-    // Hiển thị số lượt like nếu có
-    if ($row['luong_like'] > 0) {
-        echo '<span class="like-count">(' . $row['luong_like'] . ')</span>';
+        }
+    } else {
+        echo "Không có bài viết để hiển thị";
     }
     ?>
-    <i class="fas fa-thumbs-up" style="color: #a72f2f;"></i>
-</button>
+</div>
 
-                            <?php
-                            // Ép kiểu integer
-                            $changeTypeBd = (int)$row['ma_baidang'];
-                            $maNd = $_SESSION['ma_nguoidung'];
-                            ?>
-                            <button onclick="handleOnclick(<?php echo $changeTypeBd; ?>, <?php echo $maNd; ?>)">
-                                <i class="fas fa-comment" style="color: #a72f2f;"></i>
-                            </button>
-                            <button>
-                                <i class="fas fa-share" style="color: #a72f2f;"></i>
-                            </button>
-
-                        </div>
-                    </div>
-                </div>
-        <?php
-            }
-        } else {
-            echo "Không có bài viết để hiển thị";
-        }
-        ?>
-    </div>
 
     <!-- Thư viện Bootstrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
