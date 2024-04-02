@@ -28,7 +28,7 @@ if(!isset($user_id)){
                 break;
             case 'trangcanhan_nl':
                 $id2 = $_GET["id2"]; // Lấy tham số id2 từ URL
-                include("TRANG_CANHAN/trangcanhan_nl.php");
+                include("TRANG_CANHAN/trangcanhan.php");
                 break;
             case 'ketqua_timkiem':
                 // Lấy tham số id2 từ URL

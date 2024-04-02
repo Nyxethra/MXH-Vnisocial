@@ -183,7 +183,7 @@ if ($resultThongTin->num_rows > 0) {
                             <?php if (mysqli_num_rows($resultAnhBia) > 0) : ?>
                                 <img id="anhbia-img" src="IMG/gallery/<?= $anhbia ?>" class="anhbia">
                             <?php else : ?>
-                                <img id="anhbia-img" src="IMG/gallery/pic.jpg" class="anhbia">
+                                <img id="anhbia-img" src="IMG/gallery/anhbia.jpg" class="anhbia">
                             <?php endif; ?>
                             <form action="" name="bbb" method="POST" enctype="multipart/form-data">
                                 <input type="file" name="anhbia" id="anhbia-input" accept="image/*" style="display:none">
@@ -198,7 +198,7 @@ if ($resultThongTin->num_rows > 0) {
                                 <?php if (mysqli_num_rows($resultAvatar) > 0) : ?>
                                     <img id="avatar-img" src="IMG/<?= $avatar ?>" class="profile_pic">
                                 <?php else : ?>
-                                    <img id="avatar-img" src="IMG/gallery/ban.jpg" class="profile_pic">
+                                    <img id="avatar-img" src="IMG/gallery/nguoidung.jpg" class="profile_pic">
                                 <?php endif; ?>
                                 <form action="" name="bbab" method="POST" enctype="multipart/form-data">
                                     <input type="file" name="avatar" id="avatar-input" accept="image/*" style="display:none">

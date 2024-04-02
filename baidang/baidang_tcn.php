@@ -309,7 +309,7 @@
             const ma_baidang = a
             const ma_nguoidung = b
             window.location.href = `BINHLUAN/comment_layout.php?ma_nguoidung=${ma_nguoidung}&ma_baidang=${ma_baidang}`;
-        }
+        } 
 
         // Thêm sự kiện click vào nút like
         const likeButtons = document.querySelectorAll('.like-post');
