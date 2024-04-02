@@ -21,7 +21,7 @@
             z-index: 999;
             overflow: auto;
         }
-        .container_baidang {
+        .container_baidang_tcn {
     margin-left: -3%;
 }
         .edit-popup-content {
@@ -206,11 +206,11 @@
     <div class="edit-popup-overlay" id="edit-popup-overlay">
         <div class="edit-popup-content">
             <span class="edit-popup-close" onclick="closeEditPopup()">&times;</span>
-            <div id="edit-popup-content-container_baidang"></div>
+            <div id="edit-popup-content-container_baidang_tcn"></div>
         </div>
     </div>
 
-    <div class="container_baidang">
+    <div class="container_baidang_tcn">
         <?php
         // Kết nối vào cơ sở dữ liệu
         $conn = new mysqli('localhost', 'root', '', 'vnisocial');
@@ -257,7 +257,7 @@
                                 ?>
                             </div>
                             <div class="custom-user-details">
-                                <h3><a style="color:#333;" href='home.php?diden=trangcanhan_nl&id2=<?php echo urlencode($row["ma_nguoidung"]); ?>' target='_blank' class='user-link'><span class='tnd'> <?php echo $row["ten_nguoidung"]; ?></span></a><br></h3>
+                                <h3><a style="color:#333;" href='home.php?diden=trangcanhan&id2=<?php echo urlencode($row["ma_nguoidung"]); ?>' target='_blank' class='user-link'><span class='tnd'> <?php echo $row["ten_nguoidung"]; ?></span></a><br></h3>
                                 <p class="custom-post_dxbb-date">Posted on <span class="custom-post_dxbb-date"><?php echo $row["thoigian_dang"]; ?></span></p>
                             </div>
                             <div class="custom-post_dxbb-actions">
@@ -358,7 +358,7 @@
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
-                        document.getElementById('edit-popup-content-container_baidang').innerHTML = xhr.responseText;
+                        document.getElementById('edit-popup-content-container_baidang_tcn').innerHTML = xhr.responseText;
                         document.getElementById('edit-popup-overlay').style.display = 'block';
                     } else {
                         console.error('Error:', xhr.status);
