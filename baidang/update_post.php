@@ -1,11 +1,25 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/1.12.4/sweetalert2.min.css" integrity="sha512-R4+jpnl778pSWzCYwg41gTtdtYZNb3nx8Qk/9M3L5N1qU79qUffkGq9lQS38wQ1m139prU6T8w1oB4Nh9o" crossorigin="anonymous" referrerpolicy="no-referrer">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/1.12.4/sweetalert2.min.js" integrity="sha512-n1U/pYmLwhY/Rbk5C56V2W56kRvm65xSUaEzFBdrF1zZdP9MqHmn5qNq7yNSuZ7iZYR/jOiI5IX43sULm9yA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Chỉnh sửa bài đăng</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/1.12.4/sweetalert2.min.css" integrity="sha512-R4+jpnl778pSWzCYwg41gTtdtYZNb3nx8Qk/9M3L5N1qU79qUffkGq9lQS38wQ1m139prU6T8w1oB4Nh9o" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/1.12.4/sweetalert2.min.js" integrity="sha512-n1U/pYmLwhY/Rbk5C56V2W56kRvm65xSUaEzFBdrF1zZdP9MqHmn5qNq7yNSuZ7iZYR/jOiI5IX43sULm9yA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
 
 <?php
+
+// Kiểm tra xem thư mục uploads đã tồn tại chưa
+if (!file_exists('uploads')) {
+    // Nếu không tồn tại, tạo thư mục uploads
+    mkdir('uploads', 0777, true);
+}
+
 if(isset($_POST['ma_baidang'], $_POST['noidung_moi'])) {
     $ma_baidang = $_POST['ma_baidang'];
     $noidung_moi = $_POST['noidung_moi'];
@@ -37,7 +51,8 @@ if(isset($_POST['ma_baidang'], $_POST['noidung_moi'])) {
     // Cập nhật nội dung mới
     $stmt_update_content = $conn->prepare("UPDATE baidang SET noidung = ? WHERE ma_baidang = ?");
     $stmt_update_content->bind_param("si", $noidung_moi, $ma_baidang);
-    
+    $update_content_result = $stmt_update_content->execute();
+
     // Tải lên ảnh mới
     $image_upload_success = true;
     if(isset($_FILES['anh_moi']) && $_FILES['anh_moi']['error'] === UPLOAD_ERR_OK) {
@@ -65,8 +80,8 @@ if(isset($_POST['ma_baidang'], $_POST['noidung_moi'])) {
     }
 
     // Kiểm tra xem cả hai thao tác cập nhật nội dung và ảnh có thành công không
-    if ($stmt_update_content->execute() && $image_upload_success) {
-        // Nếu cả hai đều thành công, hiển thị thông báo thành công
+    if ($update_content_result && $image_upload_success) {
+        // Nếu cả hai đều thành công, hiển thị thông báo thành công và chuyển hướng
         echo "<script>
             Swal.fire({
                 title: 'Cập nhật thành công!',
@@ -75,7 +90,7 @@ if(isset($_POST['ma_baidang'], $_POST['noidung_moi'])) {
                 confirmButtonText: 'OK'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = '.../HOME.php'; // Chuyển hướng sau khi nhấn nút 'OK'
+                    window.location.back();
                 }
             });
         </script>";
@@ -99,3 +114,6 @@ if(isset($_POST['ma_baidang'], $_POST['noidung_moi'])) {
     echo "Thiếu thông tin cần thiết.";
 }
 ?>
+
+</body>
+</html>

@@ -30,17 +30,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 // Nếu đã like, xóa like
                 $sql_delete_like = "DELETE FROM thich WHERE thich_boi = $thich_boi AND ma_baidang = $ma_baidang";
                 if ($conn->query($sql_delete_like) === TRUE) {
-                    // Truy vấn để đếm số lượt like mới
-                    $sql_like_count = "SELECT COUNT(*) AS luong_like FROM thich WHERE ma_baidang = $ma_baidang";
-                    $result_like_count = $conn->query($sql_like_count);
-                    if ($result_like_count === FALSE) {
-                        echo json_encode(array("success" => false, "message" => "Error counting likes after unlike: " . $conn->error));
-                    } else {
-                        $row_like_count = $result_like_count->fetch_assoc();
-                        $luong_like = $row_like_count['luong_like'];
-                        // Trả về số lượt "Like" mới trong kết quả JSON
-                        echo json_encode(array("success" => true, "isLiked" => false, "luong_like" => $luong_like));
-                    }
+                    // Trả về thông báo thành công
+                    echo json_encode(array("success" => true, "isLiked" => false));
                 } else {
                     echo json_encode(array("success" => false, "message" => "Error deleting like: " . $conn->error));
                 }
@@ -48,17 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 // Nếu chưa like, thêm like
                 $sql_add_like = "INSERT INTO thich (thich_boi, ma_baidang) VALUES ($thich_boi, $ma_baidang)";
                 if ($conn->query($sql_add_like) === TRUE) {
-                    // Truy vấn để đếm số lượt like mới
-                    $sql_like_count = "SELECT COUNT(*) AS luong_like FROM thich WHERE ma_baidang = $ma_baidang";
-                    $result_like_count = $conn->query($sql_like_count);
-                    if ($result_like_count === FALSE) {
-                        echo json_encode(array("success" => false, "message" => "Error counting likes after like: " . $conn->error));
-                    } else {
-                        $row_like_count = $result_like_count->fetch_assoc();
-                        $luong_like = $row_like_count['luong_like'];
-                        // Trả về số lượt "Like" mới trong kết quả JSON
-                        echo json_encode(array("success" => true, "isLiked" => true, "luong_like" => $luong_like));
-                    }
+                    // Trả về thông báo thành công
+                    echo json_encode(array("success" => true, "isLiked" => true));
                 } else {
                     echo json_encode(array("success" => false, "message" => "Error adding like: " . $conn->error));
                 }

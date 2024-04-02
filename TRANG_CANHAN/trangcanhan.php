@@ -75,7 +75,29 @@ if ($resultThongTin->num_rows > 0) {
             display: flex;
             flex-direction: row;
             background: #f3f5f5;
-        }
+        }.friend_bar {
+    flex: 0.5;
+    background-color: #a72f2f;
+    margin-left: 30px;
+    margin-top: 50px;
+    color: rgb(255 255 255);
+    padding: 8px;
+    width: 18%;
+    position: fixed;
+    top: 30px;
+    right: 0;
+    box-sizing: border-box;
+    padding-left: 50px;
+    border-radius: 10px; /* Đặt bán kính cho góc bo tròn */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Thêm đổ bóng */
+    transition: all 0.3s ease; /* Thêm hiệu ứng chuyển đổi cho các thuộc tính */
+}
+
+.friend_bar:hover {
+    transform: translateY(-5px); /* Di chuyển lên một chút khi di chuột qua */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tăng độ sâu của đổ bóng */
+}
+
 
         .post_bar .custom-post {
             margin-left: 0;
@@ -275,7 +297,7 @@ if ($resultThongTin->num_rows > 0) {
                                 $rowFriendInfo = mysqli_fetch_assoc($resultFriendInfo);
                     ?>
                                 <div class="d-flex align-items-center mb-3">
-                                    <img src="<?php echo $rowFriendInfo['avatar']; ?>" class="profile_pic rounded-circle mr-2" width="5" height="5">
+                                    <img src="<?php echo $rowFriendInfo['avatar']; ?>" class="profile_pic2 rounded-circle mr-2" width="5" height="5">
                                     <span><?php echo $rowFriendInfo['ten_nguoidung']; ?></span>
                                 </div>
                     <?php

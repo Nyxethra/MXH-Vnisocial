@@ -78,12 +78,27 @@
 }
 .friend_bar {
   flex: 0.5;
-  background-color: #f3f5f5;
+  background-color: #b71313;
   margin-left: 30px;
   margin-top: 50px;
-  color: rgb(12, 11, 11);
+  color: rgb(255 255 255);
   padding: 8px;
+  width: 18%;
+  position: fixed;
+  top: 30px;
+  right: 0;
+  box-sizing: border-box;
+  padding-left: 50px;
+  border-radius: 10px; /* Đặt bán kính cho góc bo tròn */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Thêm đổ bóng */
+  transition: all 0.3s ease; /* Thêm hiệu ứng chuyển đổi cho các thuộc tính */
 }
+
+.friend_bar:hover {
+  transform: translateY(-5px); /* Di chuyển lên một chút khi di chuột qua */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tăng độ sâu của đổ bóng */
+}
+
 .friend_img {
   width: 50px;
   float: left;
