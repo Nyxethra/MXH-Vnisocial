@@ -33,11 +33,14 @@ button.ui.icon.button.scroll-button.scroll-right {
     box-shadow: 0px 1px 5px 0px rgba(34,36,38,.15);
     border-radius: 7px;
     border: 1px solid #ccc;
-    max-width: 350px;
+    max-width: 313px;
+    position: relative;
+    top: 12px;
+    left: -13px;
 }
 .db_tcn {
-    margin-left: 405px;
-    margin-top: -478px;
+    margin-left: 374px;
+    margin-top: -522px;
 }
 .abc {
     display: flex;
@@ -70,14 +73,14 @@ button.ui.icon.button.scroll-button.scroll-right {
     position: relative;
 }
 .custom-post_dxbb {
-    margin-top: 30px;
+    margin-top: 26px;
     /* margin-bottom: 30px; */
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px;
     background: white;
     width: 570px;
-    margin-left: -232px;
+    margin-left: -156px;
 }
 .container_dxbb {
     display: flex;
@@ -96,5 +99,20 @@ button.ui.icon.button.scroll-button.scroll-right {
     position: relative;
     width: 122px;
     margin-left: 227px;
+}
+.container_baidang_tcn {
+    margin-left: 20%;
+    position: relative;
+    top: 0px;
+}
+.container_baidang {
+    margin-left: -7%;
+    position: relative;
+    top: 20px;
+}
+p.thongbao {
+    position: relative;
+    top: 114px;
+    left: 176px;
 }
 </style>

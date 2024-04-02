@@ -1,49 +1,66 @@
 <?php
 
-// var_dump($ma_nguoidung);
+// Bộ mã PHP của bạn
 include "suaavatar.php";
 include "suaanhbia.php";
 
-$friend_id = $_GET['id2']; 
-// hien thi avatar
-$sql = "SELECT avatar FROM nguoidung where ma_nguoidung ='$friend_id'  limit 1;";
-$result = mysqli_query($conn, $sql);
 
-if ($result) {
-    // Kiểm tra xem có bản ghi trả về hay không
-    if (mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $avatar = $row['avatar'];
-        // Tiếp tục xử lý thông tin avatar
 
-        // echo "Avatar: " . $avatar;
+
+
+
+$hideChangeAvatar = '';
+$hideChangeAnhBia = '';
+
+if (isset($_GET['id2'])) {
+    $user_id = $_GET['id2'];
+
+    // Ẩn chức năng thay đổi avatar và ảnh bìa nếu tồn tại id2
+    $hideChangeAvatar = 'display:none;';
+    $hideChangeAnhBia = 'display:none;';
+}
+
+$sqlAvatar = "SELECT avatar FROM nguoidung WHERE ma_nguoidung ='$user_id'  LIMIT 1;";
+$resultAvatar = mysqli_query($conn, $sqlAvatar);
+
+$sqlAnhBia = "SELECT anhbia FROM nguoidung WHERE ma_nguoidung ='$user_id'  LIMIT 1;";
+$resultAnhBia = mysqli_query($conn, $sqlAnhBia);
+
+$sqlThongTin = "SELECT * FROM nguoidung WHERE ma_nguoidung='$user_id'";
+$resultThongTin = $conn->query($sqlThongTin);
+
+if ($resultAvatar) {
+    if (mysqli_num_rows($resultAvatar) > 0) {
+        $rowAvatar = mysqli_fetch_assoc($resultAvatar);
+        $avatar = $rowAvatar['avatar'];
     } else {
         echo "Không có dữ liệu avatar.";
     }
 } else {
-    echo "Lỗi truy vấn: " . mysqli_error($conn);
+    echo "Lỗi truy vấn avatar: " . mysqli_error($conn);
 }
 
-// hien thi anhbia
-$sqli = "SELECT anhbia FROM nguoidung where ma_nguoidung ='$friend_id'  limit 1;";
-$result_n = mysqli_query($conn, $sqli);
-
-if ($result) {
-    // Kiểm tra xem có bản ghi trả về hay không
-    if (mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result_n);
-        $anhbia = $row['anhbia'];
-        // Tiếp tục xử lý thông tin anhbia
-
-        // echo "anhbia: " . $anhbia;
+if ($resultAnhBia) {
+    if (mysqli_num_rows($resultAnhBia) > 0) {
+        $rowAnhBia = mysqli_fetch_assoc($resultAnhBia);
+        $anhbia = $rowAnhBia['anhbia'];
     } else {
-        echo "Không có dữ liệu anhbia.";
+        echo "Không có dữ liệu ảnh bìa.";
     }
 } else {
-    echo "Lỗi truy vấn: " . mysqli_error($conn);
+    echo "Lỗi truy vấn ảnh bìa: " . mysqli_error($conn);
+}
+
+if ($resultThongTin->num_rows > 0) {
+    $rowThongTin = $resultThongTin->fetch_assoc();
+    $ten_nguoidung = $rowThongTin['ten_nguoidung'];
+    $tieusu = $rowThongTin['tieusu'];
+    $hoc_tai = $rowThongTin['hoc_tai'];
+    $mqh = $rowThongTin['song_tai'];
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,10 +71,10 @@ if ($result) {
     <title>Trang cá nhân của bạn</title>
     <style>
         .abc {
-    display: flex;
-    flex-direction: row;
-    background: #f3f5f5;
-}
+            display: flex;
+            flex-direction: row;
+            background: #f3f5f5;
+        }
     </style>
 </head>
 
@@ -65,164 +82,149 @@ if ($result) {
     <!-- Thanh công cụ -->
 
     <!-- phần giao diện chính -->
-    <div class="abc">
-        <div class="main_interface">
-            <div style="width:100%">
-                <div class="head__img">
-
-                    <!-- <img src="img/pic.jpg" class="anhbia"> -->
-                    <div class="anhbia">
-                        <?php
-                        if (mysqli_num_rows($result_n) > 0) {
-                            $row = mysqli_fetch_assoc($result_n);
-                            // var_dump($avatar);
-                            // exit;
-                        ?>
-                            <img id="anhbia-img" src="IMG/gallery/<?= $anhbia ?>" class="anhbia">
-                        <?php
-
-                        } else {
-                        ?>
-                            <img id="anhbia-img" src="IMG/gallery/pic.jpg" class="anhbia">
-                        <?php
-                        } ?>
-
-                        <form action="" method="POST" enctype="multipart/form-data">
-                            <input type="file" name="anhbia" id="anhbia-input" accept="image/*" style="display:none">
-                            <button type="button" id="edit-anhbia-btn" class="edit-anhbia">
-                                <i class="fas fa-camera"></i>
-                            </button>
-                    
-                        </form>
-                    </div>
-                    <div class="head__user" style="display:flex">
-                        <!-- <div style="width: 654px;right:171px; text-align:center ; position: absolute; bottom: 153px;    ">
-                            <div class="menu_buttons">Dòng thời gian </div>
-                            <div class="menu_buttons">Giới thiệu </div>
-                            <div class="menu_buttons">Bạn bè</div>
-                            <div class="menu_buttons">Ảnh</div>
-                            <div class="menu_buttons">Lưu trữ </div>
-                        </div> -->
-                        <div class="head__avatar">
-                            <?php
-                            if (mysqli_num_rows($result) > 0) {
-                                $row = mysqli_fetch_assoc($result);
-                                // var_dump($avatar);
-                                // exit;
-                            ?>
-                                <img id="avatar-img" src="IMG/<?= $avatar ?>" class="profile_pic">
-                            <?php
-
-                            } else {
-                            ?>
-                                <img id="avatar-img" src="IMG/gallery/ban.jpg" class="profile_pic">
-                            <?php
-                            } ?>
-
+    <div class="truoc_">
+        <div class="abc">
+            <div class="main_interface">
+                <div style="width:100%">
+                    <div class="head__img">
+                        <div class="anhbia">
+                            <?php if (mysqli_num_rows($resultAnhBia) > 0) : ?>
+                                <img id="anhbia-img" src="IMG/gallery/<?= $anhbia ?>" class="anhbia">
+                            <?php else : ?>
+                                <img id="anhbia-img" src="IMG/gallery/pic.jpg" class="anhbia">
+                            <?php endif; ?>
                             <form action="" method="POST" enctype="multipart/form-data">
-                                <input type="file" name="avatar" id="avatar-input" accept="image/*" style="display:none">
-                                <button type="button" id="edit-avatar-btn" class="edit-avatar">
+                                <input type="file" name="anhbia" id="anhbia-input" accept="image/*" style="display:none">
+                                <button type="button" id="edit-anhbia-btn" class="edit-anhbia" style="<?php echo $hideChangeAnhBia; ?>">
                                     <i class="fas fa-camera"></i>
                                 </button>
-                                <input type="submit" value="Lưu" id='show' >
+                                <input type="submit" value="Lưu" id='show' style="display:none; float:right">
                             </form>
-
                         </div>
-                        <div class="info__user">
-                            <p class="name__user">Nguyễn Hiếu</b>
-                            <p class="total__friends">123</p>
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <!--phần kết bạn  -->
-                <div class="friend_request">
-
-                    <?php include("dexuatbanbe.php") ?>
-                </div>
-                <div style="display :flex ">
-                    <!-- phần giới thiệu -->
-                    <div class="gioithieu" >
-                        <div class="inside_gioithieu">
-                            <div style="font-size :15px; color:black; text-align:center">Gioi thieu</div>
-                            <div>Tieu su<br>
-                                Thich an choi nhung khong danh mat ban than
+                        <div class="head__user" style="display:flex">
+                            <div class="head__avatar">
+                                <?php if (mysqli_num_rows($resultAvatar) > 0) : ?>
+                                    <img id="avatar-img" src="IMG/<?= $avatar ?>" class="profile_pic">
+                                <?php else : ?>
+                                    <img id="avatar-img" src="IMG/gallery/ban.jpg" class="profile_pic">
+                                <?php endif; ?>
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                    <input type="file" name="avatar" id="avatar-input" accept="image/*" style="display:none">
+                                    <button type="button" id="edit-avatar-btn" class="edit-avatar" style="<?php echo $hideChangeAvatar; ?>">
+                                        <i class="fas fa-camera"></i>
+                                    </button>
+                                    <input type="submit" value="Lưu" id='show'>
+                                </form>
+                            </div>
+                            <div class="info__user">
+                                <p class="name__user"><?php echo $ten_nguoidung ?></b>
                             </div>
                         </div>
                     </div>
-                    <!-- phần bài đăng -->
-                    <div style="background-color:#f3f5f5; min-height:400px; flex:2.5; padding:20px; padding-right:0px">
-                        <div style="border: solid thin #aaa ;padding: 10px; background-color:white">
-                            <div></div>
-                            <br>
-                        </div>
-                        <div class="post_bar">
-                            <div class="post">
-                                <div>
-                                    <div><img src="ban.jpg" style="width:75px; margin-right:4px; "></div>
-                                    <div>
-                                        <div style="font-weight: bold; color:black;flex:2">First user</div>
-                                        Ngược lại với flex-grow, flex-shrink khiến cho các item co lại khi container được thay đổi độ rộng. Flex-shrink là thuộc tính Display Flex trong CSS có giá trị mặc định bằng 1. Như vậy khi container giảm độ rộng thì kích thước các item sẽ được thu hẹp lại bằng nhau.
-                                        <br /><br />
-                                        <a href="">Like</a> .<a href=""> Comments </a>. <span style="color:#999">21/12/2004</span>
-                                    </div>
-                                </div>
-                                <div class="post">
-                                    <div>
-                                        <div><img src="ban.jpg" style="width:75px; margin-right:4px; "></div>
-                                        <div>
-                                            <div style="font-weight: bold; color:black;">First user</div>
-                                            Theo Trung tâm Dự báo khí tượng thuỷ văn quốc gia, khoảng chiều tối và đêm nay 26/2, đợt không khí lạnh tăng cường sẽ ảnh hưởng đến thời tiết Đông Bắc Bộ, một số nơi ở Tây Bắc Bộ và Bắc Trung Bộ. Gió đông bắc trong đất liền mạnh dần lên cấp 2-3, vùng ven biển cấp 3
-                                            <br /><br />
-                                            <a href="">Like</a> .<a href=""> Comments </a>. <span style="color:#999">21/12/2004</span>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="friend_request">
+                        <?php include("dexuatbanbe.php") ?>
+                    </div>
+                    <div class="aaa">
+                        <div class="gioithieu">
+                            <div class="inside_gioithieu">
+                                <div style="font-size: 15px; color:black; text-align:center ">Gioi thieu</div>
+                                <div>Tiểu sử<br><?php echo $tieusu ?></div>
+                                <div>Đang học</div><?php echo $hoc_tai ?>
+                                <div>Sống Tại</div><?php echo $mqh ?>
                             </div>
                         </div>
+
+
+
+
+
+
+
+
+
+
+
+                        <div class="db_tcn">
+    <?php
+    $servername = "localhost"; // Tên máy chủ MySQL
+    $username = "root"; // Tên người dùng MySQL
+    $password = ""; // Mật khẩu của người dùng MySQL
+    $database = "vnisocial"; // Tên cơ sở dữ liệu MySQL
+
+    // Tạo kết nối đến cơ sở dữ liệu
+    $conn = new mysqli($servername, $username, $password, $database);
+
+    if (!isset($_GET['id2'])) {
+        echo '<div class="fsafafa">';
+        include("dang_bai/dangbai.php");
+        echo '</div>';
+
+        // Bao gồm cả file baidang_tcn.php
+        include("baidang/baidang_tcn.php");
+    } else {
+        $user_id3 = $_GET['id2'];
+        $sqlCheckFriendship = "SELECT * FROM banbe WHERE (ma_nguoidung1 = '$user_id3' AND ma_nguoidung2 = '$user_id2') OR (ma_nguoidung1 = '$user_id2' AND ma_nguoidung2 = '$user_id3')";
+        $resultCheckFriendship = mysqli_query($conn, $sqlCheckFriendship);
+        if ($resultCheckFriendship) {
+            if (mysqli_num_rows($resultCheckFriendship) > 0) {
+                include("baidang/baidang_tcn.php");
+            } else {
+                echo '<p class="thongbao">Không có bài viết để hiển thị</p>';
+            }
+        } else {
+            echo "Lỗi truy vấn kiểm tra bạn bè: " . mysqli_error($conn);
+        }
+    }
+    ?>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Phần bạn bè -->
         <div class="friend_bar">
-            Bạn bè<br>
+            Người Liên Hệ<br>
             <div class="friends">
                 <img src="ban.jpg" class="friend_img">
-                <br>
-                First user
+                <br>First user
             </div>
             <div class="friends">
                 <img src="ban.jpg" class="friend_img">
-                <br>
-                First user
-
+                <br>First user
             </div>
             <div class="friends">
                 <img src="ban.jpg" class="friend_img">
-                <br>
-                First user
-
+                <br>First user
             </div>
             <div class="friends">
                 <img src="ban.jpg" class="friend_img">
-                <br>
-                First user
-
+                <br>First user
             </div>
             <div class="friends">
                 <img src="ban.jpg" class="friend_img">
-                <br>
-                First user
-
+                <br>First user
             </div>
         </div>
     </div>
-    </div>
+
     <script>
         document.getElementById('edit-avatar-btn').addEventListener('click', function() {
             document.getElementById('avatar-input').click();
@@ -236,8 +238,7 @@ if ($result) {
             };
             reader.readAsDataURL(e.target.files[0]);
         });
-    </script>
-    <script>
+
         document.getElementById('edit-anhbia-btn').addEventListener('click', function() {
             document.getElementById('anhbia-input').click();
         });
