@@ -167,6 +167,7 @@ if (mysqli_num_rows($result_t) > 0) {
                     
                       
                         <div class = "db_tcn"> 
+                         <div class= "fsafafa">  
                         <?php include ("dang_bai/dangbai.php") ?>
                         </div>
                 </div>
@@ -175,6 +176,7 @@ if (mysqli_num_rows($result_t) > 0) {
                     
                         
                            <?php include ("baidang/baidang_tcn.php"); ?>
+                           </div> 
                         
                     </div>
                 </div>

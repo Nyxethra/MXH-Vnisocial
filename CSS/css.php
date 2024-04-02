@@ -33,11 +33,11 @@ button.ui.icon.button.scroll-button.scroll-right {
     box-shadow: 0px 1px 5px 0px rgba(34,36,38,.15);
     border-radius: 7px;
     border: 1px solid #ccc;
-    max-width: 34%;
+    max-width: 350px;
 }
 .db_tcn {
-    margin-left: 43%;
-    margin-top: -48%;
+    margin-left: 405px;
+    margin-top: -478px;
 }
 .abc {
     display: flex;
@@ -77,6 +77,24 @@ button.ui.icon.button.scroll-button.scroll-right {
     padding: 20px;
     background: white;
     width: 570px;
-    margin-left: 8px;
+    margin-left: -232px;
+}
+.container_dxbb {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    width: 100%;
+    margin-top: 40px;
+    position: relative;
+    background: #f3f5f5;
+    overflow-x: hidden;
+    height: 255px;
+}
+.fsafafa {
+    position: relative;
+    width: 122px;
+    margin-left: 227px;
 }
 </style>
