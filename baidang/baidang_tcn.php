@@ -257,8 +257,12 @@
                                 ?>
                             </div>
                             <div class="custom-user-details">
-                                <h3><a style="color:#333;" href='home.php?diden=trangcanhan&id2=<?php echo urlencode($row["ma_nguoidung"]); ?>' target='_blank' class='user-link'><span class='tnd'> <?php echo $row["ten_nguoidung"]; ?></span></a><br></h3>
-                                <p class="custom-post_dxbb-date">Posted on <span class="custom-post_dxbb-date"><?php echo $row["thoigian_dang"]; ?></span></p>
+                            <h3>
+    <a style="color:#333;" href="<?php echo ($row['dang_boi'] == $user_id) ? 'home.php?diden=trangcanhan' : 'home.php?diden=trangcanhan&id2=' . $row['dang_boi']; ?>" target="_blank" class="user-link">
+        <span class="tnd"><?php echo $row["ten_nguoidung"]; ?></span>
+    </a>
+    <br>
+</h3>                                <p class="custom-post_dxbb-date">Posted on <span class="custom-post_dxbb-date"><?php echo $row["thoigian_dang"]; ?></span></p>
                             </div>
                             <div class="custom-post_dxbb-actions">
                                 <button class="edit-post" data-post-id="<?php echo $row['ma_baidang']; ?>"><i class="fas fa-cog" style="color: #a72f2f;"></i></button>
