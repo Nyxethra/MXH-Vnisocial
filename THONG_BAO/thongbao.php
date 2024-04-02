@@ -9,11 +9,10 @@ if ($conn->connect_error){
 }
 
 // Truy vấn nội dung thông báo từ cơ sở dữ liệu của người dùng hiện tại
-$sql = "SELECT nguoidung.ten_nguoidung, thongbao.noidung_thongbao 
-        FROM thongbao 
-        INNER JOIN nguoidung ON thongbao.thongbao_tu = nguoidung.ma_nguoidung 
-        WHERE thongbao_tu = '$user_id' 
-        ORDER BY thoidiem_thongbao DESC";
+$sql = "SELECT thongbao.noidung_thongbao, nguoidung.ten_nguoidung
+FROM thongbao
+JOIN nguoidung ON thongbao.thongbao_tu = nguoidung.ma_nguoidung
+WHERE thongbao.thongbao_den = $user_id;";
 
 $result = $conn->query($sql);
 
