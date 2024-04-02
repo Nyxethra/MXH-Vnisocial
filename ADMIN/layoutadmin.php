@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>ADMIN | VNISOCIAL-</title>
+<title>ADMIN | VNISOCIAL</title>
 </head>
   <style>
     body {
