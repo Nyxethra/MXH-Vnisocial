@@ -131,9 +131,8 @@
             </div>';
         }
         
-        
         } else {
-        echo "Không có kết quả";
+        echo "Không có kết quả ";
         }
   
         $conn->close();

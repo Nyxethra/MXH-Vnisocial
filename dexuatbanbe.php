@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.js"></script>
 
     <style>
-        .container {
+        .container_dxbb {
         display: flex;
         justify-content: space-between;
         flex-direction: row;
@@ -69,7 +69,8 @@
 
 </head> 
 <body>
-    <div class="container">
+    <div class = "dxbb">
+    <div class="container_dxbb">
         <?php
             // Kết nối với cơ sở dữ liệu
             $servername = "localhost";
@@ -146,25 +147,25 @@
   
             $conn->close();
         ?>
-        <!-- Thêm hai nút cuộn vào trong .container -->
+        <!-- Thêm hai nút cuộn vào trong .container_dxbb -->
         </div>
         <button class="ui icon button scroll-button scroll-left"><i class="left arrow icon"></i></button>
         <button class="ui icon button scroll-button scroll-right"><i class="right arrow icon"></i></button>
-    
+    </div>
 
     <script>
         $(document).ready(function() {
             $('.scroll-left').click(function() {
-                var container = $('.container');
-                container.animate({
-                    scrollLeft: container.scrollLeft() - 300
+                var container_dxbb = $('.container_dxbb');
+                container_dxbb.animate({
+                    scrollLeft: container_dxbb.scrollLeft() - 300
                 }, 500);
             });
 
             $('.scroll-right').click(function() {
-                var container = $('.container');
-                container.animate({
-                    scrollLeft: container.scrollLeft() + 300
+                var container_dxbb = $('.container_dxbb');
+                container_dxbb.animate({
+                    scrollLeft: container_dxbb.scrollLeft() + 300
                 }, 500);
             });
         });

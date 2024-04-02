@@ -82,6 +82,7 @@ if (mysqli_num_rows($result_t) > 0) {
     <!-- Thanh công cụ -->
 
     <!-- phần giao diện chính -->
+    <div class = "truoc_">
     <div class="abc">
         <div class="main_interface">
             <div style="width:100%">
@@ -154,7 +155,7 @@ if (mysqli_num_rows($result_t) > 0) {
 
                     <?php include("dexuatbanbe.php") ?>
                 </div>
-                <div style="display :flex ">
+                <div class = "aaa" >
                     <!-- phần giới thiệu -->
                     <div class="gioithieu" style="display:flex">
                         <div class="inside_gioithieu"   >
@@ -173,21 +174,29 @@ if (mysqli_num_rows($result_t) > 0) {
                         </div>
                     </div>
                     <!-- phần bài đăng -->
-                    <div style="background-color:#f3f5f5; min-height:400px; flex:2.5; padding:0px 10px; padding-right:0px">
-                        <div class="post_bar">
-
-                            <?php include("baidang/baidang.php") ?>
-
-
+                    
+                      
+                        <div class = "db_tcn"> 
+                         <div class= "fsafafa">  
+                        <?php include ("dang_bai/dangbai.php") ?>
                         </div>
+                </div>
+                
+                        
+                    
+                        
+                           <?php include ("baidang/baidang_tcn.php"); ?>
+                           </div> 
+                        
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
         <!-- Phần bạn bè -->
         <div class="friend_bar">
-            Bạn bè<br>
+            Người Liên Hệ<br>
             <div class="friends">
                 <img src="ban.jpg" class="friend_img">
                 <br>
@@ -220,6 +229,7 @@ if (mysqli_num_rows($result_t) > 0) {
         </div>
     </div>
     </div>
+    
     <script>
         document.getElementById('edit-avatar-btn').addEventListener('click', function() {
             document.getElementById('avatar-input').click();
