@@ -11,7 +11,6 @@
 </head>
 <?php
 session_start();
-
 // Kết nối đến cơ sở dữ liệu MySQL
 $servername = "localhost";
 $username = "root";
@@ -36,6 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $matkhau = $_POST['matkhau'];
 
+
+    // $kiemtra-"SELECT * FROM nguoidung";
+    // $kiemtracheck= $conn->query($kiemtra);
     // //truy vấn email hợp lệ
     // if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     //     echo "<script>
@@ -49,56 +51,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // }
 
     // Truy vấn cơ sở dữ liệu để kiểm tra xem tên người dùng và mật khẩu có khớp hay không
-    $query = "SELECT * FROM nguoidung WHERE email = '$email' AND matkhau = '$matkhau'"; // :))
-    $result = $conn->query($query); //  :)))))))
+    $query = "SELECT * FROM nguoidung WHERE email = '$email'limit 1";
+    $result = $conn->query($query);
 
 
     if ($result->num_rows > 0) {
-        // Tên người dùng và mật khẩu khớp
+
         $row = $result->fetch_assoc();
+
         $email_r = $row['email'];
         $matkhau_r = $row['matkhau'];
+        if ($matkhau != $matkhau_r) {
+            echo "<script>
+            swal.fire({
+            title: ' Mật khẩu không đúng!',
+            icon: 'error',
+            button: 'Đóng'
+            });
+        </script>";
+        } else {
+            $_SESSION['ma_nguoidung'] = $row['ma_nguoidung']; // Lưu mã người dùng vào session
+            echo  "<script>window.location.href = '../home.php';</script>";
+        }
+    } else {
         if ($email != $email_r) {
             echo "<script>
-        swal.fire({
-            title: 'Email hoặc mật khẩu không đúng!',
-            icon: 'error',
-            button: 'Đóng'
-        });
-    </script>";
-        } else {
-            if ($matkhau != $matkhau_r) {
-                echo "<script>
-        swal.fire({
-            title: 'Email hoặc mật khẩu không đúng!',
-            icon: 'error',
-            button: 'Đóng'
-        });
-    </script>";
-            }else{
-                $_SESSION['ma_nguoidung'] = $row['ma_nguoidung']; // Lưu mã người dùng vào session
-                echo  "<script>window.location.href = '../home.php';</script>";
-            }
-        }
-
-        }else{
-                echo "<script>
                 swal.fire({
-                    title: 'Tài khoản không tồn tại!',
-                    icon: 'error',
-                    button: 'Đóng'
-                });
+                title: 'Tài khoản không tồn tại!',
+                icon: 'error',
+                button: 'Đóng'
+            });
             </script>";
-            
+        }
     }
 } ?>
-
 <body>
     <?php
     ?>
     <div class="thanhbar">
         <img src="../IMG/logo.png" class="logo">
-        <form class="login_form" name ="login_form" method="POST" action="">
+        <form class="login_form" name="login_form" method="POST" action="">
             <div class="email">
                 <div class="font">Email</div>
                 <input type="text" name="email" require>

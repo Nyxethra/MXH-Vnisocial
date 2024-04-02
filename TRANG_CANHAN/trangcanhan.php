@@ -69,6 +69,12 @@ if (mysqli_num_rows($result_t) > 0) {
             flex-direction: row;
             background: #f3f5f5;
         }
+
+        .post_bar .custom-post {
+            width: 95%;
+            box-shadow: 9px 12px 28px rgba(0, 0, 0, 0.3);
+            border: 1px solid #ccc;
+        }
     </style>
 </head>
 
@@ -151,16 +157,20 @@ if (mysqli_num_rows($result_t) > 0) {
                 </div>
                 <div class = "aaa" >
                     <!-- phần giới thiệu -->
-                    <div class="gioithieu">
-                        <div class="inside_gioithieu">
+                    <div class="gioithieu" style="display:flex">
+                        <div class="inside_gioithieu"   >
                             <div style="font-size :15px; color:black; text-align:center ">Gioi thieu</div>
-                            <div>Tiểu sử<br>
+                            <div style="flex:1">Tiểu sử<br>
                                 <?php echo $tieusu ?>
                             </div>
-                            <div>Đang học</div>
-                            <?php echo $hoc_tai ?>
-                            <div>Sống Tại</div>
-                            <?php echo $mqh ?>
+                            <div style="flex:2">Đang học <br>
+                                <?php echo $hoc_tai ?>
+                            </div>
+
+                            <div style="flex:1" >Sống Tại<br>
+                                <?php echo $mqh ?>
+                            </div>
+
                         </div>
                     </div>
                     <!-- phần bài đăng -->

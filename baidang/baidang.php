@@ -296,13 +296,28 @@
                     <div class="custom-post-content">
                         <p><?php echo $row["noidung"]; ?></p>
                     </div>
-                    <div class="custom-post-image"><img src="<?php echo $imagePath; ?>" alt="Post Image"></div>
+                    <?php if (!empty($row["image"]) && file_exists("img/" . $row["image"])) { ?>
+                 <div class="custom-post-image">
+                    <?php
+                    $imagePath = "img/" . $row["image"];
+                    echo '<img src="' . $imagePath . '" alt="Post Image">';
+                    ?>
+                </div>
+            <?php } ?>
+
+                    
                     <div class="custom-post-actions">
                         <div class="custom-post-actions">
-                            <button class="like-post" data-ma_baidang="<?php echo $row['ma_baidang']; ?>">
-                                <i class="fas fa-thumbs-up" style="color: #a72f2f;"></i>
-                                <span class="like-count">(<?php echo $row['luong_like']; ?>)</span>
-                            </button>
+                        <button class="like-post" data-ma_baidang="<?php echo $row['ma_baidang']; ?>">
+    <?php
+    // Hiển thị số lượt like nếu có
+    if ($row['luong_like'] > 0) {
+        echo '<span class="like-count">(' . $row['luong_like'] . ')</span>';
+    }
+    ?>
+    <i class="fas fa-thumbs-up" style="color: #a72f2f;"></i>
+</button>
+
                             <?php
                             // Ép kiểu integer
                             $changeTypeBd = (int)$row['ma_baidang'];
@@ -339,36 +354,37 @@
         }
 
         // Thêm sự kiện click vào nút like
-        const likeButtons = document.querySelectorAll('.like-post');
-        likeButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const ma_baidang = button.getAttribute('data-ma_baidang');
-                const isLiked = button.classList.contains('liked');
+const likeButtons = document.querySelectorAll('.like-post');
+likeButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        const ma_baidang = button.getAttribute('data-ma_baidang');
+        const isLiked = button.classList.contains('liked');
 
-                // Gửi yêu cầu đến add_like.php để thêm hoặc xóa like
-                fetch('baidang/add_like.php?ma_baidang=' + ma_baidang + '&isLiked=' + isLiked)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            button.classList.toggle('liked');
+        // Gửi yêu cầu đến add_like.php để thêm hoặc xóa like
+        fetch('baidang/add_like.php?ma_baidang=' + ma_baidang + '&isLiked=' + isLiked)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    button.classList.toggle('liked');
 
-                            const likeCountElement = button.querySelector('.like-count');
-                            if (likeCountElement) {
-                                likeCountElement.innerText = '(' + data.likeCount + ')';
-                            }
+                    const likeCountElement = button.querySelector('.like-count');
+                    if (likeCountElement) {
+                        likeCountElement.innerText = '(' + data.luong_like + ')';
+                    }
 
-                            if (button.classList.contains('liked')) {
-                                button.innerHTML = '<i class="fas fa-thumbs-up" style="color: red;"></i>';
-                            } else {
-                                button.innerHTML = '<i class="fas fa-thumbs-up" style="color: #a72f2f;"></i>';
-                            }
-                        } else {
-                            console.error(data.message);
-                        }
-                    })
-                    .catch(error => console.error('Error:', error));
-            });
-        });
+                    if (button.classList.contains('liked')) {
+                        button.innerHTML = '<i class="fas fa-thumbs-up" style="color: red;"></i>';
+                    } else {
+                        button.innerHTML = '<i class="fas fa-thumbs-up" style="color: #a72f2f;"></i>';
+                    }
+                } else {
+                    console.error(data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    });
+});
+
 </script>
 </body>
 
