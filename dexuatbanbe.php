@@ -147,6 +147,13 @@
   
             $conn->close();
         ?>
+           <script>
+        $(document).ready(function() {
+            $('.btn-ketban').click(function() {
+                $(this).closest('.ui.card').fadeOut();
+            });
+        });
+    </script>
         <!-- Thêm hai nút cuộn vào trong .container_dxbb -->
         </div>
         <button class="ui icon button scroll-button scroll-left"><i class="left arrow icon"></i></button>
