@@ -133,7 +133,7 @@
                         echo "<div class='user-info'>";
                         echo "<img class='user-avatar' src='img/" . $row["avatar"] . "'>";
                         echo "<div>";
-                        echo "<a href='home.php?diden=trangcanhan_nl&id2=" . urlencode($row["ma_nguoidung"]) . "' target='_blank' class='user-link'><span class='tnd'><strong>" . $row["ten_nguoidung"] . "</strong></span></a><br>";
+                        echo "<a href='index.php?diden=trangcanhan_nl&id2=" . urlencode($row["ma_nguoidung"]) . "' target='_blank' class='user-link'><span class='tnd'><strong>" . $row["ten_nguoidung"] . "</strong></span></a><br>";
                         echo "<span class='st'>Sống tại " . $row["song_tai"] . "</span><br>";
                         echo "<span class='ts'> " . $row["tieusu"] . "</span>";
                         echo "</div>";

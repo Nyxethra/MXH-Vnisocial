@@ -91,7 +91,7 @@
                 <textarea name="noidung_moi"><?php echo $row['noidung']; ?></textarea>
                 <!-- Hiển thị ảnh hiện tại (nếu có) -->
                 <?php if(!empty($row['image'])): ?>
-                    <img src="<?php echo $row['image']; ?>" alt="Post Image">
+                    <img src="IMG/<?php echo $row['image']; ?>" style=" width:100px"   alt="Post Image">
                     <!-- Thêm nút để người dùng xóa ảnh hiện tại -->
                     <label>Xóa ảnh hiện tại:</label>
                     <input type="checkbox" name="xoa_anh" value="1">

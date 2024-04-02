@@ -39,7 +39,7 @@ if(isset($_POST['ma_baidang'], $_POST['noidung_moi'])) {
         if ($stmt_select_image->num_rows > 0) {
             $stmt_select_image->bind_result($image_path);
             $stmt_select_image->fetch();
-            unlink($image_path); // Xóa ảnh từ thư mục lưu trữ
+            @unlink($image_path); // Xóa ảnh từ thư mục lưu trữ
         }
         $stmt_delete_image = $conn->prepare("UPDATE baidang SET image = NULL WHERE ma_baidang = ?");
         $stmt_delete_image->bind_param("i", $ma_baidang);
@@ -57,7 +57,7 @@ if(isset($_POST['ma_baidang'], $_POST['noidung_moi'])) {
     $image_upload_success = true;
     if(isset($_FILES['anh_moi']) && $_FILES['anh_moi']['error'] === UPLOAD_ERR_OK) {
         $temp_name = $_FILES['anh_moi']['tmp_name'];
-        $target_path = "uploads/";
+        $target_path = "../IMG/";
         $new_image_name = $target_path . basename($_FILES['anh_moi']['name']);
 
         $image_info = getimagesize($temp_name);

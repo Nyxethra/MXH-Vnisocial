@@ -20,7 +20,7 @@ if(!isset($user_id)){
                 include("TRANG_CANHAN/trangcanhan.php");  
                 break;
             case 'trangchu':
-                include("subhome.php");
+                include("subindex.php");
                 break;
             case 'dsyeucau':
                 include("banbe/dsyeucau.php");
@@ -37,7 +37,7 @@ if(!isset($user_id)){
                 include("banbe/dsbanbe.php");
                 break;
         }
-    }else {include("subhome.php");}
+    }else {include("subindex.php");}
     include ("css/css.php");
 ?>
 

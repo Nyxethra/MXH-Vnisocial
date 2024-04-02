@@ -245,20 +245,20 @@
         // Hiển thị bài đăng
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $imagePath = "img/" . $row["image"];
+                $imagePath = "IMG/" . $row["image"];
         ?>
                 <div class="custom-post_dxbb">
                     <div class="custom-post_dxbb-header">
                         <div class="custom-user-info">
                             <div class="custom-user-avatar">
                                 <?php
-                                $avatarPath = "img/" . $row["avatar"];
+                                $avatarPath = "IMG/" . $row["avatar"];
                                 echo '<img src="' . $avatarPath . '" alt="User Avatar">';
                                 ?>
                             </div>
                             <div class="custom-user-details">
                             <h3>
-    <a style="color:#333;" href="<?php echo ($row['dang_boi'] == $user_id) ? 'home.php?diden=trangcanhan' : 'home.php?diden=trangcanhan&id2=' . $row['dang_boi']; ?>" target="_blank" class="user-link">
+    <a style="color:#333;" href="<?php echo ($row['dang_boi'] == $user_id) ? 'index.php?diden=trangcanhan' : 'index.php?diden=trangcanhan&id2=' . $row['dang_boi']; ?>" target="_blank" class="user-link">
         <span class="tnd"><?php echo $row["ten_nguoidung"]; ?></span>
     </a>
     <br>

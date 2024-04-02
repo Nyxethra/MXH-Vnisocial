@@ -85,7 +85,7 @@ html {
 
     ?>
     <div class="menu-trai">
-        <a href="home.php?diden=trangcanhan">
+        <a href="index.php?diden=trangcanhan">
         <button class="btn-trang-ca-nhan">
             <div class="custom-user-info">
                             <div class="custom-user-avatar">
@@ -102,7 +102,7 @@ html {
                         </div>
                         </button>
         </a>
-        <a href="home.php?diden=trangchu">
+        <a href="index.php?diden=trangchu">
             <button class="btn-yeu-cau-ket-ban">
             <div class="custom-user-info">
                             <div class="custom-user-avatar">
@@ -115,7 +115,7 @@ html {
                         </div>
                     </button>
         </a>
-        <a href="home.php?diden=dsyeucau">
+        <a href="index.php?diden=dsyeucau">
             <button class="btn-yeu-cau-ket-ban">
             <div class="custom-user-info">
                             <div class="custom-user-avatar">
@@ -128,7 +128,7 @@ html {
                         </div>
                     </button>
         </a>
-        <a href="home.php?diden=dsbanbe">
+        <a href="index.php?diden=dsbanbe">
             <button class="btn-yeu-cau-ket-ban">
             <div class="custom-user-info">
                             <div class="custom-user-avatar">

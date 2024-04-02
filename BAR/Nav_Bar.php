@@ -128,20 +128,20 @@
   <div class="nav-bar">
     <div class="nav-logo">
 
-    <a class="nav-link" href="home.php?diden=trangchu"><b>
+    <a class="nav-link" href="index.php?diden=trangchu"><b>
       <img src="IMG/logo.png" class="logo"></b>
     </a>
  
     </div>
     <div class="nav-search">
-      <form action="home.php?diden=ketqua_timkiem" method="post">
+      <form action="index.php?diden=ketqua_timkiem" method="post">
         <input type="text" name="ten" placeholder="Nhập tên người dùng">
       </form>
     </div>
     <div class="nav-links">
-      <a class="nav-link" href="home.php?diden=trangchu"><b>Trang chủ</b></a>
+      <a class="nav-link" href="index.php?diden=trangchu"><b>Trang chủ</b></a>
       <a class="nav-link" href="#"><b>|</b></a>
-      <a class="nav-link" href="home.php?diden=trangcanhan"><b>Trang cá nhân</b></a>
+      <a class="nav-link" href="index.php?diden=trangcanhan"><b>Trang cá nhân</b></a>
     </div>
     <div class="nav-icons">
     <div class="nav-icons">

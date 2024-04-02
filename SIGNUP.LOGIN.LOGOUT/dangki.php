@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                           confirmButtonColor: '#28a745',
                           confirmButtonText: 'Đóng'
                       }).then(() => {
-                          window.location.href = '../home.php'; // Chuyển hướng sau khi nhấn nút 'Đóng'
+                          window.location.href = '../index.php'; // Chuyển hướng sau khi nhấn nút 'Đóng'
                       });
                   </script>";
               } else {

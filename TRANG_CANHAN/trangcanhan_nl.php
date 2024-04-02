@@ -179,7 +179,7 @@ if ($resultThongTin->num_rows > 0) {
                     </div>
                     <div class="aaa">
                         <!-- Phần giới thiệu -->
-                        <div class="gioithieu" style=" background-color:#ccc">
+                        <div class="gioithieu">
                             <div class="inside_gioithieu">
                                 <div class="gioithieu_title"><i class="fa fa-info-circle" style="font-size: 17px; margin: 2px;color:black"></i> Giới thiệu</div>
                                 <div class="gioithieu_part"><i class="fas fa-edit" style="font-size: 17px; margin: 2px;color:black"></i>Tiểu sử :
@@ -264,30 +264,6 @@ if ($resultThongTin->num_rows > 0) {
                 </div>
             </div>
         </div>
-        <div class="friend_bar">
-            Người Liên Hệ<br>
-            <div class="friends">
-                <img src="ban.jpg" class="friend_img">
-                <br>First user
-            </div>
-            <div class="friends">
-                <img src="ban.jpg" class="friend_img">
-                <br>First user
-            </div>
-            <div class="friends">
-                <img src="ban.jpg" class="friend_img">
-                <br>First user
-            </div>
-            <div class="friends">
-                <img src="ban.jpg" class="friend_img">
-                <br>First user
-            </div>
-            <div class="friends">
-                <img src="ban.jpg" class="friend_img">
-                <br>First user
-            </div>
-        </div>
-    </div>
 
     <script>
         document.getElementById('edit-avatar-btn').addEventListener('click', function() {

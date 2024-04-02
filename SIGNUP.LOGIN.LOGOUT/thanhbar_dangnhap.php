@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </script>";
         } else {
             $_SESSION['ma_nguoidung'] = $row['ma_nguoidung']; // Lưu mã người dùng vào session
-            echo  "<script>window.location.href = '../home.php';</script>";
+            echo  "<script>window.location.href = '../index.php';</script>";
         }
     } else {
         if ($email != $email_r) {

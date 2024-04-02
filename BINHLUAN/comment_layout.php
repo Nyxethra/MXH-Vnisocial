@@ -94,7 +94,7 @@ $ma_nguoidung = isset($_GET['ma_nguoidung']) ? $_GET['ma_nguoidung'] : '';
     echo "<script>
   function gohome() {
     
-        window.location.href = '../home.php?ma_nguoidung=$ma_nguoidung';
+        window.location.href = '../index.php?ma_nguoidung=$ma_nguoidung';
     
   }
 </script>";

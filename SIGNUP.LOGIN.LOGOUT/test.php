@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($matkhau, $matkhau_hashed)) {
             // Mật khẩu khớp, đăng nhập thành công
             $_SESSION['ma_nguoidung'] = $ma_nguoidung;
-            header("Location: home.php"); // Chuyển hướng đến trang home.php
+            header("Location: index.php"); // Chuyển hướng đến trang index.php
             exit();
         } else {
             // Mật khẩu không khớp, hiển thị thông báo lỗi
