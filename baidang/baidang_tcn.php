@@ -282,7 +282,6 @@
                         <div class="custom-post_dxbb-actions">
                             <button class="like-post" data-ma_baidang="<?php echo $row['ma_baidang']; ?>">
                                 <i class="fas fa-thumbs-up" style="color: #a72f2f;"></i>
-                                <span class="like-count">(<?php echo $row['luong_like']; ?>)</span>
                             </button>
                             <?php
                             // Ép kiểu integer
