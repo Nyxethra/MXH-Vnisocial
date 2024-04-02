@@ -68,6 +68,7 @@ if ($resultThongTin->num_rows > 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="trang_canhan/style_trangcanhan.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>Trang cá nhân của bạn</title>
     <style>
         .abc {
@@ -75,18 +76,59 @@ if ($resultThongTin->num_rows > 0) {
             flex-direction: row;
             background: #f3f5f5;
         }
-        .post_bar .custom-post{
-            margin-left:0;
-            margin-top:100px;
-            width:110%;
+
+        .post_bar .custom-post {
+            margin-left: 0;
+            margin-top: 100px;
+            width: 110%;
             box-shadow: 9px 12px 28px rgba(0, 0, 0, 0.3);
             border: 1px solid;
         }
-        .post_bar .container_baidang{
+
+        .post_bar .container_baidang {
             margin: 0;
         }
+
         .post_bar .container_dangbai {
-            padding:0 20px 20px ;
+            padding: 0 20px 20px;
+        }
+
+        .gioithieu {
+            text-align: center;
+            margin-top: 10px;
+            border-radius: 12%;
+        }
+
+        .inside_gioithieu {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #333333;
+
+        }
+
+        .gioithieu_title {
+            border-radius: 16%;
+            margin-top: 0;
+            height: 50px;
+            padding: 10px;
+            background-color: #a72f2f;
+            font-size: 30px;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 10px;
+        }
+
+        .gioithieu_part {
+            font-weight: bold;
+            font-size: 24px;
+            width: 90%;
+            text-align: left;
+            margin: 22px 0 22px 20px;
+        }
+
+        .text_gioithieu {
+            margin: 10px;
+            font-size: 20px;
         }
     </style>
 </head>
@@ -100,16 +142,18 @@ if ($resultThongTin->num_rows > 0) {
             <div class="main_interface">
                 <div style="width:100%">
                     <div class="head__img">
+
+                        <!-- Phần Ảnh bìa -->
                         <div class="anhbia">
                             <?php if (mysqli_num_rows($resultAnhBia) > 0) : ?>
                                 <img id="anhbia-img" src="IMG/gallery/<?= $anhbia ?>" class="anhbia">
                             <?php else : ?>
                                 <img id="anhbia-img" src="IMG/gallery/pic.jpg" class="anhbia">
                             <?php endif; ?>
-                            <form action="" method="POST" enctype="multipart/form-data">
+                            <form action="" name="bbb" method="POST" enctype="multipart/form-data">
                                 <input type="file" name="anhbia" id="anhbia-input" accept="image/*" style="display:none">
                                 <button type="button" id="edit-anhbia-btn" class="edit-anhbia" style="<?php echo $hideChangeAnhBia; ?>">
-                                    <i class="fas fa-camera"></i>
+                                    <i class="fas fa-camera" style="border:solid 3px"></i>
                                 </button>
                                 <input type="submit" value="Lưu" id='show' style="display:none; float:right">
                             </form>
@@ -121,7 +165,7 @@ if ($resultThongTin->num_rows > 0) {
                                 <?php else : ?>
                                     <img id="avatar-img" src="IMG/gallery/ban.jpg" class="profile_pic">
                                 <?php endif; ?>
-                                <form action="" method="POST" enctype="multipart/form-data">
+                                <form action="" name="bbab" method="POST" enctype="multipart/form-data">
                                     <input type="file" name="avatar" id="avatar-input" accept="image/*" style="display:none">
                                     <button type="button" id="edit-avatar-btn" class="edit-avatar" style="<?php echo $hideChangeAvatar; ?>">
                                         <i class="fas fa-camera" style="margin:0;"></i>
@@ -137,105 +181,105 @@ if ($resultThongTin->num_rows > 0) {
                     <div class="friend_request">
                         <?php include("dexuatbanbe.php") ?>
                     </div>
-                    <div class="aaa">
-                        <div class="gioithieu">
-                            <div class="inside_gioithieu">
-                                <div style="font-size: 15px; color:black; text-align:center ">Gioi thieu</div>
-                                <div>Tiểu sử<br><?php echo $tieusu ?></div>
-                                <div>Đang học</div><?php echo $hoc_tai ?>
-                                <div>Sống Tại</div><?php echo $mqh ?>
+                    <!-- Phần giới thiệu -->
+                    <div class="gioithieu" style=" background-color:#ccc">
+                        <div class="inside_gioithieu">
+                            <div class="gioithieu_title"><i class="fa fa-info-circle" style="font-size: 17px; margin: 2px;color:black"></i> Giới thiệu</div>
+                            <div class="gioithieu_part"><i class="fas fa-edit" style="font-size: 17px; margin: 2px;color:black"></i>Tiểu sử :
+                                <div class="text_gioithieu" style="float:right; margin:0;font-weight:normal"><?php echo $tieusu ?>
+                                </div>
+                            </div>
+                            <div class="gioithieu_part"><i class="fas fa-book-open" style="font-size: 17px; margin: 2px;color:black"></i>Đang học :
+                            </div>
+                            <div class="text_gioithieu"><?php echo $hoc_tai ?>
+                            </div>
+                            <div class="gioithieu_part"><i class="fas fa-home" style="font-size: 17px; margin: 2px;color:black"></i>Sống Tại :
+                            </div>
+                            <div class="text_gioithieu"><?php echo $mqh ?>
                             </div>
                         </div>
-
-
-
-
-
-
-
-
-
-
-
-                        <div class="db_tcn">
-    <?php
-    $servername = "localhost"; // Tên máy chủ MySQL
-    $username = "root"; // Tên người dùng MySQL
-    $password = ""; // Mật khẩu của người dùng MySQL
-    $database = "vnisocial"; // Tên cơ sở dữ liệu MySQL
-
-    // Tạo kết nối đến cơ sở dữ liệu
-    $conn = new mysqli($servername, $username, $password, $database);
-
-    if (!isset($_GET['id2'])) {
-        echo '<div class="fsafafa"> <div>';
-        include("dang_bai/dangbai.php");
-        echo '</div><div>';
-
-        // Bao gồm cả file baidang_tcn.php
-        include("baidang/baidang_tcn.php");
-    } else {
-        $user_id3 = $_GET['id2'];
-        $sqlCheckFriendship = "SELECT * FROM banbe WHERE (ma_nguoidung1 = '$user_id3' AND ma_nguoidung2 = '$user_id2') OR (ma_nguoidung1 = '$user_id2' AND ma_nguoidung2 = '$user_id3')";
-        $resultCheckFriendship = mysqli_query($conn, $sqlCheckFriendship);
-        if ($resultCheckFriendship) {
-            if (mysqli_num_rows($resultCheckFriendship) > 0) {
-                include("baidang/baidang_tcn.php");
-            } else {
-                echo '<p class="thongbao">Không có bài viết để hiển thị</p>';
-            }
-        } else {
-            echo "Lỗi truy vấn kiểm tra bạn bè: " . mysqli_error($conn);
-        }
-    }
-    ?>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     </div>
+
+
+                    <div class="db_tcn">
+                        <?php
+                        $servername = "localhost"; // Tên máy chủ MySQL
+                        $username = "root"; // Tên người dùng MySQL
+                        $password = ""; // Mật khẩu của người dùng MySQL
+                        $database = "vnisocial"; // Tên cơ sở dữ liệu MySQL
+
+                        // Tạo kết nối đến cơ sở dữ liệu
+                        $conn = new mysqli($servername, $username, $password, $database);
+
+                        if (!isset($_GET['id2'])) {
+                            echo '<div class="fsafafa"> <div>';
+                            include("dang_bai/dangbai.php");
+                            echo '</div><div>';
+
+                            // Bao gồm cả file baidang_tcn.php
+                            include("baidang/baidang_tcn.php");
+                        } else {
+                            $user_id3 = $_GET['id2'];
+                            $sqlCheckFriendship = "SELECT * FROM banbe WHERE (ma_nguoidung1 = '$user_id3' AND ma_nguoidung2 = '$user_id2') OR (ma_nguoidung1 = '$user_id2' AND ma_nguoidung2 = '$user_id3')";
+                            $resultCheckFriendship = mysqli_query($conn, $sqlCheckFriendship);
+                            if ($resultCheckFriendship) {
+                                if (mysqli_num_rows($resultCheckFriendship) > 0) {
+                                    include("baidang/baidang_tcn.php");
+                                } else {
+                                    echo '<p class="thongbao">Không có bài viết để hiển thị</p>';
+                                }
+                            } else {
+                                echo "Lỗi truy vấn kiểm tra bạn bè: " . mysqli_error($conn);
+                            }
+                        }
+                        ?>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 </div>
             </div>
         </div>
-        <div class="friend_bar">
-            Bạn bè<br>
-            <div class="friends">
-                <img src="ban.jpg" class="friend_img">
-                <br>First user
-            </div>
-            <div class="friends">
-                <img src="ban.jpg" class="friend_img">
-                <br>First user
-            </div>
-            <div class="friends">
-                <img src="ban.jpg" class="friend_img">
-                <br>First user
-            </div>
-            <div class="friends">
-                <img src="ban.jpg" class="friend_img">
-                <br>First user
-            </div>
-            <div class="friends">
-                <img src="ban.jpg" class="friend_img">
-                <br>First user
-            </div>
+    </div>
+    <div class="friend_bar">
+        Bạn bè<br>
+        <div class="friends">
+            <img src="ban.jpg" class="friend_img">
+            <br>First user
         </div>
+        <div class="friends">
+            <img src="ban.jpg" class="friend_img">
+            <br>First user
+        </div>
+        <div class="friends">
+            <img src="ban.jpg" class="friend_img">
+            <br>First user
+        </div>
+        <div class="friends">
+            <img src="ban.jpg" class="friend_img">
+            <br>First user
+        </div>
+        <div class="friends">
+            <img src="ban.jpg" class="friend_img">
+            <br>First user
+        </div>
+    </div>
     </div>
     <script>
         document.getElementById('edit-avatar-btn').addEventListener('click', function() {

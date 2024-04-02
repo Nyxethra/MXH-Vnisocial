@@ -94,6 +94,7 @@
   background-color: white;
   height: 500px;
   flex: 1;
+  text-align: center;
   box-shadow: 0px 1px 5px 0px rgba(34, 36, 38, 0.15);
   border-radius: 7px;
   border: 1px solid #ccc;
@@ -107,7 +108,7 @@
 .post_bar {
   background-color: white;
   padding: 10px;
-  width:100%;
+  width: 100%;
 }
 .post {
   padding: 4px;
@@ -118,3 +119,4 @@
   width: 678px;
   height: 62px;
 }
+
