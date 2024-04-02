@@ -55,4 +55,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $response = array("success" => false, "message" => "Yêu cầu không hợp lệ");
     echo json_encode($response);
 }
+
 ?>

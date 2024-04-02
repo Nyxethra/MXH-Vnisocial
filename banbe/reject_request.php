@@ -29,4 +29,5 @@ if (isset($_POST["sender_id"]) && isset($_POST["user_id"])) {
     $response = array("success" => false, "message" => "Yêu cầu POST không hợp lệ");
     echo json_encode($response);
 }
+echo "success";
 ?>
