@@ -40,11 +40,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Lỗi: " . $sql . "<br>" . $conn->error;
         }
     } else {
-        echo "Vui lòng nhập bình luận của bạn.";
+        echo "<script>
+        Swal.fire({
+            position: 'center',
+            
+            title: 'Vui lòng nhập bình luận của bạn',
+            showConfirmButton: false,
+            timer: 1500,
+            });</script>";
     }
 }
 //kiểm tra nhấn nút sửa
 if (isset($_POST['update_comment'])) {
+    $ma_baidang = isset($_GET['ma_baidang']) ? $_GET['ma_baidang'] : '';
+
     $commentId = $_POST['comment_id'];
     $editedComment = $_POST['edited_comment'];
 
@@ -56,22 +65,7 @@ if (isset($_POST['update_comment'])) {
         // Hiển thị thông báo thành công bằng JavaScript
 
         echo "<script>
-        Swal.fire({
-            title: 'Bạn có muốn lưu các thay đổi?',
-            showDenyButton: true,
-            showCancelButton: true,
-            confirmButtonText: 'Lưu',
-            denyButtonText: 'Không lưu'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              Swal.fire('Đã lưu!', '', 'success',);
-              window.location.href = 'comment_layout.php?ma_baidang=$ma_baidang&ma_nguoidung=$ma_nguoidung';
-            } else if (result.isDenied) {
-                Swal.fire('Các thay đổi không được lưu', '', 'info');
-
-              // Code để ở lại trang hiện tại
-            }
-          });
+        Swal.fire('Đã được chỉnh sửa!');
      </script>";
     } else {
         // Hiển thị thông báo thất bại bằng JavaScript
@@ -80,10 +74,14 @@ if (isset($_POST['update_comment'])) {
         window.location.href = 'comment_layout.php?ma_baidang=$ma_baidang&ma_nguoidung=$ma_nguoidung';
         </script>";
     }
-}
 
+}
 // Hiển thị biểu mẫu chỉnh sửa bình luận
 if (isset($_GET['comment_id'])) {
+    $ma_nguoidung = isset($_GET["ma_nguoidung"]) ? $_GET["ma_nguoidung"] : '';
+    $noidung_binhluan = isset($_POST["noidung_binhluan"]) ? $_POST["noidung_binhluan"] : '';
+    $ma_baidang = isset($_GET['ma_baidang']) ? $_GET['ma_baidang'] : '';
+
     $commentId = $_GET['comment_id'];
 
     // Thực hiện câu truy vấn để lấy thông tin bình luận từ cơ sở dữ liệu
@@ -101,10 +99,10 @@ if (isset($_GET['comment_id'])) {
             <input type='hidden' name='comment_id' value='$commentId'>
             <button type='submit' name='update_comment'>Cập nhật</button>
             <button type='button' onclick='goBack()'>Trở về</button>
-        </form>;
+        </form>
         <script>
             function goBack() {
-                window.history.back();
+                window.location.href = 'comment_layout.php?ma_baidang=$ma_baidang&ma_nguoidung=$ma_nguoidung';
             }
         </script>";
     } else {
