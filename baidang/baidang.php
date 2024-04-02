@@ -314,10 +314,6 @@
                     <div class="custom-post-actions">
                         <button class="like-post" data-ma_baidang="<?php echo $row['ma_baidang']; ?>">
                             <?php
-                            // Hiển thị số lượt like nếu có
-                            if ($row['luong_like'] > 0) {
-                                echo '<span class="like-count">(' . $row['luong_like'] . ')</span>';
-                            }
                             ?>
                             <i class="fas fa-thumbs-up" style="color: #a72f2f;"></i>
                         </button>

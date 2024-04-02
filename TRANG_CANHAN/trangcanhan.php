@@ -106,17 +106,17 @@ if ($resultThongTin->num_rows > 0) {
 
         }
 
-        .gioithieu_title {
-            border-radius: 16%;
-            margin-top: 0;
-            height: 50px;
-            padding: 10px;
-            background-color: #a72f2f;
-            font-size: 30px;
-            font-weight: bold;
-            color: #000000;
-            margin-bottom: 10px;
-        }
+       .gioithieu_title {
+    border-radius: 0;
+    margin-top: 0;
+    height: 50px;
+    padding: 10px;
+    background-color: #a72f2f;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 10px;
+}
 
         .gioithieu_part {
             font-weight: bold;
@@ -197,6 +197,9 @@ if ($resultThongTin->num_rows > 0) {
                             </div>
                             <div class="text_gioithieu"><?php echo $mqh ?>
                             </div>
+                            <div class="text-center mt-3">
+                                 <button class="btn btn-sm btn-outline-primary" onclick="window.location.href='TRANG_CANHAN/chinh_sua_thong_tin.php'">Chỉnh sửa thông tin cá nhân</button>
+                             </div>
                         </div>
                     </div>
 
@@ -257,29 +260,29 @@ if ($resultThongTin->num_rows > 0) {
             </div>
         </div>
     </div>
-    <div class="friend_bar">
-        Bạn bè<br>
-        <div class="friends">
-            <img src="ban.jpg" class="friend_img">
-            <br>First user
-        </div>
-        <div class="friends">
-            <img src="ban.jpg" class="friend_img">
-            <br>First user
-        </div>
-        <div class="friends">
-            <img src="ban.jpg" class="friend_img">
-            <br>First user
-        </div>
-        <div class="friends">
-            <img src="ban.jpg" class="friend_img">
-            <br>First user
-        </div>
-        <div class="friends">
-            <img src="ban.jpg" class="friend_img">
-            <br>First user
-        </div>
-    </div>
+    <div class="col-md-4">
+                <div class="friend_bar">
+                    <h3>Bạn bè</h3>
+                    <?php
+                    $sqlFriends = "SELECT * FROM banbe WHERE ma_nguoidung1 = '$user_id' OR ma_nguoidung2 = '$user_id'";
+                    $resultFriends = mysqli_query($conn, $sqlFriends);
+                    if ($resultFriends) {
+                        while ($rowFriend = mysqli_fetch_assoc($resultFriends)) {
+                            $friendId = ($rowFriend['ma_nguoidung1'] != $user_id) ? $rowFriend['ma_nguoidung1'] : $rowFriend['ma_nguoidung2'];
+                            $sqlFriendInfo = "SELECT * FROM nguoidung WHERE ma_nguoidung = '$friendId'";
+                            $resultFriendInfo = mysqli_query($conn, $sqlFriendInfo);
+                            if ($resultFriendInfo && mysqli_num_rows($resultFriendInfo) > 0) {
+                                $rowFriendInfo = mysqli_fetch_assoc($resultFriendInfo);
+                    ?>
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="<?php echo $rowFriendInfo['avatar']; ?>" class="profile_pic rounded-circle mr-2" width="5" height="5">
+                                    <span><?php echo $rowFriendInfo['ten_nguoidung']; ?></span>
+                                </div>
+                    <?php
+                            }
+                        }
+                    }
+                    ?>
     </div>
     <script>
         document.getElementById('edit-avatar-btn').addEventListener('click', function() {
