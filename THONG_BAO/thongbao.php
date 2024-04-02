@@ -12,7 +12,7 @@ if ($conn->connect_error){
 $sql = "SELECT thongbao.noidung_thongbao, nguoidung.ten_nguoidung
 FROM thongbao
 JOIN nguoidung ON thongbao.thongbao_tu = nguoidung.ma_nguoidung
-WHERE thongbao.thongbao_den = $user_id;";
+WHERE thongbao.thongbao_den = $user_id ORDER BY thoidiem_thongbao DESC;";
 
 $result = $conn->query($sql);
 
