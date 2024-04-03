@@ -1,4 +1,22 @@
 <?php
+
+$servername = "localhost"; 
+$username ="root"; 
+$password = ""; 
+$database = "vnisocial";
+
+
+$conn = new mysqli($servername, $username, $password, $database);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} else {
+
+}
+
+?>
+
+<?php
 // Kiểm tra xem yêu cầu có phải là POST không
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Kiểm tra xem có dữ liệu được gửi từ form không
