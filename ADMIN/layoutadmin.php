@@ -61,10 +61,11 @@
 <body> 
   <div class="formngoai">
     <img src="../IMG/logo.png">
+
     <form action="loginadmin.php" method="post">
       <input type="text" placeholder="Email" class="formInput" name="email"/>
       <input type="password" placeholder="Mật khẩu" class="formInput" name="matkhau"/>
-      <button>Đăng nhập</button>
+      <button>Đăng nhập </button>
       <hr width="100%" />
     </form>
   </div>
